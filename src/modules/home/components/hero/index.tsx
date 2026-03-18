@@ -19,10 +19,10 @@ const Hero = () => {
             className="text-xsleading-10 text-ui-fg-subtle font-normal"
           >
             <div className="mb-5">
-              <Image src="/coverimage.png" alt="" width={1000} height={500}></Image>
+            {/* Einfügen eines Coverbildes */}
             </div>
             
-            <a href="/store" className="bg-orange-950 rounded-xl text-base-regular text-white p-2">Explore Products</a>
+            <a href="/store" className="bg-orange-950 rounded-xl text-base-regular text-white p-2">Entdecke unsere Produkte</a>
           </Heading>
         </span>
        

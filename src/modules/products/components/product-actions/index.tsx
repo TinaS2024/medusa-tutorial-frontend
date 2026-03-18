@@ -277,6 +277,17 @@ export default function ProductActions({
           </>
         )}
 
+    {product.metadata?.is_designable === true&& (
+              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&returnUrl=/products/${product.handle}`} className="w-full">
+                <Button
+                  variant="secondary"
+                  className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
+                  data-testid="go-to-designer-button"
+                >
+                  Zum Designer
+                </Button>
+              </a>
+            )}
         <Button
           onClick={handleAddToCart}
           disabled={

@@ -20,7 +20,7 @@ export default async function Footer() {
               href="/"
               className="txt-compact-xlarge-plus text-white/70 hover:text-white uppercase"
             >
-              Bolasys-Shop
+              Shop-Name
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
@@ -114,7 +114,7 @@ export default async function Footer() {
                 <li>
                   <a href="https://github.com/medusajs"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noreferrer noopener"
                     className="text-white/70 hover:text-white"
                   >
                     GitHub
@@ -124,7 +124,7 @@ export default async function Footer() {
                   <a
                     href="https://docs.medusajs.com"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noreferrer noopener"
                     className="text-white/70 hover:text-white"
                   >
                     Documentation
@@ -134,7 +134,7 @@ export default async function Footer() {
                   <a
                     href="https://github.com/medusajs/nextjs-starter-medusa"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noreferrer noopener"
                     className="text-white/70 hover:text-white"
                   >
                     Source code
