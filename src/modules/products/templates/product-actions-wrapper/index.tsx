@@ -16,10 +16,15 @@ export default async function ProductActionsWrapper({
   region: HttpTypes.StoreRegion
   bundle?: BundleProduct
 }) {
+
+  
   const product = await listProducts({
     queryParams: { id: [id] },
     regionId: region.id,
+    fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+options,+material",
+    expand: "variants,options,variants.prices,variants.options",
   }).then(({ response }) => response.products[0])
+
 
   if (!product) {
     return null

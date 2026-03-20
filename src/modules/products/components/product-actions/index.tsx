@@ -54,11 +54,16 @@ export default function ProductActions({
     })
   }
 
-  const [height,setHeight] = useState(0);
-  const [width,setWidth] = useState(0);
+  const [height,setHeight] = useState(Number(product.height) || 0);
+  const [width,setWidth] = useState(Number(product.width) || 0);
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
+     if (product.options && product.options.length > 0) 
+    {
+      console.log("Produktoptionen[0].values:", product.options[0].values);
+    }
+
     if (product.variants?.length === 1) {
       const variantOptions = optionsAsKeymap(product.variants[0].options)
       setOptions(variantOptions ?? {})
@@ -74,7 +79,61 @@ export default function ProductActions({
       const variantOptions = optionsAsKeymap(v.options)
       return isEqual(variantOptions, options)
     })
-  }, [product.variants, options])
+  }, [product.variants, options]);
+
+  const cushionColorOption = product.options?.find(opt => opt.title === "Kissenfarbe");
+  let cushionColor = "";
+  if (selectedVariant && cushionColorOption) 
+  {
+    const variantCushionColorValue = selectedVariant.options?.find(
+      (vOpt) => vOpt.option_id === cushionColorOption.id
+    )?.value;
+    if (variantCushionColorValue) {
+      cushionColor = variantCushionColorValue;
+    }
+  }
+
+  useEffect(() => {
+    console.log("useEffect triggered for selectedVariant change.");
+    console.log("Product options:", product.options);
+    console.log("Selected variant:", selectedVariant);
+
+    let newWidth = Number(product.width) || 0; 
+    let newHeight = Number(product.height) || 0; 
+
+    if (selectedVariant) 
+      {
+      const widthOptionDef = product.options?.find(opt => opt.title === "Breite");
+      const heightOptionDef = product.options?.find(opt => opt.title === "Höhe");
+
+      let newWidth = 0; 
+      let newHeight = 0; 
+
+      if (widthOptionDef) 
+      {
+        const variantWidthValue = selectedVariant.options?.find(
+          (vOpt) => vOpt.option_id === widthOptionDef.id
+        )?.value;
+        if (variantWidthValue !== undefined && !isNaN(Number(variantWidthValue))) 
+        {
+          newWidth = Number(variantWidthValue);
+        }
+      }
+
+      if (heightOptionDef) 
+      {
+        const variantHeightValue = selectedVariant.options?.find(
+          (vOpt) => vOpt.option_id === heightOptionDef.id
+        )?.value;
+        if (variantHeightValue !== undefined && !isNaN(Number(variantHeightValue))) 
+        {
+          newHeight = Number(variantHeightValue);
+        }
+      }
+    }
+      setWidth(newWidth);
+      setHeight(newHeight);
+  }, [selectedVariant, product.options, product.width, product.height]); 
 
   // update the options when a variant is selected
   const setOptionValue = (optionId: string, value: string) => {
@@ -278,7 +337,7 @@ export default function ProductActions({
         )}
 
     {product.metadata?.is_designable === true&& (
-              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&returnUrl=/products/${product.handle}`} className="w-full">
+              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&returnUrl=/products/${product.handle}`} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"

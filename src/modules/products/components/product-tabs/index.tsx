@@ -12,6 +12,8 @@ type ProductTabsProps = {
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+
+  console.log("Produktmaterial:", product.material);
   const tabs = [
     {
       label: "Produkt Information",
@@ -67,9 +69,13 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           <div>
             <span className="font-semibold">Größe</span>
             <p>
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
+              {(() => {
+                const dimensions = [];
+                if (product.length) dimensions.push(`${product.length} Länge`);
+                if (product.width) dimensions.push(`${product.width} Breite`);
+                if (product.height) dimensions.push(`${product.height} Höhe`);
+                return dimensions.length > 0 ? dimensions.join(" x ") : "-";
+              })()}
             </p>
           </div>
         </div>
