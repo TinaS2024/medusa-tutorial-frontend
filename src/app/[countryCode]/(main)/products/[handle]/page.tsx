@@ -15,7 +15,8 @@ export async function generateStaticParams() {
       regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
     )
 
-    if (!countryCodes) {
+    if (!countryCodes) 
+    {
       return []
     }
 
@@ -84,8 +85,8 @@ export default async function ProductPage(props: Props) {
     countryCode: params.countryCode,
     queryParams: { 
       handle: [params.handle],
-      fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+options,*bundle",
-      expand: "variants,options, variants.prices, variants.options",
+      fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+options,+images,+variants.images,*bundle",
+      expand: "variants,options, variants.prices, variants.options,images,variants.images",
    },
   }).then(({ response }) => response.products[0])
 

@@ -70,7 +70,7 @@ export default async function PaginatedProducts({
     response: { products, count },
   } = await listProducts({
     pageParam: page,
-    queryParams,
+    queryParams: {...queryParams, expand: "variants,options, images, variants.options, variants.prices"},
     countryCode,
   })
 

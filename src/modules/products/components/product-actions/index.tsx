@@ -81,6 +81,16 @@ export default function ProductActions({
     })
   }, [product.variants, options]);
 
+  const isStampProduct = useMemo(() => {
+    return product.title?.toLowerCase().includes("trodat") || product.subtitle?.toLowerCase().includes("trodat");
+  }, [product.title, product.subtitle]);
+
+  const isShieldProduct = useMemo(() => {
+    return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
+  }, [product.title, product.subtitle]);
+
+
+  //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
   const cushionColorOption = product.options?.find(opt => opt.title === "Kissenfarbe");
   let cushionColor = "";
   if (selectedVariant && cushionColorOption) 
@@ -88,8 +98,21 @@ export default function ProductActions({
     const variantCushionColorValue = selectedVariant.options?.find(
       (vOpt) => vOpt.option_id === cushionColorOption.id
     )?.value;
-    if (variantCushionColorValue) {
+    if (variantCushionColorValue) 
+    {
       cushionColor = variantCushionColorValue;
+    }
+  }
+
+  //Benutzerdefinierte Hintergrundfarbe für Schilder
+  const bgColorOption = product.options?.find(opt => opt.title === "Hintergrundfarbe");
+  let bgColor = "";
+  if (selectedVariant && bgColorOption) {
+    const variantBgColorValue = selectedVariant.options?.find(
+      (vOpt) => vOpt.option_id === bgColorOption.id
+    )?.value;
+    if (variantBgColorValue) {
+      bgColor = variantBgColorValue;
     }
   }
 
@@ -275,7 +298,18 @@ export default function ProductActions({
         <div>
           {(product.variants?.length ?? 0) > 1 && (
             <div className="flex flex-col gap-y-4">
-              {(product.options || []).map((option) => {
+              {(product.options || []).filter(option => {
+
+                  if (option.title === "Kissenfarbe") 
+                  {
+                    return isStampProduct;
+                  }
+                  else if (option.title === "Hintergrundfarbe") 
+                  {
+                    return isShieldProduct;
+                  }
+                  return true;
+                }).map((option) => {
                 return (
                   <div key={option.id}>
                     <OptionSelect
@@ -337,7 +371,7 @@ export default function ProductActions({
         )}
 
     {product.metadata?.is_designable === true&& (
-              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&returnUrl=/products/${product.handle}`} className="w-full">
+              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Hintergrundfarbe=${encodeURIComponent(bgColor)}&returnUrl=/products/${product.handle}`} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
