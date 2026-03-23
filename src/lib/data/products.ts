@@ -56,7 +56,8 @@ export const listProducts = async ({
     ...(await getCacheOptions("products")),
   }
 
-  return sdk.client
+return sdk.client
+
     .fetch<{ products: (HttpTypes.StoreProduct & { bundle?: Omit<BundleProduct, "items" >})[]; count: number }>(
       `/store/products`,
       {

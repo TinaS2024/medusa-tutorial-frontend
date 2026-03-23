@@ -110,12 +110,12 @@ export default function ProductActions({
     }
   }
 
-  //Benutzerdefinierte Hintergrundfarbe für Schilder
-  const bgColorOption = product.options?.find(opt => opt.title === "Hintergrundfarbe");
+  //Benutzerdefinierte Gravurfarbe für Schilder
+  const engravedColorOption = product.options?.find(opt => opt.title === "Gravurfarbe");
   let bgColor = "";
-  if (selectedVariant && bgColorOption) {
+  if (selectedVariant && engravedColorOption) {
     const variantBgColorValue = selectedVariant.options?.find(
-      (vOpt) => vOpt.option_id === bgColorOption.id
+      (vOpt) => vOpt.option_id === engravedColorOption.id
     )?.value;
     if (variantBgColorValue) {
       bgColor = variantBgColorValue;
@@ -308,13 +308,13 @@ export default function ProductActions({
 
                   if (isStampProduct) 
                   {
-                    return option.title === "Kissenfarbe" || (option.title !== "Hintergrundfarbe" && option.title !== "Kissenfarbe");
+                    return option.title === "Kissenfarbe" || (option.title !== "Gravurfarbe" && option.title !== "Kissenfarbe");
                   }
                   if (isShieldProduct) 
                   {
-                    return option.title === "Hintergrundfarbe" || (option.title !== "Hintergrundfarbe" && option.title !== "Kissenfarbe");
+                    return option.title === "Gravurfarbe" ||  option.title !== "Kissenfarbe";
                   }
-                  return true;
+                   return option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe";
                 }).map((option) => {
                 return (
                   <div key={option.id}>
