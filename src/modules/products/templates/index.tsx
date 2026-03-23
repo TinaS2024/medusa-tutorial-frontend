@@ -30,7 +30,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   }
 
   return (
-    <>
+    <div key={product.id}>
       <div
         className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
         data-testid="product-container"
@@ -53,7 +53,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
               />
             }
           >
-            <ProductActionsWrapper id={product.id} region={region} bundle={bundle}/>
+            <ProductActionsWrapper id={product.id} handle={product.handle} region={region} bundle={bundle}/>
           </Suspense>
         </div>
       </div>
@@ -65,7 +65,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           <RelatedProducts product={product} countryCode={countryCode} />
         </Suspense>
       </div>
-    </>
+    </div>
   )
 }
 

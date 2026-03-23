@@ -9,21 +9,27 @@ import BundleActions from "@modules/products/components/bundle-actions";
  */
 export default async function ProductActionsWrapper({
   id,
+  handle,
   region,
   bundle,
 }: {
   id: string
+  handle?: string
   region: HttpTypes.StoreRegion
   bundle?: BundleProduct
 }) {
 
-  
-  const product = await listProducts({
-    queryParams: { id: [id] },
+ const { response } = await listProducts({
+    queryParams: { 
+      handle: handle, 
+      expand: "variants,options,variants.prices,variants.options",
+    },
     regionId: region.id,
-    fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+options,+material",
-    expand: "variants,options,variants.prices,variants.options",
-  }).then(({ response }) => response.products[0])
+
+  })
+
+
+  const product = response.products.find((p) => p.id === id)
 
 
   if (!product) {

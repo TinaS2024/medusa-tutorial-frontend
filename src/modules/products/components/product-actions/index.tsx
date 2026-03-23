@@ -112,13 +112,13 @@ export default function ProductActions({
 
   //Benutzerdefinierte Gravurfarbe für Schilder
   const engravedColorOption = product.options?.find(opt => opt.title === "Gravurfarbe");
-  let bgColor = "";
+  let engravedColor = "";
   if (selectedVariant && engravedColorOption) {
-    const variantBgColorValue = selectedVariant.options?.find(
+    const variantengravedColorValue = selectedVariant.options?.find(
       (vOpt) => vOpt.option_id === engravedColorOption.id
     )?.value;
-    if (variantBgColorValue) {
-      bgColor = variantBgColorValue;
+    if (variantengravedColorValue) {
+      engravedColor = variantengravedColorValue;
     }
   }
 
@@ -377,7 +377,7 @@ export default function ProductActions({
         )}
 
     {product.metadata?.is_designable === true&& (
-              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Hintergrundfarbe=${encodeURIComponent(bgColor)}&returnUrl=/products/${product.handle}`} className="w-full">
+              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColorOption)}&returnUrl=/products/${product.handle}`} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
