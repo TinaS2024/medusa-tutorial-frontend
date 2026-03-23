@@ -10,6 +10,7 @@ type Props = {
 }
 
 export async function generateStaticParams() {
+
   try {
     const countryCodes = await listRegions().then((regions) =>
       regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
@@ -21,8 +22,9 @@ export async function generateStaticParams() {
     }
 
     const products = await listProducts({
-      countryCode: "US",
-      queryParams: { fields: "handle" },
+      countryCode: "DE",
+      queryParams: { 
+        fields: "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+options,+images,+variants.images,*bundle" },
     }).then(({ response }) => response.products)
 
     return countryCodes

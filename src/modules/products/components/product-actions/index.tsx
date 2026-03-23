@@ -89,6 +89,12 @@ export default function ProductActions({
     return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
   }, [product.title, product.subtitle]);
 
+  console.log("ProductActions Debug:");
+  console.log("  Product Title:", product.title);
+  console.log("  Product Subtitle:", product.subtitle);
+  console.log("  isShieldProduct:", isShieldProduct);
+  console.log("  isStampProduct:", isStampProduct);
+  console.log("  Product Options:", product.options);
 
   //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
   const cushionColorOption = product.options?.find(opt => opt.title === "Kissenfarbe");
@@ -300,13 +306,13 @@ export default function ProductActions({
             <div className="flex flex-col gap-y-4">
               {(product.options || []).filter(option => {
 
-                  if (option.title === "Kissenfarbe") 
+                  if (isStampProduct) 
                   {
-                    return isStampProduct;
+                    return option.title === "Kissenfarbe" || (option.title !== "Hintergrundfarbe" && option.title !== "Kissenfarbe");
                   }
-                  else if (option.title === "Hintergrundfarbe") 
+                  if (isShieldProduct) 
                   {
-                    return isShieldProduct;
+                    return option.title === "Hintergrundfarbe" || (option.title !== "Hintergrundfarbe" && option.title !== "Kissenfarbe");
                   }
                   return true;
                 }).map((option) => {
