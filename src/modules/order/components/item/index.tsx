@@ -29,8 +29,8 @@ const Item = ({ item, currencyCode }: ItemProps) => {
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
          <div className="text-sm text-ui-fg-muted">
-          {!!item.metadata?.width && <div>Width: {item.metadata.width as number}mm</div>}
-          {!!item.metadata?.height && <div>Height: {item.metadata.height as number}mm</div>}
+          {!!item.metadata?.width && <div>Width: {item.metadata.width as number} mm</div>}
+          {!!item.metadata?.height && <div>Height: {item.metadata.height as number} mm</div>}
         </div>
       </Table.Cell>
 
