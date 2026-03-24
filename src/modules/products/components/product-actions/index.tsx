@@ -122,33 +122,45 @@ export default function ProductActions({
     }
   }
 
+  //Hintergrundfarbe für Schilder
+  const backgroundColorOption = product.options?.find(opt => opt.title === "Hintergrundfarbe");
+  let backgroundColor = "";
+  if (product.metadata?.default_background_color) 
+  {
+    backgroundColor = product.metadata.default_background_color as string;
+  } else if (selectedVariant && backgroundColorOption) 
+  {
+    const variantbackgroundColorValue = selectedVariant.options?.find(
+      (vOpt) => vOpt.option_id === backgroundColorOption.id
+    )?.value;
+
+
+    if (variantbackgroundColorValue) {
+      backgroundColor = variantbackgroundColorValue;
+    }
+  }
+
   useEffect(() => {
     console.log("useEffect triggered for selectedVariant change.");
     console.log("Product options:", product.options);
     console.log("Selected variant:", selectedVariant);
 
-    let newWidth = Number(product.width) || 0; 
-    let newHeight = Number(product.height) || 0; 
+    let currentWidth = Number(product.width) || 0; 
+    let currentHeight = Number(product.height) || 0; 
 
     if (selectedVariant) 
       {
       const widthOptionDef = product.options?.find(opt => opt.title === "Breite");
       const heightOptionDef = product.options?.find(opt => opt.title === "Höhe");
 
-      let newWidth = 0; 
-      let newHeight = 0; 
-
       if (widthOptionDef) 
       {
-        const variantWidthValue = selectedVariant.options?.find(
-          (vOpt) => vOpt.option_id === widthOptionDef.id
-        )?.value;
+        const variantWidthValue = selectedVariant.options?.find((vOpt) => vOpt.option_id === widthOptionDef.id)?.value;
         if (variantWidthValue !== undefined && !isNaN(Number(variantWidthValue))) 
         {
-          newWidth = Number(variantWidthValue);
+          currentWidth = Number(variantWidthValue);
         }
       }
-
       if (heightOptionDef) 
       {
         const variantHeightValue = selectedVariant.options?.find(
@@ -156,12 +168,12 @@ export default function ProductActions({
         )?.value;
         if (variantHeightValue !== undefined && !isNaN(Number(variantHeightValue))) 
         {
-          newHeight = Number(variantHeightValue);
+          currentHeight = Number(variantHeightValue);
         }
       }
     }
-      setWidth(newWidth);
-      setHeight(newHeight);
+      setWidth(currentWidth);
+      setHeight(currentHeight);
   }, [selectedVariant, product.options, product.width, product.height]); 
 
   // update the options when a variant is selected
@@ -312,9 +324,9 @@ export default function ProductActions({
                   }
                   if (isShieldProduct) 
                   {
-                    return option.title === "Gravurfarbe" ||  option.title !== "Kissenfarbe";
+                    return option.title === "Gravurfarbe"  || option.title === "Hintergrundfarbe";
                   }
-                   return option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe";
+                   return option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe" && option.title !== "Hintergrundfarbe";
                 }).map((option) => {
                 return (
                   <div key={option.id}>
@@ -343,7 +355,7 @@ export default function ProductActions({
                 name="width"
                 value={width}
                 onChange={(e) => setWidth(Number(e.target.value))}
-                label="Width (cm)"
+                label="Width (mm)"
                 type="number"
                 min={0}
               />
@@ -351,7 +363,7 @@ export default function ProductActions({
                 name="height"
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
-                label="Height (cm)"
+                label="Height (mm)"
                 type="number"
                 min={0}
               />
@@ -376,8 +388,8 @@ export default function ProductActions({
           </>
         )}
 
-    {product.metadata?.is_designable === true&& (
-              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColor)}&returnUrl=/products/${product.handle}`} className="w-full">
+    {product.metadata?.is_designable === true && (
+              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColor)}&Hintergrundfarbe=${encodeURIComponent(backgroundColor)}&returnUrl=/products/${product.handle}`} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
