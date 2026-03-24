@@ -1,9 +1,13 @@
+"use client";
 import ItemsTemplate from "./items"
 import Summary from "./summary"
 import EmptyCartMessage from "../components/empty-cart-message"
 import SignInPrompt from "../components/sign-in-prompt"
 import Divider from "@modules/common/components/divider"
 import { HttpTypes } from "@medusajs/types"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect } from "react"
+import { addToCart } from "@lib/data/cart"
 
 const CartTemplate = ({
   cart,
@@ -12,6 +16,51 @@ const CartTemplate = ({
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
 }) => {
+   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    console.log("CartTemplate useEffect triggered.");
+    const productId = searchParams.get("productId");
+    const variantId = searchParams.get("variantId");
+    const designImage = searchParams.get("designImage");
+    const width = searchParams.get("width");
+    const height = searchParams.get("height");
+
+    console.log("URL Params:", { productId, variantId, designImage, width, height });
+    console.log("Current Cart:", cart);
+
+    if (productId && variantId && designImage && width && height) 
+    {
+      const addProductToCart = async () => {
+        console.log("Attempting to add product to cart...");
+        if (!cart) 
+        {
+          console.warn("Cart is null, cannot add product.");
+          return;
+        }
+        try {
+          const countryCode = cart.region?.countries[0]?.iso_2 || "de"; 
+
+          await addToCart({
+            variantId: variantId,
+            quantity: 1,
+            countryCode: countryCode,
+            metadata: {
+              design_image: designImage,
+              width: parseFloat(width),
+              height: parseFloat(height),
+            },
+          });
+          console.log("Product added to cart successfully!");
+          router.replace("/cart", undefined);
+        } catch (error) {
+          console.error("Fehler beim Hinzufügen des Produkts zum Warenkorb:", error);
+        }
+      };
+      addProductToCart();
+    }
+  }, [searchParams, router, cart]);
   return (
     <div className="py-12">
       <div className="content-container" data-testid="cart-container">

@@ -74,6 +74,12 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         <div className="text-sm text-ui fg-muted">
           {!!item.metadata?.width && <div>Width: {item.metadata.width as number}mm</div>}
           {!!item.metadata?.height && <div>Height: {item.metadata.height as number}mm</div>}
+          {!!item.metadata?.design_image && (
+            <div className="mt-2">
+              <Text className="txt-small text-ui-fg-subtle">Design:</Text>
+              <img src={decodeURIComponent(item.metadata.design_image as string)} alt="Design" className="w-24 h-24 object-contain border border-gray-200 rounded-md mt-1" />
+            </div>
+          )}
         </div>
       </Table.Cell>
 
