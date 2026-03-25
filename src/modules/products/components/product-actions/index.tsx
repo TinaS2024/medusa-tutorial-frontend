@@ -393,7 +393,7 @@ export default function ProductActions({
         )}
 
     {product.metadata?.is_designable === true && (
-              <a href={`http://localhost:3001/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColor)}&Hintergrundfarbe=${encodeURIComponent(backgroundColor)}&returnUrl=/products/${product.handle}&medusaProductId=${product.id}${selectedVariant ? `&medusaVariantId=${selectedVariant.id}` : ''}`} className="w-full">
+              <a href={`http://localhost:3000/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColor)}&Hintergrundfarbe=${encodeURIComponent(backgroundColor)}&returnUrl=/products/${product.handle}&medusaProductId=${product.id}${selectedVariant ? `&medusaVariantId=${selectedVariant.id}` : ''}`} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"

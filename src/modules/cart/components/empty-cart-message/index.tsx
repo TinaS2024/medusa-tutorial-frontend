@@ -15,7 +15,7 @@ const EmptyCartMessage = () => {
         Sie haben nichts in ihrem Warenkorb.
       </Text>
       <div>
-        <InteractiveLink href="/store">Explore products</InteractiveLink>
+        <InteractiveLink href="/store">Entdecke unsere Produkte</InteractiveLink>
       </div>
     </div>
   )
