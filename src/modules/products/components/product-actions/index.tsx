@@ -94,6 +94,12 @@ export default function ProductActions({
     return product.title?.toLowerCase().includes("rund") || product.subtitle?.toLowerCase().includes("rund");
   }, [product.title, product.subtitle]);
 
+  const isRoundStampMeta = product.metadata?.is_roundStamp;
+  const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean"
+    ? isRoundStampMeta
+    : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
+  const isRoundStamp = isRoundStampMetaParsed || isRoundStampProduct;
+
   const isShieldProduct = useMemo(() => {
     return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
   }, [product.title, product.subtitle]);
@@ -121,7 +127,7 @@ export default function ProductActions({
   }
 
   //Prägeposition für Prägestempel
-  const embossingPositionOption = product.options?.find(opt => opt.title === "Prägepositoin");
+  const embossingPositionOption = product.options?.find(opt => opt.title === "Prägeposition");
   let embossingPosition = "";
   if (selectedVariant && embossingPositionOption) 
   {
@@ -352,6 +358,7 @@ export default function ProductActions({
     Prägeposition: embossingPosition,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
+    is_roundStamp: String(isRoundStamp),
   });
 
   if(selectedVariant)
