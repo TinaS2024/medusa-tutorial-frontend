@@ -59,6 +59,8 @@ export default function ProductActions({
 
   const [height,setHeight] = useState(Number(product.height) || 0);
   const [width,setWidth] = useState(Number(product.width) || 0);
+  const maxHeight = Number(product.metadata?.max_height);
+  const maxWidth = Number(product.metadata?.max_width);
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -314,6 +316,31 @@ export default function ProductActions({
   }, [uploadedImageData, product.id]);
 
 
+  //Suchvariablen die von Medusa zum Designer geschickt werden
+
+  const designerBaseUrl = "http://localhost:3000";
+  const designerParams = new URLSearchParams({
+    productId: product.id,
+    width: String(width),
+    height: String(height),
+    title: product.title ?? "",
+    subtitle: product.subtitle ?? "",
+    material: product.material ?? "",
+    variants: product.variants ? JSON.stringify(product.variants) : "false",
+    Kissenfarbe: cushionColor,
+    Gravurfarbe: engravedColor,
+    Hintergrunfarbe: backgroundColor,
+    returnUrl: `/products/${product.handle}`,
+    medusaProductId: product.id,
+  });
+
+  if(selectedVariant)
+  {
+    designerParams.set("medusaVariantId", selectedVariant.id);
+  }
+
+  const designerLink = `${designerBaseUrl}?${designerParams.toString()}`
+
   return (
     <>
       <div className="flex flex-col gap-y-2" ref={actionsRef}>
@@ -362,6 +389,7 @@ export default function ProductActions({
                 label="Width (mm)"
                 type="number"
                 min={0}
+                max={!isNaN(maxWidth) ? maxWidth : undefined}
               />
               <Input
                 name="height"
@@ -370,6 +398,7 @@ export default function ProductActions({
                 label="Height (mm)"
                 type="number"
                 min={0}
+                max={!isNaN(maxHeight) ? maxHeight : undefined}
               />
 
             </div>
@@ -393,7 +422,7 @@ export default function ProductActions({
         )}
 
     {product.metadata?.is_designable === true && (
-              <a href={`http://localhost:3000/?productId=${product.id}&width=${width}&height=${height}&title=${encodeURIComponent(product.title)}&subtitle=${encodeURIComponent(product.subtitle || "")}&material=${encodeURIComponent(product.material || "")}&variants=${encodeURIComponent(product.variants ? JSON.stringify(product.variants) : "false")}&Kissenfarbe=${encodeURIComponent(cushionColor)}&Gravurfarbe=${encodeURIComponent(engravedColor)}&Hintergrundfarbe=${encodeURIComponent(backgroundColor)}&returnUrl=/products/${product.handle}&medusaProductId=${product.id}${selectedVariant ? `&medusaVariantId=${selectedVariant.id}` : ''}`} className="w-full">
+                <a href={designerLink} className="w-full">
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
