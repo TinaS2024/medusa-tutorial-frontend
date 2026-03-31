@@ -90,6 +90,10 @@ export default function ProductActions({
     return product.title?.toLowerCase().includes("trodat") || product.subtitle?.toLowerCase().includes("trodat");
   }, [product.title, product.subtitle]);
 
+  const isRoundStampProduct = useMemo(() => {
+    return product.title?.toLowerCase().includes("rund") || product.subtitle?.toLowerCase().includes("rund");
+  }, [product.title, product.subtitle]);
+
   const isShieldProduct = useMemo(() => {
     return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
   }, [product.title, product.subtitle]);
@@ -97,8 +101,9 @@ export default function ProductActions({
   console.log("ProductActions Debug:");
   console.log("  Product Title:", product.title);
   console.log("  Product Subtitle:", product.subtitle);
-  console.log("  isShieldProduct:", isShieldProduct);
   console.log("  isStampProduct:", isStampProduct);
+  console.log("  isRoundStampProduct", isRoundStampProduct);
+  console.log("  isShieldProduct:", isShieldProduct);
   console.log("  Product Options:", product.options);
 
   //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
@@ -112,6 +117,20 @@ export default function ProductActions({
     if (variantCushionColorValue) 
     {
       cushionColor = variantCushionColorValue;
+    }
+  }
+
+  //Prägeposition für Prägestempel
+  const embossingPositionOption = product.options?.find(opt => opt.title === "Prägepositoin");
+  let embossingPosition = "";
+  if (selectedVariant && embossingPositionOption) 
+  {
+    const variantEmbossingPositionValue = selectedVariant.options?.find(
+      (vOpt) => vOpt.option_id === embossingPositionOption.id
+    )?.value;
+    if (variantEmbossingPositionValue) 
+    {
+      embossingPosition = variantEmbossingPositionValue;
     }
   }
 
@@ -330,6 +349,7 @@ export default function ProductActions({
     Kissenfarbe: cushionColor,
     Gravurfarbe: engravedColor,
     Hintergrunfarbe: backgroundColor,
+    Prägeposition: embossingPosition,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
   });
@@ -352,6 +372,10 @@ export default function ProductActions({
                   if (isStampProduct) 
                   {
                     return option.title === "Kissenfarbe" || (option.title !== "Gravurfarbe" && option.title !== "Kissenfarbe");
+                  }
+                  if (isRoundStampProduct)
+                  {
+                    return option.title === "Prägeposition" || (option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe" && option.title !== "Hintergrundfarbe");
                   }
                   if (isShieldProduct) 
                   {
