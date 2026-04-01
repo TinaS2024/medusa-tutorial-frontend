@@ -10,6 +10,7 @@ import { isEqual } from "lodash";
 import { useParams } from "next/navigation";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import ProductPrice from "../product-price";
+import { getCustomVariantPrice } from "@lib/data/products";
 import MobileActions from "./mobile-actions";
 import Input from "../../../common/components/input";
 
@@ -36,6 +37,8 @@ export default function ProductActions({
 }: ProductActionsProps) {
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);
+  const [designerPrice, setDesignerPrice] = useState<number | null>(null);
+
   const countryCode = useParams().countryCode as string;
 
   const searchParams = new URLSearchParams(window.location.search);
@@ -216,6 +219,31 @@ export default function ProductActions({
       setHeight(currentHeight);
   }, [selectedVariant, product.options, product.width, product.height]); 
 
+  useEffect(() => {
+    if (!selectedVariant) {
+      setDesignerPrice(null);
+      return;
+    }
+
+    if (product.metadata?.is_personalized && (!width || !height)) {
+      setDesignerPrice(null);
+      return;
+    }
+
+    getCustomVariantPrice({
+      variant_id: selectedVariant.id,
+      region_id: region.id,
+      metadata: product.metadata?.is_personalized ? { width, height } : undefined,
+    })
+      .then((price) => {
+        setDesignerPrice(price);
+      })
+      .catch((error) => {
+        console.error("Error fetching designer custom price:", error);
+        setDesignerPrice(null);
+      });
+  }, [selectedVariant, region.id, width, height, product.metadata?.is_personalized]);
+
   // update the options when a variant is selected
   const setOptionValue = (optionId: string, value: string) => {
     setOptions((prev) => ({
@@ -274,6 +302,7 @@ export default function ProductActions({
         width,
         height,
         design_image: designImage,
+        redionId: region.id,
       },
     })
 
@@ -374,6 +403,11 @@ export default function ProductActions({
   if(selectedVariant)
   {
     designerParams.set("medusaVariantId", selectedVariant.id);
+  }
+
+  if (designerPrice != null) 
+  {
+    designerParams.set("price", String(designerPrice));
   }
 
   const designerLink = `${designerBaseUrl}?${designerParams.toString()}`
