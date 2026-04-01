@@ -64,25 +64,35 @@ export default function ProductActions({
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
-     if (product.options && product.options.length > 0) 
-    {
-      console.log("Produktoptionen[0].values:", product.options[0].values);
+  
+    const defaultVariantId = (product.metadata as any)?.default_variant_id as | string | undefined;
+
+    if (defaultVariantId && product.variants && product.variants.length > 0) {
+      const defaultVariant = product.variants.find(
+        (v) => v.id === defaultVariantId
+      )
+
+      if (defaultVariant) {
+        const variantOptions = optionsAsKeymap(defaultVariant.options)
+        setOptions(variantOptions ?? {});
+        return;
     }
+  }
 
     if (product.variants?.length === 1) {
       const variantOptions = optionsAsKeymap(product.variants[0].options)
-      setOptions(variantOptions ?? {})
+      setOptions(variantOptions ?? {});
     }
-  }, [product.variants])
+  }, [product.variants, product.metadata])
 
   const selectedVariant = useMemo(() => {
     if (!product.variants || product.variants.length === 0) {
-      return
+      return;
     }
 
     return product.variants.find((v) => {
-      const variantOptions = optionsAsKeymap(v.options)
-      return isEqual(variantOptions, options)
+      const variantOptions = optionsAsKeymap(v.options);
+      return isEqual(variantOptions, options);
     })
   }, [product.variants, options]);
 
