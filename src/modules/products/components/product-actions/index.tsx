@@ -100,7 +100,8 @@ export default function ProductActions({
   }, [product.variants, options]);
 
   const isStampProduct = useMemo(() => {
-    return product.title?.toLowerCase().includes("trodat") || product.subtitle?.toLowerCase().includes("trodat");
+    return product.title?.toLowerCase().includes("trodat") || product.subtitle?.toLowerCase().includes("trodat") || 
+    product.title?.toLowerCase().includes("wiege") || product.subtitle?.toLowerCase().includes("wiege");
   }, [product.title, product.subtitle]);
 
   const isRoundStampProduct = useMemo(() => {
@@ -108,9 +109,7 @@ export default function ProductActions({
   }, [product.title, product.subtitle]);
 
   const isRoundStampMeta = product.metadata?.is_roundStamp;
-  const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean"
-    ? isRoundStampMeta
-    : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
+  const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean" ? isRoundStampMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
 
   const isRoundStampVariantMeta = selectedVariant?.metadata?.is_roundStamp;
   const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean"
