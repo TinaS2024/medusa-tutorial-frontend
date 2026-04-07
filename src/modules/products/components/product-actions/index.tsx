@@ -111,7 +111,18 @@ export default function ProductActions({
   const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean"
     ? isRoundStampMeta
     : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
-  const isRoundStamp = isRoundStampMetaParsed || isRoundStampProduct;
+
+  const isRoundStampVariantMeta = selectedVariant?.metadata?.is_roundStamp;
+  const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean"
+    ? isRoundStampVariantMeta
+    : ["true", "1", "yes", "y"].includes(
+        String(isRoundStampVariantMeta).toLowerCase()
+      );
+
+
+
+
+  const isRoundStamp = isRoundStampMetaParsed || isRoundStampVariantMetaParsed || isRoundStampProduct;
 
   const isShieldProduct = useMemo(() => {
     return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
@@ -460,7 +471,13 @@ export default function ProductActions({
               <Input
                 name="width"
                 value={width}
-                onChange={(e) => setWidth(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+                  setWidth(value);
+                  if (isRoundStamp) {
+                    setHeight(value);
+                  }
+                }}
                 label="Width (mm)"
                 type="number"
                 min={0}
@@ -469,7 +486,13 @@ export default function ProductActions({
               <Input
                 name="height"
                 value={height}
-                onChange={(e) => setHeight(Number(e.target.value))}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+                  setHeight(value);
+                  if (isRoundStamp) {
+                    setWidth(value);
+                  }
+                }}
                 label="Height (mm)"
                 type="number"
                 min={0}
