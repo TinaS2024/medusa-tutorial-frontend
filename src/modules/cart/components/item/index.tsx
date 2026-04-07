@@ -72,8 +72,14 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
         <div className="text-sm text-ui fg-muted">
-          {!!item.metadata?.width && <div>Width: {item.metadata.width as number}mm</div>}
-          {!!item.metadata?.height && <div>Height: {item.metadata.height as number}mm</div>}
+          {!!item.metadata?.width && <div>Breite: {item.metadata.width as number} mm</div>}
+          {!!item.metadata?.height && <div>Höhe: {item.metadata.height as number} mm</div>}
+          {!!item.metadata?.cushion_color && (
+            <div>Kissenfarbe: {String(item.metadata.cushion_color)}</div>
+          )}
+          {!!item.metadata?.embossing_position && (
+            <div>Prägeposition: {String(item.metadata.embossing_position)}</div>
+          )}
           {!!item.metadata?.design_image && (
             <div className="mt-2">
               <Text className="txt-small text-ui-fg-subtle">Design:</Text>

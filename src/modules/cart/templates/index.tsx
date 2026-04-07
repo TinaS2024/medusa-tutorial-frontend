@@ -26,8 +26,10 @@ const CartTemplate = ({
     const designImage = searchParams.get("designImage");
     const width = searchParams.get("width");
     const height = searchParams.get("height");
+    const cushionColor = searchParams.get("cushionColor");
+    const embossingPosition = searchParams.get("embossingPosition");
 
-    console.log("URL Params:", { productId, variantId, designImage, width, height });
+     console.log("URL Params:", { productId, variantId, designImage, width, height, cushionColor, embossingPosition });
     console.log("Current Cart:", cart);
 
     if (productId && variantId && designImage && width && height) 
@@ -40,7 +42,8 @@ const CartTemplate = ({
           return;
         }
         try {
-          const countryCode = cart.region?.countries[0]?.iso_2 || "de"; 
+          const countries = cart?.region?.countries || [];
+          const countryCode = countries.length > 0 ? countries[0].iso_2 || "de" : "de"; 
 
           await addToCart({
             variantId: variantId,
@@ -50,6 +53,8 @@ const CartTemplate = ({
               design_image: designImage,
               width: parseFloat(width),
               height: parseFloat(height),
+              cushion_color: cushionColor || undefined,
+              embossing_position: embossingPosition || undefined,
             },
           });
           console.log("Product added to cart successfully!");
