@@ -21,6 +21,30 @@ type ProductActionsProps = {
   disabled?: boolean
 }
 
+const TECHNICAL_OPTION_KEYS = {
+  CUSHION_COLOR: "cushion_color",
+  EMBOSSING_POSITION: "embossing_position",
+  ENGRAVING_COLOR: "engraving_color",
+  BACKGROUND_COLOR: "background_color",
+  WIDTH: "width",
+  HEIGHT: "height",
+} as const;
+
+const getOptionKeysMeta = (product: HttpTypes.StoreProduct) => 
+{
+  return (
+    (product.metadata?.option_keys as Record<string, string> | undefined) ?? {}
+  );
+};
+
+const findOptionByTechnicalKey = (
+  product: HttpTypes.StoreProduct,
+  key: string,
+  optionKeysMeta: Record<string, string>
+) => {
+  return product.options?.find((opt) => optionKeysMeta[opt.id] === key);
+};
+
 const optionsAsKeymap = (
   variantOptions: HttpTypes.StoreProductVariant["options"]
 ) => {
@@ -38,6 +62,8 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);
   const [designerPrice, setDesignerPrice] = useState<number | null>(null);
+
+  const optionKeysMeta = getOptionKeysMeta(product);
 
   const countryCode = useParams().countryCode as string;
 
@@ -128,7 +154,7 @@ export default function ProductActions({
   console.log("  Product Options:", product.options);
 
   //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
-  const cushionColorOption = product.options?.find(opt => opt.title === "Kissenfarbe");
+  const cushionColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.CUSHION_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Kissenfarbe");
   let cushionColor = "";
   if (selectedVariant && cushionColorOption) 
   {
@@ -142,7 +168,7 @@ export default function ProductActions({
   }
 
   //Prägeposition für Prägestempel
-  const embossingPositionOption = product.options?.find(opt => opt.title === "Prägeposition");
+  const embossingPositionOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION, optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Prägeposition");
   let embossingPosition = "";
   if (selectedVariant && embossingPositionOption) 
   {
@@ -156,7 +182,7 @@ export default function ProductActions({
   }
 
   //Benutzerdefinierte Gravurfarbe für Schilder
-  const engravedColorOption = product.options?.find(opt => opt.title === "Gravurfarbe");
+  const engravedColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR, optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Gravurfarbe");
   let engravedColor = "";
   if (selectedVariant && engravedColorOption) {
     const variantengravedColorValue = selectedVariant.options?.find(
@@ -168,7 +194,7 @@ export default function ProductActions({
   }
 
   //Hintergrundfarbe für Schilder
-  const backgroundColorOption = product.options?.find(opt => opt.title === "Hintergrundfarbe");
+  const backgroundColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Hintergrundfarbe");
   let backgroundColor = "";
   if (product.metadata?.default_background_color) 
   {
@@ -195,8 +221,8 @@ export default function ProductActions({
 
     if (selectedVariant) 
       {
-      const widthOptionDef = product.options?.find(opt => opt.title === "Breite");
-      const heightOptionDef = product.options?.find(opt => opt.title === "Höhe");
+      const widthOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.WIDTH,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Breite");
+      const heightOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.HEIGHT,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Höhe");
 
       if (widthOptionDef) 
       {
@@ -208,9 +234,7 @@ export default function ProductActions({
       }
       if (heightOptionDef) 
       {
-        const variantHeightValue = selectedVariant.options?.find(
-          (vOpt) => vOpt.option_id === heightOptionDef.id
-        )?.value;
+        const variantHeightValue = selectedVariant.options?.find((vOpt) => vOpt.option_id === heightOptionDef.id)?.value;
         if (variantHeightValue !== undefined && !isNaN(Number(variantHeightValue))) 
         {
           currentHeight = Number(variantHeightValue);
@@ -222,7 +246,8 @@ export default function ProductActions({
   }, [selectedVariant, product.options, product.width, product.height]); 
 
   useEffect(() => {
-    if (!selectedVariant) {
+    if (!selectedVariant) 
+    {
       setDesignerPrice(null);
       return;
     }
@@ -393,10 +418,10 @@ export default function ProductActions({
     subtitle: product.subtitle ?? "",
     material: product.material ?? "",
     variants: product.variants ? JSON.stringify(product.variants) : "false",
-    Kissenfarbe: cushionColor,
-    Gravurfarbe: engravedColor,
-    Hintergrunfarbe: backgroundColor,
-    Prägeposition: embossingPosition,
+    cushion_color: cushionColor,
+    engraving_color: engravedColor,
+    background_color: backgroundColor,
+    embossing_position: embossingPosition,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
     is_roundStamp: String(isRoundStamp),
@@ -421,20 +446,25 @@ export default function ProductActions({
           {(product.variants?.length ?? 0) > 1 && (
             <div className="flex flex-col gap-y-4">
               {(product.options || []).filter(option => {
+                const techKey = optionKeysMeta[option.id];
+                  const isCushionColor = techKey === TECHNICAL_OPTION_KEYS.CUSHION_COLOR || option.title === "Kissenfarbe";
+                  const isEngravingColor = techKey === TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR || option.title === "Gravurfarbe";
+                  const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === "Hintergrundfarbe";
+                  const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === "Prägeposition";
 
                   if (isStampProduct) 
                   {
-                    return option.title === "Kissenfarbe" || (option.title !== "Gravurfarbe" && option.title !== "Kissenfarbe");
+                    return isCushionColor || (!isEngravingColor && !isCushionColor);
                   }
                   if (isRoundStampProduct)
                   {
-                    return option.title === "Prägeposition" || (option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe" && option.title !== "Hintergrundfarbe");
+                   return isEmbossingPosition || (!isCushionColor && !isEngravingColor && !isBackgroundColor);
                   }
                   if (isShieldProduct) 
                   {
-                    return option.title === "Gravurfarbe"  || option.title === "Hintergrundfarbe";
+                    return isEngravingColor || isBackgroundColor;
                   }
-                   return option.title !== "Kissenfarbe" && option.title !== "Gravurfarbe" && option.title !== "Hintergrundfarbe";
+                   return !isCushionColor && !isEngravingColor && !isBackgroundColor;
                 }).map((option) => {
                 return (
                   <div key={option.id}>
