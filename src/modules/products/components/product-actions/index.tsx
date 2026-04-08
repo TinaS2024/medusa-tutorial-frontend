@@ -82,50 +82,42 @@ export default function ProductActions({
     }
   }
 
-    if (product.variants?.length === 1) {
+    if (product.variants?.length === 1) 
+    {
       const variantOptions = optionsAsKeymap(product.variants[0].options)
       setOptions(variantOptions ?? {});
     }
   }, [product.variants, product.metadata])
 
   const selectedVariant = useMemo(() => {
-    if (!product.variants || product.variants.length === 0) {
+  if (!product.variants || product.variants.length === 0) 
+    {
       return;
     }
 
-    return product.variants.find((v) => {
+    return product.variants.find((v) => 
+    {
       const variantOptions = optionsAsKeymap(v.options);
       return isEqual(variantOptions, options);
     })
   }, [product.variants, options]);
 
-  const isStampProduct = useMemo(() => {
-    return product.title?.toLowerCase().includes("trodat") || product.subtitle?.toLowerCase().includes("trodat") || 
-    product.title?.toLowerCase().includes("wiege") || product.subtitle?.toLowerCase().includes("wiege");
-  }, [product.title, product.subtitle]);
 
-  const isRoundStampProduct = useMemo(() => {
-    return product.title?.toLowerCase().includes("rund") || product.subtitle?.toLowerCase().includes("rund");
-  }, [product.title, product.subtitle]);
+  const isStampMeta = product.metadata?.is_stampProduct;
+  const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true", "1", "yes", "y"].includes(String(isStampMeta).toLowerCase());
+
+  const isShieldMeta = product.metadata?.is_shieldProduct;
+  const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true", "1", "yes", "y"].includes(String(isShieldMeta).toLowerCase());
 
   const isRoundStampMeta = product.metadata?.is_roundStamp;
   const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean" ? isRoundStampMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
 
   const isRoundStampVariantMeta = selectedVariant?.metadata?.is_roundStamp;
-  const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean"
-    ? isRoundStampVariantMeta
-    : ["true", "1", "yes", "y"].includes(
-        String(isRoundStampVariantMeta).toLowerCase()
-      );
+  const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean" ? isRoundStampVariantMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampVariantMeta).toLowerCase());
 
+  const isRoundStamp = isRoundStampMetaParsed || isRoundStampVariantMetaParsed;
+  const isRoundStampProduct = isRoundStamp;
 
-
-
-  const isRoundStamp = isRoundStampMetaParsed || isRoundStampVariantMetaParsed || isRoundStampProduct;
-
-  const isShieldProduct = useMemo(() => {
-    return product.title?.toLowerCase().includes("schild") || product.subtitle?.toLowerCase().includes("schild");
-  }, [product.title, product.subtitle]);
 
   console.log("ProductActions Debug:");
   console.log("  Product Title:", product.title);
