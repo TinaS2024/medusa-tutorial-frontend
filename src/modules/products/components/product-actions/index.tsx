@@ -138,11 +138,20 @@ export default function ProductActions({
   const isRoundStampMeta = product.metadata?.is_roundStamp;
   const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean" ? isRoundStampMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
 
+  const isOvalStampMeta = product.metadata?.is_ovalStamp;
+  const isOvalStampMetaParsed = typeof isOvalStampMeta === "boolean" ? isOvalStampMeta : ["true", "1", "yes", "y"].includes(String(isOvalStampMeta).toLowerCase());
+
   const isRoundStampVariantMeta = selectedVariant?.metadata?.is_roundStamp;
   const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean" ? isRoundStampVariantMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampVariantMeta).toLowerCase());
 
+  const isOvalStampVariantMeta = selectedVariant?.metadata?.is_ovalStamp;
+  const isOvalStampVariantMetaParsed = typeof isOvalStampVariantMeta === "boolean" ? isOvalStampVariantMeta : ["true", "1", "yes", "y"].includes(String(isOvalStampVariantMeta).toLowerCase());
+
   const isRoundStamp = isRoundStampMetaParsed || isRoundStampVariantMetaParsed;
   const isRoundStampProduct = isRoundStamp;
+
+  const isOvalStamp = isOvalStampMetaParsed || isOvalStampVariantMetaParsed;
+  const isOvalStampProduct = isOvalStamp;
 
 
   console.log("ProductActions Debug:");
@@ -150,6 +159,7 @@ export default function ProductActions({
   console.log("  Product Subtitle:", product.subtitle);
   console.log("  isStampProduct:", isStampProduct);
   console.log("  isRoundStampProduct", isRoundStampProduct);
+  console.log("  isOvalStampProduct", isOvalStampProduct);
   console.log("  isShieldProduct:", isShieldProduct);
   console.log("  Product Options:", product.options);
 
@@ -425,6 +435,8 @@ export default function ProductActions({
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
     is_roundStamp: String(isRoundStamp),
+    is_ovalStamp: String(isOvalStamp),
+    is_shieldProduct: String(isShieldProduct),
   });
 
   if(selectedVariant)
