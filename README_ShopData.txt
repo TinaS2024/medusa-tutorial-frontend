@@ -14,3 +14,22 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - dimension_price_factor: Number      ... übernimmt Preisfaktor
 - default_variant_id: String          ... übernimmt ID der Default-Produkt-Variante
 - default_background_color: String    ... übergibt die Hintergrundfarbe eines Schildes
+
+Optionale Metadata für das Designer-backend im Admin-Bereich des Shops:
+- cusion_color
+- engraving_color
+- background_color
+- embossing_position
+- material
+
+Derzeitige Produktbeispiele im Medusa-Store:
+- Trodat Printy
+- Goldschild
+- Prägestempel
+- Holzstempel
+- Wiegestempel
+- Siegelstempel
+- Kulistempel
+- Fleischbeschaustempel
+- Brennstempel
+- Geschenkekarte

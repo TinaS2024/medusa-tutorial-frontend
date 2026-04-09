@@ -153,6 +153,9 @@ export default function ProductActions({
   const isOvalStamp = isOvalStampMetaParsed || isOvalStampVariantMetaParsed;
   const isOvalStampProduct = isOvalStamp;
 
+  const hasCushionMeta = product.metadata?.has_cushion;
+  const hasCushion = typeof hasCushionMeta === "boolean" ? hasCushionMeta : ["true", "1", "yes", "y"].includes(String(hasCushionMeta).toLowerCase());
+
 
   console.log("ProductActions Debug:");
   console.log("  Product Title:", product.title);
@@ -464,7 +467,7 @@ export default function ProductActions({
                   const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === "Hintergrundfarbe";
                   const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === "Prägeposition";
 
-                  if (isStampProduct) 
+                  if (isStampProduct || hasCushion) 
                   {
                     return isCushionColor || (!isEngravingColor && !isCushionColor);
                   }
