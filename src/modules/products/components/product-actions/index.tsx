@@ -135,23 +135,23 @@ export default function ProductActions({
   const isShieldMeta = product.metadata?.is_shieldProduct;
   const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true", "1", "yes", "y"].includes(String(isShieldMeta).toLowerCase());
 
-  const isRoundStampMeta = product.metadata?.is_roundStamp;
-  const isRoundStampMetaParsed = typeof isRoundStampMeta === "boolean" ? isRoundStampMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampMeta).toLowerCase());
+  const isRoundFormMeta = product.metadata?.is_roundForm;
+  const isRoundFormMetaParsed = typeof isRoundFormMeta === "boolean" ? isRoundFormMeta : ["true", "1", "yes", "y"].includes(String(isRoundFormMeta).toLowerCase());
 
-  const isOvalStampMeta = product.metadata?.is_ovalStamp;
-  const isOvalStampMetaParsed = typeof isOvalStampMeta === "boolean" ? isOvalStampMeta : ["true", "1", "yes", "y"].includes(String(isOvalStampMeta).toLowerCase());
+  const isOvalFormMeta = product.metadata?.is_ovalForm;
+  const isOvalFormMetaParsed = typeof isOvalFormMeta === "boolean" ? isOvalFormMeta : ["true", "1", "yes", "y"].includes(String(isOvalFormMeta).toLowerCase());
 
-  const isRoundStampVariantMeta = selectedVariant?.metadata?.is_roundStamp;
-  const isRoundStampVariantMetaParsed = typeof isRoundStampVariantMeta === "boolean" ? isRoundStampVariantMeta : ["true", "1", "yes", "y"].includes(String(isRoundStampVariantMeta).toLowerCase());
+  const isRoundFormVariantMeta = selectedVariant?.metadata?.is_roundForm;
+  const isRoundFormVariantMetaParsed = typeof isRoundFormVariantMeta === "boolean" ? isRoundFormVariantMeta : ["true", "1", "yes", "y"].includes(String(isRoundFormVariantMeta).toLowerCase());
 
-  const isOvalStampVariantMeta = selectedVariant?.metadata?.is_ovalStamp;
-  const isOvalStampVariantMetaParsed = typeof isOvalStampVariantMeta === "boolean" ? isOvalStampVariantMeta : ["true", "1", "yes", "y"].includes(String(isOvalStampVariantMeta).toLowerCase());
+  const isOvalFormVariantMeta = selectedVariant?.metadata?.is_ovalForm;
+  const isOvalFormVariantMetaParsed = typeof isOvalFormVariantMeta === "boolean" ? isOvalFormVariantMeta : ["true", "1", "yes", "y"].includes(String(isOvalFormVariantMeta).toLowerCase());
 
-  const isRoundStamp = isRoundStampMetaParsed || isRoundStampVariantMetaParsed;
-  const isRoundStampProduct = isRoundStamp;
+  const isRoundForm = isRoundFormMetaParsed || isRoundFormVariantMetaParsed;
+  const isRoundFormProduct = isRoundForm;
 
-  const isOvalStamp = isOvalStampMetaParsed || isOvalStampVariantMetaParsed;
-  const isOvalStampProduct = isOvalStamp;
+  const isOvalForm = isOvalFormMetaParsed || isOvalFormVariantMetaParsed;
+  const isOvalFormProduct = isOvalForm;
 
   const hasCushionMeta = product.metadata?.has_cushion;
   const hasCushion = typeof hasCushionMeta === "boolean" ? hasCushionMeta : ["true", "1", "yes", "y"].includes(String(hasCushionMeta).toLowerCase());
@@ -161,8 +161,8 @@ export default function ProductActions({
   console.log("  Product Title:", product.title);
   console.log("  Product Subtitle:", product.subtitle);
   console.log("  isStampProduct:", isStampProduct);
-  console.log("  isRoundStampProduct", isRoundStampProduct);
-  console.log("  isOvalStampProduct", isOvalStampProduct);
+  console.log("  isRoundFormProduct", isRoundFormProduct);
+  console.log("  isOvalFormProduct", isOvalFormProduct);
   console.log("  isShieldProduct:", isShieldProduct);
   console.log("  Product Options:", product.options);
 
@@ -437,8 +437,8 @@ export default function ProductActions({
     embossing_position: embossingPosition,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
-    is_roundStamp: String(isRoundStamp),
-    is_ovalStamp: String(isOvalStamp),
+    is_roundForm: String(isRoundForm),
+    is_ovalForm: String(isOvalForm),
     is_shieldProduct: String(isShieldProduct),
   });
 
@@ -471,7 +471,7 @@ export default function ProductActions({
                   {
                     return isCushionColor || (!isEngravingColor && !isCushionColor);
                   }
-                  if (isRoundStampProduct)
+                  if (isRoundFormProduct)
                   {
                    return isEmbossingPosition || (!isCushionColor && !isEngravingColor && !isBackgroundColor);
                   }
@@ -510,7 +510,7 @@ export default function ProductActions({
                 onChange={(e) => {
                   const value = Number(e.target.value);
                   setWidth(value);
-                  if (isRoundStamp) {
+                  if (isRoundForm) {
                     setHeight(value);
                   }
                 }}
@@ -525,7 +525,7 @@ export default function ProductActions({
                 onChange={(e) => {
                   const value = Number(e.target.value);
                   setHeight(value);
-                  if (isRoundStamp) {
+                  if (isRoundForm) {
                     setWidth(value);
                   }
                 }}
