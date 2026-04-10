@@ -38,8 +38,7 @@ const Review = ({ cart }: { cart: any }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-              Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie
-              unsere Nutzungsbedingungen, Verkaufsbedingungen und
+              Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie unsere Nutzungsbedingungen, Verkaufsbedingungen und
               Rückgaberichtlinien gelesen, verstanden und akzeptiert haben und bestätigen, dass Sie die Datenschutzrichtlinien unseres Online-Shops
               gelesen haben.
               </Text>
@@ -52,4 +51,4 @@ const Review = ({ cart }: { cart: any }) => {
   )
 }
 
-export default Review
+export default Review;

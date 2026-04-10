@@ -1,13 +1,13 @@
-import { Heading, Text } from "@medusajs/ui"
-import TransferActions from "@modules/order/components/transfer-actions"
-import TransferImage from "@modules/order/components/transfer-image"
+import { Heading, Text } from "@medusajs/ui";
+import TransferActions from "@modules/order/components/transfer-actions";
+import TransferImage from "@modules/order/components/transfer-image";
 
 export default async function TransferPage({
   params,
 }: {
   params: { id: string; token: string }
 }) {
-  const { id, token } = params
+  const { id, token } = params;
 
   return (
     <div className="flex flex-col gap-y-4 items-start w-2/5 mx-auto mt-10 mb-20">
@@ -18,7 +18,7 @@ export default async function TransferPage({
         </Heading>
         <Text className="text-zinc-600">
           Sie haben eine Anfrage zur Übertragung der Inhaberschaft Ihrer Bestellung ({id}) erhalten.
-Wenn Sie dieser Anfrage zustimmen, können Sie die Übertragung durch Klicken auf die Schaltfläche unten bestätigen.
+          Wenn Sie dieser Anfrage zustimmen, können Sie die Übertragung durch Klicken auf die Schaltfläche unten bestätigen.
         </Text>
         <div className="w-full h-px bg-zinc-200" />
         <Text className="text-zinc-600">

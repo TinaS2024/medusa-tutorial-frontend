@@ -38,4 +38,4 @@ const PaymentWrapper: React.FC<PaymentWrapperProps> = ({ cart, children }) => {
   return <div>{children}</div>
 }
 
-export default PaymentWrapper
+export default PaymentWrapper;

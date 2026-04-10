@@ -46,5 +46,5 @@ export function sortProducts(
     })
   }
 
-  return sortedProducts
+  return sortedProducts;
 }

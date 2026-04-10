@@ -10,7 +10,8 @@ const regionMapCache = {
   regionMapUpdated: Date.now(),
 }
 
-async function getRegionMap(cacheId: string) {
+async function getRegionMap(cacheId: string) 
+{
   const { regionMap, regionMapUpdated } = regionMapCache
 
   if (!BACKEND_URL) {

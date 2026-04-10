@@ -197,8 +197,8 @@ const Payment = ({
             data-testid="submit-payment-button"
           >
             {!activeSession && isStripeFunc(selectedPaymentMethod)
-              ? " Enter card details"
-              : "Continue to review"}
+              ? "Geben Sie die Kartendetails ein"
+              : "Überprüfung fortsetzen"}
           </Button>
         </div>
 
@@ -233,7 +233,7 @@ const Payment = ({
                   <Text>
                     {isStripeFunc(selectedPaymentMethod) && cardBrand
                       ? cardBrand
-                      : "Another step will appear"}
+                      : "Weiter Schritt wird angezeigt"}
                   </Text>
                 </div>
               </div>
@@ -258,4 +258,4 @@ const Payment = ({
   )
 }
 
-export default Payment
+export default Payment;

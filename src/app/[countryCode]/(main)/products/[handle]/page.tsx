@@ -9,7 +9,8 @@ type Props = {
   params: Promise<{ countryCode: string; handle: string }>
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams() 
+{
 
   try {
     const countryCodes = await listRegions().then((regions) =>
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
 
     if (!countryCodes) 
     {
-      return []
+      return [];
     }
 
     const products = await listProducts({
@@ -42,17 +43,18 @@ export async function generateStaticParams() {
         error instanceof Error ? error.message : "Unknown error"
       }.`
     )
-    return []
+    return [];
   }
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params
-  const { handle } = params
-  const region = await getRegion(params.countryCode)
+  const params = await props.params;
+  const { handle } = params;
+  const region = await getRegion(params.countryCode);
 
-  if (!region) {
-    notFound()
+  if (!region) 
+  {
+    notFound();
   }
 
   const product = await listProducts({
@@ -60,8 +62,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     queryParams: { handle },
   }).then(({ response }) => response.products[0])
 
-  if (!product) {
-    notFound()
+  if (!product) 
+  {
+    notFound();
   }
 
   return {
@@ -75,12 +78,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 }
 
-export default async function ProductPage(props: Props) {
-  const params = await props.params
-  const region = await getRegion(params.countryCode)
+export default async function ProductPage(props: Props) 
+{
+  const params = await props.params;
+  const region = await getRegion(params.countryCode);
 
-  if (!region) {
-    notFound()
+  if (!region) 
+  {
+    notFound();
   }
 
   const pricedProduct = await listProducts({
@@ -92,8 +97,9 @@ export default async function ProductPage(props: Props) {
    },
   }).then(({ response }) => response.products[0])
 
-  if (!pricedProduct) {
-    notFound()
+  if (!pricedProduct) 
+  {
+    notFound();
   }
 
   const bundleProduct = pricedProduct.bundle ? await getBundleProduct(pricedProduct.bundle.id,

@@ -51,4 +51,4 @@ const StripeWrapper: React.FC<StripeWrapperProps> = ({
   )
 }
 
-export default StripeWrapper
+export default StripeWrapper;

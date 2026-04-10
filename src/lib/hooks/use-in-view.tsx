@@ -1,10 +1,10 @@
-import { RefObject, useEffect, useState } from "react"
+import { RefObject, useEffect, useState } from "react";
 
 export const useIntersection = (
   element: RefObject<HTMLDivElement | null>,
   rootMargin: string
 ) => {
-  const [isVisible, setState] = useState(false)
+  const [isVisible, setState] = useState(false);
 
   useEffect(() => {
     if (!element.current) {
@@ -25,5 +25,5 @@ export const useIntersection = (
     return () => observer.unobserve(el)
   }, [element, rootMargin])
 
-  return isVisible
+  return isVisible;
 }

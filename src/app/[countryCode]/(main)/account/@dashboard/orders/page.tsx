@@ -1,21 +1,23 @@
-import { Metadata } from "next"
+import { Metadata } from "next";
 
-import OrderOverview from "@modules/account/components/order-overview"
-import { notFound } from "next/navigation"
-import { listOrders } from "@lib/data/orders"
-import Divider from "@modules/common/components/divider"
-import TransferRequestForm from "@modules/account/components/transfer-request-form"
+import OrderOverview from "@modules/account/components/order-overview";
+import { notFound } from "next/navigation";
+import { listOrders } from "@lib/data/orders";
+import Divider from "@modules/common/components/divider";
+import TransferRequestForm from "@modules/account/components/transfer-request-form";
 
 export const metadata: Metadata = {
   title: "Bestellungen",
   description: "Übersicht Ihrer bisherigen Bestellungen.",
 }
 
-export default async function Orders() {
-  const orders = await listOrders()
+export default async function Orders() 
+{
+  const orders = await listOrders();
 
-  if (!orders) {
-    notFound()
+  if (!orders) 
+  {
+    notFound();
   }
 
   return (

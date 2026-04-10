@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export type StateType = [boolean, () => void, () => void, () => void] & {
   state: boolean
@@ -43,4 +43,4 @@ const useToggleState = (initialState = false) => {
   return hookData
 }
 
-export default useToggleState
+export default useToggleState;
