@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { addToCart } from "@lib/data/cart";
 import { useIntersection } from "@lib/hooks/use-in-view";
@@ -130,22 +130,22 @@ export default function ProductActions({
 
 
   const isStampMeta = product.metadata?.is_stampProduct;
-  const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true", "1", "yes", "y"].includes(String(isStampMeta).toLowerCase());
+  const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true"].includes(String(isStampMeta).toLowerCase());
 
   const isShieldMeta = product.metadata?.is_shieldProduct;
-  const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true", "1", "yes", "y"].includes(String(isShieldMeta).toLowerCase());
+  const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true"].includes(String(isShieldMeta).toLowerCase());
 
   const isRoundFormMeta = product.metadata?.is_roundForm;
-  const isRoundFormMetaParsed = typeof isRoundFormMeta === "boolean" ? isRoundFormMeta : ["true", "1", "yes", "y"].includes(String(isRoundFormMeta).toLowerCase());
+  const isRoundFormMetaParsed = typeof isRoundFormMeta === "boolean" ? isRoundFormMeta : ["true"].includes(String(isRoundFormMeta).toLowerCase());
 
   const isOvalFormMeta = product.metadata?.is_ovalForm;
-  const isOvalFormMetaParsed = typeof isOvalFormMeta === "boolean" ? isOvalFormMeta : ["true", "1", "yes", "y"].includes(String(isOvalFormMeta).toLowerCase());
+  const isOvalFormMetaParsed = typeof isOvalFormMeta === "boolean" ? isOvalFormMeta : ["true"].includes(String(isOvalFormMeta).toLowerCase());
 
   const isRoundFormVariantMeta = selectedVariant?.metadata?.is_roundForm;
-  const isRoundFormVariantMetaParsed = typeof isRoundFormVariantMeta === "boolean" ? isRoundFormVariantMeta : ["true", "1", "yes", "y"].includes(String(isRoundFormVariantMeta).toLowerCase());
+  const isRoundFormVariantMetaParsed = typeof isRoundFormVariantMeta === "boolean" ? isRoundFormVariantMeta : ["true"].includes(String(isRoundFormVariantMeta).toLowerCase());
 
   const isOvalFormVariantMeta = selectedVariant?.metadata?.is_ovalForm;
-  const isOvalFormVariantMetaParsed = typeof isOvalFormVariantMeta === "boolean" ? isOvalFormVariantMeta : ["true", "1", "yes", "y"].includes(String(isOvalFormVariantMeta).toLowerCase());
+  const isOvalFormVariantMetaParsed = typeof isOvalFormVariantMeta === "boolean" ? isOvalFormVariantMeta : ["true"].includes(String(isOvalFormVariantMeta).toLowerCase());
 
   const isRoundForm = isRoundFormMetaParsed || isRoundFormVariantMetaParsed;
   const isRoundFormProduct = isRoundForm;
@@ -154,7 +154,7 @@ export default function ProductActions({
   const isOvalFormProduct = isOvalForm;
 
   const hasCushionMeta = product.metadata?.has_cushion;
-  const hasCushion = typeof hasCushionMeta === "boolean" ? hasCushionMeta : ["true", "1", "yes", "y"].includes(String(hasCushionMeta).toLowerCase());
+  const hasCushion = typeof hasCushionMeta === "boolean" ? hasCushionMeta : ["true"].includes(String(hasCushionMeta).toLowerCase());
 
 
   console.log("ProductActions Debug:");
@@ -251,6 +251,22 @@ export default function ProductActions({
         if (variantHeightValue !== undefined && !isNaN(Number(variantHeightValue))) 
         {
           currentHeight = Number(variantHeightValue);
+        }
+      }
+      if ((!currentWidth || isNaN(currentWidth)) && selectedVariant.width !== undefined && selectedVariant.width !== null)
+      {
+        const variantWidthValue = Number(selectedVariant.width);
+        if(!isNaN(variantWidthValue))
+        {
+          currentWidth = variantWidthValue;
+        }
+      }
+      if ((!currentHeight || isNaN(currentHeight)) && selectedVariant.height !== undefined && selectedVariant.height !== null)
+      {
+        const variantHeightValue = Number(selectedVariant.height);
+        if(!isNaN(variantHeightValue))
+        {
+          currentHeight = variantHeightValue;
         }
       }
     }
