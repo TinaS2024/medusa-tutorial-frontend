@@ -26,7 +26,7 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
               Preis
             </Table.HeaderCell>
             <Table.HeaderCell className="!pr-0 text-right">
-              Total
+              Gesamt
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -54,4 +54,4 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
   )
 }
 
-export default ItemsTemplate
+export default ItemsTemplate;

@@ -63,7 +63,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     description: `${collection.title} collection`,
   } as Metadata
 
-  return metadata
+  return metadata;
 }
 
 export default async function CollectionPage(props: Props) {

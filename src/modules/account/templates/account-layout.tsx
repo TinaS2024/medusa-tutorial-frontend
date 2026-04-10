@@ -30,7 +30,7 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
           </div>
           <div>
             <UnderlineLink href="/customer-service">
-              Kunden Service
+              Kunden-Service
             </UnderlineLink>
           </div>
         </div>
@@ -39,4 +39,4 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
   )
 }
 
-export default AccountLayout
+export default AccountLayout;

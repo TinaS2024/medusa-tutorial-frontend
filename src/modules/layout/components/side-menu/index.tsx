@@ -11,9 +11,9 @@ import { HttpTypes } from "@medusajs/types"
 
 const SideMenuItems = {
   Home: "/",
-  Store: "/store",
-  Account: "/account",
-  Cart: "/cart",
+  Shop: "/store",
+  Konto: "/account",
+  Warenkorb: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {

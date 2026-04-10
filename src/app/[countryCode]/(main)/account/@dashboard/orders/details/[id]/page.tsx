@@ -16,17 +16,19 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `Order #${order.display_id}`,
-    description: `View your order`,
+    title: `Bestellung #${order.display_id}`,
+    description: `Sehen Sie sich Ihre Bestellung an`,
   }
 }
 
-export default async function OrderDetailPage(props: Props) {
+export default async function OrderDetailPage(props: Props) 
+{
   const params = await props.params
   const order = await retrieveOrder(params.id).catch(() => null)
 
-  if (!order) {
-    notFound()
+  if (!order) 
+  {
+    notFound();
   }
 
   return <OrderDetailsTemplate order={order} />

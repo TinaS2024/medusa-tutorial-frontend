@@ -18,17 +18,17 @@ export default async function TransferPage({
         {success && (
           <>
             <Heading level="h1" className="text-xl text-zinc-900">
-              Order transfer declined!
+              Auftragsübertragung abgelehnt!
             </Heading>
             <Text className="text-zinc-600">
-              Transfer of order {id} has been successfully declined.
+              Die Übertragung der Bestellung {id} wurde erfolgreich abgelehnt.
             </Text>
           </>
         )}
         {!success && (
           <>
             <Text className="text-zinc-600">
-              There was an error declining the transfer. Please try again.
+              Bei der Ablehnung der Überweisung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
             </Text>
             {error && (
               <Text className="text-red-500">Error message: {error}</Text>

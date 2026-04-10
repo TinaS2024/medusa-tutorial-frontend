@@ -29,7 +29,7 @@ const CartTemplate = ({
     const cushionColor = searchParams.get("cushionColor");
     const embossingPosition = searchParams.get("embossingPosition");
 
-     console.log("URL Params:", { productId, variantId, designImage, width, height, cushionColor, embossingPosition });
+    console.log("URL Params:", { productId, variantId, designImage, width, height, cushionColor, embossingPosition });
     console.log("Current Cart:", cart);
 
     if (productId && variantId && designImage && width && height) 

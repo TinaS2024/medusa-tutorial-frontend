@@ -30,7 +30,7 @@ const Review = ({ cart }: { cart: any }) => {
             }
           )}
         >
-          Rezension
+          Kundenbewertung
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
