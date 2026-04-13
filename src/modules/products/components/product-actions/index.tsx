@@ -518,7 +518,7 @@ export default function ProductActions({
         <div className="flex flex-col gap-y-2">
         {!!product.metadata?.is_personalized && (
           <div className="flex flex-col gap-y-3">
-            <span className="text-sm">Enter Dimensions</span>
+            <span className="text-sm">Maße eingeben</span>
             <div className="flex gap-3">
               <Input
                 name="width"
