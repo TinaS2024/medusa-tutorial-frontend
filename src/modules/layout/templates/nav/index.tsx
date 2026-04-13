@@ -1,12 +1,14 @@
-import { Suspense } from "react"
+import { Suspense } from "react";
 
-import { listRegions } from "@lib/data/regions"
-import { StoreRegion } from "@medusajs/types"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CartButton from "@modules/layout/components/cart-button"
-import SideMenu from "@modules/layout/components/side-menu"
+import { listRegions } from "@lib/data/regions";
+import { StoreRegion } from "@medusajs/types";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import CartButton from "@modules/layout/components/cart-button";
+import SideMenu from "@modules/layout/components/side-menu";
+import LocaleSwitcher from "@modules/layout/components/locale-switcher";
 
-export default async function Nav() {
+export default async function Nav() 
+{
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
 
   return (
@@ -37,6 +39,7 @@ export default async function Nav() {
               >
                 Konto
               </LocalizedClientLink>
+              <LocaleSwitcher/>
             </div>
             <Suspense
               fallback={
