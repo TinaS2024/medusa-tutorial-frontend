@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "menu": "Menü",
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "shopName": "Shop-Name",
+    "giftCards": "Geschenkkarten"
+  },
+  "cart": {
+    "empty": {
+      "title": "Warenkorb",
+      "description": "Sie haben nichts in ihrem Warenkorb.",
+      "cta": "Entdecke unsere Produkte"
+    }
+  },
+    "product": {
+      "info": "Produkt Information",
+      "shipping_and_returns": "Versand & Rücksendungen",
+      "material": "Material",
+      "origin_country":"Herkunftsland",
+      "product_type":"Sorte",
+      "weight":"Gewicht",
+      "size":"Größe",
+      "lenght":"Länge",
+      "width":"Breite",
+      "height":"Höhe",
+      "quick_delivery":"Schnelle Lieferung",
+      "info_delivery":"Ihr Paket wird innerhalb von 3–5 Werktagen an Ihrem Abholort oder bequem bei Ihnen zu Hause eintreffen.",
+      "product_exchange":"Einfacher Austausch",
+      "product_exchange_info":"Passt es nicht ganz? Kein Problem – wir tauschen Ihr Produkt gegen ein neues um.",
+      "return":"Einfache Rücksendungen",
+      "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft."
+    }
+}

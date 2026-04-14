@@ -5,7 +5,7 @@ import { Listbox, Transition } from "@headlessui/react";
 
 const SUPPORTED_LOCALES = [
   { code: "de-DE", label: "DE" },
-  { code: "en-US", label: "EN" },
+  { code: "en-GB", label: "EN" },
   { code: "fr-FR", label: "FR" },
   { code: "nl-NL", label: "NL" },
 ]
@@ -30,6 +30,8 @@ export default function LocaleSwitcher()
     if (typeof window !== "undefined") 
     {
       window.localStorage.setItem(STORAGE_KEY, code);
+      document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}`;
+      window.location.reload();
     }
   }
 

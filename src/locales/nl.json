@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "account": "Account",
+    "cart": "Winkelwagen",
+    "shopName": "Shopnaam",
+    "giftCards": "Cadeaubonnen"
+  },
+  "cart": {
+    "empty": {
+      "title": "Winkelwagen",
+      "description": "U heeft niets in uw winkelwagen.",
+      "cta": "Ontdek onze producten"
+    }
+  },
+    "product": {
+      "info": "Productinformatie",
+      "shipping_and_returns": "Verzending & Retourneren",
+      "material": "Materiaal",
+      "origin_country":"Land van herkomst",
+      "product_type":"Type",
+      "weight":"Gewicht",
+      "size":"Maat",
+      "lenght":"Lengte",
+      "width":"Breedte",
+      "height":"Hoogte",
+      "quick_delivery":"Snelle levering",
+      "info_delivery":"Je pakket wordt binnen 3-5 werkdagen bezorgd op het door jou opgegeven afhaalpunt of, wat je ook uitkomt, bij je thuis.",
+      "product_exchange":"Gemakkelijke productvervanging",
+      "product_exchange_info":"Past het niet helemaal? Geen probleem – we ruilen uw product om voor een nieuw exemplaar.",
+      "return":"Gemakkelijk retourneren",
+      "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt."
+    }
+}

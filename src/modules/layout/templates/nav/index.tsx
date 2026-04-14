@@ -6,9 +6,14 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button";
 import SideMenu from "@modules/layout/components/side-menu";
 import LocaleSwitcher from "@modules/layout/components/locale-switcher";
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
 
 export default async function Nav() 
 {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
 
   return (
@@ -29,7 +34,7 @@ export default async function Nav()
               href="/"
               className="txt-compact-xlarge-plus text-white/70 hover:text-white uppercase"
               data-testid="nav-store-link"
-            >Shop-Name
+            >{t.nav.shopName}
             </LocalizedClientLink>
           </div>
 
@@ -40,7 +45,7 @@ export default async function Nav()
                 href="/account"
                 data-testid="nav-account-link"
               >
-                Konto
+                {t.nav.account}
               </LocalizedClientLink>
               <LocaleSwitcher/>
             </div>
@@ -51,7 +56,7 @@ export default async function Nav()
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
-                  Warenkorb (0)
+                  {t.nav.cart} (0)
                 </LocalizedClientLink>
               }
             >

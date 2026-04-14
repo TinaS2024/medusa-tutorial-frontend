@@ -1,26 +1,30 @@
-"use client"
+"use client";
 
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
+import Back from "@modules/common/icons/back";
+import FastDelivery from "@modules/common/icons/fast-delivery";
+import Refresh from "@modules/common/icons/refresh";
 
-import Accordion from "./accordion"
-import { HttpTypes } from "@medusajs/types"
+import Accordion from "./accordion";
+import { HttpTypes } from "@medusajs/types";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
 
-  console.log("Produktmaterial:", product.material);
   const tabs = [
     {
-      label: "Produkt Information",
+      label: t.product.info,
       component: <ProductInfoTab product={product} />,
     },
     {
-      label: "Versand & Rücksendungen",
+      label: t.product.shipping_and_returns,
       component: <ShippingInfoTab />,
     },
   ]
@@ -44,30 +48,33 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
+  
   return (
     <div className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
-            <span className="font-semibold">Material</span>
+            <span className="font-semibold">{t.product.material}</span>
             <p>{product.material ? product.material : "-"}</p>
           </div>
           <div>
-            <span className="font-semibold">Herkunftland</span>
+            <span className="font-semibold">{t.product.origin_country}</span>
             <p>{product.origin_country ? product.origin_country : "-"}</p>
           </div>
           <div>
-            <span className="font-semibold">Type</span>
+            <span className="font-semibold">{t.product.product_type}</span>
             <p>{product.type ? product.type.value : "-"}</p>
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
           <div>
-            <span className="font-semibold">Gewicht</span>
+            <span className="font-semibold">{t.product.weight}</span>
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
           </div>
           <div>
-            <span className="font-semibold">Größe</span>
+            <span className="font-semibold">{t.product.size}</span>
             <p>
               {(() => {
                 const dimensions = [];
@@ -85,33 +92,36 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 }
 
 const ShippingInfoTab = () => {
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
+
   return (
     <div className="text-small-regular py-8">
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
           <FastDelivery />
           <div>
-            <span className="font-semibold">Schnelle Lieferung</span>
+            <span className="font-semibold">{t.product.quick_delivery}</span>
             <p className="max-w-sm">
-            Ihr Paket wird innerhalb von 3–5 Werktagen an Ihrem Abholort oder bequem bei Ihnen zu Hause eintreffen.
+            {t.product.info_delivery}
             </p>
           </div>
         </div>
         <div className="flex items-start gap-x-2">
           <Refresh />
           <div>
-            <span className="font-semibold">Einfacher Austausch</span>
+            <span className="font-semibold">{t.product.product_exchange}</span>
             <p className="max-w-sm">
-            Passt es nicht ganz? Kein Problem – wir tauschen Ihr Produkt gegen ein neues um.
+            {t.product.product_exchange_info}
             </p>
           </div>
         </div>
         <div className="flex items-start gap-x-2">
           <Back />
           <div>
-            <span className="font-semibold">Einfache Rücksendungen</span>
+            <span className="font-semibold">{t.product.return}</span>
             <p className="max-w-sm">
-            Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft.
+            {t.product.return_info}
             </p>
           </div>
         </div>
@@ -120,4 +130,4 @@ const ShippingInfoTab = () => {
   )
 }
 
-export default ProductTabs
+export default ProductTabs;

@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "account": "Compte",
+    "cart": "Panier",
+    "shopName": "Nom de la boutique",
+    "giftCards": "Cartes cadeaux"
+  },
+  "cart": {
+    "empty": {
+      "title": "Panier",
+      "description": "Vous n'avez rien dans votre panier.",
+      "cta": "Découvrez nos produits"
+    }
+  },
+    "product": {
+      "info": "Informations sur le produit",
+      "shipping_and_returns": "Expéditions et retours",
+      "material": "Matériel",
+      "origin_country":"Pays d'origine",
+      "product_type":"Taper",
+      "weight":"Poids",
+      "size":"Taille",
+      "lenght":"Longueur",
+      "width":"Largeur",
+      "height":"Hauteur",
+      "quick_delivery":"Livraison rapide",
+      "info_delivery":"Votre colis sera livré à votre point de retrait ou directement à votre domicile sous 3 à 5 jours ouvrables.",
+      "product_exchange":"Échange facile",
+      "product_exchange_info":"Ça ne vous va pas tout à fait ? Pas de problème, nous échangerons votre produit contre un neuf..",
+      "return":"Retours faciles",
+      "return_info":"Il vous suffit de nous retourner votre produit et nous vous rembourserons intégralement. Sans poser de questions, nous mettrons tout en œuvre pour que votre retour se déroule sans encombre."
+    }
+}

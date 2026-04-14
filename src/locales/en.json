@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "account": "Account",
+    "cart": "Cart",
+    "shopName": "Shop name",
+    "giftCards": "Gift cards"
+  },
+  "cart": {
+    "empty": {
+      "title": "Cart",
+      "description": "You have nothing in your cart.",
+      "cta": "Discover our products"
+    }
+  },
+      "product": {
+      "info": "Produkt Information",
+      "shipping_and_returns": "Shipping and Return",
+      "material": "Material",
+      "origin_country":"Origin Country",
+      "product_type":"Typ",
+      "weight":"Weight",
+      "size":"Size",
+      "lenght":"Length",
+      "width":"Width",
+      "height":"Height",
+      "quick_delivery":"Quick Delivery",
+      "info_delivery":"Your package will arrive at your pick-up location or conveniently at your home within 3-5 working days.",
+      "product_exchange":"Product Exchange",
+      "product_exchange_info":"Doesn't it quite fit? No problem – we'll exchange your product for a new one.",
+      "return":"Easy Returns",
+      "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly."
+    }
+}

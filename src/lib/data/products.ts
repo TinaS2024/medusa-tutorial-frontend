@@ -1,11 +1,13 @@
-"use server"
+"use server";
 
-import { sdk } from "@lib/config"
-import { sortProducts } from "@lib/util/sort-products"
-import { HttpTypes } from "@medusajs/types"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
-import { getRegion, retrieveRegion } from "./regions"
+import { sdk } from "@lib/config";
+import { sortProducts } from "@lib/util/sort-products";
+import { HttpTypes } from "@medusajs/types";
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import { getAuthHeaders, getCacheOptions } from "./cookies";
+import { getRegion, retrieveRegion } from "./regions";
+import { getLocaleHeader, getLocaleFromCookies } from "@lib/locale";
+
 
 
 export const listProducts = async ({
@@ -50,11 +52,16 @@ export const listProducts = async ({
 
   const headers = {
     ...(await getAuthHeaders()),
+    ...(await getLocaleHeader()),
   }
+
+  const locale = await getLocaleFromCookies();
+  console.log("listProducts locale query param:", locale); 
 
   const next = {
     ...(await getCacheOptions("products")),
   }
+
 
 return sdk.client
 
@@ -69,6 +76,7 @@ return sdk.client
           handle: queryParams?.handle,
           fields:
             "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material",
+            ...(locale ? { locale } : {}),
         },
         headers,
         next,
