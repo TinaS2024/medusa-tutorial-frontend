@@ -1,9 +1,24 @@
-import { Github } from "@medusajs/icons";
+
+"use client";
+
+import  { useEffect, useState } from "react";
+
 import { Heading } from "@medusajs/ui";
 import Image from "next/image";
 
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
+
 
 const Hero = () => {
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+
+   useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const t = getMessages(lang);
+
   return (
     <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
@@ -22,7 +37,7 @@ const Hero = () => {
             <Image src="/hero.png" alt="Hero Image" width={400} height={200}/>
             </div>
             
-            <a href="/store" className="bg-orange-950 rounded-xl text-base-regular text-white p-2">Entdecke unsere Produkte</a>
+            <a href="/store" className="bg-orange-950 rounded-xl text-base-regular text-white p-2">{t.cart.empty.cta}</a>
           </Heading>
         </span>
        

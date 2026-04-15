@@ -1,4 +1,14 @@
 {
+  "login_shop":
+  {
+    "welcome":"Welcome back",
+    "login_info":"Login to our shop.",
+    "login":"Login",
+    "no_account": "No account yet?",
+    "new_register":"Register.",
+    "email":"Email",
+    "password":"Password"
+  },
   "nav": {
     "menu": "Menu",
     "account": "Account",
@@ -10,15 +20,37 @@
     "empty": {
       "title": "Cart",
       "description": "You have nothing in your cart.",
-      "cta": "Discover our products"
+      "cta": "Discover our products",
+      "to_cart": "Zum Warenkorb",
+      "add_to_cart": "To cart",
+      "empty_cart":"Ihr Warenkorb ist leer."
     }
+  }, 
+  "payment": {
+    "title:":"Payment method",
+    "choose_pay":"Choose a payment method",
+    "stripe":"Stripe",
+    "paypal":"Paypal",
+    "manual":"Manually"
   },
-      "product": {
-      "info": "Produkt Information",
+  "order":
+  {
+    "title":"Order",
+    "order_info":"Order information",
+    "place_order":"Place an order"
+  },
+  "categories":"Categories",
+  "product": {
+      "all_products":"All products",
+      "product":"Product",
+      "info": "Product Information",
+      "selected_variant":"Selected Variant",
+      "sold_out":"Sold out",
       "shipping_and_returns": "Shipping and Return",
       "material": "Material",
       "origin_country":"Origin Country",
       "product_type":"Typ",
+      "dimensions_info": "Enter dimensions",
       "weight":"Weight",
       "size":"Size",
       "lenght":"Length",
@@ -30,5 +62,34 @@
       "product_exchange_info":"Doesn't it quite fit? No problem – we'll exchange your product for a new one.",
       "return":"Easy Returns",
       "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly."
+    },
+     "sort_product":
+    {
+      "sort_by":"Sort by",
+      "newest":"New in Range",
+      "price_highest":"Price: Low -> High",
+      "price_lowest":"Price: High -> Low"
+    },
+    "designer": {
+      "to_designer":"To the designer"
+    },
+    "printOnDemand": {
+      "upload": "Upload graphic"
+    },
+    "price":
+    {
+      "title":"Price",
+      "subtotal":"Subtotal",
+      "rabat":"Rabat",
+      "total":"Total",
+      "taxes_title":"Taxes",
+      "tax":"Vat",
+      "shipping_cost":"Shipping costs"
+    },
+    "service":
+    {
+      "title":"Customer Service",
+      "question":"Have any questions?",
+      "common_questions":"Common questions and answers found on our customer service page."
     }
 }

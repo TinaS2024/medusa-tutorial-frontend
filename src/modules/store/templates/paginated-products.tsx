@@ -5,6 +5,9 @@ import BundlePreview from "@modules/products/components/bundle-preview";
 import { Pagination } from "@modules/store/components/pagination";
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 const PRODUCT_LIMIT = 12
 
 type PaginatedProductsParams = {
@@ -30,6 +33,10 @@ export default async function PaginatedProducts({
   productsIds?: string[]
   countryCode: string
 }) {
+
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+  
   const queryParams: PaginatedProductsParams = {
     limit: 12,
   }
@@ -89,7 +96,7 @@ export default async function PaginatedProducts({
    <>
       {products.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-xl font-bold mb-4">Produkte</h2>
+          <h2 className="text-xl font-bold mb-4">{t.product.product}</h2>
           <ul
             className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
             data-testid="products-list"

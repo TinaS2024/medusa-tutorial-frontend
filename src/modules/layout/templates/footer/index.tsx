@@ -1,11 +1,18 @@
-import { listCategories } from "@lib/data/categories"
-import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
+import { listCategories } from "@lib/data/categories";
+import { listCollections } from "@lib/data/collections";
+import { Text, clx } from "@medusajs/ui";
 
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import MedusaCTA from "@modules/layout/components/medusa-cta";
 
-export default async function Footer() {
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
+export default async function Footer() 
+{
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const { collections } = await listCollections({
     fields: "*products",
   })
@@ -27,15 +34,16 @@ export default async function Footer() {
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus text-white/70 hover:text-white">
-                  Categories
+                  {t.categories}
                 </span>
                 <ul
                   className="grid grid-cols-1 gap-2"
                   data-testid="footer-categories"
                 >
                   {productCategories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
+                    if (c.parent_category) 
+                    {
+                      return;
                     }
 
                     const children =

@@ -1,9 +1,16 @@
+"use client";
+
+import  { useEffect, useState } from "react";
+
 import React from "react"
 
-import UnderlineLink from "@modules/common/components/interactive-link"
+import UnderlineLink from "@modules/common/components/interactive-link";
 
-import AccountNav from "../components/account-nav"
-import { HttpTypes } from "@medusajs/types"
+import AccountNav from "../components/account-nav";
+import { HttpTypes } from "@medusajs/types";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 interface AccountLayoutProps {
   customer: HttpTypes.StoreCustomer | null
@@ -14,6 +21,15 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
   customer,
   children,
 }) => {
+
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+
+   useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const t = getMessages(lang);
+
   return (
     <div className="flex-1 small:py-12" data-testid="account-page">
       <div className="flex-1 content-container h-full max-w-5xl mx-auto bg-white flex flex-col">
@@ -23,14 +39,14 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
         </div>
         <div className="flex flex-col small:flex-row items-end justify-between small:border-t border-gray-200 py-12 gap-8">
           <div>
-            <h3 className="text-xl-semi mb-4">Haben Sie Fragen?</h3>
+            <h3 className="text-xl-semi mb-4">{t.service.question}</h3>
             <span className="txt-medium">
-            Häufig gestellte Fragen und Antworten finden Sie auf unserer Kundendienstseite.
+            {t.service.common_questions}
             </span>
           </div>
           <div>
             <UnderlineLink href="/customer-service">
-              Kunden-Service
+              {t.service.title}
             </UnderlineLink>
           </div>
         </div>

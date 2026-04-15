@@ -30,7 +30,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
       >
         {filteredOptions.map((v) => {
           return (
-            <button
+            <button type="button"
               onClick={() => updateOption(option.id, v)}
               key={v}
               className={clx(
@@ -53,4 +53,4 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   )
 }
 
-export default OptionSelect
+export default OptionSelect;

@@ -1,12 +1,17 @@
-import { Suspense } from "react"
 
-import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
-import RefinementList from "@modules/store/components/refinement-list"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { Suspense } from "react";
 
-import PaginatedProducts from "./paginated-products"
+import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid";
+import RefinementList from "@modules/store/components/refinement-list";
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
 
-const StoreTemplate = ({
+import PaginatedProducts from "./paginated-products";
+
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
+
+const StoreTemplate = async ({
   sortBy,
   page,
   countryCode,
@@ -15,6 +20,10 @@ const StoreTemplate = ({
   page?: string
   countryCode: string
 }) => {
+
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
@@ -26,7 +35,7 @@ const StoreTemplate = ({
       <RefinementList sortBy={sort} />
       <div className="w-full">
         <div className="mb-8 text-2xl-semi">
-          <h1 data-testid="store-page-title">Alle Produkte</h1>
+          <h1 data-testid="store-page-title">{t.product.all_products}</h1>
         </div>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts

@@ -1,4 +1,14 @@
 {
+  "login_shop":
+  {
+    "welcome":"Willkommen zurück",
+    "login_info":"Melden Sie sich in unserem Shop an.",
+    "login":"Anmeldung",
+    "no_account": "Noch kein Konto vorhanden?",
+    "new_register":"Registrieren Sie sich bei uns.",
+    "email":"E-Mail",
+    "password":"Passwort"
+  },
   "nav": {
     "menu": "Menü",
     "account": "Konto",
@@ -10,15 +20,37 @@
     "empty": {
       "title": "Warenkorb",
       "description": "Sie haben nichts in ihrem Warenkorb.",
-      "cta": "Entdecke unsere Produkte"
+      "cta": "Entdecke unsere Produkte",
+      "to_cart": "Zum Warenkorb",
+      "add_to_cart": "Zum Warenkorb hinzufügen",
+      "empty_cart":"Ihr Warenkorb ist leer."
     }
   },
-    "product": {
+  "payment": {
+    "title:":"Zahlungsmethode",
+    "choose_pay":"Wählen Sie eine Zahlungsmethode aus",
+    "stripe":"Stripe",
+    "paypal":"Paypal",
+    "manual":"Manuell"
+  },
+  "order":
+  {
+    "title":"Bestellung",
+    "order_info":"Bestellinformation",
+    "place_order":"Bestellung aufgeben"
+  },
+  "categories":"Katgeories",
+  "product": {
+      "all_products":"Alle Produkte",
+      "product":"Produkte",
       "info": "Produkt Information",
+      "selected_variant":"Ausgewählte Variante",
+      "sold_out":"Ausverkauft",
       "shipping_and_returns": "Versand & Rücksendungen",
       "material": "Material",
       "origin_country":"Herkunftsland",
       "product_type":"Sorte",
+      "dimensions_info": "Maße eingeben",
       "weight":"Gewicht",
       "size":"Größe",
       "lenght":"Länge",
@@ -30,5 +62,34 @@
       "product_exchange_info":"Passt es nicht ganz? Kein Problem – wir tauschen Ihr Produkt gegen ein neues um.",
       "return":"Einfache Rücksendungen",
       "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft."
+    },
+    "sort_product":
+    {
+      "sort_by":"Sortien nach",
+      "newest":"Neu im Sortiment",
+      "price_highest":"Preis: Niederig -> Hoch",
+      "price_lowest":"Preis: Hoch -> Niederig"
+    },
+    "designer": {
+      "to_designer":"Zum Designer"
+    },
+    "printOnDemand": {
+      "upload": "Grafik hochladen"
+    },
+    "price":
+    {
+      "title":"Preis",
+      "subtotal":"Zwischensumme",
+      "rabat":"Rabatt",
+      "total":"Gesamtpreis",
+      "taxes_title":"Steuern",
+      "tax":"MwSt",
+      "shipping_cost":"Versandkosten"
+    },
+    "service":
+    {
+      "title":"Kunden-Service",
+      "question":"Haben Sie Fragen?",
+      "common_questions":"Häufig gestellte Fragen und Antworten finden Sie auf unserer Kundendienstseite."
     }
 }

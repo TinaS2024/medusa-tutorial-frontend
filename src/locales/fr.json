@@ -1,4 +1,14 @@
 {
+  "login_shop":
+  {
+    "welcome":"Content de te revoir",
+    "login_info":"Inscrivez-vous dans notre boutique.",
+    "login":"Inscription",
+    "no_account": "Pas de compte?",
+    "new_register":"Inscrivez-vous dans notre boutique.",
+    "email":"Email",
+    "password":"Mot de passe"
+  },
   "nav": {
     "menu": "Menu",
     "account": "Compte",
@@ -10,15 +20,37 @@
     "empty": {
       "title": "Panier",
       "description": "Vous n'avez rien dans votre panier.",
-      "cta": "Découvrez nos produits"
+      "cta": "Découvrez nos produits",
+      "to_cart": "Aller au panier",
+      "add_to_cart": "Ajouter au panier",
+      "empty_cart":"Ihr Warenkorb ist leer."
     }
+  }, 
+  "payment": {
+    "title:":"Mode de paiement",
+    "choose_pay":"Choisissez un mode de paiement",
+    "stripe":"Stripe",
+    "paypal":"Paypal",
+    "manual":"Manuellement"
   },
-    "product": {
+  "order":
+  {
+    "title":"Commande",
+    "order_info":"Informations sur la commande",
+    "place_order":"Passer une commanden"
+  },
+  "categories":"Catégories",
+  "product": {
+      "all_products":"Tous les produits",
+      "product":"Produit",
       "info": "Informations sur le produit",
+      "selected_variant":"Variante sélectionnée",
+      "sold_out":"Epuisé",
       "shipping_and_returns": "Expéditions et retours",
       "material": "Matériel",
       "origin_country":"Pays d'origine",
       "product_type":"Taper",
+      "dimensions_info": "Entrez les dimensions",
       "weight":"Poids",
       "size":"Taille",
       "lenght":"Longueur",
@@ -30,5 +62,34 @@
       "product_exchange_info":"Ça ne vous va pas tout à fait ? Pas de problème, nous échangerons votre produit contre un neuf..",
       "return":"Retours faciles",
       "return_info":"Il vous suffit de nous retourner votre produit et nous vous rembourserons intégralement. Sans poser de questions, nous mettrons tout en œuvre pour que votre retour se déroule sans encombre."
+    },
+     "sort_product":
+    {
+      "sort_by":"Trier par",
+      "newest":"Nouveau dans la plage",
+      "price_highest":"Prix: Bas -> élevé",
+      "price_lowest":"Prix: élevé -> bas"
+    },
+    "designer": {
+      "to_designer":"Au concepteur"
+    },
+    "printOnDemand": {
+      "upload": "Uploader la graphic"
+    },
+    "price":
+    {
+      "title":"Prix",
+      "subtotal":"Total",
+      "rabat":"Rabat",
+      "total":"Prix total",
+      "taxes_title":"Impôts",
+      "tax":"T.V.A.",
+      "shipping_cost":"Frais d'expédition"
+    },
+    "service":
+    {
+      "title":"Service de client",
+      "question":"Vous avez des questions?",
+      "common_questions":"Questions et réponses communes trouvées sur notre page de service de client."
     }
 }

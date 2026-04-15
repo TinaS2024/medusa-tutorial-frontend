@@ -6,6 +6,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button";
 import SideMenu from "@modules/layout/components/side-menu";
 import LocaleSwitcher from "@modules/layout/components/locale-switcher";
+
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
 

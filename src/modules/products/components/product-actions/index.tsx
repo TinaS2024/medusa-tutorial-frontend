@@ -14,6 +14,9 @@ import { getCustomVariantPrice } from "@lib/data/products";
 import MobileActions from "./mobile-actions";
 import Input from "../../../common/components/input";
 
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
+
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -59,6 +62,10 @@ export default function ProductActions({
   disabled,
   region,
 }: ProductActionsProps) {
+
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
+
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);
   const [designerPrice, setDesignerPrice] = useState<number | null>(null);
@@ -518,7 +525,7 @@ export default function ProductActions({
         <div className="flex flex-col gap-y-2">
         {!!product.metadata?.is_personalized && (
           <div className="flex flex-col gap-y-3">
-            <span className="text-sm">Maße eingeben</span>
+            <span className="text-sm">{t.product.dimensions_info}</span>
             <div className="flex gap-3">
               <Input
                 name="width"
@@ -530,7 +537,7 @@ export default function ProductActions({
                     setHeight(value);
                   }
                 }}
-                label="Width (mm)"
+                label={`${t.product.width} (mm)`}
                 type="number"
                 min={0}
                 max={!isNaN(maxWidth) ? maxWidth : undefined}
@@ -545,7 +552,7 @@ export default function ProductActions({
                     setWidth(value);
                   }
                 }}
-                label="Height (mm)"
+                label={`${t.product.height} (mm)`}
                 type="number"
                 min={0}
                 max={!isNaN(maxHeight) ? maxHeight : undefined}
@@ -566,7 +573,7 @@ export default function ProductActions({
           <canvas ref={canvasRef} width="50" height="50" className="border border-gray-300 mt-4 mb-2"/>
           <input type="file" id="upload-image" accept="image/*" className="hidden" onChange={handleChange} ref={fileInputRef}/>
           <label htmlFor="upload-image" className="w-full">
-            <Button className="w-full" onClick={handleUploadClick}>Upload Graphic</Button>
+            <Button className="w-full" onClick={handleUploadClick}>{t.printOnDemand.upload}</Button>
           </label>
           </>
         )}
@@ -578,7 +585,7 @@ export default function ProductActions({
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
                   data-testid="go-to-designer-button"
                 >
-                  Zum Designer
+                  {t.designer.to_designer}
                 </Button>
               </a>
             )}
@@ -598,10 +605,10 @@ export default function ProductActions({
           data-testid="add-product-button"
         >
           {!selectedVariant && !options
-            ? "Ausgewählte Variante"
+            ? t.product.selected_variant
             : !inStock || !isValidVariant
-            ? "Ausverkauft"
-            : "Zum Warenkorb hinzufügen"}
+            ? t.product.sold_out
+            : t.cart.empty.add_to_cart}
         </Button>
         <MobileActions
           product={product}

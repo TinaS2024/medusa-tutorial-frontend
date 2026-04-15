@@ -1,4 +1,14 @@
 {
+  "login_shop":
+  {
+    "welcome":"Welkom terug",
+    "login_info":"Schrijf u in in onze winkel.",
+    "login":"Registratie",
+    "no_account": "Nog geen account?",
+    "new_register":"Schrijf u bij ons in.",
+    "email":"E-mail",
+    "password":"Wachtwoord"
+  },
   "nav": {
     "menu": "Menu",
     "account": "Account",
@@ -10,15 +20,36 @@
     "empty": {
       "title": "Winkelwagen",
       "description": "U heeft niets in uw winkelwagen.",
-      "cta": "Ontdek onze producten"
+      "cta": "Ontdek onze producten",
+      "to_cart": "Naar winkelwagen",
+      "add_to_cart": "Voeg toe aan winkelwagen",
+      "empty_cart":"Ihr Warenkorb ist leer."
     }
+  }, 
+  "payment": {
+    "title:":"BetaKies een betaalmethode",
+    "stripe":"Stripe",
+    "paypal":"Paypal",
+    "manual":"Handmatig"
   },
-    "product": {
+  "order":
+  {
+    "title":"Volgorde",
+    "order_info":"Bestelinformatie",
+    "place_order":"Plaats een bestelling"
+  },
+  "categories":"Categorieën",
+  "product": {
+      "all_products":"Alle producten",
+      "product":"Product",
       "info": "Productinformatie",
+      "selected_variant":"Geselecteerde variante",
+      "sold_out":"Uitverkocht",
       "shipping_and_returns": "Verzending & Retourneren",
       "material": "Materiaal",
       "origin_country":"Land van herkomst",
       "product_type":"Type",
+      "dimensions_info": "Voer afmetingen in",
       "weight":"Gewicht",
       "size":"Maat",
       "lenght":"Lengte",
@@ -30,5 +61,34 @@
       "product_exchange_info":"Past het niet helemaal? Geen probleem – we ruilen uw product om voor een nieuw exemplaar.",
       "return":"Gemakkelijk retourneren",
       "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt."
+    },
+     "sort_product":
+    {
+      "sort_by":"Sorteer op",
+      "newest":"Nieu range",
+      "price_highest":"Prijs: Laag -> hoog",
+      "price_lowest":"Prijs: Hoch -> laag"
+    },
+    "designer": {
+      "to_designer":"Aan de ontwerper"
+    },
+    "printOnDemand": {
+      "upload": "Afbeelding uploaden"
+    },
+    "price":
+    {
+      "title":"Prijs",
+      "subtotal":"Subtotaal",
+      "rabat":"Rabat",
+      "total":"Totale prijs",
+      "taxes_title":"Belasting",
+      "tax":"VAT",
+      "shipping_cost":"Verzendkosten"
+    },
+    "service":
+    {
+      "title":"Service de client",
+      "question":"U heeft een vragen?",
+      "common_questions":"Vragen en antwoorden die we vinden op onze servicepagina."
     }
 }

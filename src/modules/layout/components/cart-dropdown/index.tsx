@@ -1,69 +1,74 @@
-"use client"
+"use client";
 
-import {
-  Popover,
-  PopoverButton,
-  PopoverPanel,
-  Transition,
-} from "@headlessui/react"
-import { convertToLocale } from "@lib/util/money"
-import { HttpTypes } from "@medusajs/types"
-import { Button } from "@medusajs/ui"
-import DeleteButton from "@modules/common/components/delete-button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Thumbnail from "@modules/products/components/thumbnail"
-import { usePathname } from "next/navigation"
-import { Fragment, useEffect, useRef, useState } from "react"
+import { Popover, PopoverButton, PopoverPanel,Transition } from "@headlessui/react";
+import { convertToLocale } from "@lib/util/money";
+import { HttpTypes } from "@medusajs/types";
+import { Button } from "@medusajs/ui";
+import DeleteButton from "@modules/common/components/delete-button";
+import LineItemOptions from "@modules/common/components/line-item-options";
+import LineItemPrice from "@modules/common/components/line-item-price";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import Thumbnail from "@modules/products/components/thumbnail";
+import { usePathname } from "next/navigation";
+import { Fragment, useEffect, useRef, useState } from "react";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 const CartDropdown = ({
   cart: cartState,
 }: {
   cart?: HttpTypes.StoreCart | null
 }) => {
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
   )
-  const [cartDropdownOpen, setCartDropdownOpen] = useState(false)
+  const [cartDropdownOpen, setCartDropdownOpen] = useState(false);
 
-  const open = () => setCartDropdownOpen(true)
-  const close = () => setCartDropdownOpen(false)
+  const open = () => setCartDropdownOpen(true);
+  const close = () => setCartDropdownOpen(false);
 
   const totalItems =
     cartState?.items?.reduce((acc, item) => {
       return acc + item.quantity
-    }, 0) || 0
+    }, 0) || 0;
 
-  const subtotal = cartState?.subtotal ?? 0
-  const itemRef = useRef<number>(totalItems || 0)
+  const subtotal = cartState?.subtotal ?? 0;
+  const itemRef = useRef<number>(totalItems || 0);
 
   const timedOpen = () => {
-    open()
+    open();
 
-    const timer = setTimeout(close, 5000)
+    const timer = setTimeout(close, 5000);
 
-    setActiveTimer(timer)
+    setActiveTimer(timer);
   }
 
   const openAndCancel = () => {
     if (activeTimer) {
-      clearTimeout(activeTimer)
+      clearTimeout(activeTimer);
     }
 
-    open()
+    open();
   }
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   // Clean up the timer when the component unmounts
   useEffect(() => {
     return () => {
       if (activeTimer) {
-        clearTimeout(activeTimer)
+        clearTimeout(activeTimer);
       }
     }
   }, [activeTimer])
 
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   // open cart dropdown when modifying the cart items, but only if we're not on the cart page
   useEffect(() => {
@@ -85,7 +90,7 @@ const CartDropdown = ({
             className=" text-white/70 hover:text-white"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Warenkorb (${totalItems})`}</LocalizedClientLink>
+          >{`${t.cart.empty.title} (${totalItems})`}</LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -103,7 +108,7 @@ const CartDropdown = ({
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Warenkorb</h3>
+              <h3 className="text-large-semi">{t.cart.empty.title}</h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -198,7 +203,7 @@ const CartDropdown = ({
                       size="large"
                       data-testid="go-to-cart-button"
                     >
-                      Zum Warenkorb
+                      {t.cart.empty.to_cart}
                     </Button>
                   </LocalizedClientLink>
                 </div>
@@ -209,12 +214,12 @@ const CartDropdown = ({
                   <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
                     <span>0</span>
                   </div>
-                  <span>Ihr Warenkorb ist leer.</span>
+                  <span>{t.cart.empty.empty_cart}</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
-                        <span className="sr-only">Go to all products page</span>
-                        <Button onClick={close}>Entdecke unsere Produkte</Button>
+                        <span className="sr-only">{t.cart.empty.cta}</span>
+                        <Button onClick={close}>{t.cart.empty.cta}</Button>
                       </>
                     </LocalizedClientLink>
                   </div>
@@ -228,4 +233,4 @@ const CartDropdown = ({
   )
 }
 
-export default CartDropdown
+export default CartDropdown;
