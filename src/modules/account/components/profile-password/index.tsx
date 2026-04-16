@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useActionState } from "react";
+import React, { useEffect, useState, useActionState } from "react";
 import Input from "@modules/common/components/input";
 import AccountInfo from "../account-info";
 import { HttpTypes } from "@medusajs/types";
@@ -14,8 +14,12 @@ type MyInformationProps = {
 }
 
 const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
 
   const [successState, setSuccessState] = React.useState(false);
@@ -48,21 +52,21 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Old password"
+            label={t.login_shop.password_old}
             name="old_password"
             required
             type="password"
             data-testid="old-password-input"
           />
           <Input
-            label="New password"
+            label={t.login_shop.password_new}
             type="password"
             name="new_password"
             required
             data-testid="new-password-input"
           />
           <Input
-            label="Confirm password"
+            label={t.login_shop.password_confirm}
             type="password"
             name="confirm_password"
             required

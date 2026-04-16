@@ -4,6 +4,8 @@
     "welcome":"Content de te revoir",
     "login_info":"Inscrivez-vous dans notre boutique.",
     "login":"Inscription",
+    "login_as":"Connecté en tant que",
+    "logout":"Déconnexion",
     "no_account": "Pas de compte?",
     "new_register":"Inscrivez-vous dans notre boutique.",
     "first_name": "Nom prénom",
@@ -11,6 +13,9 @@
     "phone": "Téléphone number",
     "email":"Email",
     "password":"Mot de passe",
+    "password_old":"Mot de passe ancien",
+    "password_new":"Mot de passe nouveau",
+    "password_confirm":"Confirmer le mot de passe",
     "account_register":"Enregistrement de compte",
     "account_info":"Créez un compte ici pour rester informé(e) des nouveaux produits.",
     "account_agreements":"Lors de la création d'un nouveau compte, vous devez accepter nos conditions générales et nos conditions d'utilisation..",
@@ -19,6 +24,24 @@
     "now_register":"Inscription maintenant",
     "have_account":"Vous avez déjà compte?"
   },
+  "profile":{
+    "title":"Profile",
+    "description":"Vue et edition de votre Medusa Store profile.",
+    "info":"Vous pouvez consulter les informations de votre profil : nom, adresse e-mail, numéro de téléphone, etc. Vous pouvez également vérifier votre adresse d’inscription et modifier votre mot de passe.",
+    "overview": "Vue d'ensemble",
+    "orders": "Commandes",
+    "order_number": "Numéro de commande",
+    "current_orders":"Commandes actuelles",
+    "no_current_orders":"Aucune commande actuelle",
+    "order_info":"Consultez vos commandes précédentes et leur statut. Si nécessaire, vous pouvez également retourner ou échanger vos articles.",
+    "nothing_to_see":"Il n'y a rien à voir ici.",
+    "no_orders_yet":"Vous n'avez pas encore de commandes, nous serions ravis d'y remédier..",
+    "greeting":"Bonjour",
+    "filled_out":"Rempli",
+    "saved":"Enregistré",
+    "continue_shopping":"Continuer la shopping"
+  },
+
   "nav": {
     "menu": "Menu",
     "account": "Compte",
@@ -97,6 +120,7 @@
       "rabat":"Rabat",
       "total":"Prix total",
       "total_price":"Prix total totalis",
+      "total_summary":"Total de la commande",
       "taxes_title":"Impôts",
       "tax":"T.V.A.",
       "shipping_cost":"Frais d'expédition"
@@ -111,6 +135,23 @@
     {
       "title":"Expédition",
       "activation_freeshipping":"Activez la livraison gratuite pour votre commande",
-      "unlocked_freeshipping":"Livraison gratuite activée!"
-    }
+      "unlocked_freeshipping":"Livraison gratuite activée!",
+      "address":"Adresse",
+      "adresses": "Adresses",
+      "company": "Entreprise",
+      "apartment":"Appartement",
+      "city":"Ville",
+      "postal_code":"Code postal",
+      "province": "Province",
+      "country":"Pays"
+    },
+     "function":{
+        "edit":"Éditer",
+        "delete":"Supprimer",
+        "change": "Changer",
+        "cancel":"Annuler",
+        "save": "Enregistrer",
+        "add": "Ajouter",
+        "remove": "Supprimer"
+      }
 }

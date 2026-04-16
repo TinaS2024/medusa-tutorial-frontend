@@ -1,25 +1,32 @@
-import { Container } from "@medusajs/ui"
+import { Container } from "@medusajs/ui";
 
-import ChevronDown from "@modules/common/icons/chevron-down"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { convertToLocale } from "@lib/util/money"
-import { HttpTypes } from "@medusajs/types"
+import ChevronDown from "@modules/common/icons/chevron-down";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { convertToLocale } from "@lib/util/money";
+import { HttpTypes } from "@medusajs/types";
+
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
 
 type OverviewProps = {
   customer: HttpTypes.StoreCustomer | null
   orders: HttpTypes.StoreOrder[] | null
 }
 
-const Overview = ({ customer, orders }: OverviewProps) => {
+const Overview = async ({ customer, orders }: OverviewProps) => {
+
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
         <div className="text-xl-semi flex justify-between items-center mb-4">
           <span data-testid="welcome-message" data-value={customer?.first_name}>
-            Hallo {customer?.first_name}
+          {t.profile.greeting} {customer?.first_name}
           </span>
           <span className="text-small-regular text-ui-fg-base">
-            Angemeldet als:{" "}
+            {t.login_shop.login_as}:{" "}
             <span
               className="font-semibold"
               data-testid="customer-email"
@@ -43,13 +50,13 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     {getProfileCompletion(customer)}%
                   </span>
                   <span className="uppercase text-base-regular text-ui-fg-subtle">
-                    Ausgefüllt
+                    {t.profile.filled_out}
                   </span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-y-4">
-                <h3 className="text-large-semi">Adressen</h3>
+                <h3 className="text-large-semi">{t.shipping.adresses}</h3>
                 <div className="flex items-end gap-x-2">
                   <span
                     className="text-3xl-semi leading-none"
@@ -59,7 +66,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     {customer?.addresses?.length || 0}
                   </span>
                   <span className="uppercase text-base-regular text-ui-fg-subtle">
-                   Gespeichert
+                   {t.profile.saved}
                   </span>
                 </div>
               </div>
@@ -67,7 +74,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
 
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-2">
-                <h3 className="text-large-semi">Aktuelle Bestellungen</h3>
+                <h3 className="text-large-semi">{t.profile.current_orders}</h3>
               </div>
               <ul
                 className="flex flex-col gap-y-4"
@@ -88,10 +95,10 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                             <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
                               <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
-                                Bestellnummer
+                                {t.profile.order_number}
                               </span>
                               <span className="font-semibold">
-                                Gesamtsumme
+                                {t.price.total_summary}
                               </span>
                               <span data-testid="order-created-date">
                                 {new Date(order.created_at).toDateString()}
@@ -110,6 +117,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                               </span>
                             </div>
                             <button
+                            type="button"
                               className="flex items-center justify-between"
                               data-testid="open-order-button"
                             >
@@ -124,7 +132,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     )
                   })
                 ) : (
-                  <span data-testid="no-orders-message">Keine aktuellen Bestellungen</span>
+                  <span data-testid="no-orders-message">{t.profile.no_current_orders}</span>
                 )}
               </ul>
             </div>
@@ -138,31 +146,36 @@ const Overview = ({ customer, orders }: OverviewProps) => {
 const getProfileCompletion = (customer: HttpTypes.StoreCustomer | null) => {
   let count = 0
 
-  if (!customer) {
-    return 0
+  if (!customer) 
+  {
+    return 0;
   }
 
-  if (customer.email) {
-    count++
+  if (customer.email) 
+  {
+    count++;
   }
 
-  if (customer.first_name && customer.last_name) {
-    count++
+  if (customer.first_name && customer.last_name) 
+  {
+    count++;
   }
 
-  if (customer.phone) {
-    count++
+  if (customer.phone) 
+  {
+    count++;
   }
 
   const billingAddress = customer.addresses?.find(
     (addr) => addr.is_default_billing
   )
 
-  if (billingAddress) {
-    count++
+  if (billingAddress) 
+  {
+    count++;
   }
 
   return (count / 4) * 100
 }
 
-export default Overview
+export default Overview;

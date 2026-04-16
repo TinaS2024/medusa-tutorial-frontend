@@ -10,6 +10,9 @@ import { notFound } from "next/navigation";
 import { listRegions } from "@lib/data/regions";
 import { retrieveCustomer } from "@lib/data/customer";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 export const metadata: Metadata = {
   title: "Profile",
   description: "View and edit your Medusa Store profile.",
@@ -17,6 +20,9 @@ export const metadata: Metadata = {
 
 export default async function Profile() 
 {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const customer = await retrieveCustomer();
   const regions = await listRegions();
 
@@ -28,9 +34,9 @@ export default async function Profile()
   return (
     <div className="w-full" data-testid="profile-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Profil</h1>
+        <h1 className="text-2xl-semi">{t.profile.title}</h1>
         <p className="text-base-regular">
-          Sie können Ihre Profilinformationen, einschließlich Name, E-Mail-Adresse und Telefonnummer, einsehen und aktualisieren. Außerdem können Sie Ihre Rechnungsadresse aktualisieren oder Ihr Passwort ändern.
+          {t.profile.info}
         </p>
       </div>
       <div className="flex flex-col gap-y-8 w-full">

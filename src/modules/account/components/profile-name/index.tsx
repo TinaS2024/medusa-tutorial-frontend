@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useActionState } from "react";
+import React, { useEffect, useState, useActionState } from "react";
 
 import Input from "@modules/common/components/input";
 
@@ -16,8 +16,12 @@ type MyInformationProps = {
 }
 
 const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   const [successState, setSuccessState] = React.useState(false)
 

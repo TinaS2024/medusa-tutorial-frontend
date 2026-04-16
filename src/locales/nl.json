@@ -4,6 +4,8 @@
     "welcome":"Welkom terug",
     "login_info":"Schrijf u in in onze winkel.",
     "login":"Registratie",
+    "login_as":"Ingelogd als",
+    "logout":"Uitloggen",
     "no_account": "Nog geen account?",
     "new_register":"Schrijf u bij ons in.",
     "first_name": "Voornaam",
@@ -11,6 +13,9 @@
     "phone": "Telefoonnummer",
     "email":"E-mail",
     "password":"Wachtwoord",
+    "password_old":"Oud wachtwoord",
+    "password_new":"Nieu wachtwoord",
+    "password_confirm":"Bevestig wachtwoord",
     "account_register":"Accountregistratie",
     "account_info":"Registreer hier een nieuw account om op de hoogte te blijven van nieuwe producten.",
     "account_agreements":"Bij het aanmaken van een nieuw account moet u akkoord gaan met onze algemene voorwaarden en gebruiksvoorwaarden.",
@@ -18,6 +23,23 @@
     "conditions":"Gebruiksvoorwaarden",
     "now_register":"Registratie nu",
     "have_account":"U heeft al account?"
+  },
+  "profile":{
+    "title":"Profiel",
+    "description":"Bekijk en bewerk je Medusa Store-profiel.",
+    "info":"Als u uw profielgegevens bewaart, inclusief naam, e-mailadres en telefoonnummer, ontvangt u deze en werkt u deze bij. U kunt uw aanvraag actualiseren of uw wachtwoord wijzigen.",
+    "overview": "Overzicht",
+    "orders": "Bestellingen",
+    "order_number": "Bestellnummer",
+    "current_orders":"Actieve bestellingen",
+    "no_current_orders":"Geen actieve bestellingen",
+    "order_info":"Bekijk je eerdere bestellingen en hun status. Indien nodig kun je je bestellingen ook retourneren of ruilen.",
+    "nothing_to_see":"Hier valt niets te zien.",
+    "no_orders_yet":"U heeft nog geen bestellingen, daar brengen we graag verandering in.",
+    "greeting":"Hallo",
+    "filled_out":"Vulde",
+    "saved":"Geslagenen",
+    "continue_shopping":"Verder met winkelen"
   },
   "nav": {
     "menu": "Menu",
@@ -96,6 +118,7 @@
       "rabat":"Rabat",
       "total":"Totale",
       "total_price":"Totale prijs",
+      "total_summary":"Totaal overzicht",
       "taxes_title":"Belasting",
       "tax":"VAT",
       "shipping_cost":"Verzendkosten"
@@ -110,6 +133,23 @@
     {
       "title":"Verzending",
       "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
-      "unlocked_freeshipping":"Gratis levering activeerd!"
-    }
+      "unlocked_freeshipping":"Gratis levering activeerd!",
+      "address":"Adres",
+      "adresses": "Adressen",
+      "company": "Bedrijf",
+      "apartment":"Appartement",
+      "city":"Stad",
+      "postal_code":"Postcode",
+      "province": "Provincie",
+      "country":"Land"
+    },
+    "function":{
+        "edit":"Bewerking",
+        "delete":"Verwijderen",
+        "change": "Wijzigen",
+        "cancel":"Annuleren",
+        "save": "Wijziging opslaan",
+        "add": "Toevoegen",
+        "remove": "Verwijderen"
+      }
 }

@@ -4,6 +4,8 @@
     "welcome":"Willkommen zurück",
     "login_info":"Melden Sie sich in unserem Shop an.",
     "login":"Anmeldung",
+    "login_as":"Angemeldet als",
+    "logout":"Abmeldung",
     "no_account": "Noch kein Konto vorhanden?",
     "new_register":"Registrieren Sie sich bei uns.",
     "first_name": "Vorname",
@@ -11,6 +13,9 @@
     "phone": "Telefonnummer",
     "email":"E-Mail",
     "password":"Passwort",
+    "password_old":"Altes Passwort",
+    "password_new":"Neues Passwort",
+    "password_confirm":"Passwort bestätigen",
     "account_register":"Konto-Registrierung",
     "account_info":"Registrieren Sie hier ein neues Konto um immer auf dem neusten Stand über neue Produkte sein zu können.",
     "account_agreements":"Beim Erstellen eines neuen Kontos, müssen Sie unseren Geschäftsbedingungen und Nutzungsbedingungen zustimmen.",
@@ -18,6 +23,23 @@
     "conditions":"Nutzungsbedingungen",
     "now_register":"Jetzt registrieren",
     "have_account":"Haben Sie schon ein Konto?"
+  },
+  "profile":{
+    "title":"Profil",
+    "description":"Sehen Sie sich Ihr Medusa Store-Profil an und bearbeiten Sie es.",
+    "info":"Sie können Ihre Profilinformationen, einschließlich Name, E-Mail-Adresse und Telefonnummer, einsehen und aktualisieren. Außerdem können Sie Ihre Rechnungsadresse aktualisieren oder Ihr Passwort ändern.",
+    "overview": "Übersicht",
+    "orders": "Bestellungen",
+    "order_number": "Bestellnummer",
+    "current_orders":"Aktuelle Bestellungen",
+    "no_current_orders":"Keine aktuellen Bestellungen",
+    "order_info":"Sehen Sie Ihre bisherigen Bestellungen und deren Status ein. Bei Bedarf können Sie auch Rücksendungen oder Umtausche für Ihre Bestellungen vornehmen.",
+    "nothing_to_see":"Hier gibt es nichts zu sehen",
+    "no_orders_yet":"Sie haben noch keine Bestellungen, das ändern wir gern.",
+    "greeting":"Hallo",
+    "filled_out":"Ausgefüllt",
+    "saved":"Gespeichert",
+    "continue_shopping":"Weiter einkaufen"
   },
   "nav": {
     "menu": "Menü",
@@ -97,6 +119,7 @@
       "rabat":"Rabatt",
       "total":"Gesamt",
       "total_price":"Gesamtpreis",
+      "total_summary":"Gesamtsumme",
       "taxes_title":"Steuern",
       "tax":"MwSt",
       "shipping_cost":"Versandkosten"
@@ -111,6 +134,23 @@
     {
       "title":"Versand",
       "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
-      "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!"
-    }
+      "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!",
+      "address":"Adresse",
+      "adresses": "Adressen",
+      "company": "Firma",
+      "apartment":"Etage",
+      "city":"Stadt",
+      "postal_code":"Postleitzahl",
+      "province": "Bundesland",
+      "country":"Land"
+    },
+    "function":{
+        "edit":"Bearbeiten",
+        "delete":"Löschen",
+        "change": "Ändern",
+        "cancel":"Abbrechen",
+        "save": "Änderungen speichern",
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
 }

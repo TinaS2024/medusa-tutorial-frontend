@@ -1,22 +1,35 @@
-"use client"
+"use client";
 
-import { clx } from "@medusajs/ui"
-import { ArrowRightOnRectangle } from "@medusajs/icons"
-import { useParams, usePathname } from "next/navigation"
+import { useEffect, useState } from "react";
 
-import ChevronDown from "@modules/common/icons/chevron-down"
-import User from "@modules/common/icons/user"
-import MapPin from "@modules/common/icons/map-pin"
-import Package from "@modules/common/icons/package"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { HttpTypes } from "@medusajs/types"
-import { signout } from "@lib/data/customer"
+import { clx } from "@medusajs/ui";
+import { ArrowRightOnRectangle } from "@medusajs/icons";
+import { useParams, usePathname } from "next/navigation";
+
+import ChevronDown from "@modules/common/icons/chevron-down";
+import User from "@modules/common/icons/user";
+import MapPin from "@modules/common/icons/map-pin";
+import Package from "@modules/common/icons/package";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { HttpTypes } from "@medusajs/types";
+import { signout } from "@lib/data/customer";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 const AccountNav = ({
   customer,
 }: {
   customer: HttpTypes.StoreCustomer | null
 }) => {
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+
   const route = usePathname()
   const { countryCode } = useParams() as { countryCode: string }
 
@@ -35,13 +48,13 @@ const AccountNav = ({
           >
             <>
               <ChevronDown className="transform rotate-90" />
-              <span>Konto</span>
+              <span>{t.nav.account}</span>
             </>
           </LocalizedClientLink>
         ) : (
           <>
             <div className="text-xl-semi mb-4 px-8">
-              Hello {customer?.first_name}
+              {t.profile.greeting} {customer?.first_name}
             </div>
             <div className="text-base-regular">
               <ul>
@@ -54,7 +67,7 @@ const AccountNav = ({
                     <>
                       <div className="flex items-center gap-x-2">
                         <User size={20} />
-                        <span>Profil</span>
+                        <span>{t.profile.title}</span>
                       </div>
                       <ChevronDown className="transform -rotate-90" />
                     </>
@@ -69,7 +82,7 @@ const AccountNav = ({
                     <>
                       <div className="flex items-center gap-x-2">
                         <MapPin size={20} />
-                        <span>Adressen</span>
+                        <span>{t.shipping.adresses}</span>
                       </div>
                       <ChevronDown className="transform -rotate-90" />
                     </>
@@ -83,7 +96,7 @@ const AccountNav = ({
                   >
                     <div className="flex items-center gap-x-2">
                       <Package size={20} />
-                      <span>Bestellungen</span>
+                      <span>{t.profile.orders}</span>
                     </div>
                     <ChevronDown className="transform -rotate-90" />
                   </LocalizedClientLink>
@@ -97,7 +110,7 @@ const AccountNav = ({
                   >
                     <div className="flex items-center gap-x-2">
                       <ArrowRightOnRectangle />
-                      <span>Abmelden</span>
+                      <span>{t.login_shop.logout}</span>
                     </div>
                     <ChevronDown className="transform -rotate-90" />
                   </button>
@@ -110,7 +123,7 @@ const AccountNav = ({
       <div className="hidden small:block" data-testid="account-nav">
         <div>
           <div className="pb-4">
-            <h3 className="text-base-semi">Konto</h3>
+            <h3 className="text-base-semi">{t.nav.account}</h3>
           </div>
           <div className="text-base-regular">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
@@ -120,7 +133,7 @@ const AccountNav = ({
                   route={route!}
                   data-testid="overview-link"
                 >
-                  Übersicht
+                  {t.profile.overview}
                 </AccountNavLink>
               </li>
               <li>
@@ -129,7 +142,7 @@ const AccountNav = ({
                   route={route!}
                   data-testid="profile-link"
                 >
-                  Profil
+                  {t.profile.title}
                 </AccountNavLink>
               </li>
               <li>
@@ -138,7 +151,7 @@ const AccountNav = ({
                   route={route!}
                   data-testid="addresses-link"
                 >
-                  Adressen
+                  {t.shipping.adresses}
                 </AccountNavLink>
               </li>
               <li>
@@ -147,7 +160,7 @@ const AccountNav = ({
                   route={route!}
                   data-testid="orders-link"
                 >
-                  Bestellungen
+                  {t.profile.orders}
                 </AccountNavLink>
               </li>
               <li className="text-grey-700">
@@ -156,7 +169,7 @@ const AccountNav = ({
                   onClick={handleLogout}
                   data-testid="logout-button"
                 >
-                  Abmelden
+                  {t.login_shop.logout}
                 </button>
               </li>
             </ul>
@@ -196,4 +209,4 @@ const AccountNavLink = ({
   )
 }
 
-export default AccountNav
+export default AccountNav;

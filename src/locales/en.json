@@ -4,6 +4,8 @@
     "welcome":"Welcome back",
     "login_info":"Login to our shop.",
     "login":"Login",
+    "login_as":"Logged in as",
+    "logout":"Logout",
     "no_account": "No account yet?",
     "new_register":"Register.",
     "first_name": "First name",
@@ -11,6 +13,9 @@
     "phone": "Phone number",
     "email":"Email",
     "password":"Password",
+    "password_old":"Old password",
+    "password_new":"New password",
+    "password_confirm":"Confirm password",
     "account_register":"Account Registration",
     "account_info":"Register a new account here to stay up-to-date on new products.",
     "account_agreements":"When creating a new account, you must agree to our terms and conditions and terms of use..",
@@ -18,6 +23,23 @@
     "conditions":"Conditions",
     "now_register":"Register now",
     "have_account":"Have an account?"
+  },
+  "profile":{
+    "title":"Profile",
+    "description":"View and edit your Medusa Store profile.",
+    "info":"You can view your profile information, specific name, e-mail address and telephone number, information and updates. You can also check your registration address and update your password.",
+    "overview": "Overview",
+    "orders": "Orders",
+    "order_number": "Order number",
+    "current_orders":"Current orders",
+    "no_current_orders":"No current active orders",
+    "order_info":"View your previous orders and their status. You can also view and manage your returns and exchanges here.",
+    "nothing_to_see":"There's nothing to see here.",
+    "no_orders_yet":"You have no orders yet, we'd be happy to change that.",
+    "greeting":"Hello",
+    "filled_out":"Filled out",
+    "saved":"Saved",
+    "continue_shopping":"Continue shopping"
   },
   "nav": {
     "menu": "Menu",
@@ -97,6 +119,7 @@
       "rabat":"Rabat",
       "total":"In Total",
       "total_price":"Total price",
+      "total_summary":"Total summary",
       "taxes_title":"Taxes",
       "tax":"Vat",
       "shipping_cost":"Shipping costs"
@@ -111,6 +134,24 @@
     {
       "title":"Shipping",
       "activation_freeshipping":"Activate free shipping for your order",
-      "unlocked_freeshipping":"Free shipping unlocked!"
-    }
+      "unlocked_freeshipping":"Free shipping unlocked!",
+      "address":"Address",
+      "adresses": "Addresses",
+      "company": "Company",
+      "apartment":"Apartment",
+      "city":"City",
+      "postal_code":"Postal code",
+      "province": "Province",
+      "country":"Country"
+    },
+     "function":{
+        "edit":"Edit",
+        "delete":"Delete",
+        "change": "Change",
+        "cancel":"Cancel",
+        "save": "Save",
+        "add": "Add",
+        "remove": "Remove"
+      }
+
 }
