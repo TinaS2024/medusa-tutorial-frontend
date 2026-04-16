@@ -6,8 +6,18 @@
     "login":"Login",
     "no_account": "No account yet?",
     "new_register":"Register.",
+    "first_name": "First name",
+    "last_name":"Last name",
+    "phone": "Phone number",
     "email":"Email",
-    "password":"Password"
+    "password":"Password",
+    "account_register":"Account Registration",
+    "account_info":"Register a new account here to stay up-to-date on new products.",
+    "account_agreements":"When creating a new account, you must agree to our terms and conditions and terms of use..",
+    "terms":"Terms",
+    "conditions":"Conditions",
+    "now_register":"Register now",
+    "have_account":"Have an account?"
   },
   "nav": {
     "menu": "Menu",
@@ -23,7 +33,8 @@
       "cta": "Discover our products",
       "to_cart": "Zum Warenkorb",
       "add_to_cart": "To cart",
-      "empty_cart":"Ihr Warenkorb ist leer."
+      "empty_cart":"Ihr Warenkorb ist leer.",
+      "view_cart":"View shopping cart"
     }
   }, 
   "payment": {
@@ -43,7 +54,10 @@
   "product": {
       "all_products":"All products",
       "product":"Product",
+      "view_products":"View products",
       "info": "Product Information",
+      "article":"Article",
+      "quantity":"Quantity",
       "selected_variant":"Selected Variant",
       "sold_out":"Sold out",
       "shipping_and_returns": "Shipping and Return",
@@ -81,7 +95,8 @@
       "title":"Price",
       "subtotal":"Subtotal",
       "rabat":"Rabat",
-      "total":"Total",
+      "total":"In Total",
+      "total_price":"Total price",
       "taxes_title":"Taxes",
       "tax":"Vat",
       "shipping_cost":"Shipping costs"
@@ -91,5 +106,11 @@
       "title":"Customer Service",
       "question":"Have any questions?",
       "common_questions":"Common questions and answers found on our customer service page."
+    },
+     "shipping":
+    {
+      "title":"Shipping",
+      "activation_freeshipping":"Activate free shipping for your order",
+      "unlocked_freeshipping":"Free shipping unlocked!"
     }
 }

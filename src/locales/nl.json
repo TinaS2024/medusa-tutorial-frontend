@@ -6,8 +6,18 @@
     "login":"Registratie",
     "no_account": "Nog geen account?",
     "new_register":"Schrijf u bij ons in.",
+    "first_name": "Voornaam",
+    "last_name":"Nachnaam",
+    "phone": "Telefoonnummer",
     "email":"E-mail",
-    "password":"Wachtwoord"
+    "password":"Wachtwoord",
+    "account_register":"Accountregistratie",
+    "account_info":"Registreer hier een nieuw account om op de hoogte te blijven van nieuwe producten.",
+    "account_agreements":"Bij het aanmaken van een nieuw account moet u akkoord gaan met onze algemene voorwaarden en gebruiksvoorwaarden.",
+    "terms":"Algemene voorwaarden",
+    "conditions":"Gebruiksvoorwaarden",
+    "now_register":"Registratie nu",
+    "have_account":"U heeft al account?"
   },
   "nav": {
     "menu": "Menu",
@@ -23,7 +33,8 @@
       "cta": "Ontdek onze producten",
       "to_cart": "Naar winkelwagen",
       "add_to_cart": "Voeg toe aan winkelwagen",
-      "empty_cart":"Ihr Warenkorb ist leer."
+      "empty_cart":"Ihr Warenkorb ist leer.",
+      "view_cart":"Vue winkelwagen"
     }
   }, 
   "payment": {
@@ -42,7 +53,10 @@
   "product": {
       "all_products":"Alle producten",
       "product":"Product",
+      "view_products":"Vue producten",
       "info": "Productinformatie",
+      "article":"Artikel",
+      "quantity":"Menigte",
       "selected_variant":"Geselecteerde variante",
       "sold_out":"Uitverkocht",
       "shipping_and_returns": "Verzending & Retourneren",
@@ -80,7 +94,8 @@
       "title":"Prijs",
       "subtotal":"Subtotaal",
       "rabat":"Rabat",
-      "total":"Totale prijs",
+      "total":"Totale",
+      "total_price":"Totale prijs",
       "taxes_title":"Belasting",
       "tax":"VAT",
       "shipping_cost":"Verzendkosten"
@@ -90,5 +105,11 @@
       "title":"Service de client",
       "question":"U heeft een vragen?",
       "common_questions":"Vragen en antwoorden die we vinden op onze servicepagina."
+    },
+     "shipping":
+    {
+      "title":"Verzending",
+      "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
+      "unlocked_freeshipping":"Gratis levering activeerd!"
     }
 }

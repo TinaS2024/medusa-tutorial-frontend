@@ -6,8 +6,18 @@
     "login":"Inscription",
     "no_account": "Pas de compte?",
     "new_register":"Inscrivez-vous dans notre boutique.",
+    "first_name": "Nom prénom",
+    "last_name":"Nom de famille",
+    "phone": "Téléphone number",
     "email":"Email",
-    "password":"Mot de passe"
+    "password":"Mot de passe",
+    "account_register":"Enregistrement de compte",
+    "account_info":"Créez un compte ici pour rester informé(e) des nouveaux produits.",
+    "account_agreements":"Lors de la création d'un nouveau compte, vous devez accepter nos conditions générales et nos conditions d'utilisation..",
+    "terms":"Termes",
+    "conditions":"Conditions",
+    "now_register":"Inscription maintenant",
+    "have_account":"Vous avez déjà compte?"
   },
   "nav": {
     "menu": "Menu",
@@ -23,7 +33,8 @@
       "cta": "Découvrez nos produits",
       "to_cart": "Aller au panier",
       "add_to_cart": "Ajouter au panier",
-      "empty_cart":"Ihr Warenkorb ist leer."
+      "empty_cart":"Ihr Warenkorb ist leer.",
+      "view_cart":"Vue panier"
     }
   }, 
   "payment": {
@@ -43,7 +54,10 @@
   "product": {
       "all_products":"Tous les produits",
       "product":"Produit",
+      "view_products":"Vue produits",
       "info": "Informations sur le produit",
+      "article":"Article",
+      "quantity":"Quantité",
       "selected_variant":"Variante sélectionnée",
       "sold_out":"Epuisé",
       "shipping_and_returns": "Expéditions et retours",
@@ -82,6 +96,7 @@
       "subtotal":"Total",
       "rabat":"Rabat",
       "total":"Prix total",
+      "total_price":"Prix total totalis",
       "taxes_title":"Impôts",
       "tax":"T.V.A.",
       "shipping_cost":"Frais d'expédition"
@@ -91,5 +106,11 @@
       "title":"Service de client",
       "question":"Vous avez des questions?",
       "common_questions":"Questions et réponses communes trouvées sur notre page de service de client."
+    },
+     "shipping":
+    {
+      "title":"Expédition",
+      "activation_freeshipping":"Activez la livraison gratuite pour votre commande",
+      "unlocked_freeshipping":"Livraison gratuite activée!"
     }
 }

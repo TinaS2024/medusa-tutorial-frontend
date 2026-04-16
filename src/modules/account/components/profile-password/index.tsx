@@ -1,17 +1,24 @@
-"use client"
+"use client";
 
-import React, { useEffect, useActionState } from "react"
-import Input from "@modules/common/components/input"
-import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
-import { toast } from "@medusajs/ui"
+import React, { useEffect, useActionState } from "react";
+import Input from "@modules/common/components/input";
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+import { toast } from "@medusajs/ui";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
 }
 
 const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
-  const [successState, setSuccessState] = React.useState(false)
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
+
+
+  const [successState, setSuccessState] = React.useState(false);
 
   // TODO: Add support for password updates
   const updatePassword = async () => {
@@ -29,7 +36,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
       className="w-full"
     >
       <AccountInfo
-        label="Password"
+        label={t.login_shop.password}
         currentInfo={
           <span>The password is not shown for security reasons</span>
         }
@@ -67,4 +74,4 @@ const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
   )
 }
 
-export default ProfilePassword
+export default ProfilePassword;

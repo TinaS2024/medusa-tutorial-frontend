@@ -6,8 +6,18 @@
     "login":"Anmeldung",
     "no_account": "Noch kein Konto vorhanden?",
     "new_register":"Registrieren Sie sich bei uns.",
+    "first_name": "Vorname",
+    "last_name":"Nachname",
+    "phone": "Telefonnummer",
     "email":"E-Mail",
-    "password":"Passwort"
+    "password":"Passwort",
+    "account_register":"Konto-Registrierung",
+    "account_info":"Registrieren Sie hier ein neues Konto um immer auf dem neusten Stand über neue Produkte sein zu können.",
+    "account_agreements":"Beim Erstellen eines neuen Kontos, müssen Sie unseren Geschäftsbedingungen und Nutzungsbedingungen zustimmen.",
+    "terms":"Geschäftsbedingungen",
+    "conditions":"Nutzungsbedingungen",
+    "now_register":"Jetzt registrieren",
+    "have_account":"Haben Sie schon ein Konto?"
   },
   "nav": {
     "menu": "Menü",
@@ -23,7 +33,8 @@
       "cta": "Entdecke unsere Produkte",
       "to_cart": "Zum Warenkorb",
       "add_to_cart": "Zum Warenkorb hinzufügen",
-      "empty_cart":"Ihr Warenkorb ist leer."
+      "empty_cart":"Ihr Warenkorb ist leer.",
+      "view_cart":"Warenkorb ansehen"
     }
   },
   "payment": {
@@ -43,7 +54,10 @@
   "product": {
       "all_products":"Alle Produkte",
       "product":"Produkte",
+      "view_products":"Produkte ansehen",
       "info": "Produkt Information",
+      "article":"Artikel",
+      "quantity":"Anzahl",
       "selected_variant":"Ausgewählte Variante",
       "sold_out":"Ausverkauft",
       "shipping_and_returns": "Versand & Rücksendungen",
@@ -81,7 +95,8 @@
       "title":"Preis",
       "subtotal":"Zwischensumme",
       "rabat":"Rabatt",
-      "total":"Gesamtpreis",
+      "total":"Gesamt",
+      "total_price":"Gesamtpreis",
       "taxes_title":"Steuern",
       "tax":"MwSt",
       "shipping_cost":"Versandkosten"
@@ -91,5 +106,11 @@
       "title":"Kunden-Service",
       "question":"Haben Sie Fragen?",
       "common_questions":"Häufig gestellte Fragen und Antworten finden Sie auf unserer Kundendienstseite."
+    },
+    "shipping":
+    {
+      "title":"Versand",
+      "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
+      "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!"
     }
 }

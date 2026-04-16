@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
 import React, { useEffect, useActionState } from "react";
 
-import Input from "@modules/common/components/input"
+import Input from "@modules/common/components/input";
 
-import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
-import { updateCustomer } from "@lib/data/customer"
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+import { updateCustomer } from "@lib/data/customer";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
 }
 
 const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
+  const lang = getClientLanguage();
+  const t = getMessages(lang);
+
   const [successState, setSuccessState] = React.useState(false)
 
   const updateCustomerName = async (
@@ -38,12 +44,12 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
   })
 
   const clearState = () => {
-    setSuccessState(false)
+    setSuccessState(false);
   }
 
   useEffect(() => {
     setSuccessState(state.success)
-  }, [state])
+  }, [state]);
 
   return (
     <form action={formAction} className="w-full overflow-visible">
@@ -57,14 +63,14 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="grid grid-cols-2 gap-x-4">
           <Input
-            label="First name"
+            label={t.login_shop.first_name}
             name="first_name"
             required
             defaultValue={customer.first_name ?? ""}
             data-testid="first-name-input"
           />
           <Input
-            label="Last name"
+            label={t.login_shop.last_name}
             name="last_name"
             required
             defaultValue={customer.last_name ?? ""}
@@ -76,4 +82,4 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
   )
 }
 
-export default ProfileName
+export default ProfileName;
