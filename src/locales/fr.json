@@ -1,4 +1,5 @@
 {
+  "shop_name":"Shop Name",
   "login_shop":
   {
     "welcome":"Content de te revoir",
@@ -41,6 +42,7 @@
     "nothing_to_see":"Il n'y a rien à voir ici.",
     "no_orders_yet":"Vous n'avez pas encore de commandes, nous serions ravis d'y remédier..",
     "greeting":"Bonjour",
+    "want_to_use":"Voulez-vous utiliser l'une de vos adresses enregistrées?",
     "filled_out":"Rempli",
     "saved":"Enregistré",
     "continue_shopping":"Continuer la shopping",
@@ -59,13 +61,16 @@
   "cart": {
     "empty": {
       "title": "Panier",
+      "in_cart":"Dans votre panier",
       "description": "Vous n'avez rien dans votre panier.",
       "cta": "Découvrez nos produits",
       "to_cart": "Aller au panier",
       "add_to_cart": "Ajouter au panier",
-      "empty_cart":"Ihr Warenkorb ist leer.",
+      "empty_cart":"Votre panier est vide.",
       "view_cart":"Vue panier",
-      "to_checkout":"Passer la commande"
+      "to_checkout":"Passer la commande",
+      "back":"Retour",
+      "back_cart":"Retour au panier"
     }
   }, 
   "payment": {
@@ -78,6 +83,8 @@
     "manual":"Manuellement",
     "gift_card":"Carte cadeau",
     "add_codes":"Ajouter les code(s) de promotion",
+    "enter_code":"Entrer le code",
+    "remove_code":"Supprimer le code de promotion",
     "applied_code":"Code(s) de promotion appliqué(s) pour:",
     "give_card_details":"Entrez les détails de la carte",
     "continue_checking":"Continuer la vérification",
@@ -116,7 +123,8 @@
       "product_exchange":"Échange facile",
       "product_exchange_info":"Ça ne vous va pas tout à fait ? Pas de problème, nous échangerons votre produit contre un neuf..",
       "return":"Retours faciles",
-      "return_info":"Il vous suffit de nous retourner votre produit et nous vous rembourserons intégralement. Sans poser de questions, nous mettrons tout en œuvre pour que votre retour se déroule sans encombre."
+      "return_info":"Il vous suffit de nous retourner votre produit et nous vous rembourserons intégralement. Sans poser de questions, nous mettrons tout en œuvre pour que votre retour se déroule sans encombre.",
+      "delivery":"Livraison"
     },
      "sort_product":
     {
@@ -152,14 +160,23 @@
      "shipping":
     {
       "title":"Expédition",
+      "continue_shipping":"Continuer l'expédition",
       "activation_freeshipping":"Activez la livraison gratuite pour votre commande",
       "unlocked_freeshipping":"Livraison gratuite activée!",
       "shipping_taxes_cost":"Frais d'expédition et impôts",
       "exclusive":"excl.",
       "inclusive":"inkl.",
+      "contact":"Contact",
+      "shipping_method":"Méthode d'expédition",
+      "add_adress":"Ajouter une adresse",
       "address":"Adresse",
+      "new_adress":"Nouvelle adresse",
       "edit_adress":"Modifier l'adresse",
       "adresses": "Adresses",
+      "choose_adress":"Choisissez une adresse",
+      "shipping_adress":"Adresse d'expédition",
+      "billing_adress":"Adresse de facturation",
+      "ident_ship_bill_adress":"Les adresses d'expédition et de facturation sont identiques",
       "company": "Entreprise",
       "apartment":"Appartement",
       "city":"Ville",

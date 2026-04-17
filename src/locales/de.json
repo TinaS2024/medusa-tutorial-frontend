@@ -1,4 +1,5 @@
 {
+  "shop_name":"Shop Name",
   "login_shop":
   {
     "welcome":"Willkommen zurück",
@@ -41,6 +42,7 @@
     "nothing_to_see":"Hier gibt es nichts zu sehen",
     "no_orders_yet":"Sie haben noch keine Bestellungen, das ändern wir gern.",
     "greeting":"Hallo",
+    "want_to_use":"Möchtest du eine deiner gespeicherten Adressen verwenden?",
     "filled_out":"Ausgefüllt",
     "saved":"Gespeichert",
     "continue_shopping":"Weiter einkaufen",
@@ -58,13 +60,16 @@
   "cart": {
     "empty": {
       "title": "Warenkorb",
+      "in_cart":"In ihrem Warenkorb",
       "description": "Sie haben nichts in ihrem Warenkorb.",
       "cta": "Entdecke unsere Produkte",
       "to_cart": "Zum Warenkorb",
       "add_to_cart": "Zum Warenkorb hinzufügen",
       "empty_cart":"Ihr Warenkorb ist leer.",
       "view_cart":"Warenkorb ansehen",
-      "to_checkout":"Zur Kasse"
+      "to_checkout":"Zur Kasse",
+      "back":"Zurück",
+      "back_cart":"Zurück zum Warenkorb"
     }
   },
   "payment": {
@@ -77,6 +82,8 @@
     "manual":"Manuell",
     "gift_card":"Geschenkkarte",
     "add_codes":"Werbecode(s) hinzufügen",
+    "enter_code":"Eingabe",
+    "remove_code":"Rabattcode aus der Bestellung entfernen",
     "applied_code":"Eingereichter Aktionscode für:",
     "give_card_details":"Geben Sie die Kartendetails ein",
     "continue_checking":"Überprüfung fortsetzen",
@@ -116,7 +123,8 @@
       "product_exchange":"Einfacher Austausch",
       "product_exchange_info":"Passt es nicht ganz? Kein Problem – wir tauschen Ihr Produkt gegen ein neues um.",
       "return":"Einfache Rücksendungen",
-      "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft."
+      "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft.",
+      "delivery":"Lieferung"
     },
     "sort_product":
     {
@@ -152,14 +160,23 @@
     "shipping":
     {
       "title":"Versand",
+      "continue_shipping":"Weiter zum Versand",
       "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
       "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!",
       "shipping_taxes_cost":"Versandkosten und Steuern",
       "exclusive":"exkl.",
       "inclusive":"inkl.",
+      "contact":"Kontakt",
+      "shipping_method":"Versandmethode",
+      "add_adress":"Adresse hinzufügen",
       "address":"Adresse",
+      "new_adress":"Neue Adresse",
       "edit_adress":"Adresse bearbeiten",
       "adresses": "Adressen",
+      "choose_adress":"Wählen Sie eine Adresse",
+      "shipping_adress":"Versandadresse",
+      "billing_adress":"Rechnungsadresse",
+      "ident_ship_bill_adress":"Versandadresse und Rechnungsadresse sind identisch",
       "company": "Firma",
       "apartment":"Etage",
       "city":"Stadt",

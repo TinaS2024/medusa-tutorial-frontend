@@ -1,16 +1,19 @@
 "use client";
 
-import { Plus } from "@medusajs/icons"
-import { Button, Heading } from "@medusajs/ui"
-import { useEffect, useState, useActionState } from "react"
+import { Plus } from "@medusajs/icons";
+import { Button, Heading } from "@medusajs/ui";
+import { useEffect, useState, useActionState } from "react";
 
-import useToggleState from "@lib/hooks/use-toggle-state"
-import CountrySelect from "@modules/checkout/components/country-select"
-import Input from "@modules/common/components/input"
-import Modal from "@modules/common/components/modal"
-import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { HttpTypes } from "@medusajs/types"
-import { addCustomerAddress } from "@lib/data/customer"
+import useToggleState from "@lib/hooks/use-toggle-state";
+import CountrySelect from "@modules/checkout/components/country-select";
+import Input from "@modules/common/components/input";
+import Modal from "@modules/common/components/modal";
+import { SubmitButton } from "@modules/checkout/components/submit-button";
+import { HttpTypes } from "@medusajs/types";
+import { addCustomerAddress } from "@lib/data/customer";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 const AddAddress = ({
   region,
@@ -19,8 +22,15 @@ const AddAddress = ({
   region: HttpTypes.StoreRegion
   addresses: HttpTypes.StoreCustomerAddress[]
 }) => {
-  const [successState, setSuccessState] = useState(false)
-  const { state, open, close: closeModal } = useToggleState(false)
+    const [lang, setLang] = useState<Lang>("de");
+    const t = getMessages(lang);
+
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+
+  const [successState, setSuccessState] = useState(false);
+  const { state, open, close: closeModal } = useToggleState(false);
 
   const [formState, formAction] = useActionState(addCustomerAddress, {
     isDefaultShipping: addresses.length === 0,
@@ -29,20 +39,20 @@ const AddAddress = ({
   })
 
   const close = () => {
-    setSuccessState(false)
-    closeModal()
+    setSuccessState(false);
+    closeModal();
   }
 
   useEffect(() => {
     if (successState) {
-      close()
+      close();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successState])
 
   useEffect(() => {
     if (formState.success) {
-      setSuccessState(true)
+      setSuccessState(true);
     }
   }, [formState])
 
@@ -54,27 +64,27 @@ const AddAddress = ({
         onClick={open}
         data-testid="add-address-button"
       >
-        <span className="text-base-semi">Neue Adresse</span>
+        <span className="text-base-semi">{t.shipping.new_adress}</span>
         <Plus />
       </button>
 
       <Modal isOpen={state} close={close} data-testid="add-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Adresse hinzufügen</Heading>
+          <Heading className="mb-2">{t.shipping.add_adress}</Heading>
         </Modal.Title>
         <form action={formAction}>
           <Modal.Body>
             <div className="flex flex-col gap-y-2">
               <div className="grid grid-cols-2 gap-x-2">
                 <Input
-                  label="Vorname"
+                  label={t.login_shop.first_name}
                   name="first_name"
                   required
                   autoComplete="given-name"
                   data-testid="first-name-input"
                 />
                 <Input
-                  label="Nachname"
+                  label={t.login_shop.last_name}
                   name="last_name"
                   required
                   autoComplete="family-name"
@@ -82,34 +92,34 @@ const AddAddress = ({
                 />
               </div>
               <Input
-                label="Firma / Organisation"
+                label={t.shipping.company}
                 name="company"
                 autoComplete="organization"
                 data-testid="company-input"
               />
               <Input
-                label="Adresse"
+                label={t.shipping.address}
                 name="address_1"
                 required
                 autoComplete="address-line1"
                 data-testid="address-1-input"
               />
               <Input
-                label="Apartment, Suite usw."
+                label={t.shipping.apartment}
                 name="address_2"
                 autoComplete="address-line2"
                 data-testid="address-2-input"
               />
               <div className="grid grid-cols-[144px_1fr] gap-x-2">
                 <Input
-                  label="Postleitzahl"
+                  label={t.shipping.postal_code}
                   name="postal_code"
                   required
                   autoComplete="postal-code"
                   data-testid="postal-code-input"
                 />
                 <Input
-                  label="Stadt"
+                  label={t.shipping.city}
                   name="city"
                   required
                   autoComplete="locality"
@@ -117,7 +127,7 @@ const AddAddress = ({
                 />
               </div>
               <Input
-                label="Bundesstaat / Bundesland"
+                label={t.shipping.province}
                 name="province"
                 autoComplete="address-level1"
                 data-testid="state-input"
@@ -130,7 +140,7 @@ const AddAddress = ({
                 data-testid="country-select"
               />
               <Input
-                label="Telefonnummer"
+                label={t.login_shop.phone}
                 name="phone"
                 autoComplete="phone"
                 data-testid="phone-input"
@@ -154,9 +164,9 @@ const AddAddress = ({
                 className="h-10"
                 data-testid="cancel-button"
               >
-                Abbrechen
+                {t.function.cancel}
               </Button>
-              <SubmitButton data-testid="save-button">Speichern</SubmitButton>
+              <SubmitButton data-testid="save-button">{t.function.save}</SubmitButton>
             </div>
           </Modal.Footer>
         </form>

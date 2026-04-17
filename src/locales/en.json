@@ -1,4 +1,5 @@
 {
+  "shop_name":"Shop Name",
   "login_shop":
   {
     "welcome":"Welcome back",
@@ -41,6 +42,7 @@
     "nothing_to_see":"There's nothing to see here.",
     "no_orders_yet":"You have no orders yet, we'd be happy to change that.",
     "greeting":"Hello",
+    "want_to_use":"Do you want to use one of your saved addresses?",
     "filled_out":"Filled out",
     "saved":"Saved",
     "continue_shopping":"Continue shopping",
@@ -57,14 +59,17 @@
   },
   "cart": {
     "empty": {
-      "title": "Cart",
-      "description": "You have nothing in your cart.",
+      "title": "Shopping cart",
+      "in_cart":"In your shoppingcart",
+      "description": "You have nothing in your shopping cart.",
       "cta": "Discover our products",
-      "to_cart": "Zum Warenkorb",
-      "add_to_cart": "To cart",
-      "empty_cart":"Ihr Warenkorb ist leer.",
+      "to_cart": "To shopping cart",
+      "add_to_cart": "Add to shopping cart",
+      "empty_cart":"Your shopping cart is empty.",
       "view_cart":"View shopping cart",
-      "to_checkout":"Checkout now"
+      "to_checkout":"Checkout now",
+      "back":"Back",
+      "back_cart":"Back to shopping cart"
     }
   }, 
   "payment": {
@@ -77,6 +82,8 @@
     "manual":"Manually",
     "gift_card":"Gift card",
     "add_codes":"Add promotion code(s)",
+    "enter_code":"Enter code",
+    "remove_code":"Remove promotion code",
     "applied_code":"Promotion(s) code applied for:",
     "give_card_details":"Enter the card details",
     "continue_checking":"Continue checking",
@@ -115,7 +122,8 @@
       "product_exchange":"Product Exchange",
       "product_exchange_info":"Doesn't it quite fit? No problem – we'll exchange your product for a new one.",
       "return":"Easy Returns",
-      "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly."
+      "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly.",
+      "delivery":"Delivery"
     },
      "sort_product":
     {
@@ -151,14 +159,23 @@
      "shipping":
     {
       "title":"Shipping",
+      "continue_shipping":"Continue shipping",
       "activation_freeshipping":"Activate free shipping for your order",
       "unlocked_freeshipping":"Free shipping unlocked!",
       "shipping_taxes_cost":"Shipping costs and taxes",
       "exclusive":"excl.",
       "inclusive":"inkl.",
+      "contact":"Contact",
+      "shipping_method":"Shipping method",
+      "add_adress":"Add address",
       "address":"Address",
+      "new_adress":"New address",
       "edit_adress":"Edit address",
       "adresses": "Addresses",
+      "choose_adress":"Choose an address",
+      "shipping_adress":"Shipping address",
+      "billing_adress":"Billing address",
+      "ident_ship_bill_adress":"Shipping address and billing address are identical",
       "company": "Company",
       "apartment":"Apartment",
       "city":"City",

@@ -1,4 +1,5 @@
 {
+  "shop_name":"Shop Name",
   "login_shop":
   {
     "welcome":"Welkom terug",
@@ -41,6 +42,7 @@
     "nothing_to_see":"Hier valt niets te zien.",
     "no_orders_yet":"U heeft nog geen bestellingen, daar brengen we graag verandering in.",
     "greeting":"Hallo",
+    "want_to_use":"Wilt u een van uw geslagenen adressen gebruiken?",
     "filled_out":"Vulde",
     "saved":"Geslagenen",
     "continue_shopping":"Verder met winkelen",
@@ -58,13 +60,16 @@
   "cart": {
     "empty": {
       "title": "Winkelwagen",
+      "in_cart":"In uw winkelwagen",
       "description": "U heeft niets in uw winkelwagen.",
       "cta": "Ontdek onze producten",
       "to_cart": "Naar winkelwagen",
       "add_to_cart": "Voeg toe aan winkelwagen",
-      "empty_cart":"Ihr Warenkorb ist leer.",
+      "empty_cart":"Uw winkelwagen is leeg.",
       "view_cart":"Vue winkelwagen",
-      "to_checkout":"Naar kassa"
+      "to_checkout":"Naar kassa",
+      "back":"Terug",
+      "back_cart":"Terug naar winkelwagen"
     }
   }, 
   "payment": {
@@ -76,6 +81,8 @@
     "manual":"Handmatig",
     "gift_card":"Cadeaubon",
     "add_codes":"Voeg code(s) toevoegen",
+    "enter_code":"Voer code in",
+    "remove_code":"Verwijder code(s) van de promotie(s)",
     "applied_code":"Code(s) van de promotie(s) toegevoegd voor:",
     "give_card_details":"Voer de kaartgegevens in",
     "continue_checking":"Verder met controleren",
@@ -114,7 +121,8 @@
       "product_exchange":"Gemakkelijke productvervanging",
       "product_exchange_info":"Past het niet helemaal? Geen probleem – we ruilen uw product om voor een nieuw exemplaar.",
       "return":"Gemakkelijk retourneren",
-      "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt."
+      "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt.",
+      "delivery":"Levering"
     },
      "sort_product":
     {
@@ -150,14 +158,23 @@
      "shipping":
     {
       "title":"Verzending",
+      "continue_shipping":"Verder met verzending",
       "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
       "unlocked_freeshipping":"Gratis levering activeerd!",
       "shipping_taxes_cost":"Verzendkosten en belasting",
       "exclusive":"exkl.",
       "inclusive":"inkl.",
+      "contact":"Contact",
+      "shipping_method":"Verzendingmethode",
+      "add_adress":"Toevoegen van een adres",
       "address":"Adres",
+      "new_adress":"Nieuw adres",
       "edit_adress":"Adres bewerken",
       "adresses": "Adressen",
+      "choose_adress":"Kies een adres",
+      "shipping_adress":"Verzendingadres",
+      "billing_adress":"Factuuradres",
+      "ident_ship_bill_adress":"Verzendingadres en factuuradres zijn identiek",
       "company": "Bedrijf",
       "apartment":"Appartement",
       "city":"Stad",

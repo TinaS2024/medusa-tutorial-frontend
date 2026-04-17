@@ -1,11 +1,18 @@
-import { Listbox, Transition } from "@headlessui/react"
-import { ChevronUpDown } from "@medusajs/icons"
-import { clx } from "@medusajs/ui"
-import { Fragment, useMemo } from "react"
+"use client";
 
-import Radio from "@modules/common/components/radio"
-import compareAddresses from "@lib/util/compare-addresses"
-import { HttpTypes } from "@medusajs/types"
+import { useState, useEffect } from "react";
+
+import { Listbox, Transition } from "@headlessui/react";
+import { ChevronUpDown } from "@medusajs/icons";
+import { clx } from "@medusajs/ui";
+import { Fragment, useMemo } from "react";
+
+import Radio from "@modules/common/components/radio";
+import compareAddresses from "@lib/util/compare-addresses";
+import { HttpTypes } from "@medusajs/types";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type AddressSelectProps = {
   addresses: HttpTypes.StoreCustomerAddress[]
@@ -21,6 +28,14 @@ const AddressSelect = ({
   addressInput,
   onSelect,
 }: AddressSelectProps) => {
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+  
   const handleSelect = (id: string) => {
     const savedAddress = addresses.find((a) => a.id === id)
     if (savedAddress) {
@@ -44,7 +59,7 @@ const AddressSelect = ({
               <span className="block truncate">
                 {selectedAddress
                   ? selectedAddress.address_1
-                  : "Wählen Sie eine Adresse"}
+                  : t.shipping.choose_adress}
               </span>
               <ChevronUpDown
                 className={clx("transition-rotate duration-200", {
@@ -113,4 +128,4 @@ const AddressSelect = ({
   )
 }
 
-export default AddressSelect
+export default AddressSelect;

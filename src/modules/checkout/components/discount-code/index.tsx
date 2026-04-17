@@ -98,7 +98,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                   variant="secondary"
                   data-testid="discount-apply-button"
                 >
-                  Eingabe
+                  {t.payment.enter_code}
                 </SubmitButton>
               </div>
 
@@ -141,7 +141,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                               "percentage"
                                 ? `${promotion.application_method.value}%`
                                 : convertToLocale({
-                                    amount: promotion.application_method.value,
+                                    amount: Number(promotion.application_method.value),
                                     currency_code:
                                       promotion.application_method
                                         .currency_code,
@@ -162,7 +162,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                         className="flex items-center"
                         onClick={() => {
                           if (!promotion.code) {
-                            return
+                            return;
                           }
 
                           removePromotionCode(promotion.code)
@@ -171,7 +171,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                       >
                         <Trash size={14} />
                         <span className="sr-only">
-                          Rabattcode aus der Bestellung entfernen
+                          {t.payment.remove_code}
                         </span>
                       </button>
                     )}
