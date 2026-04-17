@@ -1,15 +1,20 @@
-"use client"
+"use client";
 
-import { Badge, Heading, Input, Label, Text, Tooltip } from "@medusajs/ui"
+import { useState, useEffect } from "react";
+
+import { Badge, Heading, Input, Label, Text, Tooltip } from "@medusajs/ui";
 import React, { useActionState } from "react";
 
-import { applyPromotions, submitPromotionForm } from "@lib/data/cart"
-import { convertToLocale } from "@lib/util/money"
-import { InformationCircleSolid } from "@medusajs/icons"
-import { HttpTypes } from "@medusajs/types"
-import Trash from "@modules/common/icons/trash"
-import ErrorMessage from "../error-message"
-import { SubmitButton } from "../submit-button"
+import { applyPromotions, submitPromotionForm } from "@lib/data/cart";
+import { convertToLocale } from "@lib/util/money";
+import { InformationCircleSolid } from "@medusajs/icons";
+import { HttpTypes } from "@medusajs/types";
+import Trash from "@modules/common/icons/trash";
+import ErrorMessage from "../error-message";
+import { SubmitButton } from "../submit-button";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type DiscountCodeProps = {
   cart: HttpTypes.StoreCart & {
@@ -17,10 +22,18 @@ type DiscountCodeProps = {
   }
 }
 
-const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => 
+{
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
 
-  const { items = [], promotions = [] } = cart
+  useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const { items = [], promotions = [] } = cart;
   const removePromotionCode = async (code: string) => {
     const validPromotions = promotions.filter(
       (promotion) => promotion.code !== code
@@ -34,22 +47,22 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const addPromotionCode = async (formData: FormData) => {
     const code = formData.get("code")
     if (!code) {
-      return
+      return;
     }
-    const input = document.getElementById("promotion-input") as HTMLInputElement
+    const input = document.getElementById("promotion-input") as HTMLInputElement;
     const codes = promotions
       .filter((p) => p.code === undefined)
       .map((p) => p.code!)
     codes.push(code.toString())
 
-    await applyPromotions(codes)
+    await applyPromotions(codes);
 
     if (input) {
-      input.value = ""
+      input.value = "";
     }
   }
 
-  const [message, formAction] = useActionState(submitPromotionForm, null)
+  const [message, formAction] = useActionState(submitPromotionForm, null);
 
   return (
     <div className="w-full bg-white flex flex-col">
@@ -62,7 +75,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               className="txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="add-discount-button"
             >
-              Werbecode(s) hinzufügen
+              {t.payment.add_codes}
             </button>
 
             {/* <Tooltip content="You can add multiple promotion codes">
@@ -101,7 +114,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
           <div className="w-full flex items-center">
             <div className="flex flex-col w-full">
               <Heading className="txt-medium mb-2">
-                Promotion(s) applied:
+                {t.payment.applied_code}
               </Heading>
 
               {promotions.map((promotion) => {
@@ -173,4 +186,4 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   )
 }
 
-export default DiscountCode
+export default DiscountCode;

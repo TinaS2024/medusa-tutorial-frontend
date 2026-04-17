@@ -29,17 +29,24 @@
     "description":"View and edit your Medusa Store profile.",
     "info":"You can view your profile information, specific name, e-mail address and telephone number, information and updates. You can also check your registration address and update your password.",
     "overview": "Overview",
+    "back_overview":"Back to overview",
+    "order_overview":"Order overview",
     "orders": "Orders",
     "order_number": "Order number",
     "current_orders":"Current orders",
     "no_current_orders":"No current active orders",
+    "order_id":"Order ID",
+    "order_details":"Order details",
     "order_info":"View your previous orders and their status. You can also view and manage your returns and exchanges here.",
     "nothing_to_see":"There's nothing to see here.",
     "no_orders_yet":"You have no orders yet, we'd be happy to change that.",
     "greeting":"Hello",
     "filled_out":"Filled out",
     "saved":"Saved",
-    "continue_shopping":"Continue shopping"
+    "continue_shopping":"Continue shopping",
+    "order_transfer_title":"Order transfers",
+    "order_transfer_info":"Can't find the order?<br /> Link the order to your account.",
+    "apply_for_transfer":"Apply for transfer"
   },
   "nav": {
     "menu": "Menu",
@@ -56,15 +63,26 @@
       "to_cart": "Zum Warenkorb",
       "add_to_cart": "To cart",
       "empty_cart":"Ihr Warenkorb ist leer.",
-      "view_cart":"View shopping cart"
+      "view_cart":"View shopping cart",
+      "to_checkout":"Checkout now"
     }
   }, 
   "payment": {
-    "title:":"Payment method",
+    "title:":"Payment",
+    "payment_method":"Payment method",
+    "payment_details":"Payment details",
     "choose_pay":"Choose a payment method",
     "stripe":"Stripe",
     "paypal":"Paypal",
-    "manual":"Manually"
+    "manual":"Manually",
+    "gift_card":"Gift card",
+    "add_codes":"Add promotion code(s)",
+    "applied_code":"Promotion(s) code applied for:",
+    "give_card_details":"Enter the card details",
+    "continue_checking":"Continue checking",
+    "next_step":"Next step will be displayed",
+    "thank_you":"Thank you for your purchase!",
+    "order_success":"Your order has been successfully placed."
   },
   "order":
   {
@@ -116,7 +134,7 @@
     {
       "title":"Price",
       "subtotal":"Subtotal",
-      "rabat":"Rabat",
+      "discount":"Discount",
       "total":"In Total",
       "total_price":"Total price",
       "total_summary":"Total summary",
@@ -135,7 +153,11 @@
       "title":"Shipping",
       "activation_freeshipping":"Activate free shipping for your order",
       "unlocked_freeshipping":"Free shipping unlocked!",
+      "shipping_taxes_cost":"Shipping costs and taxes",
+      "exclusive":"excl.",
+      "inclusive":"inkl.",
       "address":"Address",
+      "edit_adress":"Edit address",
       "adresses": "Addresses",
       "company": "Company",
       "apartment":"Apartment",

@@ -1,14 +1,26 @@
-"use client"
+"use client";
 
-import { useActionState } from "react"
-import { createTransferRequest } from "@lib/data/orders"
-import { Text, Heading, Input, Button, IconButton, Toaster } from "@medusajs/ui"
-import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { CheckCircleMiniSolid, XCircleSolid } from "@medusajs/icons"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-export default function TransferRequestForm() {
-  const [showSuccess, setShowSuccess] = useState(false)
+import { useActionState } from "react";
+import { createTransferRequest } from "@lib/data/orders";
+import { Text, Heading, Input, Button, IconButton, Toaster } from "@medusajs/ui";
+import { SubmitButton } from "@modules/checkout/components/submit-button";
+import { CheckCircleMiniSolid, XCircleSolid } from "@medusajs/icons";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
+export default function TransferRequestForm() 
+{
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [state, formAction] = useActionState(createTransferRequest, {
     success: false,
@@ -27,10 +39,9 @@ export default function TransferRequestForm() {
       <div className="grid sm:grid-cols-2 items-center gap-x-8 gap-y-4 w-full">
         <div className="flex flex-col gap-y-1">
           <Heading level="h3" className="text-lg text-neutral-950">
-            Auftragsübertragungen
+            {t.profile.order_transfer_title}
           </Heading>
           <Text className="text-base-regular text-neutral-500">
-            Sie finden die gesuchte Bestellung nicht?<br /> Verknüpfen Sie eine Bestellung mit Ihrem Konto.
           </Text>
         </div>
         <form
@@ -38,12 +49,12 @@ export default function TransferRequestForm() {
           className="flex flex-col gap-y-1 sm:items-end"
         >
           <div className="flex flex-col gap-y-2 w-full">
-            <Input className="w-full" name="order_id" placeholder="Bestell-ID" />
+            <Input className="w-full" name="order_id" placeholder={t.profile.order_id} />
             <SubmitButton
               variant="secondary"
               className="w-fit whitespace-nowrap self-end"
             >
-              Übertragung beantragen
+              {t.profile.apply_for_transfer}
             </SubmitButton>
           </div>
         </form>

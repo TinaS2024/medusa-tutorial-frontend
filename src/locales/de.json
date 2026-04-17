@@ -29,17 +29,24 @@
     "description":"Sehen Sie sich Ihr Medusa Store-Profil an und bearbeiten Sie es.",
     "info":"Sie können Ihre Profilinformationen, einschließlich Name, E-Mail-Adresse und Telefonnummer, einsehen und aktualisieren. Außerdem können Sie Ihre Rechnungsadresse aktualisieren oder Ihr Passwort ändern.",
     "overview": "Übersicht",
+    "back_overview":"Zurück zur Übersicht",
+    "order_overview":"Bestellübersicht",
     "orders": "Bestellungen",
     "order_number": "Bestellnummer",
     "current_orders":"Aktuelle Bestellungen",
     "no_current_orders":"Keine aktuellen Bestellungen",
+    "order_id":"Bestell-ID",
+    "order_details":"Bestelldetails",
     "order_info":"Sehen Sie Ihre bisherigen Bestellungen und deren Status ein. Bei Bedarf können Sie auch Rücksendungen oder Umtausche für Ihre Bestellungen vornehmen.",
     "nothing_to_see":"Hier gibt es nichts zu sehen",
     "no_orders_yet":"Sie haben noch keine Bestellungen, das ändern wir gern.",
     "greeting":"Hallo",
     "filled_out":"Ausgefüllt",
     "saved":"Gespeichert",
-    "continue_shopping":"Weiter einkaufen"
+    "continue_shopping":"Weiter einkaufen",
+    "order_transfer_title":"Auftragsübertragungen",
+    "order_transfer_info":"Sie finden die gesuchte Bestellung nicht?<br /> Verknüpfen Sie eine Bestellung mit Ihrem Konto.",
+    "apply_for_transfer":"Übertragung beantragen"
   },
   "nav": {
     "menu": "Menü",
@@ -56,15 +63,27 @@
       "to_cart": "Zum Warenkorb",
       "add_to_cart": "Zum Warenkorb hinzufügen",
       "empty_cart":"Ihr Warenkorb ist leer.",
-      "view_cart":"Warenkorb ansehen"
+      "view_cart":"Warenkorb ansehen",
+      "to_checkout":"Zur Kasse"
     }
   },
   "payment": {
-    "title:":"Zahlungsmethode",
+    "title:":"Zahlung",
+    "payment_method":"Zahlungsmethode",
+    "payment_details":"Bezahldetails",
     "choose_pay":"Wählen Sie eine Zahlungsmethode aus",
     "stripe":"Stripe",
     "paypal":"Paypal",
-    "manual":"Manuell"
+    "manual":"Manuell",
+    "gift_card":"Geschenkkarte",
+    "add_codes":"Werbecode(s) hinzufügen",
+    "applied_code":"Eingereichter Aktionscode für:",
+    "give_card_details":"Geben Sie die Kartendetails ein",
+    "continue_checking":"Überprüfung fortsetzen",
+    "next_step":"Weiterer Schritt wird angezeigt",
+    "thank_you":"Vielen Dank für ihren Einkauf!",
+    "order_success":"Ihre Bestellung wurde erfolgreich aufgegeben."
+
   },
   "order":
   {
@@ -116,7 +135,7 @@
     {
       "title":"Preis",
       "subtotal":"Zwischensumme",
-      "rabat":"Rabatt",
+      "discount":"Rabatt",
       "total":"Gesamt",
       "total_price":"Gesamtpreis",
       "total_summary":"Gesamtsumme",
@@ -135,7 +154,11 @@
       "title":"Versand",
       "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
       "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!",
+      "shipping_taxes_cost":"Versandkosten und Steuern",
+      "exclusive":"exkl.",
+      "inclusive":"inkl.",
       "address":"Adresse",
+      "edit_adress":"Adresse bearbeiten",
       "adresses": "Adressen",
       "company": "Firma",
       "apartment":"Etage",

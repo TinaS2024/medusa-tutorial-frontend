@@ -52,6 +52,7 @@ const Addresses = ({
         {!isOpen && cart?.shipping_address && (
           <Text>
             <button
+            type="button"
               onClick={handleEdit}
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="edit-address-button"

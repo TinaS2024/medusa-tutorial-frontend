@@ -1,32 +1,41 @@
-"use client"
+"use client";
 
-import { XMark } from "@medusajs/icons"
-import { HttpTypes } from "@medusajs/types"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Help from "@modules/order/components/help"
-import Items from "@modules/order/components/items"
-import OrderDetails from "@modules/order/components/order-details"
-import OrderSummary from "@modules/order/components/order-summary"
-import ShippingDetails from "@modules/order/components/shipping-details"
-import React from "react"
+import { XMark } from "@medusajs/icons";
+import { HttpTypes } from "@medusajs/types";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import Help from "@modules/order/components/help";
+import Items from "@modules/order/components/items";
+import OrderDetails from "@modules/order/components/order-details";
+import OrderSummary from "@modules/order/components/order-summary";
+import ShippingDetails from "@modules/order/components/shipping-details";
+import React, {useState, useEffect} from "react";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type OrderDetailsTemplateProps = {
   order: HttpTypes.StoreOrder
 }
 
-const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
-  order,
-}) => {
+const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({order}) => {
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+  
   return (
     <div className="flex flex-col justify-center gap-y-4">
       <div className="flex gap-2 justify-between items-center">
-        <h1 className="text-2xl-semi">Bestelldetails</h1>
+        <h1 className="text-2xl-semi">{t.profile.order_details}</h1>
         <LocalizedClientLink
           href="/account/orders"
           className="flex gap-2 items-center text-ui-fg-subtle hover:text-ui-fg-base"
           data-testid="back-to-overview-button"
         >
-          <XMark /> Zurück zur Übersicht
+          <XMark /> {t.profile.back_overview}
         </LocalizedClientLink>
       </div>
       <div
@@ -43,4 +52,4 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
   )
 }
 
-export default OrderDetailsTemplate
+export default OrderDetailsTemplate;

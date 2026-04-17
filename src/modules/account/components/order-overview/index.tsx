@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { Button } from "@medusajs/ui";
 
 import OrderCard from "../order-card";
@@ -7,12 +9,16 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { HttpTypes } from "@medusajs/types";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang } from "@lib/messages";
 
 const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
 
-    const lang = getClientLanguage();
+    const [lang, setLang] = useState<Lang>("de");
     const t = getMessages(lang);
+
+    useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   if (orders?.length) {
     return (

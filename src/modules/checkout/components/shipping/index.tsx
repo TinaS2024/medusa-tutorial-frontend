@@ -1,24 +1,34 @@
-"use client"
+"use client";
 
-import { RadioGroup, Radio } from "@headlessui/react"
-import { setShippingMethod } from "@lib/data/cart"
-import { calculatePriceForShippingOption } from "@lib/data/fulfillment"
-import { convertToLocale } from "@lib/util/money"
-import { CheckCircleSolid, Loader } from "@medusajs/icons"
-import { HttpTypes } from "@medusajs/types"
-import { Button, Heading, Text, clx } from "@medusajs/ui"
-import ErrorMessage from "@modules/checkout/components/error-message"
-import Divider from "@modules/common/components/divider"
-import MedusaRadio from "@modules/common/components/radio"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { RadioGroup, Radio } from "@headlessui/react";
+import { setShippingMethod } from "@lib/data/cart";
+import { calculatePriceForShippingOption } from "@lib/data/fulfillment";
+import { convertToLocale } from "@lib/util/money";
+import { CheckCircleSolid, Loader } from "@medusajs/icons";
+import { HttpTypes } from "@medusajs/types";
+import { Button, Heading, Text, clx } from "@medusajs/ui";
+import ErrorMessage from "@modules/checkout/components/error-message";
+import Divider from "@modules/common/components/divider";
+import MedusaRadio from "@modules/common/components/radio";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const PICKUP_OPTION_ON = "__PICKUP_ON"
-const PICKUP_OPTION_OFF = "__PICKUP_OFF"
+const PICKUP_OPTION_ON = "__PICKUP_ON";
+const PICKUP_OPTION_OFF = "__PICKUP_OFF";
+
+type ShippingOptionWithZone = HttpTypes.StoreCartShippingOption & {
+  service_zone?: {
+    fulfillment_set?: {
+      location?: {
+        address?: Parameters<typeof formatAddress>[0]
+      }
+    }
+  }
+}
 
 type ShippingProps = {
   cart: HttpTypes.StoreCart
-  availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null
+  availableShippingMethods: ShippingOptionWithZone[] | null
 }
 
 function formatAddress(address: {
@@ -29,52 +39,47 @@ function formatAddress(address: {
   country_code?: string
 } | null | undefined) {
   if (!address) {
-    return ""
+    return "";
   }
 
-  let ret = ""
+  let ret = "";
 
   if (address.address_1) {
-    ret += ` ${address.address_1}`
+    ret += ` ${address.address_1}`;
   }
 
   if (address.address_2) {
-    ret += `, ${address.address_2}`
+    ret += `, ${address.address_2}`;
   }
 
   if (address.postal_code) {
-    ret += `, ${address.postal_code} ${address.city}`
+    ret += `, ${address.postal_code} ${address.city}`;
   }
 
   if (address.country_code) {
-    ret += `, ${address.country_code.toUpperCase()}`
+    ret += `, ${address.country_code.toUpperCase()}`;
   }
 
-  return ret
+  return ret;
 }
 
 const Shipping: React.FC<ShippingProps> = ({
   cart,
   availableShippingMethods,
 }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isLoadingPrices, setIsLoadingPrices] = useState(true)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPrices, setIsLoadingPrices] = useState(true);
 
-  const [showPickupOptions, setShowPickupOptions] =
-    useState<string>(PICKUP_OPTION_OFF)
-  const [calculatedPricesMap, setCalculatedPricesMap] = useState<
-    Record<string, number>
-  >({})
-  const [error, setError] = useState<string | null>(null)
-  const [shippingMethodId, setShippingMethodId] = useState<string | null>(
-    cart.shipping_methods?.at(-1)?.shipping_option_id || null
-  )
+  const [showPickupOptions, setShowPickupOptions] = useState<string>(PICKUP_OPTION_OFF);
+  const [calculatedPricesMap, setCalculatedPricesMap] = useState<Record<string, number>>({});
+  const [error, setError] = useState<string | null>(null);
+  const [shippingMethodId, setShippingMethodId] = useState<string | null>(cart.shipping_methods?.at(-1)?.shipping_option_id || null);
 
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const isOpen = searchParams.get("step") === "delivery"
+  const isOpen = searchParams.get("step") === "delivery";
 
   const _shippingMethods = availableShippingMethods?.filter(
     (sm) => sm.service_zone_id !== undefined && sm.service_zone_id !== null
@@ -84,7 +89,7 @@ const Shipping: React.FC<ShippingProps> = ({
     (sm) => (sm as any).metadata?.fulfillment_set_type === "pickup"
   )
 
-  const hasPickupOptions = !!_pickupMethods?.length
+  const hasPickupOptions = !!_pickupMethods?.length;
 
   useEffect(() => {
     setIsLoadingPrices(true)
@@ -178,6 +183,7 @@ const Shipping: React.FC<ShippingProps> = ({
           cart?.email && (
             <Text>
               <button
+                type="button"
                 onClick={handleEdit}
                 className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
                 data-testid="edit-delivery-button"
@@ -340,9 +346,7 @@ const Shipping: React.FC<ShippingProps> = ({
                               </span>
                               <span className="text-base-regular text-ui-fg-muted">
                                 {formatAddress(
-                                  option.service_zone?.fulfillment_set?.location
-                                    ?.address
-                                )}
+                                  option.service_zone?.fulfillment_set?.location?.address)}
                               </span>
                             </div>
                           </div>

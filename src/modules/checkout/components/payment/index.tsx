@@ -1,17 +1,18 @@
-"use client"
+"use client";
 
-import { RadioGroup } from "@headlessui/react"
-import { isStripe as isStripeFunc, paymentInfoMap } from "@lib/constants"
-import { initiatePaymentSession } from "@lib/data/cart"
-import { CheckCircleSolid, CreditCard } from "@medusajs/icons"
-import { Button, Container, Heading, Text, clx } from "@medusajs/ui"
-import ErrorMessage from "@modules/checkout/components/error-message"
-import PaymentContainer, {
-  StripeCardContainer,
-} from "@modules/checkout/components/payment-container"
-import Divider from "@modules/common/components/divider"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { RadioGroup } from "@headlessui/react";
+import { isStripe as isStripeFunc, paymentInfoMap } from "@lib/constants";
+import { initiatePaymentSession } from "@lib/data/cart";
+import { CheckCircleSolid, CreditCard } from "@medusajs/icons";
+import { Button, Container, Heading, Text, clx } from "@medusajs/ui";
+import ErrorMessage from "@modules/checkout/components/error-message";
+import PaymentContainer, {StripeCardContainer} from "@modules/checkout/components/payment-container";
+import Divider from "@modules/common/components/divider";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 const Payment = ({
   cart,
@@ -24,21 +25,26 @@ const Payment = ({
     (paymentSession: any) => paymentSession.status === "pending"
   )
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [cardBrand, setCardBrand] = useState<string | null>(null)
-  const [cardComplete, setCardComplete] = useState(false)
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
-    activeSession?.provider_id ?? ""
-  )
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+  useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
 
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [cardBrand, setCardBrand] = useState<string | null>(null);
+  const [cardComplete, setCardComplete] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(activeSession?.provider_id ?? "");
 
-  const isOpen = searchParams.get("step") === "payment"
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const isStripe = isStripeFunc(selectedPaymentMethod)
+  const isOpen = searchParams.get("step") === "payment";
+
+  const isStripe = isStripeFunc(selectedPaymentMethod);
 
   const setPaymentMethod = async (method: string) => {
     setError(null)
@@ -51,17 +57,16 @@ const Payment = ({
   }
 
   const paidByGiftcard =
-    cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0
+    cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0;
 
-  const paymentReady =
-    (activeSession && cart?.shipping_methods.length !== 0) || paidByGiftcard
+  const paymentReady = (activeSession && cart?.shipping_methods.length !== 0) || paidByGiftcard;
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams)
       params.set(name, value)
 
-      return params.toString()
+      return params.toString();
     },
     [searchParams]
   )
@@ -125,11 +130,12 @@ const Payment = ({
         {!isOpen && paymentReady && (
           <Text>
             <button
+              type="button" 
               onClick={handleEdit}
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="edit-payment-button"
             >
-              Ändern
+              {t.function.change}
             </button>
           </Text>
         )}
@@ -169,13 +175,13 @@ const Payment = ({
           {paidByGiftcard && (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Bezahlmethode
+                {t.payment.payment_method}
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Geschenkkarte
+                {t.payment.gift_card}
               </Text>
             </div>
           )}
@@ -197,8 +203,8 @@ const Payment = ({
             data-testid="submit-payment-button"
           >
             {!activeSession && isStripeFunc(selectedPaymentMethod)
-              ? "Geben Sie die Kartendetails ein"
-              : "Überprüfung fortsetzen"}
+              ? t.payment.give_card_details
+              : t.payment.continue_checking}
           </Button>
         </div>
 
@@ -207,7 +213,7 @@ const Payment = ({
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Bezahlmethode
+                  {t.payment.payment_method}
                 </Text>
                 <Text
                   className="txt-medium text-ui-fg-subtle"
@@ -219,7 +225,7 @@ const Payment = ({
               </div>
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Bezahldetails
+                  {t.payment.payment_details}
                 </Text>
                 <div
                   className="flex gap-2 txt-medium text-ui-fg-subtle items-center"
@@ -233,7 +239,7 @@ const Payment = ({
                   <Text>
                     {isStripeFunc(selectedPaymentMethod) && cardBrand
                       ? cardBrand
-                      : "Weiter Schritt wird angezeigt"}
+                      : t.payment.next_step}
                   </Text>
                 </div>
               </div>
@@ -241,13 +247,13 @@ const Payment = ({
           ) : paidByGiftcard ? (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Bezahlmethode
+                {t.payment.payment_method}
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Geschenkkarte
+                {t.payment.gift_card}
               </Text>
             </div>
           ) : null}

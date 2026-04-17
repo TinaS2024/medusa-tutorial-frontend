@@ -29,17 +29,24 @@
     "description":"Bekijk en bewerk je Medusa Store-profiel.",
     "info":"Als u uw profielgegevens bewaart, inclusief naam, e-mailadres en telefoonnummer, ontvangt u deze en werkt u deze bij. U kunt uw aanvraag actualiseren of uw wachtwoord wijzigen.",
     "overview": "Overzicht",
+    "back_overview":"Terug naar overzicht",
+    "order_overview":"Overzicht van bestellingen",
     "orders": "Bestellingen",
     "order_number": "Bestellnummer",
     "current_orders":"Actieve bestellingen",
     "no_current_orders":"Geen actieve bestellingen",
+    "order_id":"ID van bestelling",
+    "order_details":"Bestelldetails van bestellingen",
     "order_info":"Bekijk je eerdere bestellingen en hun status. Indien nodig kun je je bestellingen ook retourneren of ruilen.",
     "nothing_to_see":"Hier valt niets te zien.",
     "no_orders_yet":"U heeft nog geen bestellingen, daar brengen we graag verandering in.",
     "greeting":"Hallo",
     "filled_out":"Vulde",
     "saved":"Geslagenen",
-    "continue_shopping":"Verder met winkelen"
+    "continue_shopping":"Verder met winkelen",
+    "order_transfer_title":"overdrachten van bestellingen",
+    "order_transfer_info":"Kunt u de bestelling die u zoekt niet vinden?<br /> Koppel een bestelling aan uw account.",
+    "apply_for_transfer":"Overschrijving aanvragen"
   },
   "nav": {
     "menu": "Menu",
@@ -56,14 +63,25 @@
       "to_cart": "Naar winkelwagen",
       "add_to_cart": "Voeg toe aan winkelwagen",
       "empty_cart":"Ihr Warenkorb ist leer.",
-      "view_cart":"Vue winkelwagen"
+      "view_cart":"Vue winkelwagen",
+      "to_checkout":"Naar kassa"
     }
   }, 
   "payment": {
-    "title:":"BetaKies een betaalmethode",
+    "title:":"Betaling",
+    "payment_method":"Betaalmethode",
+    "payment_details":"Betaalingdetails",
     "stripe":"Stripe",
     "paypal":"Paypal",
-    "manual":"Handmatig"
+    "manual":"Handmatig",
+    "gift_card":"Cadeaubon",
+    "add_codes":"Voeg code(s) toevoegen",
+    "applied_code":"Code(s) van de promotie(s) toegevoegd voor:",
+    "give_card_details":"Voer de kaartgegevens in",
+    "continue_checking":"Verder met controleren",
+    "next_step":"Volgende stap zal worden weergegeven",
+    "thank_you":"Bedankt voor uw bestelling!",
+    "order_success":"Uw bestelling is succesvol geplaatst."
   },
   "order":
   {
@@ -115,7 +133,7 @@
     {
       "title":"Prijs",
       "subtotal":"Subtotaal",
-      "rabat":"Rabat",
+      "discount":"Korting",
       "total":"Totale",
       "total_price":"Totale prijs",
       "total_summary":"Totaal overzicht",
@@ -134,7 +152,11 @@
       "title":"Verzending",
       "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
       "unlocked_freeshipping":"Gratis levering activeerd!",
+      "shipping_taxes_cost":"Verzendkosten en belasting",
+      "exclusive":"exkl.",
+      "inclusive":"inkl.",
       "address":"Adres",
+      "edit_adress":"Adres bewerken",
       "adresses": "Adressen",
       "company": "Bedrijf",
       "apartment":"Appartement",
