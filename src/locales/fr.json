@@ -1,5 +1,6 @@
 {
   "shop_name":"Shop Name",
+  "choose_near_shop":"Choisissez une boutique dans votre zone",
   "login_shop":
   {
     "welcome":"Content de te revoir",
@@ -75,6 +76,7 @@
   }, 
   "payment": {
     "title:":"Paiement",
+    "next_to_payment":"Suivant au paiement",
     "payment_method":"Mode de paiement",
     "payment_details":"Informations de paiement",
     "choose_pay":"Choisissez un mode de paiement",

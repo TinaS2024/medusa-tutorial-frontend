@@ -1,5 +1,6 @@
 {
   "shop_name":"Shop Name",
+  "choose_near_shop":"Kies een shop in uw buurt",
   "login_shop":
   {
     "welcome":"Welkom terug",
@@ -74,6 +75,7 @@
   }, 
   "payment": {
     "title:":"Betaling",
+    "next_to_payment":"Volgende betaling zal worden weergegeven",
     "payment_method":"Betaalmethode",
     "payment_details":"Betaalingdetails",
     "stripe":"Stripe",

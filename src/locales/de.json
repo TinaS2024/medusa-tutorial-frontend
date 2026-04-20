@@ -1,5 +1,6 @@
 {
   "shop_name":"Shop Name",
+  "choose_near_shop":"Wählen Sie eine Filiale in Ihrer Nähe.",
   "login_shop":
   {
     "welcome":"Willkommen zurück",
@@ -75,6 +76,7 @@
   "payment": {
     "title:":"Zahlung",
     "payment_method":"Zahlungsmethode",
+    "next_to_payment":"Weiter zur Zahlung",
     "payment_details":"Bezahldetails",
     "choose_pay":"Wählen Sie eine Zahlungsmethode aus",
     "stripe":"Stripe",

@@ -31,24 +31,36 @@ const AddressSelect = ({
 
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  const [selectedId, setSelectedId] = useState<string>("");
   
     useEffect(() => {
       setLang(getClientLanguage());
     }, []);
+
+  useEffect(() => {
+    const match = addresses.find((a) => compareAddresses(a, addressInput));
+    setSelectedId(match?.id ?? "");
+  }, [addresses, addressInput]);
   
   const handleSelect = (id: string) => {
     const savedAddress = addresses.find((a) => a.id === id)
     if (savedAddress) {
       onSelect(savedAddress as HttpTypes.StoreCartAddress)
     }
-  }
+  };
 
   const selectedAddress = useMemo(() => {
-    return addresses.find((a) => compareAddresses(a, addressInput))
-  }, [addresses, addressInput])
+    return addresses.find((a) => a.id === selectedId);
+  }, [addresses, selectedId]);
+
+  const handleChange = (id: string) => {
+    setSelectedId(id);
+    handleSelect(id);
+  };
 
   return (
-    <Listbox onChange={handleSelect} value={selectedAddress?.id}>
+    <Listbox onChange={handleChange} value={selectedId}>
       <div className="relative">
         <Listbox.Button
           className="relative w-full flex justify-between items-center px-4 py-[10px] text-left bg-white cursor-default focus:outline-none border rounded-rounded focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-300 text-base-regular"
@@ -89,7 +101,7 @@ const AddressSelect = ({
                 >
                   <div className="flex gap-x-4 items-start">
                     <Radio
-                      checked={selectedAddress?.id === address.id}
+                      checked={selectedId === address.id}
                       data-testid="shipping-address-radio"
                     />
                     <div className="flex flex-col">

@@ -1,5 +1,6 @@
 {
   "shop_name":"Shop Name",
+  "choose_near_shop":"Choose a shop in your area",
   "login_shop":
   {
     "welcome":"Welcome back",
@@ -75,6 +76,7 @@
   "payment": {
     "title:":"Payment",
     "payment_method":"Payment method",
+    "next_to_payment":"Next to payment",
     "payment_details":"Payment details",
     "choose_pay":"Choose a payment method",
     "stripe":"Stripe",
