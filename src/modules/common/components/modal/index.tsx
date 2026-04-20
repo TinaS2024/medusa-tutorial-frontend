@@ -1,9 +1,9 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { clx } from "@medusajs/ui"
-import React, { Fragment } from "react"
+import { Dialog, Transition } from "@headlessui/react";
+import { clx } from "@medusajs/ui";
+import React, { Fragment } from "react";
 
-import { ModalProvider, useModal } from "@lib/context/modal-context"
-import X from "@modules/common/icons/x"
+import { ModalProvider, useModal } from "@lib/context/modal-context";
+import X from "@modules/common/icons/x";
 
 type ModalProps = {
   isOpen: boolean
@@ -86,7 +86,7 @@ const Title: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <Dialog.Title className="flex items-center justify-between">
       <div className="text-large-semi">{children}</div>
       <div>
-        <button onClick={close} data-testid="close-modal-button">
+        <button type="button" onClick={close} aria-label="Modal schließen" data-testid="close-modal-button">
           <X size={20} />
         </button>
       </div>
@@ -115,4 +115,4 @@ Modal.Description = Description
 Modal.Body = Body
 Modal.Footer = Footer
 
-export default Modal
+export default Modal;

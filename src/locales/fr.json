@@ -22,6 +22,7 @@
     "logout":"Déconnexion",
     "no_account": "Pas de compte?",
     "new_register":"Inscrivez-vous dans notre boutique.",
+    "full_name":"Nom complet",
     "first_name": "Nom prénom",
     "last_name":"Nom de famille",
     "phone": "Téléphone number",
@@ -60,8 +61,10 @@
     "saved":"Enregistré",
     "continue_shopping":"Continuer la shopping",
     "order_transfer_title":"Transfers de commande",
-    "order_transfer_info":"Can't find the order?<br /> Lien la commande à votre compte.",
-    "apply_for_transfer":"Apply for transferment"
+    "order_transfer_info":"Can't find the order? Lien la commande à votre compte.",
+    "apply_for_transfer":"Apply for transferment",
+    "delivery_adresses":"Adresses de livraison",
+    "delivery_info":"Vous pouvez consulter et modifier vos adresses de livraison ; vous pouvez en ajouter autant que vous le souhaitez. Les adresses enregistrées seront disponibles lors du paiement."
   },
 
   "nav": {
@@ -140,6 +143,16 @@
       "return_info":"Il vous suffit de nous retourner votre produit et nous vous rembourserons intégralement. Sans poser de questions, nous mettrons tout en œuvre pour que votre retour se déroule sans encombre.",
       "delivery":"Livraison"
     },
+    "product_properties":
+    {
+      "cushion_color":"Couleur du Kissen",
+      "embossing_posiiton":"Position embossage",
+      "background_color":"Couleur de fond",
+      "engraving_color":"Gravur couleur",
+      "design":"Conception",
+      "choose":"Choisissez un",
+      "out":""
+    },
      "sort_product":
     {
       "sort_by":"Trier par",
@@ -178,6 +191,7 @@
       "activation_freeshipping":"Activez la livraison gratuite pour votre commande",
       "unlocked_freeshipping":"Livraison gratuite activée!",
       "shipping_taxes_cost":"Frais d'expédition et impôts",
+      "shipping_to":"Expédition à",
       "exclusive":"excl.",
       "inclusive":"inkl.",
       "contact":"Contact",
@@ -206,6 +220,13 @@
         "cancel":"Annuler",
         "save": "Enregistrer",
         "add": "Ajouter",
-        "remove": "Supprimer"
+        "remove": "Supprimer",
+        "update":"Mis à jour avec succès"
+      },
+        "error":
+      {
+        "page_not_found":"Page non trouvée",
+        "back_to_home":"Retourner à la page d'accueil",
+        "no_cart":"Le panier auquel vous avez tenté d'accéder est introuvable. Veuillez effacer vos cookies et réessayer."
       }
 }

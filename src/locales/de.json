@@ -22,6 +22,7 @@
     "logout":"Abmeldung",
     "no_account": "Noch kein Konto vorhanden?",
     "new_register":"Registrieren Sie sich bei uns.",
+    "full_name":"Name",
     "first_name": "Vorname",
     "last_name":"Nachname",
     "phone": "Telefonnummer",
@@ -60,8 +61,10 @@
     "saved":"Gespeichert",
     "continue_shopping":"Weiter einkaufen",
     "order_transfer_title":"Auftragsübertragungen",
-    "order_transfer_info":"Sie finden die gesuchte Bestellung nicht?<br /> Verknüpfen Sie eine Bestellung mit Ihrem Konto.",
-    "apply_for_transfer":"Übertragung beantragen"
+    "order_transfer_info":"Sie finden die gesuchte Bestellung nicht? Verknüpfen Sie eine Bestellung mit Ihrem Konto.",
+    "apply_for_transfer":"Übertragung beantragen",
+    "delivery_adresses":"Lieferadressen",
+    "delivery_info":"Sie können Ihre Lieferadressen einsehen und aktualisieren; Sie können beliebig viele hinzufügen. Gespeicherte Adressen stehen Ihnen beim Bezahlvorgang zur Verfügung."
   },
   "nav": {
     "menu": "Menü",
@@ -140,6 +143,16 @@
       "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft.",
       "delivery":"Lieferung"
     },
+    "product_properties":
+    {
+      "cushion_color":"Kissenfarbe",
+      "embossing_posiiton":"Prägeposition",
+      "background_color":"Hintergrundfarbe",
+      "engraving_color":"Gravurfarbe",
+      "design":"Design",
+      "choose":"Wähle",
+      "out":"aus"
+    },
     "sort_product":
     {
       "sort_by":"Sortien nach",
@@ -178,6 +191,7 @@
       "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
       "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!",
       "shipping_taxes_cost":"Versandkosten und Steuern",
+      "shipping_to":"Versand nach",
       "exclusive":"exkl.",
       "inclusive":"inkl.",
       "contact":"Kontakt",
@@ -206,6 +220,13 @@
         "cancel":"Abbrechen",
         "save": "Änderungen speichern",
         "add": "Hinzufügen",
-        "remove": "Entfernen"
+        "remove": "Entfernen",
+        "update":"Erfolgreich aktualisiert"
+      },
+      "error":
+      {
+        "page_not_found":"Seite wurde nicht gefunden",
+        "back_to_home":"Zurück zur Startseite",
+        "no_cart":"Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut."
       }
 }

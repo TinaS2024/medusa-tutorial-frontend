@@ -2,20 +2,26 @@ import { Metadata } from "next";
 
 import InteractiveLink from "@modules/common/components/interactive-link";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 export const metadata: Metadata = {
   title: "404",
   description: "Etwas ging schief",
 }
 
-export default function NotFound() 
+export default async function NotFound() 
 {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)]">
-      <h1 className="text-2xl-semi text-ui-fg-base">Seite wurde nicht gefunden</h1>
+      <h1 className="text-2xl-semi text-ui-fg-base">{t.error.page_not_found}</h1>
       <p className="text-small-regular text-ui-fg-base">
-       Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut.
+       {t.error.no_cart}
       </p>
-      <InteractiveLink href="/">Zurück zur Startseite</InteractiveLink>
+      <InteractiveLink href="/">{t.error.back_to_home}</InteractiveLink>
     </div>
   )
 }

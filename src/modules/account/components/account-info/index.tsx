@@ -1,9 +1,14 @@
-import { Disclosure } from "@headlessui/react"
-import { Badge, Button, clx } from "@medusajs/ui"
-import { useEffect } from "react"
+"use client";
 
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { useFormStatus } from "react-dom"
+import { Disclosure } from "@headlessui/react";
+import { Badge, Button, clx } from "@medusajs/ui";
+import { useState, useEffect } from "react";
+
+import useToggleState from "@lib/hooks/use-toggle-state";
+import { useFormStatus } from "react-dom";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type AccountInfoProps = {
   label: string
@@ -26,6 +31,15 @@ const AccountInfo = ({
   children,
   'data-testid': dataTestid
 }: AccountInfoProps) => {
+
+    const [lang, setLang] = useState<Lang>("de");
+    const t = getMessages(lang);
+
+  useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+  
+
   const { state, close, toggle } = useToggleState()
 
   const { pending } = useFormStatus()
@@ -63,7 +77,7 @@ const AccountInfo = ({
             data-testid="edit-button"
             data-active={state}
           >
-            {state ? "Abbrechen" : "Ändern"}
+            {state ? t.function.cancel : t.function.change}
           </Button>
         </div>
       </div>
@@ -82,7 +96,7 @@ const AccountInfo = ({
           data-testid="success-message"
         >
           <Badge className="p-2 my-4" color="green">
-            <span>{label} updated succesfully</span>
+            <span>{t.function.update}</span>
           </Badge>
         </Disclosure.Panel>
       </Disclosure>
@@ -126,7 +140,7 @@ const AccountInfo = ({
                 type="submit"
                 data-testid="save-button"
               >
-                Save changes
+                {t.function.save}
               </Button>
             </div>
           </div>
@@ -136,4 +150,4 @@ const AccountInfo = ({
   )
 }
 
-export default AccountInfo
+export default AccountInfo;

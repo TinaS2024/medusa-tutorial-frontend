@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
-import React, { useEffect, useActionState } from "react";
+import React, { useState,  useEffect, useActionState } from "react";
 
-import Input from "@modules/common/components/input"
+import Input from "@modules/common/components/input";
 
-import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 // import { updateCustomer } from "@lib/data/customer"
 
 type MyInformationProps = {
@@ -13,6 +16,9 @@ type MyInformationProps = {
 }
 
 const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
   const [successState, setSuccessState] = React.useState(false)
 
   // TODO: It seems we don't support updating emails now?
@@ -48,7 +54,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <form action={formAction} className="w-full">
       <AccountInfo
-        label="Email"
+        label={t.login_shop.email}
         currentInfo={`${customer.email}`}
         isSuccess={successState}
         isError={!!state.error}
@@ -58,7 +64,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="grid grid-cols-1 gap-y-2">
           <Input
-            label="Email"
+            label={t.login_shop.email}
             name="email"
             type="email"
             autoComplete="email"
@@ -72,4 +78,4 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   )
 }
 
-export default ProfileEmail
+export default ProfileEmail;

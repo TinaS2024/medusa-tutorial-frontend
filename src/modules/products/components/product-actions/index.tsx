@@ -174,7 +174,7 @@ export default function ProductActions({
   console.log("  Product Options:", product.options);
 
   //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
-  const cushionColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.CUSHION_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Kissenfarbe");
+  const cushionColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.CUSHION_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.cushion_color);
   let cushionColor = "";
   if (selectedVariant && cushionColorOption) 
   {
@@ -202,7 +202,7 @@ export default function ProductActions({
   }
 
   //Benutzerdefinierte Gravurfarbe für Schilder
-  const engravedColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR, optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Gravurfarbe");
+  const engravedColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR, optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.engraving_color);
   let engravedColor = "";
   if (selectedVariant && engravedColorOption) {
     const variantengravedColorValue = selectedVariant.options?.find(
@@ -214,7 +214,7 @@ export default function ProductActions({
   }
 
   //Hintergrundfarbe für Schilder
-  const backgroundColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Hintergrundfarbe");
+  const backgroundColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.background_color);
   let backgroundColor = "";
   if (product.metadata?.default_background_color) 
   {
@@ -241,8 +241,8 @@ export default function ProductActions({
 
     if (selectedVariant) 
       {
-      const widthOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.WIDTH,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Breite");
-      const heightOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.HEIGHT,optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Höhe");
+      const widthOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.WIDTH,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product.width);
+      const heightOptionDef = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.HEIGHT,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product.height);
 
       if (widthOptionDef) 
       {
@@ -485,10 +485,10 @@ export default function ProductActions({
             <div className="flex flex-col gap-y-4">
               {(product.options || []).filter(option => {
                 const techKey = optionKeysMeta[option.id];
-                  const isCushionColor = techKey === TECHNICAL_OPTION_KEYS.CUSHION_COLOR || option.title === "Kissenfarbe";
-                  const isEngravingColor = techKey === TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR || option.title === "Gravurfarbe";
-                  const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === "Hintergrundfarbe";
-                  const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === "Prägeposition";
+                  const isCushionColor = techKey === TECHNICAL_OPTION_KEYS.CUSHION_COLOR || option.title === t.product_properties.cushion_color;
+                  const isEngravingColor = techKey === TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR || option.title === t.product_properties.engraving_color;
+                  const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === t.product_properties.background_color;
+                  const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === t.product_properties.embossing_posiiton;
 
                   if (isStampProduct || hasCushion) 
                   {

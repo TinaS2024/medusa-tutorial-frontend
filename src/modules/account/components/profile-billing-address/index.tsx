@@ -22,7 +22,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
   regions,
 }) => {
   const [lang, setLang] = useState<Lang>("de");
-    const t = getMessages(lang);
+  const t = getMessages(lang);
   
     useEffect(() => {
       setLang(getClientLanguage());
@@ -103,7 +103,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
     <form action={formAction} onReset={() => clearState()} className="w-full">
       <input type="hidden" name="addressId" value={billingAddress?.id} />
       <AccountInfo
-        label="Rechungsadresse"
+        label={t.shipping.billing_adress}
         currentInfo={currentInfo}
         isSuccess={successState}
         isError={!!state.error}

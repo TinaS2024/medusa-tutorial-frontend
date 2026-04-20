@@ -1,18 +1,22 @@
-"use client"
+"use client";
 
-import { Table, Text, clx } from "@medusajs/ui"
-import { updateLineItem } from "@lib/data/cart"
-import { HttpTypes } from "@medusajs/types"
-import CartItemSelect from "@modules/cart/components/cart-item-select"
-import ErrorMessage from "@modules/checkout/components/error-message"
-import DeleteButton from "@modules/common/components/delete-button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import LineItemUnitPrice from "@modules/common/components/line-item-unit-price"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Spinner from "@modules/common/icons/spinner"
-import Thumbnail from "@modules/products/components/thumbnail"
-import { useState } from "react"
+import { useState, useEffect } from "react";
+
+import { Table, Text, clx } from "@medusajs/ui";
+import { updateLineItem } from "@lib/data/cart";
+import { HttpTypes } from "@medusajs/types";
+import CartItemSelect from "@modules/cart/components/cart-item-select";
+import ErrorMessage from "@modules/checkout/components/error-message";
+import DeleteButton from "@modules/common/components/delete-button";
+import LineItemOptions from "@modules/common/components/line-item-options";
+import LineItemPrice from "@modules/common/components/line-item-price";
+import LineItemUnitPrice from "@modules/common/components/line-item-unit-price";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import Spinner from "@modules/common/icons/spinner";
+import Thumbnail from "@modules/products/components/thumbnail";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 
 type ItemProps = {
@@ -22,6 +26,14 @@ type ItemProps = {
 }
 
 const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+
   const [updating, setUpdating] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -72,17 +84,17 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
         <div className="text-sm text-ui fg-muted">
-          {!!item.metadata?.width && <div>Breite: {item.metadata.width as number} mm</div>}
-          {!!item.metadata?.height && <div>Höhe: {item.metadata.height as number} mm</div>}
+          {!!item.metadata?.width && <div>{t.product.width}: {item.metadata.width as number} mm</div>}
+          {!!item.metadata?.height && <div>{t.product.height}: {item.metadata.height as number} mm</div>}
           {!!item.metadata?.cushion_color && (
-            <div>Kissenfarbe: {String(item.metadata.cushion_color)}</div>
+            <div>{t.product_properties.cushion_color}: {String(item.metadata.cushion_color)}</div>
           )}
           {!!item.metadata?.embossing_position && (
-            <div>Prägeposition: {String(item.metadata.embossing_position)}</div>
+            <div>{t.product_properties.embossing_posiiton}: {String(item.metadata.embossing_position)}</div>
           )}
           {!!item.metadata?.design_image && (
             <div className="mt-2">
-              <Text className="txt-small text-ui-fg-subtle">Design:</Text>
+              <Text className="txt-small text-ui-fg-subtle">{t.product_properties.design}:</Text>
               <img src={decodeURIComponent(item.metadata.design_image as string)} alt="Design" className="w-24 h-24 object-contain border border-gray-200 rounded-md mt-1" />
             </div>
           )}
@@ -160,4 +172,4 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
   )
 }
 
-export default Item
+export default Item;

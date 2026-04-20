@@ -22,6 +22,7 @@
     "logout":"Logout",
     "no_account": "No account yet?",
     "new_register":"Register.",
+    "full_name":"Name",
     "first_name": "First name",
     "last_name":"Last name",
     "phone": "Phone number",
@@ -60,8 +61,10 @@
     "saved":"Saved",
     "continue_shopping":"Continue shopping",
     "order_transfer_title":"Order transfers",
-    "order_transfer_info":"Can't find the order?<br /> Link the order to your account.",
-    "apply_for_transfer":"Apply for transfer"
+    "order_transfer_info":"Can't find the order? Link the order to your account.",
+    "apply_for_transfer":"Apply for transfer",
+    "delivery_adresses":"Delivery addresses",
+    "delivery_info":"You can view and update your delivery addresses; you can add as many as you like. Saved addresses will be available during the checkout process."
   },
   "nav": {
     "menu": "Menu",
@@ -139,6 +142,16 @@
       "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly.",
       "delivery":"Delivery"
     },
+    "product_properties":
+    {
+      "cushion_color":"cushion color",
+      "embossing_posiiton":"Embossing position",
+      "background_color":"Bestelinformatie color",
+      "engraving_color":"Graving color",
+      "design":"Design",
+      "choose":"Choose",
+      "out":""
+    },
      "sort_product":
     {
       "sort_by":"Sort by",
@@ -177,6 +190,7 @@
       "activation_freeshipping":"Activate free shipping for your order",
       "unlocked_freeshipping":"Free shipping unlocked!",
       "shipping_taxes_cost":"Shipping costs and taxes",
+      "shipping_to": "Shipping to",
       "exclusive":"excl.",
       "inclusive":"inkl.",
       "contact":"Contact",
@@ -205,7 +219,14 @@
         "cancel":"Cancel",
         "save": "Save",
         "add": "Add",
-        "remove": "Remove"
+        "remove": "Remove",
+        "update":"Updated successfully"
+      },  
+      "error":
+      {
+        "page_not_found":"Page not found",
+        "back_to_home":"Back to home",
+        "no_cart":"The cart does not exist. Please delete your cookies and try again."
       }
 
 }

@@ -1,6 +1,8 @@
-import { HttpTypes } from "@medusajs/types"
-import { clx } from "@medusajs/ui"
-import React from "react"
+import { HttpTypes } from "@medusajs/types";
+import { clx } from "@medusajs/ui";
+import React from "react";
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type OptionSelectProps = {
   option: HttpTypes.StoreProductOption
@@ -19,11 +21,31 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   "data-testid": dataTestId,
   disabled,
 }) => {
-  const filteredOptions = (option.values ?? []).map((v) => v.value)
+  const lang = getClientLanguage() as Lang;
+  const t = getMessages(lang);
+
+  const titleKeyMap: Record<string, string> = {
+    Kissenfarbe: "cushion_color",
+    Prägeposition: "embossing_posiiton",
+    Hintergrundfarbe: "background_color",
+    Gravurfarbe: "engraving_color",
+    Design: "design",
+  };
+
+  const trimmedTitle = title.trim();
+  const propertyKey = titleKeyMap[trimmedTitle];
+  const localizedTitle =
+    propertyKey && (t as any).product_properties
+      ? (t as any).product_properties[propertyKey] ?? title
+      : title;
+
+
+  
+  const filteredOptions = (option.values ?? []).map((v) => v.value);
 
   return (
     <div className="flex flex-col gap-y-3">
-      <span className="text-sm">Wähle {title} aus</span>
+      <span className="text-sm">{t.product_properties.choose} {localizedTitle} {t.product_properties.out}</span>
       <div
         className="flex flex-wrap justify-between gap-2"
         data-testid={dataTestId}

@@ -22,6 +22,7 @@
     "logout":"Uitloggen",
     "no_account": "Nog geen account?",
     "new_register":"Schrijf u bij ons in.",
+    "full_name":"Volledige naam",
     "first_name": "Voornaam",
     "last_name":"Nachnaam",
     "phone": "Telefoonnummer",
@@ -60,8 +61,10 @@
     "saved":"Geslagenen",
     "continue_shopping":"Verder met winkelen",
     "order_transfer_title":"overdrachten van bestellingen",
-    "order_transfer_info":"Kunt u de bestelling die u zoekt niet vinden?<br /> Koppel een bestelling aan uw account.",
-    "apply_for_transfer":"Overschrijving aanvragen"
+    "order_transfer_info":"Kunt u de bestelling die u zoekt niet vinden? Koppel een bestelling aan uw account.",
+    "apply_for_transfer":"Overschrijving aanvragen",
+    "delivery_adresses":"Afleveradressen",
+    "delivery_info":"U kunt uw bezorgadressen bekijken en bijwerken; u kunt er zoveel toevoegen als u wilt. Opgeslagen adressen zijn beschikbaar tijdens het afrekenproces."
   },
   "nav": {
     "menu": "Menu",
@@ -138,6 +141,16 @@
       "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt.",
       "delivery":"Levering"
     },
+    "product_properties":
+    {
+      "cushion_color":"Kissenkleur",
+      "embossing_posiiton":"Embossing positie",
+      "background_color":"Hintergrundkleur",
+      "engraving_color":"Gravurkleur",
+      "design":"ontwerp",
+      "choose":"Kies een",
+      "out":"uit"
+    },
      "sort_product":
     {
       "sort_by":"Sorteer op",
@@ -176,6 +189,7 @@
       "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
       "unlocked_freeshipping":"Gratis levering activeerd!",
       "shipping_taxes_cost":"Verzendkosten en belasting",
+      "shipping_to": "Verzendingen naar",
       "exclusive":"exkl.",
       "inclusive":"inkl.",
       "contact":"Contact",
@@ -204,6 +218,13 @@
         "cancel":"Annuleren",
         "save": "Wijziging opslaan",
         "add": "Toevoegen",
-        "remove": "Verwijderen"
+        "remove": "Verwijderen",
+        "update":"Succesvol bijgewerkt"
+      },
+       "error":
+      {
+        "page_not_found":"Pagina niet gevonden",
+        "back_to_home":"Terug naar de startpagina",
+        "no_cart":"Het winkelmandje dat u probeerde te openen bestaat niet. Wis uw cookies en probeer het opnieuw."
       }
 }

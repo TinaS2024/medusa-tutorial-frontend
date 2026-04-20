@@ -78,9 +78,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <p>
               {(() => {
                 const dimensions = [];
-                if (product.length) dimensions.push(`${product.length} Länge`);
-                if (product.width) dimensions.push(`${product.width} Breite`);
-                if (product.height) dimensions.push(`${product.height} Höhe`);
+                if (product.length) dimensions.push(`${product.length} ${t.product.lenght}`);
+                if (product.width) dimensions.push(`${product.width} ${t.product.width}`);
+                if (product.height) dimensions.push(`${product.height} ${t.product.height}`);
                 return dimensions.length > 0 ? dimensions.join(" x ") : "-";
               })()}
             </p>

@@ -1,18 +1,29 @@
-"use client"
+"use client";
 
-import React, { useEffect, useActionState } from "react";
+import React, { useState, useEffect, useActionState } from "react";
 
-import Input from "@modules/common/components/input"
+import Input from "@modules/common/components/input";
 
-import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
-import { updateCustomer } from "@lib/data/customer"
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+import { updateCustomer } from "@lib/data/customer";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
 }
 
 const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+  
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+  
   const [successState, setSuccessState] = React.useState(false)
 
   const updateCustomerPhone = async (
@@ -47,7 +58,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <form action={formAction} className="w-full">
       <AccountInfo
-        label="Telefonnummer"
+        label={t.login_shop.phone}
         currentInfo={`${customer.phone}`}
         isSuccess={successState}
         isError={!!state.error}
@@ -57,7 +68,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="grid grid-cols-1 gap-y-2">
           <Input
-            label="Telefonnummer"
+            label={t.login_shop.phone}
             name="phone"
             type="phone"
             autoComplete="phone"
@@ -71,4 +82,4 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   )
 }
 
-export default ProfileEmail
+export default ProfileEmail;
