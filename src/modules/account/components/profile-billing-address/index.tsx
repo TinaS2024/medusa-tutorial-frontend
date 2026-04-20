@@ -1,13 +1,16 @@
-"use client"
+"use client";
 
-import React, { useEffect, useMemo, useActionState } from "react"
+import React, { useState, useEffect, useMemo, useActionState } from "react";
 
-import Input from "@modules/common/components/input"
-import NativeSelect from "@modules/common/components/native-select"
+import Input from "@modules/common/components/input";
+import NativeSelect from "@modules/common/components/native-select";
 
-import AccountInfo from "../account-info"
-import { HttpTypes } from "@medusajs/types"
-import { addCustomerAddress, updateCustomerAddress } from "@lib/data/customer"
+import AccountInfo from "../account-info";
+import { HttpTypes } from "@medusajs/types";
+import { addCustomerAddress, updateCustomerAddress } from "@lib/data/customer";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
@@ -18,6 +21,13 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
   customer,
   regions,
 }) => {
+  const [lang, setLang] = useState<Lang>("de");
+    const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+
   const regionOptions = useMemo(() => {
     return (
       regions
@@ -63,7 +73,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
 
   const currentInfo = useMemo(() => {
     if (!billingAddress) {
-      return "Keine Rechnungsadresse"
+      return t.shipping.no_billing_adress;
     }
 
     const country =
@@ -103,14 +113,14 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
         <div className="grid grid-cols-1 gap-y-2">
           <div className="grid grid-cols-2 gap-x-2">
             <Input
-              label="Vorname"
+              label={t.login_shop.first_name}
               name="first_name"
               defaultValue={billingAddress?.first_name || undefined}
               required
               data-testid="billing-first-name-input"
             />
             <Input
-              label="Nachname"
+              label={t.login_shop.last_name}
               name="last_name"
               defaultValue={billingAddress?.last_name || undefined}
               required
@@ -118,34 +128,34 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
             />
           </div>
           <Input
-            label="Firma / Organisation"
+            label={t.shipping.company}
             name="company"
             defaultValue={billingAddress?.company || undefined}
             data-testid="billing-company-input"
           />
           <Input
-            label="Adresse"
+            label={t.shipping.address}
             name="address_1"
             defaultValue={billingAddress?.address_1 || undefined}
             required
             data-testid="billing-address-1-input"
           />
           <Input
-            label="Apartment, Suite usw."
+            label={t.shipping.apartment}
             name="address_2"
             defaultValue={billingAddress?.address_2 || undefined}
             data-testid="billing-address-2-input"
           />
           <div className="grid grid-cols-[144px_1fr] gap-x-2">
             <Input
-              label="Postleitzahl"
+              label={t.shipping.postal_code}
               name="postal_code"
               defaultValue={billingAddress?.postal_code || undefined}
               required
               data-testid="billing-postcal-code-input"
             />
             <Input
-              label="Stadt"
+              label={t.shipping.city}
               name="city"
               defaultValue={billingAddress?.city || undefined}
               required
@@ -153,7 +163,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
             />
           </div>
           <Input
-            label="Bundesstaat / Bundesland"
+            label={t.shipping.province}
             name="province"
             defaultValue={billingAddress?.province || undefined}
             data-testid="billing-province-input"
@@ -179,4 +189,4 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
   )
 }
 
-export default ProfileBillingAddress
+export default ProfileBillingAddress;

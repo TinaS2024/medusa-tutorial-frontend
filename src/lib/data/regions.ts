@@ -1,9 +1,9 @@
-"use server"
+"use server";
 
-import { sdk } from "@lib/config"
-import medusaError from "@lib/util/medusa-error"
-import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
+import { sdk } from "@lib/config";
+import medusaError from "@lib/util/medusa-error";
+import { HttpTypes } from "@medusajs/types";
+import { getCacheOptions } from "./cookies";
 
 export const listRegions = async () => {
   const next = {
@@ -35,12 +35,13 @@ export const retrieveRegion = async (id: string) => {
     .catch(medusaError)
 }
 
-const regionMap = new Map<string, HttpTypes.StoreRegion>()
+const regionMap = new Map<string, HttpTypes.StoreRegion>();
 
 export const getRegion = async (countryCode: string) => {
   try {
-    if (regionMap.has(countryCode)) {
-      return regionMap.get(countryCode)
+    const normalizedCode = countryCode?.toLocaleLowerCase() ?? "";
+    if (regionMap.has(normalizedCode)) {
+      return regionMap.get(normalizedCode);
     }
 
     const regions = await listRegions()
@@ -51,16 +52,20 @@ export const getRegion = async (countryCode: string) => {
 
     regions.forEach((region) => {
       region.countries?.forEach((c) => {
-        regionMap.set(c?.iso_2 ?? "", region)
+        const code = (c?.iso_2 ?? "").toLowerCase();
+        if (code)
+        { 
+          regionMap.set(code, region);
+        }
+       
       })
     })
 
-    const region = countryCode
-      ? regionMap.get(countryCode)
-      : regionMap.get("us")
+    const region = normalizedCode ? regionMap.get(normalizedCode) : regionMap.get("us");
 
-    return region
-  } catch (e: any) {
-    return null
+    return region;
+  } catch (e: any) 
+  {
+    return null;
   }
 }

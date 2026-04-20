@@ -1,6 +1,18 @@
 {
   "shop_name":"Shop Name",
   "choose_near_shop":"Choisissez une boutique dans votre zone",
+   "menu": {
+    "home":"Accueil",
+    "store":"Boutique",
+    "account":"Compte",
+    "cart":"Panier"
+  },
+   "countries": {
+    "DE": "Allemagne",
+    "EN": "Grande-Bretagne",
+    "FR": "France",
+    "NL": "Pays-Bas"
+  },
   "login_shop":
   {
     "welcome":"Content de te revoir",
@@ -178,6 +190,7 @@
       "choose_adress":"Choisissez une adresse",
       "shipping_adress":"Adresse d'expédition",
       "billing_adress":"Adresse de facturation",
+      "no_billing_adress":"Aucune adresse de facturation disponible",
       "ident_ship_bill_adress":"Les adresses d'expédition et de facturation sont identiques",
       "company": "Entreprise",
       "apartment":"Appartement",

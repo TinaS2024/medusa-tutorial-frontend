@@ -1,23 +1,56 @@
-"use client"
+"use client";
+import { useState, useEffect } from "react";
 
-import { Popover, PopoverPanel, Transition } from "@headlessui/react"
-import { ArrowRightMini, XMark } from "@medusajs/icons"
-import { Text, clx, useToggleState } from "@medusajs/ui"
-import { Fragment } from "react"
+import { Popover, PopoverPanel, Transition } from "@headlessui/react";
+import { ArrowRightMini, XMark } from "@medusajs/icons";
+import { Text, clx, useToggleState } from "@medusajs/ui";
+import { Fragment } from "react";
 
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import CountrySelect from "../country-select"
-import { HttpTypes } from "@medusajs/types"
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import CountrySelect from "../country-select";
+import { HttpTypes } from "@medusajs/types";
 
-const SideMenuItems = {
-  Home: "/",
-  Shop: "/store",
-  Konto: "/account",
-  Warenkorb: "/cart",
-}
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
+type SideMenuItem = {
+  key: string;
+  href: string;
+  label: string;
+};
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
-  const toggleState = useToggleState()
+  const toggleState = useToggleState();
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const items: SideMenuItem[] = [
+    {
+      key: "home",
+      href: "/",
+      label: t.menu?.home ?? "Home",
+    },
+    {
+      key: "shop",
+      href: "/store",
+      label: t.menu.store ?? "Shop",
+    },
+    {
+      key: "account",
+      href: "/account",
+      label: t.menu.account,
+    },
+    {
+      key: "cart",
+      href: "/cart",
+      label: t.menu.cart,
+    },
+  ];
 
   return (
     <div className="h-full">
@@ -55,16 +88,16 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                       </button>
                     </div>
                     <ul className="flex flex-col gap-6 items-start justify-start">
-                      {Object.entries(SideMenuItems).map(([name, href]) => {
+                      {items.map((item) => {
                         return (
-                          <li key={name}>
+                          <li key={item.key}>
                             <LocalizedClientLink
-                              href={href}
+                              href={item.href}
                               className="text-3xl leading-10 hover:text-ui-fg-disabled"
                               onClick={close}
-                              data-testid={`${name.toLowerCase()}-link`}
+                              data-testid={`${item.key}-link`}
                             >
-                              {name}
+                              {item.label}
                             </LocalizedClientLink>
                           </li>
                         )

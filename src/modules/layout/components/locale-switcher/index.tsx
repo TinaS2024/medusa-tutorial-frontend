@@ -10,6 +10,13 @@ const SUPPORTED_LOCALES = [
   { code: "nl-NL", label: "NL" },
 ]
 
+const LOCALE_TO_COUNTRY: Record<string, string> = {
+  "de-DE": "de",
+  "en-GB": "gb",  
+  "fr-FR": "fr",
+  "nl-NL": "nl",
+};
+
 const STORAGE_KEY = "ui_locale";
 
 export default function LocaleSwitcher()
@@ -31,9 +38,25 @@ export default function LocaleSwitcher()
     {
       window.localStorage.setItem(STORAGE_KEY, code);
       document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}`;
+
+      const countryCode = LOCALE_TO_COUNTRY[code];
+    if (countryCode) {
+      const path = window.location.pathname;
+      const parts = path.split("/");
+
+      if (parts.length > 1) 
+      {
+        parts[1] = countryCode;
+        const newPath = parts.join("/");
+        window.location.href = newPath; 
+      } else {
+        window.location.reload();
+      }
+    } else {
       window.location.reload();
     }
   }
+    }
 
    const selected = SUPPORTED_LOCALES.find((loc) => loc.code === current) ?? SUPPORTED_LOCALES[0];
 

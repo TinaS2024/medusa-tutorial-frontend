@@ -1,6 +1,18 @@
 {
   "shop_name":"Shop Name",
   "choose_near_shop":"Kies een shop in uw buurt",
+   "menu": {
+    "home":"Startpagina",
+    "store":"Winkel",
+    "account":"Account",
+    "cart":"Winkelwagen"
+  },
+   "countries": {
+    "DE": "Duitsland",
+    "EN": "Groot-Brittannië",
+    "FR": "Frankrijk",
+    "NL": "Nederland"
+  },
   "login_shop":
   {
     "welcome":"Welkom terug",
@@ -176,6 +188,7 @@
       "choose_adress":"Kies een adres",
       "shipping_adress":"Verzendingadres",
       "billing_adress":"Factuuradres",
+      "no_billing_adress":"Geen factuuradres beschikbaar",
       "ident_ship_bill_adress":"Verzendingadres en factuuradres zijn identiek",
       "company": "Bedrijf",
       "apartment":"Appartement",

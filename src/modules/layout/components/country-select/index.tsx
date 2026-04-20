@@ -1,19 +1,16 @@
-"use client"
+"use client";
 
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions,
-  Transition,
-} from "@headlessui/react"
-import { Fragment, useEffect, useMemo, useState } from "react"
-import ReactCountryFlag from "react-country-flag"
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from "@headlessui/react";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import ReactCountryFlag from "react-country-flag";
 
-import { StateType } from "@lib/hooks/use-toggle-state"
-import { useParams, usePathname } from "next/navigation"
-import { updateRegion } from "@lib/data/cart"
-import { HttpTypes } from "@medusajs/types"
+import { StateType } from "@lib/hooks/use-toggle-state";
+import { useParams, usePathname } from "next/navigation";
+import { updateRegion } from "@lib/data/cart";
+import { HttpTypes } from "@medusajs/types";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 type CountryOption = {
   country: string
@@ -27,10 +24,14 @@ type CountrySelectProps = {
 }
 
 const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
-  const [current, setCurrent] = useState<
-    | { country: string | undefined; region: string; label: string | undefined }
-    | undefined
-  >(undefined)
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const [current, setCurrent] = useState<CountryOption | undefined>(undefined);
 
   const { countryCode } = useParams()
   const currentPath = usePathname().split(`/${countryCode}`)[1]
@@ -38,28 +39,31 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
   const { state, close } = toggleState
 
   const options = useMemo(() => {
-    return regions
-      ?.map((r) => {
-        return r.countries?.map((c) => ({
-          country: c.iso_2,
-          region: r.id,
-          label: c.display_name,
-        }))
-      })
-      .flat()
-      .sort((a, b) => (a?.label ?? "").localeCompare(b?.label ?? ""))
+      return (
+      regions
+        ?.flatMap((r) =>
+          (r.countries ?? [])
+            .filter((c) => c.iso_2 && c.display_name)
+            .map((c) => ({
+              country: c.iso_2 as string,
+              region: r.id,
+              label: c.display_name as string,
+            }))
+        ) ?? []
+    ).sort((a, b) => a.label.localeCompare(b.label))
   }, [regions])
+
 
   useEffect(() => {
     if (countryCode) {
-      const option = options?.find((o) => o?.country === countryCode)
-      setCurrent(option)
+      const option = options?.find((o) => o?.country === countryCode);
+      setCurrent(option);
     }
   }, [options, countryCode])
 
   const handleChange = (option: CountryOption) => {
     updateRegion(option.country, currentPath)
-    close()
+    close();
   }
 
   return (
@@ -68,10 +72,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
         as="span"
         onChange={handleChange}
         defaultValue={
-          countryCode
-            ? options?.find((o) => o?.country === countryCode)
-            : undefined
-        }
+          countryCode ? options?.find((o) => o?.country === countryCode) : undefined}
       >
         <ListboxButton className="py-1 w-full">
           <div className="txt-compact-small flex items-start gap-x-2">
@@ -132,4 +133,4 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
   )
 }
 
-export default CountrySelect
+export default CountrySelect;

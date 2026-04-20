@@ -1,6 +1,18 @@
 {
   "shop_name":"Shop Name",
   "choose_near_shop":"Wählen Sie eine Filiale in Ihrer Nähe.",
+  "menu": {
+    "home":"Home",
+    "store":"Shop",
+    "account":"Konto",
+    "cart":"Warenkorb"
+  },
+  "countries": {
+    "DE": "Deutschland",
+    "EN": "Groß-Britannien",
+    "FR": "Frankreich",
+    "NL": "Niederlande"
+  },
   "login_shop":
   {
     "welcome":"Willkommen zurück",
@@ -178,6 +190,7 @@
       "choose_adress":"Wählen Sie eine Adresse",
       "shipping_adress":"Versandadresse",
       "billing_adress":"Rechnungsadresse",
+      "no_billing_adress":"Keine Rechnungsadresse",
       "ident_ship_bill_adress":"Versandadresse und Rechnungsadresse sind identisch",
       "company": "Firma",
       "apartment":"Etage",

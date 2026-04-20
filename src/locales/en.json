@@ -1,6 +1,18 @@
 {
   "shop_name":"Shop Name",
   "choose_near_shop":"Choose a shop in your area",
+   "menu": {
+    "home":"Home",
+    "store":"Shop",
+    "account":"Account",
+    "cart":"Shopping cart"
+  }, 
+  "countries": {
+    "DE": "Germany",
+    "EN": "England",
+    "FR": "France",
+    "NL": "Netherlands"
+  },
   "login_shop":
   {
     "welcome":"Welcome back",
@@ -177,6 +189,7 @@
       "choose_adress":"Choose an address",
       "shipping_adress":"Shipping address",
       "billing_adress":"Billing address",
+      "no_billing_adress": "No billing address",
       "ident_ship_bill_adress":"Shipping address and billing address are identical",
       "company": "Company",
       "apartment":"Apartment",
