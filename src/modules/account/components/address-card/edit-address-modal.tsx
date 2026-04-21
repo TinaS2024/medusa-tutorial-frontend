@@ -35,9 +35,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
     setLang(getClientLanguage());
   }, []);
 
-  const [removing, setRemoving] = useState(false)
-  const [successState, setSuccessState] = useState(false)
-  const { state, open, close: closeModal } = useToggleState(false)
+  const [removing, setRemoving] = useState(false);
+  const [successState, setSuccessState] = useState(false);
+  const { state, open, close: closeModal } = useToggleState(false);
 
   const [formState, formAction] = useActionState(updateCustomerAddress, {
     success: false,
