@@ -36,6 +36,7 @@
     "account_agreements":"Beim Erstellen eines neuen Kontos, müssen Sie unseren Geschäftsbedingungen und Nutzungsbedingungen zustimmen.",
     "terms":"Geschäftsbedingungen",
     "conditions":"Nutzungsbedingungen",
+    "term_button":"Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie unsere Nutzungsbedingungen, Verkaufsbedingungen und Rückgaberichtlinien gelesen, verstanden und akzeptiert haben und bestätigen, dass Sie die Datenschutzrichtlinien unseres Online-Shops gelesen haben.",
     "now_register":"Jetzt registrieren",
     "have_account":"Haben Sie schon ein Konto?"
   },
@@ -63,8 +64,27 @@
     "order_transfer_title":"Auftragsübertragungen",
     "order_transfer_info":"Sie finden die gesuchte Bestellung nicht? Verknüpfen Sie eine Bestellung mit Ihrem Konto.",
     "apply_for_transfer":"Übertragung beantragen",
+    "orderrequest_for":"Überweisungsantrag für Bestellung",
+    "apply_request_1":"Sie haben eine Anfrage zur Übertragung der Inhaberschaft Ihrer Bestellung",
+    "apply_request_2":"erhalten",
+    "apply_request_3":"Wenn Sie dieser Anfrage zustimmen, können Sie die Übertragung durch Klicken auf die Schaltfläche unten bestätigen.",
+    "agree_request":"Wenn Sie zustimmen, übernimmt der neue Eigentümer alle Verantwortlichkeiten und Berechtigungen, die mit dieser Bestellung verbunden sind.",
+    "dont_agree_request":"Wenn Sie diese Anfrage nicht anerkennen oder das Eigentum behalten möchten, sind keine weiteren Maßnahmen erforderlich.",
+    "order_transfer_rejected":"Auftragsübertragung abgelehnt!",
+    "rejected_success_0":"Auftragsübertragung erfolgreich abgelehnt!",
+    "rejected_success_1":"Die Übertragung der Bestellung",
+    "rejected_success_2":"wurde erfolgreich abgelehnt.!",
+    "rejected_error":"Bei der Ablehnung der Überweisung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "success_error":"Bei der Annahme der Überweisung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "accept_transfer":"Akzeptieren Sie die Übertragung",
+    "transfer_rejected":"Übertragung ablehnen",
+    "order_transfer_success":"Bestellung erfolgreich übertragen!",
+    "order_transfer_account_1":"Bestellung",
+    "order_transfer_account_2":"wurde erfolgreich an den neuen Kontoinhaber übertragen.",
     "delivery_adresses":"Lieferadressen",
-    "delivery_info":"Sie können Ihre Lieferadressen einsehen und aktualisieren; Sie können beliebig viele hinzufügen. Gespeicherte Adressen stehen Ihnen beim Bezahlvorgang zur Verfügung."
+    "delivery_info":"Sie können Ihre Lieferadressen einsehen und aktualisieren; Sie können beliebig viele hinzufügen. Gespeicherte Adressen stehen Ihnen beim Bezahlvorgang zur Verfügung.",
+    "how_want_order":"Wie möchten Sie Ihre Bestellung geliefert bekommen?",
+    "pick_order":"Holen Sie Ihre Bestellung ab"
   },
   "nav": {
     "menu": "Menü",
@@ -107,19 +127,26 @@
     "next_step":"Weiterer Schritt wird angezeigt",
     "thank_you":"Vielen Dank für ihren Einkauf!",
     "order_success":"Ihre Bestellung wurde erfolgreich aufgegeben."
-
   },
   "order":
   {
     "title":"Bestellung",
     "order_info":"Bestellinformation",
-    "place_order":"Bestellung aufgeben"
+    "place_order":"Bestellung aufgeben",
+    "order_date":"Bestelldatum",
+    "order_number":"Bestellnummer",
+    "send_order_details_1":"Wir haben die Bestellbestätigungsdetails an",
+    "send_order_details_2":"gesendet",
+    "order_status":"Bestellstatus",
+    "payment_status":"Bezahlstatus"
   },
   "categories":"Katgeories",
   "product": {
       "all_products":"Alle Produkte",
       "product":"Produkte",
       "view_products":"Produkte ansehen",
+      "similar_products":"Ähnliche Produkte",
+      "interest_similar_products":"Vielleicht interessieren Sie sich auch für diese Produkte.",
       "info": "Produkt Information",
       "article":"Artikel",
       "quantity":"Anzahl",
@@ -152,11 +179,17 @@
       "pen_color":"Stiftfarbe",
       "design":"Design",
       "choose":"Wähle",
-      "out":"aus"
+      "out":"aus",
+      "choose_options":"Wähle Optionen aus!"
+    },
+    "product_variant":
+    {
+      "select_variant":"Wähle die Variante aus",
+      "out_of_stock":"Ausverkauft"
     },
     "sort_product":
     {
-      "sort_by":"Sortien nach",
+      "sort_by":"Sortieren nach",
       "newest":"Neu im Sortiment",
       "price_highest":"Preis: Niederig -> Hoch",
       "price_lowest":"Preis: Hoch -> Niederig"
@@ -214,6 +247,10 @@
       "province": "Bundesland",
       "country":"Land"
     },
+    "customer":
+    {
+      "reviews":"Kundenbewertung"
+    },
     "function":{
         "edit":"Bearbeiten",
         "delete":"Löschen",
@@ -228,6 +265,7 @@
       {
         "page_not_found":"Seite wurde nicht gefunden",
         "back_to_home":"Zurück zur Startseite",
-        "no_cart":"Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut."
+        "no_cart":"Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut.",
+        "error_info":"Fehlermeldung"
       }
 }

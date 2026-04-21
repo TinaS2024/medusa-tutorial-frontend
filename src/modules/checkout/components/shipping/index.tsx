@@ -212,7 +212,7 @@ const Shipping: React.FC<ShippingProps> = ({
                 {t.shipping.shipping_method}
               </span>
               <span className="mb-4 text-ui-fg-muted txt-medium">
-                Wie möchten Sie Ihre Bestellung geliefert bekommen?
+                {t.profile.how_want_order}
               </span>
             </div>
             <div data-testid="delivery-options-container">
@@ -246,7 +246,7 @@ const Shipping: React.FC<ShippingProps> = ({
                           checked={showPickupOptions === PICKUP_OPTION_ON}
                         />
                         <span className="text-base-regular">
-                          Pick up your order
+                          {t.profile.pick_order}
                         </span>
                       </div>
                       <span className="justify-self-end text-ui-fg-base">
@@ -318,7 +318,7 @@ const Shipping: React.FC<ShippingProps> = ({
             <div className="grid">
               <div className="flex flex-col">
                 <span className="font-medium txt-medium text-ui-fg-base">
-                  Shop
+                  {t.menu.store}
                 </span>
                 <span className="mb-4 text-ui-fg-muted txt-medium">
                   {t.choose_near_shop}

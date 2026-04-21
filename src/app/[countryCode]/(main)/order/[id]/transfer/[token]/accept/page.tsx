@@ -2,11 +2,17 @@ import { acceptTransferRequest } from "@lib/data/orders";
 import { Heading, Text } from "@medusajs/ui";
 import TransferImage from "@modules/order/components/transfer-image";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 export default async function TransferPage({
   params,
 }: {
   params: { id: string; token: string }
 }) {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const { id, token } = params;
 
   const { success, error } = await acceptTransferRequest(id, token);
@@ -18,20 +24,20 @@ export default async function TransferPage({
         {success && (
           <>
             <Heading level="h1" className="text-xl text-zinc-900">
-              Bestellung übertragen!
+              {t.profile.order_transfer_success}
             </Heading>
             <Text className="text-zinc-600">
-              Bestellung {id} wurde erfolgreich an den neuen Kontoinhaber übertragen.
+              {t.profile.order_transfer_account_1} {id} {t.profile.order_transfer_account_2}
             </Text>
           </>
         )}
         {!success && (
           <>
             <Text className="text-zinc-600">
-              Bei der Annahme der Überweisung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
+              {t.profile.success_error}
             </Text>
             {error && (
-              <Text className="text-red-500">Fehlermeldung: {error}</Text>
+              <Text className="text-red-500">{t.error.error_info}: {error}</Text>
             )}
           </>
         )}

@@ -36,6 +36,7 @@
     "account_agreements":"Lors de la création d'un nouveau compte, vous devez accepter nos conditions générales et nos conditions d'utilisation..",
     "terms":"Termes",
     "conditions":"Conditions",
+    "term_button":"En cliquant sur le bouton « Passer la commande », vous confirmez avoir lu, compris et accepté nos conditions d’utilisation, nos conditions de vente et notre politique de retour, et avoir pris connaissance de la politique de confidentialité de notre boutique en ligne.",
     "now_register":"Inscription maintenant",
     "have_account":"Vous avez déjà compte?"
   },
@@ -63,8 +64,27 @@
     "order_transfer_title":"Transfers de commande",
     "order_transfer_info":"Can't find the order? Lien la commande à votre compte.",
     "apply_for_transfer":"Apply for transferment",
+    "orderrequest_for":"Demande de transfert de commande",
+    "apply_request_1":"Vous avez reçu une demande de transfert de propriété de votre commande",
+    "apply_request_2":"",
+    "apply_request_3":"Si vous acceptez cette demande, vous pouvez confirmer le virement en cliquant sur le bouton ci-dessous.",
+    "agree_request":"Si vous êtes d'accord, le nouveau propriétaire assumera toutes les responsabilités et tous les droits liés à cette commande.",
+    "dont_agree_request":"Si vous n'acceptez pas cette demande ou si vous souhaitez conserver la propriété, aucune autre action n'est requise.",
+    "order_transfer_rejected":"Transfert de commande rejeté!",
+    "rejected_success_0":"Transfert de commande rejeté!",
+    "rejected_success_1":"Le transfert de l'ordre",
+    "rejected_success_2":"a été rejeté avec succès!",
+    "rejected_error":"Une erreur est survenue lors de la rejet de la commande. Veuillez réessayer plus tard.",
+    "success_error":"Une erreur est survenue lors de l'acceptation du transfert. Veuillez réessayer plus tard.",
+    "accept_transfer":"Accept the transfer",
+    "transfer_rejected":"Reject the transfer",
+    "order_transfer_success":"Order transfer accepted!",
+    "order_transfer_account_1":"La commande",
+    "order_transfer_account_2":"a été transférée avec succès au nouveau titulaire du compte..",
     "delivery_adresses":"Adresses de livraison",
-    "delivery_info":"Vous pouvez consulter et modifier vos adresses de livraison ; vous pouvez en ajouter autant que vous le souhaitez. Les adresses enregistrées seront disponibles lors du paiement."
+    "delivery_info":"Vous pouvez consulter et modifier vos adresses de livraison ; vous pouvez en ajouter autant que vous le souhaitez. Les adresses enregistrées seront disponibles lors du paiement.",
+    "how_want_order":"Comment souhaitez-vous que votre commande soit livrée?",
+    "pick_order":"Vous pouvez récupérer votre commande en stock"
   },
 
   "nav": {
@@ -113,13 +133,21 @@
   {
     "title":"Commande",
     "order_info":"Informations sur la commande",
-    "place_order":"Passer une commanden"
+    "place_order":"Passer une commanden",
+    "order_date":"Date de commande",
+    "order_number":"Num de commande",
+    "send_order_details_1":"Nous avons envoyé les détails de la confirmation de commande à",
+    "send_order_details_2":"",
+    "order_status":"Statut de la commande",
+    "payment_status":"Statut du paiement"
   },
   "categories":"Catégories",
   "product": {
       "all_products":"Tous les produits",
       "product":"Produit",
       "view_products":"Vue produits",
+      "similar_products":"Produits similaires",
+      "interest_similar_products":"Ces produits pourraient également vous intéresser.",
       "info": "Informations sur le produit",
       "article":"Article",
       "quantity":"Quantité",
@@ -152,7 +180,13 @@
       "pen_color":"Couleur de crayon",
       "design":"Conception",
       "choose":"Choisissez un",
-      "out":""
+      "out":"",
+      "choose_options":"Choisissez les options!"
+    },
+    "product_variant":
+    {
+      "select_variant":"Choisissez une variante",
+      "out_of_stock":"Epuisé"
     },
      "sort_product":
     {
@@ -214,6 +248,10 @@
       "province": "Province",
       "country":"Pays"
     },
+    "customer":
+    {
+      "reviews":"Avis des clients"
+    },
      "function":{
         "edit":"Éditer",
         "delete":"Supprimer",
@@ -228,6 +266,7 @@
       {
         "page_not_found":"Page non trouvée",
         "back_to_home":"Retourner à la page d'accueil",
-        "no_cart":"Le panier auquel vous avez tenté d'accéder est introuvable. Veuillez effacer vos cookies et réessayer."
+        "no_cart":"Le panier auquel vous avez tenté d'accéder est introuvable. Veuillez effacer vos cookies et réessayer.",
+        "error_info":"Message d'erreur"
       }
 }

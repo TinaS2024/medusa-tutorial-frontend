@@ -36,6 +36,7 @@
     "account_agreements":"Bij het aanmaken van een nieuw account moet u akkoord gaan met onze algemene voorwaarden en gebruiksvoorwaarden.",
     "terms":"Algemene voorwaarden",
     "conditions":"Gebruiksvoorwaarden",
+    "term_button":"Door op de knop `Bestelling plaatsen` te klikken, bevestigt u dat u onze gebruiksvoorwaarden, verkoopvoorwaarden en retourbeleid hebt gelezen, begrepen en geaccepteerd, en dat u het privacybeleid van onze webwinkel hebt gelezen.",
     "now_register":"Registratie nu",
     "have_account":"U heeft al account?"
   },
@@ -63,8 +64,27 @@
     "order_transfer_title":"overdrachten van bestellingen",
     "order_transfer_info":"Kunt u de bestelling die u zoekt niet vinden? Koppel een bestelling aan uw account.",
     "apply_for_transfer":"Overschrijving aanvragen",
+    "orderrequest_for":"Overboekingsverzoek voor bestelling",
+    "apply_request_1":"U heeft een verzoek ontvangen om het eigendom van uw",
+    "apply_request_2":"over te dragen",
+    "apply_request_3":"Als u akkoord gaat met dit verzoek, kunt u de overdracht bevestigen door op de onderstaande knop te klikken.",
+    "agree_request":"Als u hiermee akkoord gaat, neemt de nieuwe eigenaar alle verantwoordelijkheden en rechten met betrekking tot deze bestelling over.",
+    "dont_agree_request":"Als u dit verzoek niet accepteert of het eigendom wilt behouden, hoeft u verder niets te doen.",
+    "order_transfer_rejected":"Orderoverdracht afgewezen!",
+    "rejected_success_0":"Orderoverdracht afgewezen!",
+    "rejected_success_1":"De overdracht van de bestelling",
+    "rejected_success_2":"is afgewezen!",
+    "rejected_error":"Er is een fout opgetreden tijd het afgewezen van de bestelling. Probeer het later op.",
+    "success_error":"Er is een fout opgetreden bij het accepteren van de overdracht. Probeer het later op.",
+    "accept_transfer":"Accept the transfer",
+    "transfer_rejected":"Reject the transfer",
+    "order_transfer_success":"Order transfer accepted!",
+    "order_transfer_account_1":"De bestelling",
+    "order_transfer_account_2":"is succesvol overgedragen aan de nieuwe rekeninghouder.",
     "delivery_adresses":"Afleveradressen",
-    "delivery_info":"U kunt uw bezorgadressen bekijken en bijwerken; u kunt er zoveel toevoegen als u wilt. Opgeslagen adressen zijn beschikbaar tijdens het afrekenproces."
+    "delivery_info":"U kunt uw bezorgadressen bekijken en bijwerken; u kunt er zoveel toevoegen als u wilt. Opgeslagen adressen zijn beschikbaar tijdens het afrekenproces.",
+    "how_want_order":"Hoe wilt u uw bestelling bevestigd?",
+    "pick_order":"U kunt uw bestelling abvragen"
   },
   "nav": {
     "menu": "Menu",
@@ -111,13 +131,21 @@
   {
     "title":"Volgorde",
     "order_info":"Bestelinformatie",
-    "place_order":"Plaats een bestelling"
+    "place_order":"Plaats een bestelling",
+    "order_date":"Date de commande",
+    "order_number":"Num de commande",
+    "send_order_details_1":"We hebben de orderbevestigingsgegevens naar",
+    "send_order_details_2":"verzonden",
+    "order_status":"Bestellstatus",
+    "payment_status":"Bezahlstatus"
   },
   "categories":"Categorieën",
   "product": {
       "all_products":"Alle producten",
       "product":"Product",
       "view_products":"Vue producten",
+      "similar_products":"Ahnelijke producten",
+      "interest_similar_products":"Deze producten kunnen ook interest voorkomen.",
       "info": "Productinformatie",
       "article":"Artikel",
       "quantity":"Menigte",
@@ -150,7 +178,13 @@
       "pen_color":"Stiftkleur",
       "design":"ontwerp",
       "choose":"Kies een",
-      "out":"uit"
+      "out":"uit",
+      "choose_options":"Kies de opties!"
+    },
+    "product_variant":
+    {
+      "select_variant":"Kies een variante",
+      "out_of_stock":"Epuise"
     },
      "sort_product":
     {
@@ -212,6 +246,10 @@
       "province": "Provincie",
       "country":"Land"
     },
+    "customer":
+    {
+      "reviews":"Klantbeweringen"
+    },
     "function":{
         "edit":"Bewerking",
         "delete":"Verwijderen",
@@ -226,6 +264,7 @@
       {
         "page_not_found":"Pagina niet gevonden",
         "back_to_home":"Terug naar de startpagina",
-        "no_cart":"Het winkelmandje dat u probeerde te openen bestaat niet. Wis uw cookies en probeer het opnieuw."
+        "no_cart":"Het winkelmandje dat u probeerde te openen bestaat niet. Wis uw cookies en probeer het opnieuw.",
+        "error_info":"Foutmelding"
       }
 }

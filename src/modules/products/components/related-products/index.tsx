@@ -1,7 +1,10 @@
-import { listProducts } from "@lib/data/products"
-import { getRegion } from "@lib/data/regions"
-import { HttpTypes } from "@medusajs/types"
-import Product from "../product-preview"
+import { listProducts } from "@lib/data/products";
+import { getRegion } from "@lib/data/regions";
+import { HttpTypes } from "@medusajs/types";
+import Product from "../product-preview";
+
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
 
 type RelatedProductsProps = {
   product: HttpTypes.StoreProduct
@@ -11,22 +14,36 @@ type RelatedProductsProps = {
 export default async function RelatedProducts({
   product,
   countryCode,
-}: RelatedProductsProps) {
-  const region = await getRegion(countryCode)
+}: RelatedProductsProps) 
+{
 
-  if (!region) {
-    return null
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+  
+
+  const region = await getRegion(countryCode);
+
+  if (!region) 
+  {
+    return null;
   }
 
   // edit this function to define your related products logic
-  const queryParams: HttpTypes.StoreProductParams = {}
+  const queryParams: HttpTypes.StoreProductParams & {
+    collection_id?: string[];
+    tag_id?: string[];
+    is_giftcard?: boolean;
+  }= {};
+  
   if (region?.id) {
     queryParams.region_id = region.id
   }
-  if (product.collection_id) {
-    queryParams.collection_id = [product.collection_id]
+  if (product.collection_id) 
+  {
+    queryParams.collection_id = [product.collection_id];
   }
-  if (product.tags) {
+  if (product.tags) 
+  {
     queryParams.tag_id = product.tags
       .map((t) => t.id)
       .filter(Boolean) as string[]
@@ -50,10 +67,10 @@ export default async function RelatedProducts({
     <div className="product-page-constraint">
       <div className="flex flex-col items-center text-center mb-16">
         <span className="text-base-regular text-gray-600 mb-6">
-          Ähnliche Produkte
+          {t.product.similar_products}
         </span>
         <p className="text-2xl-regular text-ui-fg-base max-w-lg">
-        Vielleicht interessieren Sie sich auch für diese Produkte.
+        {t.product.interest_similar_products}
         </p>
       </div>
 

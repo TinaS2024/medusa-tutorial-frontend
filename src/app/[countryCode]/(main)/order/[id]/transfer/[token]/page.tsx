@@ -2,11 +2,17 @@ import { Heading, Text } from "@medusajs/ui";
 import TransferActions from "@modules/order/components/transfer-actions";
 import TransferImage from "@modules/order/components/transfer-image";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 export default async function TransferPage({
   params,
 }: {
   params: { id: string; token: string }
 }) {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+    
   const { id, token } = params;
 
   return (
@@ -14,18 +20,18 @@ export default async function TransferPage({
       <TransferImage />
       <div className="flex flex-col gap-y-6">
         <Heading level="h1" className="text-xl text-zinc-900">
-          Überweisungsantrag für Bestellung {id}
+          {t.profile.orderrequest_for} {id}
         </Heading>
         <Text className="text-zinc-600">
-          Sie haben eine Anfrage zur Übertragung der Inhaberschaft Ihrer Bestellung ({id}) erhalten.
-          Wenn Sie dieser Anfrage zustimmen, können Sie die Übertragung durch Klicken auf die Schaltfläche unten bestätigen.
+          {t.profile.apply_request_1} ({id}) {t.profile.apply_request_2}.
+          {t.profile.apply_request_3}
         </Text>
         <div className="w-full h-px bg-zinc-200" />
         <Text className="text-zinc-600">
-          Wenn Sie zustimmen, übernimmt der neue Eigentümer alle Verantwortlichkeiten und Berechtigungen, die mit dieser Bestellung verbunden sind.
+          {t.profile.agree_request}
         </Text>
         <Text className="text-zinc-600">
-          Wenn Sie diese Anfrage nicht anerkennen oder das Eigentum behalten möchten, sind keine weiteren Maßnahmen erforderlich.
+          {t.profile.dont_agree_request}
         </Text>
         <div className="w-full h-px bg-zinc-200" />
         <TransferActions id={id} token={token} />

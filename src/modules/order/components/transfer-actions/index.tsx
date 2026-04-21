@@ -1,12 +1,23 @@
-"use client"
+"use client";
 
-import { acceptTransferRequest, declineTransferRequest } from "@lib/data/orders"
-import { Button, Text } from "@medusajs/ui"
-import { useState } from "react"
+import { acceptTransferRequest, declineTransferRequest } from "@lib/data/orders";
+import { Button, Text } from "@medusajs/ui";
+import { useState, useEffect } from "react";
 
-type TransferStatus = "pending" | "success" | "error"
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
+type TransferStatus = "pending" | "success" | "error";
 
 const TransferActions = ({ id, token }: { id: string; token: string }) => {
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [status, setStatus] = useState<{
     accept: TransferStatus | null
@@ -40,12 +51,12 @@ const TransferActions = ({ id, token }: { id: string; token: string }) => {
     <div className="flex flex-col gap-y-4">
       {status?.accept === "success" && (
         <Text className="text-emerald-500">
-          Bestellung erfolgreich übertragen!
+          {t.profile.order_transfer_success}
         </Text>
       )}
       {status?.decline === "success" && (
         <Text className="text-emerald-500">
-          Auftragsübertragung erfolgreich abgelehnt!
+          {t.profile.rejected_success_0}
         </Text>
       )}
       {status?.accept !== "success" && status?.decline !== "success" && (
@@ -58,7 +69,7 @@ const TransferActions = ({ id, token }: { id: string; token: string }) => {
               status?.accept === "pending" || status?.decline === "pending"
             }
           >
-            Accept transfer
+            {t.profile.accept_transfer}
           </Button>
           <Button
             size="large"
@@ -69,7 +80,7 @@ const TransferActions = ({ id, token }: { id: string; token: string }) => {
               status?.accept === "pending" || status?.decline === "pending"
             }
           >
-            Übertragung ablehnen
+            {t.profile.transfer_rejected}
           </Button>
         </div>
       )}

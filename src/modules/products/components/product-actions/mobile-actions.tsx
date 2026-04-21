@@ -1,15 +1,23 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { Button, clx } from "@medusajs/ui"
-import React, { Fragment, useMemo } from "react"
+"use client";
 
-import useToggleState from "@lib/hooks/use-toggle-state"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import X from "@modules/common/icons/x"
+import { useState, useEffect } from "react";
 
-import { getProductPrice } from "@lib/util/get-product-price"
-import OptionSelect from "./option-select"
-import { HttpTypes } from "@medusajs/types"
-import { isSimpleProduct } from "@lib/util/product"
+import { Dialog, Transition } from "@headlessui/react";
+import { Button, clx } from "@medusajs/ui";
+import React, { Fragment, useMemo } from "react";
+
+import useToggleState from "@lib/hooks/use-toggle-state";
+import ChevronDown from "@modules/common/icons/chevron-down";
+import X from "@modules/common/icons/x";
+
+import { getProductPrice } from "@lib/util/get-product-price";
+import OptionSelect from "./option-select";
+import { HttpTypes } from "@medusajs/types";
+import { isSimpleProduct } from "@lib/util/product";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
 
 type MobileActionsProps = {
   product: HttpTypes.StoreProduct
@@ -34,7 +42,16 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   show,
   optionsDisabled,
 }) => {
-  const { state, open, close } = useToggleState()
+
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+
+  const { state, open, close } = useToggleState();
 
   const price = getProductPrice({
     product: product,
@@ -111,7 +128,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Wähle Optionen aus!"}
+                      : t.product_properties.choose_options}
                   </span>
                   <ChevronDown />
                 </div>
@@ -124,10 +141,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? "Select variant"
+                  ? t.product_variant.select_variant
                   : !inStock
-                  ? "Out of stock"
-                  : "Add to cart"}
+                  ? t.product_variant.out_of_stock
+                  : t.cart.empty.add_to_cart}
               </Button>
             </div>
           </div>

@@ -1,11 +1,23 @@
-"use client"
+"use client";
 
-import { Heading, Text, clx } from "@medusajs/ui"
+import { useState, useEffect } from "react";
+import { Heading, Text, clx } from "@medusajs/ui";
 
-import PaymentButton from "../payment-button"
-import { useSearchParams } from "next/navigation"
+import PaymentButton from "../payment-button";
+import { useSearchParams } from "next/navigation";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
 const Review = ({ cart }: { cart: any }) => {
+
+   const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
+  
   const searchParams = useSearchParams()
 
   const isOpen = searchParams.get("step") === "review"
@@ -30,7 +42,7 @@ const Review = ({ cart }: { cart: any }) => {
             }
           )}
         >
-          Kundenbewertung
+          {t.customer.reviews}
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
@@ -38,9 +50,7 @@ const Review = ({ cart }: { cart: any }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-              Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie unsere Nutzungsbedingungen, Verkaufsbedingungen und
-              Rückgaberichtlinien gelesen, verstanden und akzeptiert haben und bestätigen, dass Sie die Datenschutzrichtlinien unseres Online-Shops
-              gelesen haben.
+              {t.login_shop.term_button}
               </Text>
             </div>
           </div>

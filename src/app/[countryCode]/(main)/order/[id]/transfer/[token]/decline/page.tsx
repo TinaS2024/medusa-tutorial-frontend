@@ -2,11 +2,19 @@ import { declineTransferRequest } from "@lib/data/orders";
 import { Heading, Text } from "@medusajs/ui";
 import TransferImage from "@modules/order/components/transfer-image";
 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
+
 export default async function TransferPage({
   params,
 }: {
   params: { id: string; token: string }
 }) {
+  
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
   const { id, token } = params;
 
   const { success, error } = await declineTransferRequest(id, token);
@@ -18,20 +26,20 @@ export default async function TransferPage({
         {success && (
           <>
             <Heading level="h1" className="text-xl text-zinc-900">
-              Auftragsübertragung abgelehnt!
+              {t.profile.order_transfer_rejected}
             </Heading>
             <Text className="text-zinc-600">
-              Die Übertragung der Bestellung {id} wurde erfolgreich abgelehnt.
+              {t.profile.rejected_success_1} {id} {t.profile.rejected_success_2}
             </Text>
           </>
         )}
         {!success && (
           <>
             <Text className="text-zinc-600">
-              Bei der Ablehnung der Überweisung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
+              {t.profile.rejected_error}
             </Text>
             {error && (
-              <Text className="text-red-500">Fehlermeldung: {error}</Text>
+              <Text className="text-red-500">Error: {error}</Text>
             )}
           </>
         )}

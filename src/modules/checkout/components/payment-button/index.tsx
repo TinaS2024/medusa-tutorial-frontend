@@ -153,7 +153,7 @@ const StripePaymentButton = ({
         isLoading={submitting}
         data-testid={dataTestId}
       >
-        {t.order.place_order}Bestellung aufgeben
+        {t.order.place_order}
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -196,7 +196,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         data-testid="submit-order-button"
       >
-        {t.order.place_order}Bestellung aufgeben
+        {t.order.place_order}
       </Button>
       <ErrorMessage
         error={errorMessage}

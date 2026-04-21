@@ -36,6 +36,7 @@
     "account_agreements":"When creating a new account, you must agree to our terms and conditions and terms of use..",
     "terms":"Terms",
     "conditions":"Conditions",
+    "term_button":"By clicking the `Place Order` button, you confirm that you have read, understood, and accepted our Terms of Use, Terms of Sale, and Return Policy, and that you have read our online store's Privacy Policy.",
     "now_register":"Register now",
     "have_account":"Have an account?"
   },
@@ -63,8 +64,27 @@
     "order_transfer_title":"Order transfers",
     "order_transfer_info":"Can't find the order? Link the order to your account.",
     "apply_for_transfer":"Apply for transfer",
+    "orderrequest_for":"Transfer request for order",
+    "apply_request_1":"You have received a request to transfer ownership of your order",
+    "apply_request_2":"",
+    "apply_request_3":"If you agree to this request, you can confirm the transfer by clicking the button below.",
+    "agree_request":"If you agree, the new owner will assume all responsibilities and rights associated with this order.",
+    "dont_agree_request":"If you do not accept this request or wish to retain ownership, no further action is required.",
+    "order_transfer_rejected":"Order transfer rejected!",
+    "rejected_success_0":"Order transfer rejected!",
+    "rejected_success_1":"Order transfer ",
+    "rejected_success_2":"rejected successfully",
+    "rejected_error":"An error occurred while rejecting the transfer. Please try again later.",
+    "success_error":"An error occurred while accepting the transfer. Please try again later.",
+    "accept_transfer":"Accept the transfer",
+    "transfer_rejected":"Reject the transfer",
+    "order_transfer_success":"Order transfer accepted!",
+    "order_transfer_account_1":"The order",
+    "order_transfer_account_2":"has been successfully transferred to the new account holder.",
     "delivery_adresses":"Delivery addresses",
-    "delivery_info":"You can view and update your delivery addresses; you can add as many as you like. Saved addresses will be available during the checkout process."
+    "delivery_info":"You can view and update your delivery addresses; you can add as many as you like. Saved addresses will be available during the checkout process.",
+    "how_want_order":"How do you want your order delivered?",
+    "pick_order":"You can pick your order from the store"
   },
   "nav": {
     "menu": "Menu",
@@ -112,13 +132,21 @@
   {
     "title":"Order",
     "order_info":"Order information",
-    "place_order":"Place an order"
+    "place_order":"Place an order",
+    "order_date":"Order date",
+    "order_number":"Order number",
+    "send_order_details_1":"We have sent the order confirmation details to",
+    "send_order_details_2":"",
+    "order_status":"Order status",
+    "payment_status":"Payment status"
   },
   "categories":"Categories",
   "product": {
       "all_products":"All products",
       "product":"Product",
       "view_products":"View products",
+      "similar_products":"Similar products",
+      "interest_similar_products":"Maybe you're also interested in these products.",
       "info": "Product Information",
       "article":"Article",
       "quantity":"Quantity",
@@ -151,7 +179,13 @@
       "pen_color":"Pen color",
       "design":"Design",
       "choose":"Choose",
-      "out":""
+      "out":"",
+      "choose_options":"Choose options!"
+    },
+    "product_variant":
+    {
+      "select_variant":"Select variant",
+      "out_of_stock":"Out of stock"
     },
      "sort_product":
     {
@@ -213,6 +247,10 @@
       "province": "Province",
       "country":"Country"
     },
+    "customer":
+    {
+      "reviews":"Customer reviews"
+    },
      "function":{
         "edit":"Edit",
         "delete":"Delete",
@@ -227,7 +265,8 @@
       {
         "page_not_found":"Page not found",
         "back_to_home":"Back to home",
-        "no_cart":"The cart does not exist. Please delete your cookies and try again."
+        "no_cart":"The cart does not exist. Please delete your cookies and try again.",
+        "error_info":"Error message"
       }
 
 }
