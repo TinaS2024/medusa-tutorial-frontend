@@ -149,7 +149,7 @@
       "embossing_posiiton":"Prägeposition",
       "background_color":"Hintergrundfarbe",
       "engraving_color":"Gravurfarbe",
-      "pencolor":"Stiftfarbe",
+      "pen_color":"Stiftfarbe",
       "design":"Design",
       "choose":"Wähle",
       "out":"aus"

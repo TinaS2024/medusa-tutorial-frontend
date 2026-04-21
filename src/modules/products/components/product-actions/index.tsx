@@ -29,6 +29,7 @@ const TECHNICAL_OPTION_KEYS = {
   EMBOSSING_POSITION: "embossing_position",
   ENGRAVING_COLOR: "engraving_color",
   BACKGROUND_COLOR: "background_color",
+  PEN_COLOR: "pencolor",
   WIDTH: "width",
   HEIGHT: "height",
 } as const;
@@ -184,6 +185,20 @@ export default function ProductActions({
     if (variantCushionColorValue) 
     {
       cushionColor = variantCushionColorValue;
+    }
+  }
+
+  //Benutzerdefinierte Stiftfarbe für Stiftstempel
+  const penColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.PEN_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.pen_color);
+  let penColor = "";
+  if (selectedVariant && penColorOption) 
+  {
+    const variantPenColorValue = selectedVariant.options?.find(
+      (vOpt) => vOpt.option_id === penColorOption.id
+    )?.value;
+    if (variantPenColorValue) 
+    {
+      penColor = variantPenColorValue;
     }
   }
 
@@ -458,6 +473,7 @@ export default function ProductActions({
     engraving_color: engravedColor,
     background_color: backgroundColor,
     embossing_position: embossingPosition,
+    pen_color: penColor,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
     is_roundForm: String(isRoundForm),
@@ -489,10 +505,12 @@ export default function ProductActions({
                   const isEngravingColor = techKey === TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR || option.title === t.product_properties.engraving_color;
                   const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === t.product_properties.background_color;
                   const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === t.product_properties.embossing_posiiton;
+                  const isPenColor = techKey === TECHNICAL_OPTION_KEYS.PEN_COLOR || option.title === t.product_properties.pen_color;
+
 
                   if (isStampProduct || hasCushion) 
                   {
-                    return isCushionColor || (!isEngravingColor && !isCushionColor);
+                    return isCushionColor || isPenColor || (!isEngravingColor && !isCushionColor);
                   }
                   if (isRoundFormProduct)
                   {

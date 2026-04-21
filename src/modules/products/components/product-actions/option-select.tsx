@@ -29,6 +29,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
     Prägeposition: "embossing_posiiton",
     Hintergrundfarbe: "background_color",
     Gravurfarbe: "engraving_color",
+    Stiftfarbe: "pen_color",
     Design: "design",
   };
 
