@@ -18,6 +18,7 @@
     "welcome":"Welkom terug",
     "login_info":"Schrijf u in in onze winkel.",
     "login":"Registratie",
+    "log_in":"Aanmelden",
     "login_as":"Ingelogd als",
     "logout":"Uitloggen",
     "no_account": "Nog geen account?",
@@ -38,7 +39,8 @@
     "conditions":"Gebruiksvoorwaarden",
     "term_button":"Door op de knop `Bestelling plaatsen` te klikken, bevestigt u dat u onze gebruiksvoorwaarden, verkoopvoorwaarden en retourbeleid hebt gelezen, begrepen en geaccepteerd, en dat u het privacybeleid van onze webwinkel hebt gelezen.",
     "now_register":"Registratie nu",
-    "have_account":"U heeft al account?"
+    "have_account":"U heeft al account?",
+    "here_register":"Registreer hier"
   },
   "profile":{
     "title":"Profiel",
@@ -249,6 +251,12 @@
     "customer":
     {
       "reviews":"Klantbeweringen"
+    },
+    "demo":
+    {
+      "create_demo":"Je demoproduct is succesvol aangemaakt! 🎉",
+      "set_demo":"Sie können nun mit der Einrichtung voIhres Shops im Adminbereich fortfahren.",
+      "admin_demo":"Setzen Sie die Einrichtung im Admin fort"
     },
     "function":{
         "edit":"Bewerking",

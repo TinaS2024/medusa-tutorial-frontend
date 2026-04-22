@@ -18,6 +18,7 @@
     "welcome":"Welcome back",
     "login_info":"Login to our shop.",
     "login":"Login",
+    "log_in":"Log in",
     "login_as":"Logged in as",
     "logout":"Logout",
     "no_account": "No account yet?",
@@ -38,7 +39,8 @@
     "conditions":"Conditions",
     "term_button":"By clicking the `Place Order` button, you confirm that you have read, understood, and accepted our Terms of Use, Terms of Sale, and Return Policy, and that you have read our online store's Privacy Policy.",
     "now_register":"Register now",
-    "have_account":"Have an account?"
+    "have_account":"Have an account?",
+    "here_register":"Have an account."
   },
   "profile":{
     "title":"Profile",
@@ -250,6 +252,12 @@
     "customer":
     {
       "reviews":"Customer reviews"
+    },
+    "demo":
+    {
+      "create_demo":"Your demo product has been successfully created! 🎉",
+      "set_demo":"You can now continue with the setup in the Admin area.",
+      "admin_demo":"Set the setup in the Admin area"
     },
      "function":{
         "edit":"Edit",

@@ -18,6 +18,7 @@
     "welcome":"Content de te revoir",
     "login_info":"Inscrivez-vous dans notre boutique.",
     "login":"Inscription",
+    "log_in":"Se connecter avec",
     "login_as":"Connecté en tant que",
     "logout":"Déconnexion",
     "no_account": "Pas de compte?",
@@ -38,7 +39,11 @@
     "conditions":"Conditions",
     "term_button":"En cliquant sur le bouton « Passer la commande », vous confirmez avoir lu, compris et accepté nos conditions d’utilisation, nos conditions de vente et notre politique de retour, et avoir pris connaissance de la politique de confidentialité de notre boutique en ligne.",
     "now_register":"Inscription maintenant",
-    "have_account":"Vous avez déjà compte?"
+    "have_account":"Vous avez déjà compte?",
+    "here_register":"Alors inscrivez-vous ici."
+
+
+    
   },
   "profile":{
     "title":"Profile",
@@ -251,6 +256,12 @@
     "customer":
     {
       "reviews":"Avis des clients"
+    },
+    "demo":
+    {
+      "create_demo":"Votre produit de démonstration a été créé avec succès ! 🎉",
+      "set_demo":"Vous pouvez maintenant continuer la configuration dans votre zone Admin.",
+      "admin_demo":"Configurer la configuration dans votre zone Admin"
     },
      "function":{
         "edit":"Éditer",

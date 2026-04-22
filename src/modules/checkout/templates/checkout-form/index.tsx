@@ -25,7 +25,7 @@ export default async function CheckoutForm({
 
   if (!shippingMethods || !paymentMethods) 
   {
-    console.error("Fehler beim Laden der Versandmethoden");
+    console.error("Error loading shipping methods");
     return null;
   }
 

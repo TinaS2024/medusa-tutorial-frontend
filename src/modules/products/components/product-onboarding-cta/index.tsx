@@ -1,26 +1,33 @@
-import { Button, Container, Text } from "@medusajs/ui"
-import { cookies as nextCookies } from "next/headers"
+import { Button, Container, Text } from "@medusajs/ui";
+import { cookies as nextCookies } from "next/headers";
 
-async function ProductOnboardingCta() {
-  const cookies = await nextCookies()
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
 
-  const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true"
+async function ProductOnboardingCta() 
+{
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+  const cookies = await nextCookies();
 
-  if (!isOnboarding) {
-    return null
+  const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true";
+
+  if (!isOnboarding) 
+  {
+    return null;
   }
 
   return (
     <Container className="max-w-4xl h-full bg-ui-bg-subtle w-full p-8">
       <div className="flex flex-col gap-y-4 center">
         <Text className="text-ui-fg-base text-xl">
-          Ihr Demoprodukt wurde erfolgreich erstellt! 🎉
+          {t.demo.create_demo}🎉
         </Text>
         <Text className="text-ui-fg-subtle text-small-regular">
-          Sie können nun mit der Einrichtung Ihres Shops im Adminbereich fortfahren.
+          {t.demo.set_demo}
         </Text>
         <a href="http://localhost:7001/a/orders?onboarding_step=create_order_nextjs">
-          <Button className="w-full">Setzen Sie die Einrichtung im Admin fort</Button>
+          <Button className="w-full"> {t.demo.admin_demo}</Button>
         </a>
       </div>
     </Container>

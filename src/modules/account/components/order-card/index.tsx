@@ -1,10 +1,10 @@
-import { Button } from "@medusajs/ui"
-import { useMemo } from "react"
+import { Button } from "@medusajs/ui";
+import { useMemo } from "react";
 
-import Thumbnail from "@modules/products/components/thumbnail"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { convertToLocale } from "@lib/util/money"
-import { HttpTypes } from "@medusajs/types"
+import Thumbnail from "@modules/products/components/thumbnail";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { convertToLocale } from "@lib/util/money";
+import { HttpTypes } from "@medusajs/types";
 
 type OrderCardProps = {
   order: HttpTypes.StoreOrder
@@ -84,4 +84,4 @@ const OrderCard = ({ order }: OrderCardProps) => {
   )
 }
 
-export default OrderCard
+export default OrderCard;

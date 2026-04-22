@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { IconBadge, clx } from "@medusajs/ui"
 import {
@@ -8,9 +8,9 @@ import {
   useImperativeHandle,
   useRef,
   useState,
-} from "react"
+} from "react";
 
-import ChevronDown from "@modules/common/icons/chevron-down"
+import ChevronDown from "@modules/common/icons/chevron-down";
 
 type NativeSelectProps = {
   placeholder?: string
@@ -68,6 +68,6 @@ const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   }
 )
 
-CartItemSelect.displayName = "CartItemSelect"
+CartItemSelect.displayName = "CartItemSelect";
 
-export default CartItemSelect
+export default CartItemSelect;

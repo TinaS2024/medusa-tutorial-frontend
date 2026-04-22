@@ -1,13 +1,13 @@
 "use client";
-import ItemsTemplate from "./items"
-import Summary from "./summary"
-import EmptyCartMessage from "../components/empty-cart-message"
-import SignInPrompt from "../components/sign-in-prompt"
-import Divider from "@modules/common/components/divider"
-import { HttpTypes } from "@medusajs/types"
-import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
-import { addToCart } from "@lib/data/cart"
+import ItemsTemplate from "./items";
+import Summary from "./summary";
+import EmptyCartMessage from "../components/empty-cart-message";
+import SignInPrompt from "../components/sign-in-prompt";
+import Divider from "@modules/common/components/divider";
+import { HttpTypes } from "@medusajs/types";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { addToCart } from "@lib/data/cart";
 
 const CartTemplate = ({
   cart,
@@ -60,7 +60,7 @@ const CartTemplate = ({
           console.log("Product added to cart successfully!");
           router.replace("/cart", undefined);
         } catch (error) {
-          console.error("Fehler beim Hinzufügen des Produkts zum Warenkorb:", error);
+          console.error("Error adding product to shopping cart:", error);
         }
       };
       addProductToCart();
@@ -102,4 +102,4 @@ const CartTemplate = ({
   )
 }
 
-export default CartTemplate
+export default CartTemplate;

@@ -130,7 +130,7 @@ const StripePaymentButton = ({
           }
 
           setErrorMessage(error.message || null)
-          return
+          return;
         }
 
         if (
@@ -140,7 +140,7 @@ const StripePaymentButton = ({
           return onPaymentCompleted()
         }
 
-        return
+        return;
       })
   }
 

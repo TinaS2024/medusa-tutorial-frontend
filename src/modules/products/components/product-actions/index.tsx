@@ -400,9 +400,9 @@ export default function ProductActions({
       const img = await loadImage(imageSrc);
       context.clearRect(0,0, preview.width, preview.height);
       context.drawImage(img, 0,0,preview.width, preview.height);
-      console.log("Bild erfolgreich auf Canvas gezeichnet.");
+      console.log("Image successfully drawn on canvas.");
     }catch(e){
-      console.error("Fehler beim Laden oder Zeichnen des Bildes.", e);
+      console.error("Error loading or drawing the image.", e);
 
     }
   };
@@ -444,15 +444,15 @@ export default function ProductActions({
       .then(response =>{
         if(!response.ok)
         {
-          throw new Error(`Fehler beim Hochladen des Bildes: ${response.status}`);
+          throw new Error(`Error uploading image: ${response.status}`);
         }
         return response.json();
       })
       .then(data =>{
-        console.log("Upload erfolgreich:", data);
+        console.log("Upload successful:", data);
       })
       .catch(error =>{
-        console.error("Fehler:", error);
+        console.error("Error:", error);
       });
     }
   }, [uploadedImageData, product.id]);
