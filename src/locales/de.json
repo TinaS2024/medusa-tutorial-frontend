@@ -40,7 +40,9 @@
     "term_button":"Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie unsere Nutzungsbedingungen, Verkaufsbedingungen und Rückgaberichtlinien gelesen, verstanden und akzeptiert haben und bestätigen, dass Sie die Datenschutzrichtlinien unseres Online-Shops gelesen haben.",
     "now_register":"Jetzt registrieren",
     "have_account":"Haben Sie schon ein Konto?",
-    "here_register":"Dann melden Sie sich hier an."
+    "here_register":"Dann melden Sie sich hier an.",
+    "need_help":"Brauchen Sie Hilfe?",
+    "return_exchanges":"Rückgabe & Umtausch"
   },
   "profile":{
     "title":"Profil",
@@ -93,7 +95,8 @@
     "account": "Konto",
     "cart": "Warenkorb",
     "shopName": "Shop-Name",
-    "giftCards": "Geschenkkarten"
+    "giftCards": "Geschenkkarten",
+    "cart_error":"Beim Transfer Ihres Warenkorbs ist ein Fehler aufgetreten."
   },
   "cart": {
     "empty": {
@@ -111,7 +114,7 @@
     }
   },
   "payment": {
-    "title:":"Zahlung",
+    "title":"Zahlung",
     "payment_method":"Zahlungsmethode",
     "next_to_payment":"Weiter zur Zahlung",
     "payment_details":"Bezahldetails",
@@ -145,6 +148,7 @@
   "categories":"Katgeories",
   "product": {
       "all_products":"Alle Produkte",
+      "view_all":"Zeige alle",
       "product":"Produkte",
       "view_products":"Produkte ansehen",
       "similar_products":"Ähnliche Produkte",
@@ -225,6 +229,8 @@
       "title":"Versand",
       "continue_shipping":"Weiter zum Versand",
       "activation_freeshipping":"Schalten Sie den kostenlosen Versand frei",
+      "only":"Nur noch",
+      "away":"fehlen bis zum kostenlosen Versand",
       "unlocked_freeshipping":"Kostenloser Versand freigeschaltet!",
       "shipping_taxes_cost":"Versandkosten und Steuern",
       "shipping_to":"Versand nach",
@@ -257,7 +263,10 @@
     {
       "create_demo":"Ihr Demoprodukt wurde erfolgreich erstellt! 🎉",
       "set_demo":"Sie können nun mit der Einrichtung Ihres Shops im Adminbereich fortfahren.",
-      "admin_demo":"Setzen Sie die Einrichtung im Admin fort"
+      "admin_demo":"Setzen Sie die Einrichtung im Admin fort",
+      "test_created":"Your test order was successfully created! 🎉",
+      "completed_admin":"You can now complete setting up your store in the admin.",
+      "completed_setup":"Complete setup in admin"
     },
     "function":{
         "edit":"Bearbeiten",

@@ -19,7 +19,7 @@ const computeTarget = (
     (pr) => pr.attribute === "item_total"
   )!
 
-  const currentAmount = cart.item_total
+  const currentAmount = cart.item_total;;
   const targetAmount = parseFloat(priceRule.value)
 
   if (priceRule.operator === "gt") {
@@ -80,7 +80,7 @@ export default function ShippingPriceNudge({
   shippingOptions: StoreCartShippingOption[]
 }) {
   if (!cart || !shippingOptions?.length) {
-    return
+    return;
   }
 
   // Check if any shipping options have a conditional price based on item_total
@@ -89,7 +89,7 @@ export default function ShippingPriceNudge({
       const calculatedPrice = shippingOption.calculated_price
 
       if (!calculatedPrice) {
-        return
+        return;
       }
 
       // Get all prices that are:
@@ -165,14 +165,14 @@ function FreeShippingInline({
               "opacity-0 invisible": price.target_reached,
             })}
           >
-            Only{" "}
+            {t.shipping.only} {" "}
             <span className="text-neutral-950">
               {convertToLocale({
                 amount: price.target_remaining,
                 currency_code: cart.currency_code,
               })}
             </span>{" "}
-            away
+            {t.shipping.away}
           </div>
         </div>
         <div className="flex justify-between gap-1">
@@ -244,14 +244,14 @@ function FreeShippingPopup({
                   "opacity-0 invisible": price.target_reached,
                 })}
               >
-                Only{" "}
+                {t.shipping.only} {" "}
                 <span className="text-white">
                   {convertToLocale({
                     amount: price.target_remaining,
                     currency_code: cart.currency_code,
                   })}
                 </span>{" "}
-                away
+                {t.shipping.away}
               </div>
             </div>
             <div className="flex justify-between gap-1">

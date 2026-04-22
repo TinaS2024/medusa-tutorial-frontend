@@ -12,12 +12,11 @@ import { getMessages } from "@lib/messages";
 
 const Hero = () => {
   const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const t = getMessages(lang);
 
    useEffect(() => {
     setLang(getClientLanguage());
   }, []);
-
-  const t = getMessages(lang);
 
   return (
     <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
@@ -46,4 +45,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default Hero;

@@ -40,7 +40,9 @@
     "term_button":"By clicking the `Place Order` button, you confirm that you have read, understood, and accepted our Terms of Use, Terms of Sale, and Return Policy, and that you have read our online store's Privacy Policy.",
     "now_register":"Register now",
     "have_account":"Have an account?",
-    "here_register":"Have an account."
+    "here_register":"Have an account.",
+    "need_help":"Need help?",
+    "return_exchanges":"Return & exchanges"
   },
   "profile":{
     "title":"Profile",
@@ -93,7 +95,8 @@
     "account": "Account",
     "cart": "Cart",
     "shopName": "Shop name",
-    "giftCards": "Gift cards"
+    "giftCards": "Gift cards",
+    "cart_error":"Something went wrong when we tried to transfer your cart."
   },
   "cart": {
     "empty": {
@@ -111,7 +114,7 @@
     }
   }, 
   "payment": {
-    "title:":"Payment",
+    "title":"Payment",
     "payment_method":"Payment method",
     "next_to_payment":"Next to payment",
     "payment_details":"Payment details",
@@ -145,6 +148,7 @@
   "categories":"Categories",
   "product": {
       "all_products":"All products",
+      "view_all":"View all products",
       "product":"Product",
       "view_products":"View products",
       "similar_products":"Similar products",
@@ -225,6 +229,8 @@
       "title":"Shipping",
       "continue_shipping":"Continue shipping",
       "activation_freeshipping":"Activate free shipping for your order",
+      "only":"Only",
+      "away":"away",
       "unlocked_freeshipping":"Free shipping unlocked!",
       "shipping_taxes_cost":"Shipping costs and taxes",
       "shipping_to": "Shipping to",
@@ -257,7 +263,10 @@
     {
       "create_demo":"Your demo product has been successfully created! 🎉",
       "set_demo":"You can now continue with the setup in the Admin area.",
-      "admin_demo":"Set the setup in the Admin area"
+      "admin_demo":"Set the setup in the Admin area",
+      "test_created":"Your test order has been successfully created! 🎉",
+      "completed_admin":"You can now complete setting up your store in the admin.",
+      "completed_setup":"Complete setup in admin"
     },
      "function":{
         "edit":"Edit",

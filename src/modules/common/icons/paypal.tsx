@@ -27,4 +27,4 @@ const PayPal = () => {
   )
 }
 
-export default PayPal
+export default PayPal;

@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const Ideal: React.FC<IconProps> = ({
   size = "20",
@@ -23,4 +23,4 @@ const Ideal: React.FC<IconProps> = ({
   )
 }
 
-export default Ideal
+export default Ideal;

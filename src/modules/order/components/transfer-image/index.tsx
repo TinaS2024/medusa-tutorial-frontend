@@ -1,4 +1,4 @@
-import { SVGProps } from "react"
+import { SVGProps } from "react";
 
 const TransferImage = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -272,4 +272,4 @@ const TransferImage = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-export default TransferImage
+export default TransferImage;

@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const PlaceholderImage: React.FC<IconProps> = ({
   size = "20",
@@ -41,4 +41,4 @@ const PlaceholderImage: React.FC<IconProps> = ({
   )
 }
 
-export default PlaceholderImage
+export default PlaceholderImage;

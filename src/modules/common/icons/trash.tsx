@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const Trash: React.FC<IconProps> = ({
   size = "16",
@@ -48,4 +48,4 @@ const Trash: React.FC<IconProps> = ({
   )
 }
 
-export default Trash
+export default Trash;

@@ -32,8 +32,8 @@ const AccountInfo = ({
   'data-testid': dataTestid
 }: AccountInfoProps) => {
 
-    const [lang, setLang] = useState<Lang>("de");
-    const t = getMessages(lang);
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
 
   useEffect(() => {
       setLang(getClientLanguage());

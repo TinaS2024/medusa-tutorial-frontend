@@ -132,7 +132,7 @@ const Overview = async ({ customer, orders }: OverviewProps) => {
                     )
                   })
                 ) : (
-                  <span data-testid="no-orders-message">{t.profile.no_current_orders}</span>
+                  <li><span data-testid="no-orders-message">{t.profile.no_current_orders}</span></li>
                 )}
               </ul>
             </div>

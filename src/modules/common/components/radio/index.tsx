@@ -24,4 +24,4 @@ const Radio = ({ checked, 'data-testid': dataTestId }: { checked: boolean, 'data
   )
 }
 
-export default Radio
+export default Radio;

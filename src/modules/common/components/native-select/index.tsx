@@ -20,8 +20,9 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     { placeholder = "Select...", defaultValue, className, children, ...props },
     ref
   ) => {
-    const innerRef = useRef<HTMLSelectElement>(null)
-    const [isPlaceholder, setIsPlaceholder] = useState(false)
+    const ariaLabel = (props as any)["aria-label"] || placeholder;
+    const innerRef = useRef<HTMLSelectElement>(null);
+    const [isPlaceholder, setIsPlaceholder] = useState(false);
 
     useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
       ref,
@@ -52,6 +53,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           <select
             ref={innerRef}
             defaultValue={defaultValue}
+            aria-label={ariaLabel}
             {...props}
             className="appearance-none flex-1 bg-transparent border-none px-4 py-2.5 transition-colors duration-150 outline-none "
           >

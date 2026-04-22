@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const FastDelivery: React.FC<IconProps> = ({
   size = "16",
@@ -62,4 +62,4 @@ const FastDelivery: React.FC<IconProps> = ({
   )
 }
 
-export default FastDelivery
+export default FastDelivery;

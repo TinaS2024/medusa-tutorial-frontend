@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { addBundleToCart } from "@lib/data/cart";
 import { HttpTypes } from "@medusajs/types";
@@ -28,11 +28,11 @@ const optionsAsKeymap = (variantOptions: HttpTypes.StoreProductVariant["options"
 
 export default function BundleActions({bundle,}: BundleActionsProps) {
 
-  const [productOptions, setProductOptions] = useState<Record<string, Record<string, string>>>({})
+  const [productOptions, setProductOptions] = useState<Record<string, Record<string, string>>>({});
 
-  const [isAdding, setIsAdding] = useState(false)
+  const [isAdding, setIsAdding] = useState(false);
 
-  const countryCode = useParams().countryCode as string
+  const countryCode = useParams().countryCode as string;
 
     // For each product, if it has only 1 variant, preselect it
 

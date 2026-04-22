@@ -40,10 +40,9 @@
     "term_button":"En cliquant sur le bouton « Passer la commande », vous confirmez avoir lu, compris et accepté nos conditions d’utilisation, nos conditions de vente et notre politique de retour, et avoir pris connaissance de la politique de confidentialité de notre boutique en ligne.",
     "now_register":"Inscription maintenant",
     "have_account":"Vous avez déjà compte?",
-    "here_register":"Alors inscrivez-vous ici."
-
-
-    
+    "here_register":"Alors inscrivez-vous ici.",
+    "need_help":"Besoin d'aide?",
+    "return_exchanges":"Retour et échange"    
   },
   "profile":{
     "title":"Profile",
@@ -97,7 +96,8 @@
     "account": "Compte",
     "cart": "Panier",
     "shopName": "Nom de la boutique",
-    "giftCards": "Cartes cadeaux"
+    "giftCards": "Cartes cadeaux",
+    "cart_error":"Une erreur s'est produite lors du transfert de votre panier."
   },
   "cart": {
     "empty": {
@@ -115,7 +115,7 @@
     }
   }, 
   "payment": {
-    "title:":"Paiement",
+    "title":"Paiement",
     "next_to_payment":"Suivant au paiement",
     "payment_method":"Mode de paiement",
     "payment_details":"Informations de paiement",
@@ -149,6 +149,7 @@
   "categories":"Catégories",
   "product": {
       "all_products":"Tous les produits",
+      "view_all":"Vue tous les produits",
       "product":"Produit",
       "view_products":"Vue produits",
       "similar_products":"Produits similaires",
@@ -229,6 +230,8 @@
       "title":"Expédition",
       "continue_shipping":"Continuer l'expédition",
       "activation_freeshipping":"Activez la livraison gratuite pour votre commande",
+      "only":"Plus que",
+      "away":"à débourser pour la livraison gratuite.",
       "unlocked_freeshipping":"Livraison gratuite activée!",
       "shipping_taxes_cost":"Frais d'expédition et impôts",
       "shipping_to":"Expédition à",
@@ -261,7 +264,10 @@
     {
       "create_demo":"Votre produit de démonstration a été créé avec succès ! 🎉",
       "set_demo":"Vous pouvez maintenant continuer la configuration dans votre zone Admin.",
-      "admin_demo":"Configurer la configuration dans votre zone Admin"
+      "admin_demo":"Configurer la configuration dans votre zone Admin",
+      "test_created":"Votre commande de test a été créée avec succès ! 🎉",
+      "completed_admin":"Vous pouvez maintenant terminer la configuration de votre magasin dans votre zone Admin.",
+      "completed_setup":"Terminer la configuration dans votre zone Admin"
     },
      "function":{
         "edit":"Éditer",

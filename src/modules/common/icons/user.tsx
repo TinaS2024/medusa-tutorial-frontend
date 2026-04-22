@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const User: React.FC<IconProps> = ({
   size = "16",
@@ -34,4 +34,4 @@ const User: React.FC<IconProps> = ({
   )
 }
 
-export default User
+export default User;

@@ -1,32 +1,43 @@
-"use client"
+"use client";
 
-import { transferCart } from "@lib/data/customer"
-import { ExclamationCircleSolid } from "@medusajs/icons"
-import { StoreCart, StoreCustomer } from "@medusajs/types"
-import { Button } from "@medusajs/ui"
-import { useState } from "react"
+import { transferCart } from "@lib/data/customer";
+import { ExclamationCircleSolid } from "@medusajs/icons";
+import { StoreCart, StoreCustomer } from "@medusajs/types";
+import { Button } from "@medusajs/ui";
+import { useState, useEffect } from "react";
+
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
 
 function CartMismatchBanner(props: {
   customer: StoreCustomer
   cart: StoreCart
 }) {
-  const { customer, cart } = props
-  const [isPending, setIsPending] = useState(false)
-  const [actionText, setActionText] = useState("Run transfer again")
+   const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+  
+  useEffect(() => {
+        setLang(getClientLanguage());
+      }, []);
+
+  const { customer, cart } = props;
+  const [isPending, setIsPending] = useState(false);
+  const [actionText, setActionText] = useState("Run transfer again");
 
   if (!customer || !!cart.customer_id) {
-    return
+    return;
   }
 
   const handleSubmit = async () => {
     try {
-      setIsPending(true)
-      setActionText("Transferring..")
+      setIsPending(true);
+      setActionText("Transferring..");
 
       await transferCart()
     } catch {
-      setActionText("Run transfer again")
-      setIsPending(false)
+      setActionText("Run transfer again");
+      setIsPending(false);
     }
   }
 
@@ -35,7 +46,7 @@ function CartMismatchBanner(props: {
       <div className="flex flex-col small:flex-row small:gap-2 gap-1 items-center">
         <span className="flex items-center gap-1">
           <ExclamationCircleSolid className="inline" />
-          Something went wrong when we tried to transfer your cart
+          {t.nav.cart_error}
         </span>
 
         <span>·</span>

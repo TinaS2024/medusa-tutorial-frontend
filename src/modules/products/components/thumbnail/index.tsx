@@ -67,4 +67,4 @@ const ImageOrPlaceholder = ({
   )
 }
 
-export default Thumbnail
+export default Thumbnail;

@@ -40,7 +40,9 @@
     "term_button":"Door op de knop `Bestelling plaatsen` te klikken, bevestigt u dat u onze gebruiksvoorwaarden, verkoopvoorwaarden en retourbeleid hebt gelezen, begrepen en geaccepteerd, en dat u het privacybeleid van onze webwinkel hebt gelezen.",
     "now_register":"Registratie nu",
     "have_account":"U heeft al account?",
-    "here_register":"Registreer hier"
+    "here_register":"Registreer hier",
+    "need_help":"Neeft u help?",
+    "return_exchanges":"Retour en verandering"
   },
   "profile":{
     "title":"Profiel",
@@ -93,7 +95,8 @@
     "account": "Account",
     "cart": "Winkelwagen",
     "shopName": "Shopnaam",
-    "giftCards": "Cadeaubonnen"
+    "giftCards": "Cadeaubonnen",
+    "cart_error":"Er is iets misgegaan tijdens het overzetten van uw winkelwagen."
   },
   "cart": {
     "empty": {
@@ -111,7 +114,7 @@
     }
   }, 
   "payment": {
-    "title:":"Betaling",
+    "title":"Betaling",
     "next_to_payment":"Volgende betaling zal worden weergegeven",
     "payment_method":"Betaalmethode",
     "payment_details":"Betaalingdetails",
@@ -144,6 +147,7 @@
   "categories":"Categorieën",
   "product": {
       "all_products":"Alle producten",
+      "view_all":"Vue alle alle producten weergeven",
       "product":"Product",
       "view_products":"Vue producten",
       "similar_products":"Ahnelijke producten",
@@ -224,6 +228,8 @@
       "title":"Verzending",
       "continue_shipping":"Verder met verzending",
       "activation_freeshipping":"Activeer gratis levering voor uw bestelling",
+      "only":"Nog maar",
+      "away":"te gaan voor gratis verzending.",
       "unlocked_freeshipping":"Gratis levering activeerd!",
       "shipping_taxes_cost":"Verzendkosten en belasting",
       "shipping_to": "Verzendingen naar",
@@ -256,7 +262,10 @@
     {
       "create_demo":"Je demoproduct is succesvol aangemaakt! 🎉",
       "set_demo":"Sie können nun mit der Einrichtung voIhres Shops im Adminbereich fortfahren.",
-      "admin_demo":"Setzen Sie die Einrichtung im Admin fort"
+      "admin_demo":"Setzen Sie die Einrichtung im Admin fort",
+      "test_created":"Je testbestelling is succesvol aangemaakt! 🎉",
+      "completed_admin":"Sie können nun die Einrichtung Ihres Shops im Admin beenden.",
+      "completed_setup":"Bevestig de Einrichtung im Adminbereich"
     },
     "function":{
         "edit":"Bewerking",

@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { IconProps } from "types/icon"
+import { IconProps } from "types/icon";
 
 const X: React.FC<IconProps> = ({
   size = "20",
@@ -34,4 +34,4 @@ const X: React.FC<IconProps> = ({
   )
 }
 
-export default X
+export default X;

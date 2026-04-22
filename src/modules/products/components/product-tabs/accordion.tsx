@@ -1,6 +1,6 @@
-import { Text, clx } from "@medusajs/ui"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import React from "react"
+import { Text, clx } from "@medusajs/ui";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import React from "react";
 
 type AccordionItemProps = AccordionPrimitive.AccordionItemProps & {
   title: string
@@ -97,4 +97,4 @@ const MorphingTrigger = () => {
   )
 }
 
-export default Accordion
+export default Accordion;

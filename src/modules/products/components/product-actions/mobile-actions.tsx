@@ -217,4 +217,4 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   )
 }
 
-export default MobileActions
+export default MobileActions;

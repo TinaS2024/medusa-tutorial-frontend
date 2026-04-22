@@ -156,7 +156,7 @@ const CartDropdown = ({
                                   data-testid="cart-item-quantity"
                                   data-value={item.quantity}
                                 >
-                                  Anzahl: {item.quantity}
+                                  {t.product.quantity}: {item.quantity}
                                 </span>
                               </div>
                               <div className="flex justify-end">
@@ -183,7 +183,7 @@ const CartDropdown = ({
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
                     <span className="text-ui-fg-base font-semibold">
-                      Zwischensumme{" "}
+                      {t.price.subtotal}: {" "}
                       <span className="font-normal">(excl. Steuern)</span>
                     </span>
                     <span
