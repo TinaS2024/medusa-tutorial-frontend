@@ -206,6 +206,12 @@
       "blue":"Blue",
       "violet":"Violet"
     },
+    "embossing_position":{
+      "top":"Top",
+      "bottom":"Bottom",
+      "left":"Left",
+      "right":"Right"
+    },
      "sort_product":
     {
       "sort_by":"Sort by",

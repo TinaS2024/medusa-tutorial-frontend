@@ -54,13 +54,23 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
     "cushion_color",
     "background_color",
     "engraving_color",
-    "pencolor",
+    "pen_color",
   ];
 
+  //Farboptionen
   const isColorOption = (propertyKey && colorTranslationKeys.includes(propertyKey)) || (technicalKey && colorTechnicalKeys.includes(technicalKey));
 
   const colorTranslations = ((t as any).colors ?? (t as any).product_color) || {};
+
+  //Prägeoptionen
+  const embossingPropertyKeys = ["embossing_position"];
+  const embossingTechnicalKeys = ["embossing_position"];
+
+  const isEmbossingOption = (propertyKey && embossingPropertyKeys.includes(propertyKey)) || (technicalKey && embossingTechnicalKeys.includes(technicalKey));
+
+  const embossingTranslations = ((t as any).embossing_position as any) || {};
   
+  //Alle gefilterte Optionen
   const filteredOptions = (option.values ?? []).map((v) => v.value);
 
   return (
@@ -86,7 +96,11 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               disabled={disabled}
               data-testid="option-button"
             >
-              {isColorOption ? colorTranslations[v.toLowerCase()] ?? v   : v}
+              {isColorOption
+                ? colorTranslations[v.toLowerCase()] ?? v
+                : isEmbossingOption
+                  ? embossingTranslations[v.toLowerCase()] ?? v
+                  : v}
             </button>
           )
         })}

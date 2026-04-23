@@ -203,8 +203,14 @@
       "yellow":"Gelb",
       "green":"Grün",
       "turquoise":"Türkis",
-      "blau":"Blau",
+      "blue":"Blau",
       "violet":"Violett"
+    },
+    "embossing_position":{
+      "top":"Oben",
+      "bottom":"Unten",
+      "left":"Links",
+      "right":"Rechts"
     },
     "sort_product":
     {

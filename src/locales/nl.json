@@ -202,8 +202,14 @@
       "yellow":"Geel",
       "green":"Groen",
       "turquoise":"Turko",
-      "blau":"Blauw",
+      "blue":"Blauw",
       "violet":"Violet"
+    },
+    "embossing_position":{
+      "top":"Boven",
+      "bottom":"Onder",
+      "left":"Links",
+      "right":"Rechts"
     },
      "sort_product":
     {
