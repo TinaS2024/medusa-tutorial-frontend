@@ -211,6 +211,11 @@
       "left":"Links",
       "right":"Rechts"
     },
+    "form":
+    {
+      "round":"Rond",
+      "square":"Vierkant"
+    },
      "sort_product":
     {
       "sort_by":"Sorteer op",

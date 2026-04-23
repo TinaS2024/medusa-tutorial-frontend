@@ -213,6 +213,11 @@
       "left":"Gauche",
       "right":"Droite"
     },
+    "form":
+    {
+      "round":"Rond",
+      "square":"Carré"
+    },
      "sort_product":
     {
       "sort_by":"Trier par",

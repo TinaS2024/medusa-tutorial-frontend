@@ -69,6 +69,12 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   const isEmbossingOption = (propertyKey && embossingPropertyKeys.includes(propertyKey)) || (technicalKey && embossingTechnicalKeys.includes(technicalKey));
 
   const embossingTranslations = ((t as any).embossing_position as any) || {};
+
+  //Formoptionen
+
+  const formTranslations = ((t as any).form as any) || {};
+
+
   
   //Alle gefilterte Optionen
   const filteredOptions = (option.values ?? []).map((v) => v.value);
@@ -81,6 +87,15 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
         data-testid={dataTestId}
       >
         {filteredOptions.map((v) => {
+
+          const key = v.toLowerCase();
+
+          const label = isColorOption
+            ? colorTranslations[key] ?? v
+            : isEmbossingOption
+              ? embossingTranslations[key] ?? v
+              : formTranslations[key] ?? v;
+
           return (
             <button type="button"
               onClick={() => updateOption(option.id, v)}
@@ -96,11 +111,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               disabled={disabled}
               data-testid="option-button"
             >
-              {isColorOption
-                ? colorTranslations[v.toLowerCase()] ?? v
-                : isEmbossingOption
-                  ? embossingTranslations[v.toLowerCase()] ?? v
-                  : v}
+              {label}
             </button>
           )
         })}

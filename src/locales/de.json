@@ -212,6 +212,11 @@
       "left":"Links",
       "right":"Rechts"
     },
+    "form":
+    {
+      "round":"Rund",
+      "square":"Eckig"
+    },
     "sort_product":
     {
       "sort_by":"Sortieren nach",

@@ -211,6 +211,10 @@
       "bottom":"Bottom",
       "left":"Left",
       "right":"Right"
+    },"form":
+    {
+      "round":"Round",
+      "square":"Square"
     },
      "sort_product":
     {
