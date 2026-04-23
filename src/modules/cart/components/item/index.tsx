@@ -108,6 +108,8 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
               {item.metadata?.bundle_id !== undefined ? "Entferne Bundle" : "Entfernen"}
             </DeleteButton>
             <CartItemSelect
+              aria-label={t.product.quantity}
+              title={t.product.quantity}
               value={item.quantity}
               onChange={(value) => changeQuantity(parseInt(value.target.value))}
               className="w-14 h-10 p-4"

@@ -10,6 +10,7 @@ type OptionSelectProps = {
   updateOption: (title: string, value: string) => void
   title: string
   disabled: boolean
+  technicalKey?: string
   "data-testid"?: string
 }
 
@@ -18,6 +19,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   current,
   updateOption,
   title,
+  technicalKey,
   "data-testid": dataTestId,
   disabled,
 }) => {
@@ -34,13 +36,30 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   };
 
   const trimmedTitle = title.trim();
-  const propertyKey = titleKeyMap[trimmedTitle];
-  const localizedTitle =
-    propertyKey && (t as any).product_properties
-      ? (t as any).product_properties[propertyKey] ?? title
-      : title;
+  const propertyKeyFromTitle = titleKeyMap[trimmedTitle];
 
+  const propertyKeyFromTechnicalKey = technicalKey === "pencolor" ? "pen_color" : technicalKey;
 
+  const propertyKey = propertyKeyFromTitle ?? propertyKeyFromTechnicalKey;
+  const localizedTitle = propertyKey && (t as any).product_properties ? (t as any).product_properties[propertyKey] ?? title : title;
+
+  const colorTranslationKeys = [
+    "cushion_color",
+    "background_color",
+    "engraving_color",
+    "pen_color",
+  ];
+
+  const colorTechnicalKeys = [
+    "cushion_color",
+    "background_color",
+    "engraving_color",
+    "pencolor",
+  ];
+
+  const isColorOption = (propertyKey && colorTranslationKeys.includes(propertyKey)) || (technicalKey && colorTechnicalKeys.includes(technicalKey));
+
+  const colorTranslations = ((t as any).colors ?? (t as any).product_color) || {};
   
   const filteredOptions = (option.values ?? []).map((v) => v.value);
 
@@ -67,7 +86,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               disabled={disabled}
               data-testid="option-button"
             >
-              {v}
+              {isColorOption ? colorTranslations[v.toLowerCase()] ?? v   : v}
             </button>
           )
         })}

@@ -529,6 +529,7 @@ export default function ProductActions({
                       current={options[option.id]}
                       updateOption={setOptionValue}
                       title={option.title ?? ""}
+                      technicalKey={optionKeysMeta[option.id]}
                       data-testid="product-options"
                       disabled={!!disabled || isAdding}
                     />

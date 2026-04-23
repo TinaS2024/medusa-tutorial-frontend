@@ -20,6 +20,8 @@ type NativeSelectProps = {
 
 const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   ({ placeholder = "Select...", className, children, ...props }, ref) => {
+    const ariaLabel = (props as any)["aria-label"] || placeholder;
+    const title = (props as any).title || ariaLabel;
     const innerRef = useRef<HTMLSelectElement>(null)
     const [isPlaceholder, setIsPlaceholder] = useState(false)
 
@@ -51,6 +53,8 @@ const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         >
           <select
             ref={innerRef}
+            aria-label={ariaLabel}
+            title={title}
             {...props}
             className="appearance-none bg-transparent border-none px-4 transition-colors duration-150 focus:border-gray-700 outline-none w-16 h-16 items-center justify-center"
           >

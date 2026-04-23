@@ -193,6 +193,19 @@
       "select_variant":"Wähle die Variante aus",
       "out_of_stock":"Ausverkauft"
     },
+    "product_color":
+    {
+      "black":"Schwarz",
+      "white":"Weiß",
+      "pink":"Pink",
+      "red":"Rot",
+      "orange":"Orange",
+      "yellow":"Gelb",
+      "green":"Grün",
+      "turquoise":"Türkis",
+      "blau":"Blau",
+      "violet":"Violett"
+    },
     "sort_product":
     {
       "sort_by":"Sortieren nach",

@@ -14,6 +14,7 @@ import Thumbnail from "../thumbnail";
 
 type BundleActionsProps = {
     bundle: BundleProduct
+    region: HttpTypes.StoreRegion
     }
 
 
@@ -26,7 +27,7 @@ const optionsAsKeymap = (variantOptions: HttpTypes.StoreProductVariant["options"
     }
 
 
-export default function BundleActions({bundle,}: BundleActionsProps) {
+export default function BundleActions({bundle,region}: BundleActionsProps) {
 
   const [productOptions, setProductOptions] = useState<Record<string, Record<string, string>>>({});
 
@@ -102,7 +103,7 @@ export default function BundleActions({bundle,}: BundleActionsProps) {
             <Thumbnail thumbnail={item.product.thumbnail} className="w-24 h-24 rounded-md" size="square" images={[]}/>
             <div>
               <h3 className="text-lg">{item.product.title}</h3>
-              <ProductPrice product={item.product} variant={selectedVariants[index]} className="!text-sm mt-2 text-ui-fg-muted"/>
+              <ProductPrice product={item.product} variant={selectedVariants[index]} region={region} className="!text-sm mt-2 text-ui-fg-muted"/>
             </div>
           </div>
           {(item.product.variants?.length ?? 0) > 1 && (

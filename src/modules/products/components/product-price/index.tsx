@@ -10,11 +10,13 @@ export default function ProductPrice({
   variant,
   metadata,
   region,
+  className
 }: {
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
   metadata?: Record<string, any>
   region: HttpTypes.StoreRegion
+  className?: string
 }) 
 {
   const [price, setPrice] = useState(0);
@@ -49,7 +51,7 @@ export default function ProductPrice({
   return (
 
     <div className="flex flex-col text-ui-fg-base">
-      <span className={clx("text-xl-semi")} >
+      <span className={clx("text-xl-semi", className)}>
         {price > 0 && <span data-testid="product-price" data-value={displayPrice} >
           {displayPrice}
         </span>}

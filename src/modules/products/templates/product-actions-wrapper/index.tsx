@@ -38,7 +38,7 @@ export default async function ProductActionsWrapper({
 
   if(bundle)
   {
-    return <BundleActions bundle={bundle}/>
+    return <BundleActions bundle={bundle} region={region}/>
   }
 
   return <ProductActions product={product} region={region} />

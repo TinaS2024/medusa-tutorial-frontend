@@ -192,6 +192,19 @@
       "select_variant":"Kies een variante",
       "out_of_stock":"Epuise"
     },
+    "product_color":
+    {
+      "black":"Zwart",
+      "white":"Wit",
+      "pink":"Roze",
+      "red":"Rood",
+      "orange":"Oranjr",
+      "yellow":"Geel",
+      "green":"Groen",
+      "turquoise":"Turko",
+      "blau":"Blauw",
+      "violet":"Violet"
+    },
      "sort_product":
     {
       "sort_by":"Sorteer op",

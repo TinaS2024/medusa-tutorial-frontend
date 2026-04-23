@@ -193,6 +193,19 @@
       "select_variant":"Select variant",
       "out_of_stock":"Out of stock"
     },
+    "product_color":
+    {
+      "black":"Black",
+      "white":"White",
+      "pink":"Pink",
+      "red":"Red",
+      "orange":"Orange",
+      "yellow":"Yellow",
+      "green":"Green",
+      "turquoise":"Turquoise",
+      "blue":"Blue",
+      "violet":"Violet"
+    },
      "sort_product":
     {
       "sort_by":"Sort by",
