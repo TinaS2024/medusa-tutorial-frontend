@@ -1,17 +1,23 @@
+"use client";
+
 import { HttpTypes } from "@medusajs/types";
 import Input from "@modules/common/components/input";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CountrySelect from "../country-select";
 
-import { getServerLanguage } from "@lib/i18n-server";
-import { getMessages } from "@lib/messages";
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
 
-const BillingAddress = async ({ cart }: { cart: HttpTypes.StoreCart | null }) => {
+const BillingAddress = ({ cart }: { cart: HttpTypes.StoreCart | null }) => {
 
-  const lang = await getServerLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
 
-  const [formData, setFormData] = useState<any>({
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
+  const [formData, setFormData] = useState<Record<string, any>>({
     "billing_address.first_name": cart?.billing_address?.first_name || "",
     "billing_address.last_name": cart?.billing_address?.last_name || "",
     "billing_address.address_1": cart?.billing_address?.address_1 || "",
@@ -21,7 +27,24 @@ const BillingAddress = async ({ cart }: { cart: HttpTypes.StoreCart | null }) =>
     "billing_address.country_code": cart?.billing_address?.country_code || "",
     "billing_address.province": cart?.billing_address?.province || "",
     "billing_address.phone": cart?.billing_address?.phone || "",
-  })
+  });
+
+  useEffect(() => {
+    if (!cart?.billing_address) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      "billing_address.first_name": cart.billing_address?.first_name || "",
+      "billing_address.last_name": cart.billing_address?.last_name || "",
+      "billing_address.address_1": cart.billing_address?.address_1 || "",
+      "billing_address.company": cart.billing_address?.company || "",
+      "billing_address.postal_code": cart.billing_address?.postal_code || "",
+      "billing_address.city": cart.billing_address?.city || "",
+      "billing_address.country_code": cart.billing_address?.country_code || "",
+      "billing_address.province": cart.billing_address?.province || "",
+      "billing_address.phone": cart.billing_address?.phone || "",
+    }));
+  }, [cart]);
 
   const handleChange = (
     e: React.ChangeEvent<
