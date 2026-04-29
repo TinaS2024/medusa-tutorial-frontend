@@ -189,6 +189,7 @@
     },
     "product_variant":
     {
+      "variant_title":"Variant",
       "select_variant":"Kies een variante",
       "out_of_stock":"Epuise"
     },
@@ -299,7 +300,8 @@
         "save": "Wijziging opslaan",
         "add": "Toevoegen",
         "remove": "Verwijderen",
-        "update":"Succesvol bijgewerkt"
+        "update":"Succesvol bijgewerkt",
+        "remove_bundle":"Bundel verwijderen"
       },
        "error":
       {

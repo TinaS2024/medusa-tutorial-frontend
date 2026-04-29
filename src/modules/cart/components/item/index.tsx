@@ -105,7 +105,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         <Table.Cell>
           <div className="flex gap-2 items-center w-28">
             <DeleteButton id={item.id} data-testid="product-delete-button" bundle_id={item.metadata?.bundle_id as string}>
-              {item.metadata?.bundle_id !== undefined ? "Entferne Bundle" : "Entfernen"}
+              {item.metadata?.bundle_id !== undefined ? t.function.remove_bundle : t.function.remove}
             </DeleteButton>
             <CartItemSelect
               aria-label={t.product.quantity}

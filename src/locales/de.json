@@ -190,6 +190,7 @@
     },
     "product_variant":
     {
+      "variant_title":"Variante",
       "select_variant":"Wähle die Variante aus",
       "out_of_stock":"Ausverkauft"
     },
@@ -300,7 +301,8 @@
         "save": "Änderungen speichern",
         "add": "Hinzufügen",
         "remove": "Entfernen",
-        "update":"Erfolgreich aktualisiert"
+        "update":"Erfolgreich aktualisiert",
+        "remove_bundle":"Entferne Bundle"
       },
       "error":
       {

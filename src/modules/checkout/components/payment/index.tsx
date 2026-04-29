@@ -124,7 +124,7 @@ const Payment = ({
             }
           )}
         >
-          t.payment.title
+          {t.payment.title}
           {!isOpen && paymentReady && <CheckCircleSolid />}
         </Heading>
         {!isOpen && paymentReady && (

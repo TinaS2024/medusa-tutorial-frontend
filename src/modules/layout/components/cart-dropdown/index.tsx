@@ -174,7 +174,7 @@ const CartDropdown = ({
                             data-testid="cart-item-remove-button"
                             bundle_id={item.metadata?.bundle_id as string}
                           >
-                            {item.metadata?.bundle_id !== undefined ? "Entferne Bundle" : "Entfernen"}
+                            {item.metadata?.bundle_id !== undefined ? t.function.remove_bundle : t.function.remove}
                           </DeleteButton>
                         </div>
                       </div>
