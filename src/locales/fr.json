@@ -303,7 +303,9 @@
         "add": "Ajouter",
         "remove": "Supprimer",
         "update":"Mis à jour avec succès",
-        "remove_bundle":"Supprimer le paquet"
+        "remove_bundle":"Supprimer le paquet",
+        "warning": "Avertissement",
+        "test_info":"Information de test"
       },
         "error":
       {

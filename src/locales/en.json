@@ -301,7 +301,9 @@
         "add": "Add",
         "remove": "Remove",
         "update":"Updated successfully",
-        "remove_bundle":"Remove bundle"
+        "remove_bundle":"Remove bundle",
+        "warning": "Warning",
+        "test_info":"Test information"
       },  
       "error":
       {

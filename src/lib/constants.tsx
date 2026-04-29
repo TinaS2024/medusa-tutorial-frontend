@@ -1,37 +1,45 @@
-import React from "react"
-import { CreditCard } from "@medusajs/icons"
 
-import Ideal from "@modules/common/icons/ideal"
-import Bancontact from "@modules/common/icons/bancontact"
-import PayPal from "@modules/common/icons/paypal"
+"use client";
 
-/* Map of payment provider_id to their title and icon. Add in any payment providers you want to use. */
-export const paymentInfoMap: Record<
-  string,
-  { title: string; icon: React.JSX.Element }
-> = {
-  pp_stripe_stripe: {
-    title: "Kreditkarte",
-    icon: <CreditCard />,
-  },
-  "pp_stripe-ideal_stripe": {
-    title: "iDeal",
-    icon: <Ideal />,
-  },
-  "pp_stripe-bancontact_stripe": {
-    title: "Bancontact",
-    icon: <Bancontact />,
-  },
-  pp_paypal_paypal: {
-    title: "PayPal",
-    icon: <PayPal />,
-  },
-  pp_system_default: {
-    title: "Manuelle Zahlung",
-    icon: <CreditCard />,
-  },
-  // Add more payment providers here
+import React from "react";
+import { CreditCard } from "@medusajs/icons";
+
+import Ideal from "@modules/common/icons/ideal";
+import Bancontact from "@modules/common/icons/bancontact";
+import PayPal from "@modules/common/icons/paypal";
+
+import { getMessages, type Lang } from "@lib/messages";
+
+export const getPaymentInfoMap = (
+  lang: Lang
+): Record<string, { title: string; icon: React.JSX.Element }> => {
+  const t = getMessages(lang);
+
+  return {
+    pp_stripe_stripe: {
+      title: "Kreditkarte",
+      icon: <CreditCard />,
+    },
+    "pp_stripe-ideal_stripe": {
+      title: "iDeal",
+      icon: <Ideal />,
+    },
+    "pp_stripe-bancontact_stripe": {
+      title: "Bancontact",
+      icon: <Bancontact />,
+    },
+    pp_paypal_paypal: {
+      title: "PayPal",
+      icon: <PayPal />,
+    },
+    pp_system_default: {
+      title: t.payment.manual,
+      icon: <CreditCard />,
+    },
+  }
 }
+/* Map of payment provider_id to their title and icon. Add in any payment providers you want to use. */
+export const paymentInfoMap = getPaymentInfoMap("de");  
 
 // This only checks if it is native stripe for card payments, it ignores the other stripe-based providers
 export const isStripe = (providerId?: string) => {

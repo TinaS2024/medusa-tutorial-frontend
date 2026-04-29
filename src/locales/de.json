@@ -302,7 +302,9 @@
         "add": "Hinzufügen",
         "remove": "Entfernen",
         "update":"Erfolgreich aktualisiert",
-        "remove_bundle":"Entferne Bundle"
+        "remove_bundle":"Entferne Bundle",
+        "warning": "Achtung",
+        "test_info":"Nur zu Testzwecken."
       },
       "error":
       {

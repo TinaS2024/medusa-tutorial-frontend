@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { Container, Heading, Text } from "@medusajs/ui";
 
-import { isStripe, paymentInfoMap } from "@lib/constants";
+import { getPaymentInfoMap, isStripe } from "@lib/constants";
 import Divider from "@modules/common/components/divider";
 import { convertToLocale } from "@lib/util/money";
 import { HttpTypes } from "@medusajs/types";
@@ -19,6 +19,7 @@ type PaymentDetailsProps = {
 const PaymentDetails = ({ order }: PaymentDetailsProps) => {
   const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
   const t = getMessages(lang);
+  const paymentInfoMap = getPaymentInfoMap(lang);
   
      useEffect(() => {
       setLang(getClientLanguage());

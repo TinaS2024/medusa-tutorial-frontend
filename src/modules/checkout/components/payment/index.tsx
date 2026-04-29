@@ -1,7 +1,7 @@
 "use client";
 
 import { RadioGroup } from "@headlessui/react";
-import { isStripe as isStripeFunc, paymentInfoMap } from "@lib/constants";
+import { getPaymentInfoMap, isStripe as isStripeFunc } from "@lib/constants";
 import { initiatePaymentSession } from "@lib/data/cart";
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons";
 import { Button, Container, Heading, Text, clx } from "@medusajs/ui";
@@ -27,6 +27,7 @@ const Payment = ({
 
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+  const paymentInfoMap = getPaymentInfoMap(lang);
   
   useEffect(() => {
       setLang(getClientLanguage());

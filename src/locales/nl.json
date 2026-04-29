@@ -301,7 +301,9 @@
         "add": "Toevoegen",
         "remove": "Verwijderen",
         "update":"Succesvol bijgewerkt",
-        "remove_bundle":"Bundel verwijderen"
+        "remove_bundle":"Bundel verwijderen",
+        "warning": "Waarschuwing",
+        "test_info":"Testinformatie"
       },
        "error":
       {

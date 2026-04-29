@@ -92,12 +92,12 @@ const Shipping: React.FC<ShippingProps> = ({
 
   const isOpen = searchParams.get("step") === "delivery";
 
-  const _shippingMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone_id !== undefined && sm.service_zone_id !== null
-  )
-
   const _pickupMethods = availableShippingMethods?.filter(
     (sm) => (sm as any).metadata?.fulfillment_set_type === "pickup"
+  )
+
+  const _shippingMethods = availableShippingMethods?.filter(
+    (sm) => (sm as any).metadata?.fulfillment_set_type !== "pickup"
   )
 
   const hasPickupOptions = !!_pickupMethods?.length;
@@ -120,7 +120,9 @@ const Shipping: React.FC<ShippingProps> = ({
           setCalculatedPricesMap(pricesMap)
           setIsLoadingPrices(false)
         })
-      }
+      }else {setIsLoadingPrices(false)}
+    } else {
+      setIsLoadingPrices(false)
     }
 
     if (_pickupMethods?.find((m) => m.id === shippingMethodId)) {
@@ -156,6 +158,7 @@ const Shipping: React.FC<ShippingProps> = ({
     })
 
     await setShippingMethod({ cartId: cart.id, shippingMethodId: id })
+    .then(() => {router.refresh()})
       .catch((err) => {
         setShippingMethodId(currentId)
 
@@ -386,7 +389,7 @@ const Shipping: React.FC<ShippingProps> = ({
               className="mt"
               onClick={handleSubmit}
               isLoading={isLoading}
-              disabled={!cart.shipping_methods?.[0]}
+              disabled={isLoading || !shippingMethodId}
               data-testid="submit-delivery-option-button"
             >
               {t.payment.next_to_payment}
