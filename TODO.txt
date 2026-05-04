@@ -1,0 +1,2 @@
+- Übersetzungen im Warenkorb stimmen noch nicht ganz
+- Gravurfarbe mit Schwarz und Weiß noch in die product-actions reinnehme für die Übersetzungen
