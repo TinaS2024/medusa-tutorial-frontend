@@ -312,22 +312,5 @@
         "back_to_home":"Zurück zur Startseite",
         "no_cart":"Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut.",
         "error_info":"Fehlermeldung"
-      },
-      "products_i18n":
-      {
-        "wooden_stamp": {
-          "title":"Holzstempel",
-          "variants:": {
-            "square":"Eckig",
-            "round":"Rund"
-          }
-        },
-        "golden_shield": {
-          "title":"Goldschild",
-          "variants:":{
-            "black_goldshield":"Schwarz",
-            "white_goldschield":"Weiß"
-          }
-        }
       }
 }
