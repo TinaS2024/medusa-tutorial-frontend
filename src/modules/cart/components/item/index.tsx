@@ -80,7 +80,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           className="txt-medium-plus text-ui-fg-base"
           data-testid="product-title"
         >
-          {item.product_title}
+          {item.variant?.product?.title ?? item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
         <div className="text-sm text-ui fg-muted">

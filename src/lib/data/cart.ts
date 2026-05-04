@@ -6,15 +6,9 @@ import { HttpTypes } from "@medusajs/types";
 import { revalidatePath } from "next/cache";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import {
-  getAuthHeaders,
-  getCacheOptions,
-  getCacheTag,
-  getCartId,
-  removeCartId,
-  setCartId,
-} from "./cookies"
-import { getRegion } from "./regions"
+import { getAuthHeaders, getCacheOptions, getCacheTag, getCartId, removeCartId, setCartId } from "./cookies";
+import { getRegion } from "./regions";
+import { getLocaleHeader } from "@lib/locale";
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -29,9 +23,11 @@ export async function retrieveCart(cartId?: string)
   {
     return null;
   }
+  
 
   const headers = {
     ...(await getAuthHeaders()),
+    ...(await getLocaleHeader()),
   }
 
   const next = {

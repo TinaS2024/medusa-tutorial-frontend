@@ -144,7 +144,7 @@ const CartDropdown = ({
                                     href={`/products/${item.product_handle}`}
                                     data-testid="product-link"
                                   >
-                                    {item.title}
+                                    {item.variant?.product?.title ?? item.title}
                                   </LocalizedClientLink>
                                 </h3>
                                 <LineItemOptions
