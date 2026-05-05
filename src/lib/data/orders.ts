@@ -1,14 +1,18 @@
-"use server"
+"use server";
 
-import { sdk } from "@lib/config"
-import medusaError from "@lib/util/medusa-error"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
-import { HttpTypes } from "@medusajs/types"
+import { sdk } from "@lib/config";
+import medusaError from "@lib/util/medusa-error";
+import { getAuthHeaders, getCacheOptions } from "./cookies";
+import { getLocaleHeader, getLocaleFromCookies } from "@lib/locale";
+import { HttpTypes } from "@medusajs/types";
 
 export const retrieveOrder = async (id: string) => {
   const headers = {
     ...(await getAuthHeaders()),
+    ...(await getLocaleHeader()),
   }
+
+  const locale = await getLocaleFromCookies();
 
   const next = {
     ...(await getCacheOptions("orders")),
@@ -19,7 +23,8 @@ export const retrieveOrder = async (id: string) => {
       method: "GET",
       query: {
         fields:
-          "*payment_collections.payments,*items,*items.metadata,*items.variant,*items.product",
+          "*payment_collections.payments,*items,*items.metadata,*items.variant,*items.variant.options,*items.variant.options.option,*items.variant.product,*items.variant.product.options,*items.product",
+        ...(locale ? { locale } : {}),
       },
       headers,
       next,
@@ -36,8 +41,10 @@ export const listOrders = async (
 ) => {
   const headers = {
     ...(await getAuthHeaders()),
+    ...(await getLocaleHeader()),
   }
 
+  const locale = await getLocaleFromCookies();
   const next = {
     ...(await getCacheOptions("orders")),
   }
@@ -49,7 +56,9 @@ export const listOrders = async (
         limit,
         offset,
         order: "-created_at",
-        fields: "*items,+items.metadata,*items.variant,*items.product",
+        fields:
+          "*items,+items.metadata,*items.variant,*items.variant.options,*items.variant.options.option,*items.variant.product,*items.variant.product.options,*items.product",
+        ...(locale ? { locale } : {}),
         ...filters,
       },
       headers,
