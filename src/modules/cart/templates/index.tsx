@@ -14,10 +14,12 @@ const CartTemplate = ({
   cart,
   customer,
   productTitles,
+  variantTitles,
 }: {
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
   productTitles?: Record<string, string>
+  variantTitles?: Record<string, string>
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -98,7 +100,7 @@ const CartTemplate = ({
                   <Divider />
                 </>
               )}
-              <ItemsTemplate cart={cart} productTitles={productTitles}/>
+              <ItemsTemplate cart={cart} productTitles={productTitles} variantTitles={variantTitles}/>
             </div>
             <div className="relative">
               <div className="flex flex-col gap-y-8 sticky top-12">

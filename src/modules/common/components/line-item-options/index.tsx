@@ -9,12 +9,14 @@ import { getMessages, type Lang } from "@lib/messages";
 
 type LineItemOptionsProps = {
   variant: HttpTypes.StoreProductVariant | undefined
+  variantTitle?: string
   "data-testid"?: string
   "data-value"?: HttpTypes.StoreProductVariant
 }
 
 const LineItemOptions = ({
   variant,
+  variantTitle,
   "data-testid": dataTestid,
   "data-value": dataValue,
 }: LineItemOptionsProps) => {
@@ -32,7 +34,7 @@ const LineItemOptions = ({
       data-value={dataValue}
       className="inline-block txt-medium text-ui-fg-subtle w-full overflow-hidden text-ellipsis"
     >
-      {t.product_variant.variant_title}: {variant?.title}
+      {t.product_variant.variant_title}: {variantTitle ?? variant?.title}
     </Text>
   )
 }

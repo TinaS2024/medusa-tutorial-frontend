@@ -19,7 +19,7 @@ export default async function Cart()
 
   const customer = await retrieveCustomer();
 
-   const productIds = Array.from(
+  const productIds = Array.from(
     new Set(
       (cart?.items ?? [])
         .map((i) => i.variant?.product?.id)
@@ -27,17 +27,44 @@ export default async function Cart()
     )
   )
 
-  const productTitles = cart?.region_id && productIds.length ? await listProducts({regionId: cart.region_id,  queryParams: { id: productIds, limit: productIds.length },
-        }).then(({ response }) =>
-          Object.fromEntries(
-            response.products
-              .map((p) => [p.id, p.title] as const)
-              .filter((entry) => Boolean(entry[0] && entry[1]))
-          )
-        )
-      : {}
+  const localizedProducts =
+    cart?.region_id && productIds.length
+      ? await listProducts({
+          regionId: cart.region_id,
+          queryParams: {
+            id: productIds,
+            limit: productIds.length,
+            expand: "variants,variants.options,options",
+          },
+        }).then(({ response }) => response.products)
+      : [];
+
+  const productTitles = Object.fromEntries(
+    localizedProducts
+      .map((p) => [p.id, p.title] as const)
+      .filter((entry) => Boolean(entry[0] && entry[1]))
+  )
+
+  const variantTitles = Object.fromEntries(
+    localizedProducts
+      .flatMap((p) => {
+        const variants = (p as any).variants as any[] | undefined
+
+        return (variants ?? []).map((v) => {
+          const computed = Array.isArray(v.options)
+            ? v.options
+                .map((o: any) => o?.value)
+                .filter(Boolean)
+                .join(" / ")
+            : undefined
+
+          return [v.id, v.title ?? computed] as const
+        })
+      })
+      .filter((entry) => Boolean(entry[0] && entry[1]))
+  )
 
   return (
-    <CartTemplate cart={cart} customer={customer} productTitles={productTitles} />
+    <CartTemplate cart={cart} customer={customer} productTitles={productTitles} variantTitles={variantTitles} />
   )
 }

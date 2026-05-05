@@ -12,9 +12,10 @@ import { getMessages, type Lang } from "@lib/messages";
 type ItemsTemplateProps = {
   cart?: HttpTypes.StoreCart
   productTitles?: Record<string, string>
+  variantTitles?: Record<string, string>
 }
 
-const ItemsTemplate = ({ cart, productTitles }: ItemsTemplateProps) => {
+const ItemsTemplate = ({ cart, productTitles, variantTitles }: ItemsTemplateProps) => {
   
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
@@ -54,11 +55,15 @@ const ItemsTemplate = ({ cart, productTitles }: ItemsTemplateProps) => {
 
                   const productId = item.variant?.product?.id;
                   const title = productId ? productTitles?.[productId] : undefined;
+                  const variantId = item.variant?.id;
+                  const variantTitle = variantId ? variantTitles?.[variantId] : undefined;
+
                   return (
                     <Item
                       key={item.id}
                       item={item}
                       title={title}
+                      variantTitle={variantTitle}
                       currencyCode={cart?.currency_code}
                     />
                   )
