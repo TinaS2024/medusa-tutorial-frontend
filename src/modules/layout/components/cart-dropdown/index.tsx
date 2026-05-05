@@ -18,9 +18,11 @@ import { getMessages, type Lang } from "@lib/messages";
 const CartDropdown = ({
   cart: cartState,
   productTitles,
+  variantTitles,
 }: {
-  cart?: HttpTypes.StoreCart | null,
+  cart?: HttpTypes.StoreCart | null
   productTitles?: Record<string, string>
+  variantTitles?: Record<string, string>
 }) => {
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
@@ -155,6 +157,11 @@ const CartDropdown = ({
                                 </h3>
                                 <LineItemOptions
                                   variant={item.variant}
+                                  variantTitle={
+                                    item.variant?.id
+                                      ? variantTitles?.[item.variant.id]
+                                      : undefined
+                                  }
                                   data-testid="cart-item-variant"
                                   data-value={item.variant}
                                 />
