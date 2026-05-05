@@ -17,8 +17,10 @@ import { getMessages, type Lang } from "@lib/messages";
 
 const CartDropdown = ({
   cart: cartState,
+  productTitles,
 }: {
-  cart?: HttpTypes.StoreCart | null
+  cart?: HttpTypes.StoreCart | null,
+  productTitles?: Record<string, string>
 }) => {
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
@@ -144,7 +146,11 @@ const CartDropdown = ({
                                     href={`/products/${item.product_handle}`}
                                     data-testid="product-link"
                                   >
-                                    {item.title}
+                                    {(item.variant?.product?.id
+                                      ? productTitles?.[item.variant.product.id]
+                                      : undefined) ??
+                                      item.variant?.product?.title ??
+                                      item.title}
                                   </LocalizedClientLink>
                                 </h3>
                                 <LineItemOptions

@@ -21,11 +21,12 @@ import { getMessages, type Lang } from "@lib/messages";
 
 type ItemProps = {
   item: HttpTypes.StoreCartLineItem
+  title?: string
   type?: "full" | "preview"
   currencyCode: string
 }
 
-const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
+const Item = ({ item, title, type = "full", currencyCode }: ItemProps) => {
 
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
@@ -80,7 +81,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           className="txt-medium-plus text-ui-fg-base"
           data-testid="product-title"
         >
-          {item.product_title}
+          {title ?? item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
         <div className="text-sm text-ui fg-muted">

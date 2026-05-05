@@ -13,9 +13,11 @@ import { get } from "lodash";
 const CartTemplate = ({
   cart,
   customer,
+  productTitles,
 }: {
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
+  productTitles?: Record<string, string>
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -96,7 +98,7 @@ const CartTemplate = ({
                   <Divider />
                 </>
               )}
-              <ItemsTemplate cart={cart} />
+              <ItemsTemplate cart={cart} productTitles={productTitles}/>
             </div>
             <div className="relative">
               <div className="flex flex-col gap-y-8 sticky top-12">

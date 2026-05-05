@@ -17,7 +17,7 @@ export const listProducts = async ({
   regionId,
 }: {
   pageParam?: number
-  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & {expand?: string, handle?:string | string[]}
+  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & { expand?: string; handle?: string | string[]; id?: string[] }
   countryCode?: string
   regionId?: string
 }): Promise<{
@@ -74,9 +74,10 @@ return sdk.client
           offset,
           region_id: region?.id,
           handle: queryParams?.handle,
+          id: queryParams?.id,
           fields:
             "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material",
-            ...(locale ? { locale } : {}),
+          ...(locale ? { locale } : {}),
         },
         headers,
         next,

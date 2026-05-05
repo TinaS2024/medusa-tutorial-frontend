@@ -38,7 +38,7 @@ export async function retrieveCart(cartId?: string)
       query: {
         fields:
           "*items, *region, *items.product, *items.product.images, *items.variant, *items.variant.product, *items.variant.product.images, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name",
-      },
+        },
       headers,
       next,
       cache: "force-cache",

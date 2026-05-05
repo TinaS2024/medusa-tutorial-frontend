@@ -11,9 +11,10 @@ import { getMessages, type Lang } from "@lib/messages";
 
 type ItemsTemplateProps = {
   cart?: HttpTypes.StoreCart
+  productTitles?: Record<string, string>
 }
 
-const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
+const ItemsTemplate = ({ cart, productTitles }: ItemsTemplateProps) => {
   
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
@@ -50,10 +51,14 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
                   return (a.created_at ?? "") > (b.created_at ?? "") ? -1 : 1
                 })
                 .map((item) => {
+
+                  const productId = item.variant?.product?.id;
+                  const title = productId ? productTitles?.[productId] : undefined;
                   return (
                     <Item
                       key={item.id}
                       item={item}
+                      title={title}
                       currencyCode={cart?.currency_code}
                     />
                   )
