@@ -17,7 +17,14 @@ export const listProducts = async ({
   regionId,
 }: {
   pageParam?: number
-  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & { expand?: string; handle?: string | string[]; id?: string[] }
+  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & {
+    expand?: string
+    handle?: string | string[]
+    id?: string[]
+    category_id?: string[]
+    collection_id?: string[]
+    order?: string
+  }
   countryCode?: string
   regionId?: string
 }): Promise<{
@@ -75,6 +82,9 @@ return sdk.client
           region_id: region?.id,
           handle: queryParams?.handle,
           id: queryParams?.id,
+          category_id: queryParams?.category_id,
+          collection_id: queryParams?.collection_id,
+          order: queryParams?.order,
           fields:
             "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material",
           ...(locale ? { locale } : {}),

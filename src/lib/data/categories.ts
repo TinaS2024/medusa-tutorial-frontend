@@ -40,14 +40,22 @@ export const getCategoryByHandle = async (categoryHandle: string[]) => {
     ...(await getCacheOptions("categories")),
   }
 
+  const headers = {
+    ...(await getLocaleHeader()),
+  }
+
+  const locale = await getLocaleFromCookies()
+
   return sdk.client
     .fetch<HttpTypes.StoreProductCategoryListResponse>(
       `/store/product-categories`,
       {
         query: {
-          fields: "*category_children, *products",
+          fields: "*category_children, *products,*parent_category, *parent_category.parent_category",
           handle,
+          ...(locale ? { locale } : {}),
         },
+        headers,
         next,
         cache: "force-cache",
       }
