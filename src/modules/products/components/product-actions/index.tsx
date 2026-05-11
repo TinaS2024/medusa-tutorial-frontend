@@ -479,6 +479,7 @@ export default function ProductActions({
     is_roundForm: String(isRoundForm),
     is_ovalForm: String(isOvalForm),
     is_shieldProduct: String(isShieldProduct),
+    locale: lang,
   });
 
   if(selectedVariant)
