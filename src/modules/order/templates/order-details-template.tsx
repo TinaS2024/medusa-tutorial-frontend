@@ -1,5 +1,3 @@
-"use client";
-
 import { XMark } from "@medusajs/icons";
 import { HttpTypes } from "@medusajs/types";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
@@ -8,24 +6,19 @@ import Items from "@modules/order/components/items";
 import OrderDetails from "@modules/order/components/order-details";
 import OrderSummary from "@modules/order/components/order-summary";
 import ShippingDetails from "@modules/order/components/shipping-details";
-import React, {useState, useEffect} from "react";
 
-import { getClientLanguage } from "@lib/i18n";
-import { getMessages, type Lang } from "@lib/messages";
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
 
 type OrderDetailsTemplateProps = {
   order: HttpTypes.StoreOrder
 }
 
-const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({order}) => {
+const OrderDetailsTemplate = async ({ order }: OrderDetailsTemplateProps) => {
 
-  const [lang, setLang] = useState<Lang>("de");
+  const lang = await getServerLanguage();
   const t = getMessages(lang);
-  
-    useEffect(() => {
-      setLang(getClientLanguage());
-    }, []);
-  
+
   return (
     <div className="flex flex-col justify-center gap-y-4">
       <div className="flex gap-2 justify-between items-center">

@@ -1,17 +1,21 @@
-import "server-only"
-import { cookies as nextCookies } from "next/headers"
+import "server-only";
+import { cookies as nextCookies } from "next/headers";
 
 export const getAuthHeaders = async (): Promise<
   { authorization: string } | {}
 > => {
-  const cookies = await nextCookies()
-  const token = cookies.get("_medusa_jwt")?.value
 
-  if (!token) {
+  try{
+    const cookies = await nextCookies()
+    const token = cookies.get("_medusa_jwt")?.value
+
+    if (!token) {
     return {}
   }
-
   return { authorization: `Bearer ${token}` }
+  }catch{
+    return{}
+  }
 }
 
 export const getCacheTag = async (tag: string): Promise<string> => {
