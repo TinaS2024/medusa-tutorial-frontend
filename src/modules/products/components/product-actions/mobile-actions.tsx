@@ -29,6 +29,9 @@ type MobileActionsProps = {
   isAdding?: boolean
   show: boolean
   optionsDisabled: boolean
+  quantity: number
+  setQuantity: React.Dispatch<React.SetStateAction<number>>
+  maxQuantity?:number
 }
 
 const MobileActions: React.FC<MobileActionsProps> = ({
@@ -41,6 +44,9 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   isAdding,
   show,
   optionsDisabled,
+  quantity,
+  setQuantity,
+  maxQuantity,
 }) => {
 
   const [lang, setLang] = useState<Lang>("de");
@@ -114,6 +120,57 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               ) : (
                 <div></div>
               )}
+            </div>
+            <div className="w-full flex items-center justify-between gap-x-4">
+              <span className="text-small-regular text-ui-fg-subtle">{t.product.quantity}</span>
+              <div className="flex items-center gap-x-2">
+                <button
+                  type="button"
+                  className="w-10 h-10 rounded-md border border-ui-border-base bg-white"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  disabled={quantity <= 1}
+                >
+                  -
+                </button>
+                <input
+                  title={t.product.quantity}
+                  placeholder={t.product.quantity}
+                  className="w-16 h-10 rounded-md border border-ui-border-base text-center"
+                  type="number"
+                  min={1}
+                  max={maxQuantity && maxQuantity > 0 ? maxQuantity : undefined}
+                  value={quantity}
+                  onChange={(e) => {
+                    const parsed = Math.floor(Number(e.target.value))
+                    const base = Number.isFinite(parsed) && parsed > 0 ? parsed : 1
+
+                    if (maxQuantity == null || maxQuantity <= 0) {
+                      setQuantity(base)
+                      return
+                    }
+
+                    setQuantity(Math.min(base, maxQuantity))
+                  }}
+                />
+                <button
+                  type="button"
+                  className="w-10 h-10 rounded-md border border-ui-border-base bg-white"
+                  onClick={() => {
+                    setQuantity((q) => {
+                      const next = q + 1
+
+                      if (maxQuantity == null || maxQuantity <= 0) {
+                        return next
+                      }
+
+                      return Math.min(next, maxQuantity)
+                    })
+                  }}
+                  disabled={!!maxQuantity && maxQuantity > 0 && quantity >= maxQuantity}
+                >
+                  +
+                </button>
+              </div>
             </div>
             <div className={clx("grid grid-cols-2 w-full gap-x-4", {
               "!grid-cols-1": isSimple

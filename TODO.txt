@@ -1,3 +1,2 @@
-- Übersetzungen der Produkte im Designer stimmen noch nicht
-- Eine Produktmenge im Store einfügen ?
-- Beim Auswählen von runden Holzschildern sollte der Designer eine Rundmaske benutzen und Holzschilder anzeigen
+- Beim Auswählen von Produktvarianten sollten auch die Maße angezeigt werden... derzeit werden nur die Defaultmaße angezeigt wenn vorhanden
+

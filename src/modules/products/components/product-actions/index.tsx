@@ -70,6 +70,7 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);
   const [designerPrice, setDesignerPrice] = useState<number | null>(null);
+  const [quantity, setQuantity] = useState<number>(1)
 
   const optionKeysMeta = getOptionKeysMeta(product);
 
@@ -340,7 +341,7 @@ export default function ProductActions({
 
   // check if the selected variant is in stock
   const inStock = useMemo(() => {
-    // If we don't manage inventory, we can always add to cart
+   
     if (selectedVariant && !selectedVariant.manage_inventory) {
       return true
     }
@@ -362,19 +363,43 @@ export default function ProductActions({
     return false
   }, [selectedVariant])
 
+  const maxQuantity = useMemo(() => {
+    if (!selectedVariant) {
+      return undefined
+    }
+
+    if (!selectedVariant.manage_inventory || selectedVariant.allow_backorder) {
+      return undefined
+    }
+
+    const inv = selectedVariant.inventory_quantity ?? 0
+    return inv > 0 ? inv : 0
+  }, [selectedVariant])
+
   const actionsRef = useRef<HTMLDivElement>(null)
 
   const inView = useIntersection(actionsRef, "0px")
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
-    if (!selectedVariant?.id) return null
+    if (!selectedVariant?.id) return null;
 
-    setIsAdding(true)
+    const safeQuantity = (() => {
+      const parsed = Math.floor(Number(quantity))
+      const base = Number.isFinite(parsed) && parsed > 0 ? parsed : 1
+
+      if (maxQuantity == null || maxQuantity <= 0) {
+        return base
+      }
+
+      return Math.min(base, maxQuantity)
+    })()
+
+    setIsAdding(true);
 
     await addToCart({
       variantId: selectedVariant.id,
-      quantity: 1,
+      quantity: safeQuantity,
       countryCode,
       metadata: {
         width,
@@ -588,6 +613,29 @@ export default function ProductActions({
 
         <ProductPrice product={product} variant={selectedVariant} region={region} metadata={{width,height}}/>
 
+        <div className="mt-2">
+          <Input
+            name="quantity"
+            value={quantity}
+            onChange={(e) => {
+              const parsed = Math.floor(Number(e.target.value))
+              const base = Number.isFinite(parsed) && parsed > 0 ? parsed : 1
+
+              if (maxQuantity == null || maxQuantity <= 0) {
+                setQuantity(base)
+                return
+              }
+
+              setQuantity(Math.min(base, maxQuantity))
+            }}
+            label={t.product.quantity}
+            type="number"
+            min={1}
+            max={maxQuantity && maxQuantity > 0 ? maxQuantity : undefined}
+            disabled={!!disabled || isAdding}
+          />
+        </div>
+
         {product.metadata?.is_printOnDemand === true && (
           <>
           <canvas ref={canvasRef} width="50" height="50" className="border border-gray-300 mt-4 mb-2"/>
@@ -631,6 +679,9 @@ export default function ProductActions({
             : t.cart.empty.add_to_cart}
         </Button>
         <MobileActions
+          quantity={quantity}
+          setQuantity={setQuantity}
+          maxQuantity={maxQuantity}
           product={product}
           variant={selectedVariant}
           options={options}
