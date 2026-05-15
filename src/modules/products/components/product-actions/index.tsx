@@ -141,11 +141,16 @@ export default function ProductActions({
   const isStampMeta = product.metadata?.is_stampProduct;
   const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true"].includes(String(isStampMeta).toLowerCase());
 
+  //Für Aluschilder
   const isShieldMeta = product.metadata?.is_shieldProduct;
   const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true"].includes(String(isShieldMeta).toLowerCase());
 
   const isRoundFormMeta = product.metadata?.is_roundForm;
   const isRoundFormMetaParsed = typeof isRoundFormMeta === "boolean" ? isRoundFormMeta : ["true"].includes(String(isRoundFormMeta).toLowerCase());
+
+  //Für Holzschilder
+  const isWoodenShieldMeta = (product.metadata as any)?.is_woodenShieldProduct ?? (product.metadata as any)?.isWoodenShieldProduct;
+  const isWoodenShieldProduct = typeof isWoodenShieldMeta === "boolean" ? isWoodenShieldMeta : ["true"].includes(String(isWoodenShieldMeta).toLowerCase());
 
   const isOvalFormMeta = product.metadata?.is_ovalForm;
   const isOvalFormMetaParsed = typeof isOvalFormMeta === "boolean" ? isOvalFormMeta : ["true"].includes(String(isOvalFormMeta).toLowerCase());
@@ -323,7 +328,7 @@ export default function ProductActions({
       });
   }, [selectedVariant, region.id, width, height, product.metadata?.is_personalized]);
 
-  // update the options when a variant is selected
+
   const setOptionValue = (optionId: string, value: string) => {
     setOptions((prev) => ({
       ...prev,
@@ -331,7 +336,7 @@ export default function ProductActions({
     }))
   }
 
-  //check if the selected options produce a valid variant
+
   const isValidVariant = useMemo(() => {
     return product.variants?.some((v) => {
       const variantOptions = optionsAsKeymap(v.options)
@@ -339,16 +344,15 @@ export default function ProductActions({
     })
   }, [product.variants, options])
 
-  // check if the selected variant is in stock
+
   const inStock = useMemo(() => {
    
     if (selectedVariant && !selectedVariant.manage_inventory) {
-      return true
+      return true;
     }
 
-    // If we allow back orders on the variant, we can add to cart
     if (selectedVariant?.allow_backorder) {
-      return true
+      return true;
     }
 
     // If there is inventory available, we can add to cart
@@ -359,7 +363,6 @@ export default function ProductActions({
       return true
     }
 
-    // Otherwise, we can't add to cart
     return false
   }, [selectedVariant])
 
@@ -380,7 +383,6 @@ export default function ProductActions({
 
   const inView = useIntersection(actionsRef, "0px")
 
-  // add the selected variant to the cart
   const handleAddToCart = async () => {
     if (!selectedVariant?.id) return null;
 
@@ -544,6 +546,10 @@ export default function ProductActions({
                   }
                   if (isShieldProduct) 
                   {
+                    if(isWoodenShieldProduct)
+                    {
+                      return !isCushionColor && !isEmbossingPosition && !isPenColor;
+                    }
                     return isEngravingColor || isBackgroundColor;
                   }
                    return !isCushionColor && !isEngravingColor && !isBackgroundColor;
