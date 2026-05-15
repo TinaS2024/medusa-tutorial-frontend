@@ -1,1 +1,1 @@
-- Runde Holzschilder sollten auch eine runde Maske im Designer bekommen
+- Größenangaben für die Produktvarianten im Storefront fehlen noch

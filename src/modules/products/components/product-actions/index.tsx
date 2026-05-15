@@ -161,7 +161,10 @@ export default function ProductActions({
   const isOvalFormVariantMeta = selectedVariant?.metadata?.is_ovalForm;
   const isOvalFormVariantMetaParsed = typeof isOvalFormVariantMeta === "boolean" ? isOvalFormVariantMeta : ["true"].includes(String(isOvalFormVariantMeta).toLowerCase());
 
-  const isRoundForm = isRoundFormMetaParsed || isRoundFormVariantMetaParsed;
+  const titleHaystack = `${product.title ?? ""} ${product.subtitle ?? ""} ${selectedVariant?.title ?? ""}`.toLowerCase();
+  const isRoundFormByTitle = isWoodenShieldProduct && (titleHaystack.includes("rund") || titleHaystack.includes("round"));
+
+  const isRoundForm = isRoundFormMetaParsed || isRoundFormVariantMetaParsed || isRoundFormByTitle;
   const isRoundFormProduct = isRoundForm;
 
   const isOvalForm = isOvalFormMetaParsed || isOvalFormVariantMetaParsed;
