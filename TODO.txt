@@ -1,2 +1,1 @@
-- Beim Auswählen von Produktvarianten sollten auch die Maße angezeigt werden... derzeit werden nur die Defaultmaße angezeigt wenn vorhanden
-
+- Runde Holzschilder sollten auch eine runde Maske im Designer bekommen
