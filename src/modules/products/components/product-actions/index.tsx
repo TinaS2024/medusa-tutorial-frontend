@@ -577,6 +577,16 @@ export default function ProductActions({
         </div>
 
         <div className="flex flex-col gap-y-2">
+        {!!selectedVariant && !product.metadata?.is_personalized && !!width && !!height && (
+          <div className="text-sm text-ui-fg-muted">
+            <div>
+              {t.product.width}: {width} mm
+            </div>
+            <div>
+              {t.product.height}: {height} mm
+            </div>
+          </div>
+        )}
         {!!product.metadata?.is_personalized && (
           <div className="flex flex-col gap-y-3">
             <span className="text-sm">{t.product.dimensions_info}</span>
