@@ -88,6 +88,7 @@ const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemPro
         <div className="text-sm text-ui fg-muted">
           {!!item.metadata?.width && <div>{t.product.width}: {item.metadata.width as number} mm</div>}
           {!!item.metadata?.height && <div>{t.product.height}: {item.metadata.height as number} mm</div>}
+          {!!item.metadata?.thickness && <div>{t.product.thickness}: {item.metadata.thickness as number} mm</div>}
           {!!item.metadata?.cushion_color && (
             <div>{t.product_properties.cushion_color}: {String(item.metadata.cushion_color)}</div>
           )}

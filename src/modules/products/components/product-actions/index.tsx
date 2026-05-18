@@ -137,7 +137,18 @@ export default function ProductActions({
     })
   }, [product.variants, options]);
 
+  //Anzeige Dicke eines Produktes
+  const thickness = useMemo(() => {
+    const raw =
+      (selectedVariant?.metadata as any)?.thickness ??
+      (product.metadata as any)?.thickness ??
+      (product.metadata as any)?.thickness_mm;
 
+    const n = Number(raw);
+    return Number.isFinite(n) && n > 0 ? n : undefined;
+  }, [selectedVariant, product.metadata]);
+
+  //Für Stempelprodukt
   const isStampMeta = product.metadata?.is_stampProduct;
   const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true"].includes(String(isStampMeta).toLowerCase());
 
@@ -409,6 +420,7 @@ export default function ProductActions({
       metadata: {
         width,
         height,
+        thickness,
         design_image: designImage,
         redionId: region.id,
       },
@@ -522,6 +534,11 @@ export default function ProductActions({
     designerParams.set("price", String(designerPrice));
   }
 
+  if (thickness != null) 
+  {
+    designerParams.set("thickness", String(thickness));
+  }
+
   const designerLink = `${designerBaseUrl}?${designerParams.toString()}`
 
   return (
@@ -577,15 +594,24 @@ export default function ProductActions({
         </div>
 
         <div className="flex flex-col gap-y-2">
-        {!!selectedVariant && !product.metadata?.is_personalized && !!width && !!height && (
+        {!!selectedVariant && !product.metadata?.is_personalized && (!!width || !!height || thickness != null) && (
           <div className="text-sm text-ui-fg-muted">
-            <div>
-              {t.product.width}: {width} mm
+            {!!width && (
+              <div>
+                {t.product.width}: {width} mm
+              </div>
+            )}
+            {!!height && (
+              <div>
+                {t.product.height}: {height} mm
+              </div>
+            )}
+            {thickness != null && (
+              <div>
+                {t.product.thickness}: {thickness} mm
+              </div>
+            )}
             </div>
-            <div>
-              {t.product.height}: {height} mm
-            </div>
-          </div>
         )}
         {!!product.metadata?.is_personalized && (
           <div className="flex flex-col gap-y-3">
@@ -623,11 +649,13 @@ export default function ProductActions({
               />
 
             </div>
-
+            {thickness != null && (
+              <div className="text-sm text-ui-fg-muted">
+                {t.product.thickness}: {thickness} mm
+              </div>
+            )}
           </div>
-
         )}
-
       </div>
 
         <ProductPrice product={product} variant={selectedVariant} region={region} metadata={{width,height}}/>
