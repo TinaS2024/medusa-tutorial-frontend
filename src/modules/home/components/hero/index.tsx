@@ -33,7 +33,7 @@ const Hero = () => {
             className="text-xsleading-10 text-ui-fg-subtle font-normal"
           >
             <div className="mb-5">
-            <Image src="/hero.png" alt="Hero Image" width={400} height={200}/>
+            <Image src="/Hero.png" alt="Hero Image" width={400} height={200}/>
             </div>
             
             <a href="/store" className="bg-orange-950 rounded-xl text-base-regular text-white p-2">{t.cart.empty.cta}</a>
