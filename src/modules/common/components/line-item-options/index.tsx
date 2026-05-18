@@ -44,11 +44,27 @@ const LineItemOptions = ({
       .filter((pair) => Boolean(pair[0] && pair[1]))
   )
 
-  const selectedOptions = ((variant as any)?.options as any[] | undefined) ?? []
+  const selectedOptions = ((variant as any)?.options as any[] | undefined) ?? [];
 
-  const colorTranslations = ((t as any).colors ?? (t as any).product_color) || {}
+  const colorTranslations = ((t as any).colors ?? (t as any).product_color) || {};
 
-  const embossingTranslations = (t as any).embossing_position || {}
+  const embossingTranslations = (t as any).embossing_position || {};
+
+  const formTranslations = (t as any).form || {}
+
+  const localizeFormToken = (token: string) => {
+    const v = token.trim().toLowerCase()
+
+    if (v === "round" || v === "rund") {
+      return formTranslations.round ?? token;
+    }
+
+    if (v === "square" || v === "eckig") {
+      return formTranslations.square ?? token;
+    }
+
+    return token;
+  }
 
   const lines = selectedOptions
     .map((o) => {
@@ -62,14 +78,24 @@ const LineItemOptions = ({
           ? (t as any).product_properties[key] ?? trimmedTitle ?? rawTitle
           : trimmedTitle ?? rawTitle
 
-      const rawValue = o?.value
-      const valueStr = rawValue == null ? "" : String(rawValue)
+      const rawValue = o?.value;
+      const valueStr = rawValue == null ? "" : String(rawValue);
+      const valueStrLower = valueStr.toLowerCase();
+
+      const isFormOption = Boolean(
+        trimmedTitle &&
+          (trimmedTitle.toLowerCase().includes("form") ||
+            trimmedTitle.toLowerCase().includes("shape"))
+      )
+
       const localizedValue =
         key && ["cushion_color", "background_color", "engraving_color", "pen_color"].includes(key)
           ? colorTranslations[valueStr] ?? valueStr
           : key === "embossing_posiiton"
             ? embossingTranslations[valueStr] ?? valueStr
-            : valueStr
+            : isFormOption && (valueStrLower === "round" || valueStrLower === "square" || valueStrLower === "rund" || valueStrLower === "eckig")
+              ? localizeFormToken(valueStr)
+              : valueStr
 
       return label && localizedValue ? { key: o?.id ?? o?.option_id ?? label, label: String(label), value: localizedValue } : null
     })
@@ -89,7 +115,13 @@ const LineItemOptions = ({
         ))
       ) : (
         <span>
-          {t.product_variant.variant_title}: {variantTitle ?? variant?.title}
+          {t.product_variant.variant_title}:{" "}
+          {(variantTitle
+            ? variantTitle
+                .split("/")
+                .map((p) => localizeFormToken(p))
+                .join(" / ")
+            : variant?.title) ?? ""}
         </span>
       )}
     </Text>
