@@ -5,6 +5,7 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - is_roundForm: Boolean               ... schaltet Rundmaske im Designer frei
 - is_ovalForm: Boolean                ... schaltet Ovalmaske im Designer frei
 - has_cushion: Boolean                ... schaltet Kissenoptionen für Stempel frei
+- is_woodenShieldProduct              ... markiert ein Produkt als Holzschild
 - is_shieldProduct: Boolean           ... markiert ein Produkt als Schild
 - is_personalized: Boolean            ... schaltet individuele Breiten-und Höhenangaben frei
 - is_designable: Boolean              ... zeigt Button zum Designer
