@@ -247,7 +247,22 @@
     {
       "title":"Customer Service",
       "question":"Have any questions?",
-      "common_questions":"Common questions and answers found on our customer service page."
+      "common_questions":"Common questions and answers found on our customer service page.",
+      "intro":"Find answers to common questions about orders, print files, and shipping.",
+      "blocks": [
+        {
+          "title":"Order & Invoice",
+          "body":"For questions about your order or invoice, please check your order confirmation and your account order overview."
+        },
+        {
+          "title":"Artwork & Approval",
+          "body":"Make sure uploaded files have sufficient quality and the text is correct. Personalized items go into production after final approval."
+        },
+        {
+          "title":"Shipping & Delivery",
+          "body":"Delivery time depends on the product and any express options. You can track the status in your account."
+        }
+      ]
     },
      "shipping":
     {

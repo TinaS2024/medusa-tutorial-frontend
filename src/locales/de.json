@@ -248,7 +248,22 @@
     {
       "title":"Kunden-Service",
       "question":"Haben Sie Fragen?",
-      "common_questions":"Häufig gestellte Fragen und Antworten finden Sie auf unserer Kundendienstseite."
+      "common_questions":"Häufig gestellte Fragen und Antworten finden Sie auf unserer Kundendienstseite.",
+      "intro":"Hier findest du Antworten auf die häufigsten Fragen rund um Bestellung, Druckdaten und Versand.",
+      "blocks": [
+        {
+          "title":"Bestellung & Rechnung",
+          "body":"Wenn du Fragen zu deiner Bestellung oder Rechnung hast, prüfe zuerst deine Bestellbestätigung und den Bestellstatus im Kundenkonto."
+        },
+        {
+          "title":"Druckdaten & Freigabe",
+          "body":"Achte bei Uploads auf ausreichende Auflösung und korrekte Schreibweise. Personalisierte Artikel gehen erst nach finaler Freigabe in die Produktion."
+        },
+        {
+          "title":"Versand & Lieferung",
+          "body":"Die Lieferzeit hängt vom Produkt und ggf. von Express-Optionen ab. Du siehst den aktuellen Stand in deinem Kundenkonto."
+        }
+      ]
     },
     "shipping":
     {

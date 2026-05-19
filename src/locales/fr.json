@@ -249,7 +249,22 @@
     {
       "title":"Service de client",
       "question":"Vous avez des questions?",
-      "common_questions":"Questions et réponses communes trouvées sur notre page de service de client."
+      "common_questions":"Questions et réponses communes trouvées sur notre page de service de client.",
+      "intro":"Retrouvez ici des réponses aux questions fréquentes sur les commandes, les fichiers et la livraison.",
+      "blocks": [
+        {
+          "title":"Commande & Facture",
+          "body":"Pour les questions sur votre commande ou votre facture, consultez votre confirmation de commande et votre espace client."
+        },
+        {
+          "title":"Fichiers & Validation",
+          "body":"Vérifiez la qualité des fichiers et l’orthographe. Les articles personnalisés passent en production après validation finale."
+        },
+        {
+          "title":"Expédition & Livraison",
+          "body":"Le délai dépend du produit et des options express. Le suivi est disponible dans votre compte."
+        }
+      ]
     },
      "shipping":
     {

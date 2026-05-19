@@ -247,7 +247,22 @@
     {
       "title":"Service de client",
       "question":"U heeft een vragen?",
-      "common_questions":"Vragen en antwoorden die we vinden op onze servicepagina."
+      "common_questions":"Vragen en antwoorden die we vinden op onze servicepagina.",
+      "intro":"Hier vind je antwoorden op veelgestelde vragen over bestellingen, bestanden en verzending.",
+      "blocks": [
+        {
+          "title":"Bestelling & Factuur",
+          "body":"Voor vragen over je bestelling of factuur: controleer je orderbevestiging en het overzicht in je account."
+        },
+        {
+          "title":"Bestanden & Goedkeuring",
+          "body":"Let op voldoende kwaliteit en correcte tekst. Gepersonaliseerde producten gaan pas na definitieve goedkeuring in productie."
+        },
+        {
+          "title":"Verzending & Levering",
+          "body":"Levertijd hangt af van het product en eventuele express-opties. Status vind je in je account."
+        }
+      ]
     },
      "shipping":
     {
