@@ -1,0 +1,2 @@
+- Passwort-Vergessen-Funktion einbauen
+- Customer-Design-Bereich im Backend hinzufügen

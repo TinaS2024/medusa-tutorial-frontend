@@ -1,13 +1,14 @@
 "use client";
 
-import  { useEffect, useState } from "react";
+import  { useEffect, useState, useActionState } from "react";
 
-import { login } from "@lib/data/customer";
+import { login} from "@lib/data/customer";
 import { LOGIN_VIEW } from "@modules/account/templates/login-template";
 import ErrorMessage from "@modules/checkout/components/error-message";
 import { SubmitButton } from "@modules/checkout/components/submit-button";
 import Input from "@modules/common/components/input";
-import { useActionState } from "react";
+import Modal from "@modules/common/components/modal";
+import ForgotPasswordForm from "@modules/account/components/forgot-password-form";
 
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages } from "@lib/messages";
@@ -25,7 +26,9 @@ type Props = {
   
   const t = getMessages(lang);
 
-  const [message, formAction] = useActionState(login, null)
+  const [message, formAction] = useActionState(login, null);
+  const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
+  const [forgotPasswordInstance, setForgotPasswordInstance] = useState(0);
 
   return (
     <div
@@ -55,12 +58,37 @@ type Props = {
             required
             data-testid="password-input"
           />
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="underline text-small-regular text-ui-fg-base"
+              onClick={() => {
+                setForgotPasswordInstance((v) => v + 1)
+                setIsForgotPasswordOpen(true)
+              }}
+              data-testid="forgot-password-link"
+            >
+              {t.login_shop.forgot_password}
+            </button>
+          </div>
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
         <SubmitButton data-testid="sign-in-button" className="w-full mt-6 bg-orange-950 hover:bg-orange-900">
           {t.login_shop.login}
         </SubmitButton>
       </form>
+      <Modal
+        isOpen={isForgotPasswordOpen}
+        close={() => setIsForgotPasswordOpen(false)}
+        size="small"
+        data-testid="forgot-password-modal"
+      >
+        <ForgotPasswordForm
+          key={forgotPasswordInstance}
+          t={t}
+          onClose={() => setIsForgotPasswordOpen(false)}
+        />
+      </Modal>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
         {t.login_shop.no_account} {" "}
         <button
@@ -71,7 +99,7 @@ type Props = {
         >
           {t.login_shop.new_register}
         </button>
-        
+        .
       </span>
     </div>
   )

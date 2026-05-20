@@ -1,19 +1,11 @@
-"use server"
+"use server";
 
-import { sdk } from "@lib/config"
-import medusaError from "@lib/util/medusa-error"
-import { HttpTypes } from "@medusajs/types"
-import { revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
-import {
-  getAuthHeaders,
-  getCacheOptions,
-  getCacheTag,
-  getCartId,
-  removeAuthToken,
-  removeCartId,
-  setAuthToken,
-} from "./cookies"
+import { sdk } from "@lib/config";
+import medusaError from "@lib/util/medusa-error";
+import { HttpTypes } from "@medusajs/types";
+import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
+import { getAuthHeaders, getCacheOptions, getCacheTag, getCartId, removeAuthToken, removeCartId, setAuthToken} from "./cookies";
 
 export const retrieveCustomer =
   async (): Promise<HttpTypes.StoreCustomer | null> => {
@@ -124,6 +116,64 @@ export async function login(_currentState: unknown, formData: FormData) {
     await transferCart()
   } catch (error: any) {
     return error.toString()
+  }
+}
+
+type PasswordResetState = {
+  ok: boolean
+  error: string | null
+}
+
+export async function requestPasswordReset(
+  _currentState: PasswordResetState | null,
+  formData: FormData
+): Promise<PasswordResetState> {
+  const email = (formData.get("email") as string | null)?.trim()
+
+  if (!email) {
+    return { ok: false, error: "missing_fields" }
+  }
+
+  try {
+    await sdk.auth.resetPassword("customer", "emailpass", {
+      identifier: email,
+    })
+
+    return { ok: true, error: null }
+  } catch {
+    return { ok: true, error: null }
+  }
+}
+
+export async function resetPasswordWithToken(
+  _currentState: PasswordResetState | null,
+  formData: FormData
+): Promise<PasswordResetState> {
+  const token = (formData.get("token") as string | null)?.trim()
+  const password = formData.get("password") as string | null
+  const confirmPassword = formData.get("confirm_password") as string | null
+
+  if (!token || !password || !confirmPassword) {
+    return { ok: false, error: "missing_fields" }
+  }
+
+  if (password !== confirmPassword) {
+    return { ok: false, error: "password_mismatch" }
+  }
+
+  try {
+    await sdk.auth.updateProvider(
+      "customer",
+      "emailpass",
+      {
+        password,
+      },
+      token
+    )
+
+    return { ok: true, error: null }
+  } catch (error: any) {
+    return { ok: false, error: error.toString() }
   }
 }
 
