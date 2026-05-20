@@ -1,2 +1,10 @@
 - Passwort-Vergessen-Funktion einbauen
 - Customer-Design-Bereich im Backend hinzufügen
+
+Konto
+Übersicht
+Profil
+Designs
+Adressen
+Bestellungen
+Abmeldung

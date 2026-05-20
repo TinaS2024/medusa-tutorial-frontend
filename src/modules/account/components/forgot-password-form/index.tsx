@@ -143,17 +143,6 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
           )}
         </div>
       </Modal.Body>
-
-      <Modal.Footer>
-        <button
-          type="button"
-          onClick={onClose}
-          className="underline text-small-regular text-ui-fg-base"
-          data-testid="forgot-password-cancel"
-        >
-          {t.login_shop.close}
-        </button>
-      </Modal.Footer>
     </>
   )
 }
