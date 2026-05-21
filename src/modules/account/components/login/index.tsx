@@ -39,7 +39,7 @@ type Props = {
       <p className="text-center text-base-regular text-ui-fg-base mb-8">
         {t.login_shop.login_info}
       </p>
-      <form className="w-full" action={formAction}>
+      <form noValidate className="w-full" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
             label={t.login_shop.email}

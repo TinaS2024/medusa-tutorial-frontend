@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, useActionState } from "react";
 import { requestPasswordReset, resetPasswordWithToken} from "@lib/data/customer";
 import ErrorMessage from "@modules/checkout/components/error-message";
@@ -85,7 +87,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
       <Modal.Body>
         <div className="w-full">
           {step === "request" ? (
-            <form action={requestAction} className="w-full">
+            <form noValidate action={requestAction} className="w-full">
               <div className="flex flex-col gap-y-2 w-full">
                 <Input
                   label={t.login_shop.email}
@@ -105,7 +107,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
               </SubmitButton>
             </form>
           ) : (
-            <form action={updateAction} className="w-full">
+            <form noValidate action={updateAction} className="w-full">
               <div className="flex flex-col gap-y-2 w-full">
                 <Input
                   label={t.login_shop.reset_password_token}
