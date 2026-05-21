@@ -79,6 +79,59 @@ export default function ProductActions({
   const searchParams = new URLSearchParams(window.location.search);
   const designImage = searchParams.get("designImage");
 
+  const uploadDesignImage = async (raw: string): Promise<string | null> => {
+    try {
+      const dataUrl = await (async () => {
+        if (raw.startsWith("data:")) {
+          return raw;
+        }
+
+        if (raw.startsWith("blob:")) {
+          const blob = await fetch(raw).then((r) => r.blob());
+
+          const reader = new FileReader();
+          const result = await new Promise<string>((resolve, reject) => {
+            reader.onload = () => resolve(String(reader.result ?? ""));
+            reader.onerror = () => reject(new Error("Failed to read blob"));
+            reader.readAsDataURL(blob);
+          });
+
+          return result;
+        }
+
+        return null;
+      })();
+
+      if (!dataUrl) 
+      {
+        return null;
+      }
+
+      const resp = await fetch("/store/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: dataUrl,
+          product_id: product.id,
+        }),
+      });
+
+      if (!resp.ok) 
+      {
+        return null;
+      }
+
+      const json = (await resp.json()) as { url?: string };
+
+      return typeof json.url === "string" && json.url.length > 0 ? json.url : null;
+    } catch {
+      return null;
+    }
+  };
+
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleUploadClick = () =>{
@@ -401,8 +454,8 @@ export default function ProductActions({
     if (!selectedVariant?.id) return null;
 
     const safeQuantity = (() => {
-      const parsed = Math.floor(Number(quantity))
-      const base = Number.isFinite(parsed) && parsed > 0 ? parsed : 1
+    const parsed = Math.floor(Number(quantity))
+    const base = Number.isFinite(parsed) && parsed > 0 ? parsed : 1
 
       if (maxQuantity == null || maxQuantity <= 0) {
         return base
@@ -413,6 +466,19 @@ export default function ProductActions({
 
     setIsAdding(true);
 
+    let designImageToSave = designImage;
+
+    if (
+      typeof designImageToSave === "string" &&
+      (designImageToSave.startsWith("data:") || designImageToSave.startsWith("blob:"))
+    ) {
+      const uploaded = await uploadDesignImage(designImageToSave);
+    if (uploaded) 
+      {
+        designImageToSave = uploaded;
+      }
+    }
+
     await addToCart({
       variantId: selectedVariant.id,
       quantity: safeQuantity,
@@ -421,7 +487,7 @@ export default function ProductActions({
         width,
         height,
         thickness,
-        design_image: designImage,
+        design_image: designImageToSave,
         redionId: region.id,
       },
     })

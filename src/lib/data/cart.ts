@@ -3,10 +3,12 @@
 import { sdk } from "@lib/config";
 import medusaError from "@lib/util/medusa-error";
 import { HttpTypes } from "@medusajs/types";
+import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { getAuthHeaders, getCacheOptions, getCacheTag, getCartId, removeCartId, setCartId } from "./cookies";
+import { retrieveCustomer, updateCustomer } from "./customer";
 import { getRegion } from "./regions";
 
 /**
@@ -153,6 +155,13 @@ await sdk.client.fetch<{
   },
   headers,
 }).then(async () => {
+
+   await maybeSaveCustomerDesign({
+        variantId,
+        countryCode,
+        metadata,
+      });
+
       const cartCacheTag = await getCacheTag("carts");
       revalidateTag(cartCacheTag);
 
@@ -161,6 +170,87 @@ await sdk.client.fetch<{
       revalidatePath('/cart');
     })
     .catch(medusaError)
+}
+
+//Vielleicht auslagern
+async function maybeSaveCustomerDesign({
+  variantId,
+  countryCode,
+  metadata,
+}: {
+  variantId: string
+  countryCode: string
+  metadata: Record<string, any>
+}) {
+  const designImage = metadata?.design_image;
+
+  if (typeof designImage !== "string" || designImage.length === 0) {
+    return;
+  }
+
+  if (designImage.startsWith("data:") || designImage.startsWith("blob:")) {
+    return;
+  }
+
+  if (designImage.length > 5000) {
+    return;
+  }
+
+  const customer = await retrieveCustomer();
+
+  if (!customer) {
+    return;
+  }
+
+  const existingMetadata =
+    customer.metadata && typeof customer.metadata === "object"
+      ? (customer.metadata as Record<string, any>)
+      : {};
+
+  const existingDesignsRaw = existingMetadata.designs;
+  const existingDesigns = Array.isArray(existingDesignsRaw)
+    ? existingDesignsRaw
+    : [];
+
+  const width = metadata?.width;
+  const height = metadata?.height;
+  const thickness = metadata?.thickness;
+
+  const isDuplicate = existingDesigns.some((d) => {
+    if (!d || typeof d !== "object") return false;
+
+    const sameImage = (d as any).design_image === designImage;
+    const sameVariant = (d as any).variant_id === variantId;
+    const sameWidth = Number((d as any).width) === Number(width);
+    const sameHeight = Number((d as any).height) === Number(height);
+    const sameThickness = Number((d as any).thickness) === Number(thickness);
+
+    return sameImage && sameVariant && sameWidth && sameHeight && sameThickness;
+  });
+
+  if (isDuplicate) {
+    return;
+  }
+
+  const nextDesign = {
+    id: randomUUID(),
+    created_at: new Date().toISOString(),
+    variant_id: variantId,
+    country_code: countryCode,
+    design_image: designImage,
+    width,
+    height,
+    thickness,
+  };
+
+  const designs = [nextDesign, ...existingDesigns].slice(0, 50);
+
+  await updateCustomer({
+    metadata: {
+      ...existingMetadata,
+      designs,
+    },
+  });
 }
 
 export async function updateLineItem({

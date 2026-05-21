@@ -9,6 +9,7 @@ import { useParams, usePathname } from "next/navigation";
 import ChevronDown from "@modules/common/icons/chevron-down";
 import User from "@modules/common/icons/user";
 import MapPin from "@modules/common/icons/map-pin";
+import Medusa from "@modules/common/icons/medusa";
 import Package from "@modules/common/icons/package";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { HttpTypes } from "@medusajs/types";
@@ -68,6 +69,21 @@ const AccountNav = ({
                       <div className="flex items-center gap-x-2">
                         <User size={20} />
                         <span>{t.profile.title}</span>
+                      </div>
+                      <ChevronDown className="transform -rotate-90" />
+                    </>
+                  </LocalizedClientLink>
+                </li>
+                 <li>
+                  <LocalizedClientLink
+                    href="/account/designs"
+                    className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                    data-testid="designs-link"
+                  >
+                    <>
+                      <div className="flex items-center gap-x-2">
+                        <Medusa size={20} />
+                        <span>{t.profile.designs}</span>
                       </div>
                       <ChevronDown className="transform -rotate-90" />
                     </>
@@ -143,6 +159,15 @@ const AccountNav = ({
                   data-testid="profile-link"
                 >
                   {t.profile.title}
+                </AccountNavLink>
+              </li>
+               <li>
+                <AccountNavLink
+                  href="/account/designs"
+                  route={route!}
+                  data-testid="designs-link"
+                >
+                  {t.profile.designs}
                 </AccountNavLink>
               </li>
               <li>
