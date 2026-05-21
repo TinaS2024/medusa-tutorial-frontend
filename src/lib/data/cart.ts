@@ -182,13 +182,22 @@ async function maybeSaveCustomerDesign({
   countryCode: string
   metadata: Record<string, any>
 }) {
-  const designImage = metadata?.design_image;
+  const rawDesignImage = metadata?.design_image;
 
-  if (typeof designImage !== "string" || designImage.length === 0) {
+  if (typeof rawDesignImage !== "string" || rawDesignImage.length === 0) {
     return;
   }
 
-  if (designImage.startsWith("data:") || designImage.startsWith("blob:")) {
+  const designImage = (() => {
+    try {
+      return decodeURIComponent(rawDesignImage);
+    } catch {
+      return rawDesignImage;
+    }
+  })();
+
+  if (designImage.startsWith("data:") || designImage.startsWith("blob:")) 
+  {
     return;
   }
 

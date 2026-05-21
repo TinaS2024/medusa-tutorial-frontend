@@ -23,11 +23,22 @@ type CustomerDesign = {
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000";
 
+const safeDecodeURIComponent = (value: string) => {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 const resolveDesignImageUrl = (src: string | undefined) => {
   if (!src) return null;
-  if (src.startsWith("blob:") || src.startsWith("data:")) return null;
-  if (src.startsWith("/")) return `${BACKEND_URL}${src}`;
-  return src;
+  const decoded = safeDecodeURIComponent(src);
+
+  if (decoded.startsWith("blob:") || decoded.startsWith("data:")) return null;
+  if (decoded.startsWith("/")) return `${BACKEND_URL}${decoded}`;
+
+  return decoded;
 }
 
 const normalizeDesigns = (raw: unknown): CustomerDesign[] => {
