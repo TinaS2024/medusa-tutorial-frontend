@@ -29,7 +29,7 @@ export const retrieveCustomer =
         },
         headers,
         next,
-        cache: "force-cache",
+        cache: "no-cache",
       })
       .then(({ customer }) => customer)
       .catch(() => null)

@@ -24,6 +24,57 @@ const CartTemplate = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const uploadDesignImage = async (raw: string, productId: string): Promise<string | null> => {
+    try {
+      const dataUrl = await (async () => {
+        if (raw.startsWith("data:")) {
+          return raw;
+        }
+
+        if (raw.startsWith("blob:")) {
+          const blob = await fetch(raw).then((r) => r.blob());
+
+          const reader = new FileReader();
+          const result = await new Promise<string>((resolve, reject) => {
+            reader.onload = () => resolve(String(reader.result ?? ""));
+            reader.onerror = () => reject(new Error("Failed to read blob"));
+            reader.readAsDataURL(blob);
+          });
+
+          return result;
+        }
+
+        return null;
+      })();
+
+      if (!dataUrl) {
+        return null;
+      }
+
+      const resp = await fetch("/store/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: dataUrl,
+          product_id: productId,
+        }),
+      });
+
+      if (!resp.ok) 
+      {
+        return null;
+      }
+
+      const json = (await resp.json()) as { url?: string };
+
+      return typeof json.url === "string" && json.url.length > 0 ? json.url : null;
+    } catch {
+      return null;
+    }
+  };
+
   const hasAutoAddedRef = useRef(false);
   const routeParams = useParams() as { countryCode?: string };
 
@@ -66,12 +117,25 @@ const CartTemplate = ({
         const fallbackCountryCode = cart?.region?.countries?.[0]?.iso_2?.toLowerCase() || "de";
         const countryCode = routeParams.countryCode?.toLowerCase() || fallbackCountryCode; 
 
+        let designImageToSave = designImage as string;
+
+          if (
+            typeof designImageToSave === "string" &&
+            (designImageToSave.startsWith("data:") || designImageToSave.startsWith("blob:"))
+          ) {
+            const uploaded = await uploadDesignImage(designImageToSave, productId as string);
+            if (uploaded) 
+            {
+              designImageToSave = uploaded;
+            }
+          }
+
           await addToCart({
             variantId: variantId!,
             quantity: 1,
             countryCode,
             metadata: {
-              design_image: designImage,
+              design_image: designImageToSave,
               width: parseFloat(width!),
               height: parseFloat(height!),
               cushion_color: cushionColor || undefined,
