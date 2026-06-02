@@ -70,7 +70,8 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);
   const [designerPrice, setDesignerPrice] = useState<number | null>(null);
-  const [quantity, setQuantity] = useState<number>(1)
+  const [quantity, setQuantity] = useState<number>(1);
+  const [customerId, setCustomerId] = useState<string | null>(null);
 
   const optionKeysMeta = getOptionKeysMeta(product);
 
@@ -78,6 +79,36 @@ export default function ProductActions({
 
   const searchParams = new URLSearchParams(window.location.search);
   const designImage = searchParams.get("designImage");
+
+  useEffect(() => {
+  const fetchCustomer = async () => {
+    try {
+      const response = await fetch("/store/me", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) 
+        {
+        const data = await response.json();
+
+        if (data && data.customer && data.customer.id) 
+        {
+          console.log("👤 Medusa Kunde erkannt. ID:", data.customer.id);
+          setCustomerId(data.customer.id);
+        }
+      } else {
+        console.log("👤 Kein Kunde eingeloggt (Gast-Sitzung).");
+      }
+    } catch (error) 
+    {
+      console.error("Fehler beim Abrufen der Kundendaten:", error);
+    }
+  };
+
+  fetchCustomer();
+}, []);
 
   const uploadDesignImage = async (raw: string): Promise<string | null> => {
     try {
@@ -588,6 +619,7 @@ export default function ProductActions({
     is_ovalForm: String(isOvalForm),
     is_shieldProduct: String(isShieldProduct),
     locale: lang,
+    customerId: customerId || ""
   });
 
   if(selectedVariant)
