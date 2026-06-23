@@ -22,6 +22,7 @@ type CustomerDesign = {
 }
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000";
+const DESIGNER_NEXT_URL = process.env.NEXT_PUBLIC_DESIGNER_NEXT_URL || "https://localhost:3000";
 
 const safeDecodeURIComponent = (value: string) => {
   try {
@@ -36,6 +37,7 @@ const resolveDesignImageUrl = (src: string | undefined) => {
   const decoded = safeDecodeURIComponent(src);
 
   if (decoded.startsWith("blob:") || decoded.startsWith("data:")) return null;
+  if (decoded.startsWith("/designs/")) return `${DESIGNER_NEXT_URL}${decoded}`;
   if (decoded.startsWith("/")) return `${BACKEND_URL}${decoded}`;
 
   return decoded;

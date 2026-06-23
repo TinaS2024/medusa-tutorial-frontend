@@ -83,27 +83,27 @@ export default function ProductActions({
   useEffect(() => {
   const fetchCustomer = async () => {
     try {
-      const response = await fetch("/store/me", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (response.ok) 
-        {
+      const response = await fetch("/api/customer");
+
+      if (response.ok)
+      {
         const data = await response.json();
 
-        if (data && data.customer && data.customer.id) 
+        if (data && data.customer && data.customer.id)
         {
           console.log("👤 Medusa Kunde erkannt. ID:", data.customer.id);
           setCustomerId(data.customer.id);
         }
-      } else {
-        console.log("👤 Kein Kunde eingeloggt (Gast-Sitzung).");
+        else {
+          console.log("👤 Kein Kunde eingeloggt (Gast-Sitzung) oder Fehler beim Abruf.");
+          setCustomerId("guest"); 
+        }
       }
     } catch (error) 
     {
       console.error("Fehler beim Abrufen der Kundendaten:", error);
+      setCustomerId("guest");
     }
   };
 
@@ -621,6 +621,8 @@ export default function ProductActions({
     locale: lang,
     customerId: customerId || ""
   });
+
+  console.log("CustomerId", customerId || "");
 
   if(selectedVariant)
   {
