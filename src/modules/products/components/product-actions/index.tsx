@@ -232,38 +232,21 @@ export default function ProductActions({
     return Number.isFinite(n) && n > 0 ? n : undefined;
   }, [selectedVariant, product.metadata]);
 
-  //Für Stempelprodukt
-  const isStampMeta = product.metadata?.is_stampProduct;
-  const isStampProduct = typeof isStampMeta === "boolean" ? isStampMeta : ["true"].includes(String(isStampMeta).toLowerCase());
+    // Form + Kategorie aus den expliziten Metadaten (Variante zuerst, dann Produkt)
+  const shape = String(
+    selectedVariant?.metadata?.designer_shape ??
+    product.metadata?.designer_shape ?? "rect"
+  );
+  const category = String(product.metadata?.designer_category ?? "");
 
-  //Für Aluschilder
-  const isShieldMeta = product.metadata?.is_shieldProduct;
-  const isShieldProduct = typeof isShieldMeta === "boolean" ? isShieldMeta : ["true"].includes(String(isShieldMeta).toLowerCase());
-
-  const isRoundFormMeta = product.metadata?.is_roundForm;
-  const isRoundFormMetaParsed = typeof isRoundFormMeta === "boolean" ? isRoundFormMeta : ["true"].includes(String(isRoundFormMeta).toLowerCase());
-
-  //Für Holzschilder
-  const isWoodenShieldMeta = (product.metadata as any)?.is_woodenShieldProduct ?? (product.metadata as any)?.isWoodenShieldProduct;
-  const isWoodenShieldProduct = typeof isWoodenShieldMeta === "boolean" ? isWoodenShieldMeta : ["true"].includes(String(isWoodenShieldMeta).toLowerCase());
-
-  const isOvalFormMeta = product.metadata?.is_ovalForm;
-  const isOvalFormMetaParsed = typeof isOvalFormMeta === "boolean" ? isOvalFormMeta : ["true"].includes(String(isOvalFormMeta).toLowerCase());
-
-  const isRoundFormVariantMeta = selectedVariant?.metadata?.is_roundForm;
-  const isRoundFormVariantMetaParsed = typeof isRoundFormVariantMeta === "boolean" ? isRoundFormVariantMeta : ["true"].includes(String(isRoundFormVariantMeta).toLowerCase());
-
-  const isOvalFormVariantMeta = selectedVariant?.metadata?.is_ovalForm;
-  const isOvalFormVariantMetaParsed = typeof isOvalFormVariantMeta === "boolean" ? isOvalFormVariantMeta : ["true"].includes(String(isOvalFormVariantMeta).toLowerCase());
-
-  const titleHaystack = `${product.title ?? ""} ${product.subtitle ?? ""} ${selectedVariant?.title ?? ""}`.toLowerCase();
-  const isRoundFormByTitle = isWoodenShieldProduct && (titleHaystack.includes("rund") || titleHaystack.includes("round"));
-
-  const isRoundForm = isRoundFormMetaParsed || isRoundFormVariantMetaParsed || isRoundFormByTitle;
+  const isRoundForm = shape === "round";
   const isRoundFormProduct = isRoundForm;
-
-  const isOvalForm = isOvalFormMetaParsed || isOvalFormVariantMetaParsed;
+  const isOvalForm = shape === "oval";
   const isOvalFormProduct = isOvalForm;
+
+  const isStampProduct = category === "stamp" || category === "self_inking";
+  const isShieldProduct = category === "shield" || category === "wooden_shield";
+  const isWoodenShieldProduct = category === "wooden_shield";
 
   const hasCushionMeta = product.metadata?.has_cushion;
   const hasCushion = typeof hasCushionMeta === "boolean" ? hasCushionMeta : ["true"].includes(String(hasCushionMeta).toLowerCase());
@@ -615,11 +598,10 @@ export default function ProductActions({
     pen_color: penColor,
     returnUrl: `/products/${product.handle}`,
     medusaProductId: product.id,
-    is_roundForm: String(isRoundForm),
-    is_ovalForm: String(isOvalForm),
-    is_shieldProduct: String(isShieldProduct),
     locale: lang,
-    customerId: customerId || ""
+    customerId: customerId || "",
+    designer_shape: String(selectedVariant?.metadata?.designer_shape ?? product.metadata?.designer_shape ?? ""),
+    designer_category: String(selectedVariant?.metadata?.designer_category ?? product.metadata?.designer_category ?? ""),
   });
 
   console.log("CustomerId", customerId || "");

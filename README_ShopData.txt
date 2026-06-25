@@ -16,6 +16,13 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - default_variant_id: String          ... übernimmt ID der Default-Produkt-Variante
 - default_background_color: String    ... übergibt die Hintergrundfarbe eines Schildes
 
+Neue Designer-Metadaten (deklaratives System, lösen die alten is_*-Flags ab):
+
+- designer_shape: String              ... Form im Designer: "rect" | "round" | "oval"
+- designer_category: String           ... Kategorie im Designer: "stamp" | "self_inking" | "shield" | "wooden_shield" | "emboss"
+- design_inset_mm: Number             ... unbedruckter Rand des Stempels in mm
+
+
 Optionale Metadata für das Designer-backend im Admin-Bereich des Shops:
 - cusion_color
 - engraving_color
