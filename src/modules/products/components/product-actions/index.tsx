@@ -79,6 +79,8 @@ export default function ProductActions({
 
   const searchParams = new URLSearchParams(window.location.search);
   const designImage = searchParams.get("designImage");
+  const designSvg = searchParams.get("designSvg");
+
 
   useEffect(() => {
   const fetchCustomer = async () => {
@@ -502,7 +504,8 @@ export default function ProductActions({
         height,
         thickness,
         design_image: designImageToSave,
-        redionId: region.id,
+        svg_url: designSvg,
+        regionId: region.id,
       },
     })
 

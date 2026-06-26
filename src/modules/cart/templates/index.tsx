@@ -85,6 +85,7 @@ const CartTemplate = ({
     const productId = searchParams.get("productId") || getParam("medusaProductId") || getParam("product_id");
     const variantId = getParam("variantId") || getParam("medusaVariantId") || getParam("variant_id");
     const designImage = getParam("designImage") || getParam("design_image");
+    const designSvg = getParam("designSvg") || getParam("svg_url");
     const width = getParam("width");
     const height = getParam("height");
     const cushionColor = searchParams.get("cushionColor");
@@ -130,12 +131,15 @@ const CartTemplate = ({
             }
           }
 
+          console.log("➡️ addToCart Metadaten:", { design_image: designImageToSave, svg_url: designSvg,width, height,});
+
           await addToCart({
             variantId: variantId!,
             quantity: 1,
             countryCode,
             metadata: {
               design_image: designImageToSave,
+              svg_url: designSvg,
               width: parseFloat(width!),
               height: parseFloat(height!),
               cushion_color: cushionColor || undefined,

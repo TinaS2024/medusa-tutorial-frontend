@@ -29,6 +29,8 @@ type ItemProps = {
 
 const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemProps) => {
 
+   console.log("🛒 Line-Item Metadata:", item.metadata);
+
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
   
