@@ -135,7 +135,7 @@
     "choose_pay":"Wählen Sie eine Zahlungsmethode aus",
     "stripe":"Stripe",
     "paypal":"Paypal",
-    "manual":"Manuell",
+    "manual":"Vorauszahlung (Überweisung)",
     "gift_card":"Geschenkkarte",
     "add_codes":"Werbecode(s) hinzufügen",
     "enter_code":"Eingabe",

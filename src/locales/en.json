@@ -135,7 +135,7 @@
     "choose_pay":"Choose a payment method",
     "stripe":"Stripe",
     "paypal":"Paypal",
-    "manual":"Manually",
+    "manual":"Prepayment (bank transfer)",
     "gift_card":"Gift card",
     "add_codes":"Add promotion code(s)",
     "enter_code":"Enter code",
