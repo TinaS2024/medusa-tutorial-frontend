@@ -129,6 +129,7 @@
   },
   "payment": {
     "title":"Zahlung",
+    "bank_transfer_title":"Bitte überweisen Sie den Betrag",
     "payment_method":"Zahlungsmethode",
     "next_to_payment":"Weiter zur Zahlung",
     "payment_details":"Bezahldetails",

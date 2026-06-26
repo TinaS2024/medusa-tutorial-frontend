@@ -1,4 +1,4 @@
-import { Heading } from "@medusajs/ui";
+import { Heading, Text } from "@medusajs/ui";
 import { cookies as nextCookies } from "next/headers";
 
 import CartTotals from "@modules/common/components/cart-totals";
@@ -9,6 +9,8 @@ import OrderDetails from "@modules/order/components/order-details";
 import ShippingDetails from "@modules/order/components/shipping-details";
 import PaymentDetails from "@modules/order/components/payment-details";
 import { HttpTypes } from "@medusajs/types";
+
+import { retrieveBankDetails } from "@lib/data/bank";
 
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
@@ -22,6 +24,14 @@ export default async function OrderCompletedTemplate({order}: OrderCompletedTemp
 
   const lang = await getServerLanguage();
   const t = getMessages(lang);
+
+  const usesPrepayment = order.payment_collections?.some((pc: any) =>
+  pc.payments?.some((p: any) =>
+    typeof p.provider_id === "string" && p.provider_id.startsWith("pp_system_default")
+  )
+)
+
+  const bankDetails = usesPrepayment ? await retrieveBankDetails() : null
 
   const cookies = await nextCookies();
 
@@ -50,6 +60,25 @@ export default async function OrderCompletedTemplate({order}: OrderCompletedTemp
           <CartTotals totals={order} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />
+          {bankDetails && bankDetails.bank_iban && (
+            <div className="flex flex-col gap-2 border border-ui-border-base rounded-lg p-4 bg-ui-bg-subtle">
+              <Heading level="h2" className="text-xl-regular">
+                {t.payment?.bank_transfer_title ?? "Bitte überweisen Sie den Betrag"}
+              </Heading>
+              {bankDetails.bank_account_holder && (
+                <Text>Kontoinhaber: {bankDetails.bank_account_holder}</Text>
+              )}
+              {bankDetails.bank_name && <Text>Bank: {bankDetails.bank_name}</Text>}
+              <Text>IBAN: {bankDetails.bank_iban}</Text>
+              {bankDetails.bank_bic && <Text>BIC: {bankDetails.bank_bic}</Text>}
+              <Text className="font-semibold">
+                Verwendungszweck: {order.display_id}
+              </Text>
+              {bankDetails.bank_note && (
+                <Text className="text-ui-fg-subtle mt-2">{bankDetails.bank_note}</Text>
+              )}
+            </div>
+          )}
           <Help />
         </div>
       </div>

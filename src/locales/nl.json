@@ -129,6 +129,7 @@
   }, 
   "payment": {
     "title":"Betaling",
+    "bank_transfer_title":"Gelieve het bedrag over te maken",
     "next_to_payment":"Volgende betaling zal worden weergegeven",
     "payment_method":"Betaalmethode",
     "payment_details":"Betaalingdetails",

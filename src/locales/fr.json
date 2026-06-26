@@ -130,6 +130,7 @@
   }, 
   "payment": {
     "title":"Paiement",
+    "bank_transfer_title":"Veuillez transférer le montant",
     "next_to_payment":"Suivant au paiement",
     "payment_method":"Mode de paiement",
     "payment_details":"Informations de paiement",

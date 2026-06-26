@@ -129,6 +129,7 @@
   }, 
   "payment": {
     "title":"Payment",
+    "bank_transfer_title":"Please transfer the amount",
     "payment_method":"Payment method",
     "next_to_payment":"Next to payment",
     "payment_details":"Payment details",
