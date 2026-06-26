@@ -159,7 +159,7 @@
     "order_status":"Bestellstatus",
     "payment_status":"Bezahlstatus"
   },
-  "categories":"Katgeories",
+  "categories":"Kategeorien",
   "product": {
       "all_products":"Alle Produkte",
       "view_all":"Zeige alle",
