@@ -155,7 +155,7 @@
     "place_order":"Place an order",
     "order_date":"Order date",
     "order_number":"Order number",
-    "send_order_details_1":"We have sent the order confirmation details to",
+    "send_order_details_1":"We have sent the order confirmation details to ",
     "send_order_details_2":"",
     "order_status":"Order status",
     "payment_status":"Payment status"

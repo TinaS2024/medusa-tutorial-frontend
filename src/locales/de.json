@@ -155,8 +155,8 @@
     "place_order":"Bestellung aufgeben",
     "order_date":"Bestelldatum",
     "order_number":"Bestellnummer",
-    "send_order_details_1":"Wir haben die Bestellbestätigungsdetails an",
-    "send_order_details_2":"gesendet",
+    "send_order_details_1":"Wir haben die Bestellbestätigungsdetails an ",
+    "send_order_details_2":" gesendet",
     "order_status":"Bestellstatus",
     "payment_status":"Bezahlstatus"
   },

@@ -31,13 +31,14 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
   return (
     <div>
       <Text>
-        {t.order.send_order_details_1} {" "} {t.order.send_order_details_2}
+        {t.order.send_order_details_1} 
         <span
           className="text-ui-fg-medium-plus font-semibold"
           data-testid="order-email"
         >
           {order.email}
         </span>
+        {t.order.send_order_details_2}
         .
       </Text>
       <Text className="mt-2">

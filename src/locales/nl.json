@@ -154,8 +154,8 @@
     "place_order":"Plaats een bestelling",
     "order_date":"Date de commande",
     "order_number":"Num de commande",
-    "send_order_details_1":"We hebben de orderbevestigingsgegevens naar",
-    "send_order_details_2":"verzonden",
+    "send_order_details_1":"We hebben de orderbevestigingsgegevens naar ",
+    "send_order_details_2":" verzonden",
     "order_status":"Bestellstatus",
     "payment_status":"Bezahlstatus"
   },
