@@ -6,7 +6,7 @@ import { initiatePaymentSession } from "@lib/data/cart";
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons";
 import { Button, Container, Heading, Text, clx } from "@medusajs/ui";
 import ErrorMessage from "@modules/checkout/components/error-message";
-import PaymentContainer, {StripeCardContainer} from "@modules/checkout/components/payment-container";
+import PaymentContainer, {StripePaymentElementContainer, StripeCardContainer} from "@modules/checkout/components/payment-container";
 import Divider from "@modules/common/components/divider";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -152,13 +152,10 @@ const Payment = ({
                 {availablePaymentMethods.map((paymentMethod) => (
                   <div key={paymentMethod.id}>
                     {isStripeFunc(paymentMethod.id) ? (
-                      <StripeCardContainer
+                      <StripePaymentElementContainer
                         paymentProviderId={paymentMethod.id}
                         selectedPaymentOptionId={selectedPaymentMethod}
                         paymentInfoMap={paymentInfoMap}
-                        setCardBrand={setCardBrand}
-                        setError={setError}
-                        setCardComplete={setCardComplete}
                       />
                     ) : (
                       <PaymentContainer
@@ -198,7 +195,6 @@ const Payment = ({
             onClick={handleSubmit}
             isLoading={isLoading}
             disabled={
-              (isStripe && !cardComplete) ||
               (!selectedPaymentMethod && !paidByGiftcard)
             }
             data-testid="submit-payment-button"

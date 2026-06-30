@@ -1,15 +1,16 @@
-import { Radio as RadioGroupOption } from "@headlessui/react"
-import { Text, clx } from "@medusajs/ui"
-import React, { useContext, useMemo, type JSX } from "react"
+import { Radio as RadioGroupOption } from "@headlessui/react";
+import { Text, clx } from "@medusajs/ui";
+import React, { useContext, useMemo, type JSX } from "react";
 
-import Radio from "@modules/common/components/radio"
+import Radio from "@modules/common/components/radio";
 
-import { isManual } from "@lib/constants"
-import SkeletonCardDetails from "@modules/skeletons/components/skeleton-card-details"
-import { CardElement } from "@stripe/react-stripe-js"
-import { StripeCardElementOptions } from "@stripe/stripe-js"
-import PaymentTest from "../payment-test"
-import { StripeContext } from "../payment-wrapper/stripe-wrapper"
+import { isManual } from "@lib/constants";
+import SkeletonCardDetails from "@modules/skeletons/components/skeleton-card-details";
+import { CardElement, PaymentElement } from "@stripe/react-stripe-js";
+import { StripeCardElementOptions } from "@stripe/stripe-js";
+import PaymentTest from "../payment-test";
+import { StripeContext } from "../payment-wrapper/stripe-wrapper";
+
 
 type PaymentContainerProps = {
   paymentProviderId: string
@@ -120,6 +121,33 @@ export const StripeCardContainer = ({
                 setCardComplete(e.complete)
               }}
             />
+          </div>
+        ) : (
+          <SkeletonCardDetails />
+        ))}
+    </PaymentContainer>
+  )
+}
+
+export const StripePaymentElementContainer = ({
+  paymentProviderId,
+  selectedPaymentOptionId,
+  paymentInfoMap,
+  disabled = false,
+}: Omit<PaymentContainerProps, "children">) => {
+  const stripeReady = useContext(StripeContext)
+
+  return (
+    <PaymentContainer
+      paymentProviderId={paymentProviderId}
+      selectedPaymentOptionId={selectedPaymentOptionId}
+      paymentInfoMap={paymentInfoMap}
+      disabled={disabled}
+    >
+      {selectedPaymentOptionId === paymentProviderId &&
+        (stripeReady ? (
+          <div className="my-4 transition-all duration-150 ease-in-out">
+            <PaymentElement options={{ layout: "accordion" }} />
           </div>
         ) : (
           <SkeletonCardDetails />
