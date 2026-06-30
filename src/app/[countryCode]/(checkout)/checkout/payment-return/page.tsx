@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { placeOrder } from "@lib/data/cart";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
@@ -10,6 +10,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 function PaymentReturnInner() 
 {
   const searchParams = useSearchParams();
+  const { countryCode } = useParams() as { countryCode: string };
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -37,9 +38,17 @@ function PaymentReturnInner()
         return;
       }
 
-    if (["succeeded", "processing", "requires_capture"].includes(paymentIntent.status)) {
+    if (paymentIntent.status === "processing") 
+        {
+        window.location.href = `/${countryCode}/order/processing`;
+        return
+      }
+
+    if (["succeeded", "requires_capture"].includes(paymentIntent.status)) 
+        {
         await placeOrder().catch((e: any) => {
-          if (typeof e?.digest === "string" && e.digest.startsWith("NEXT_REDIRECT")) {
+          if (typeof e?.digest === "string" && e.digest.startsWith("NEXT_REDIRECT")) 
+            {
             return
           }
           setError(e?.message || "Bestellung konnte nicht abgeschlossen werden.")

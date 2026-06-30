@@ -108,17 +108,23 @@ const StripePaymentButton = ({
       return
     }
 
+    // Asynchron (z. B. SEPA): Bestellung wird per Webhook erstellt
+    if (paymentIntent && paymentIntent.status === "processing") 
+      {
+      window.location.href = `/${countryCode}/order/processing`;
+      return;
+    }
+
     if (
       paymentIntent &&
       (paymentIntent.status === "succeeded" ||
-        paymentIntent.status === "requires_capture" ||
-        paymentIntent.status === "processing")
+        paymentIntent.status === "requires_capture")
     ) {
       onPaymentCompleted()
       return
     }
 
-    setSubmitting(false)
+    setSubmitting(false);
   }
 
 
