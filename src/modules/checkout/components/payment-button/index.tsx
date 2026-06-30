@@ -11,6 +11,8 @@ import ErrorMessage from "../error-message";
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages } from "@lib/messages";
 
+import { useParams } from "next/navigation";
+
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart
   "data-testid": string
@@ -63,8 +65,10 @@ const StripePaymentButton = ({
   const lang = getClientLanguage();
   const t = getMessages(lang);
 
-  const [submitting, setSubmitting] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const { countryCode } = useParams() as { countryCode: string };
+
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onPaymentCompleted = async () => {
 
@@ -77,72 +81,46 @@ const StripePaymentButton = ({
       })
   }
 
-  const stripe = useStripe()
-  const elements = useElements()
-  const card = elements?.getElement("card")
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const session = cart.payment_collection?.payment_sessions?.find(
-    (s) => s.status === "pending"
-  )
+  const disabled = !stripe || !elements ? true : false;
 
-  const disabled = !stripe || !elements ? true : false
-
-  const handlePayment = async () => {
-
+    const handlePayment = async () => {
     setSubmitting(true)
 
-    if (!stripe || !elements || !card || !cart) {
+    if (!stripe || !elements || !cart) {
       setSubmitting(false)
       return
     }
 
-    await stripe
-      .confirmCardPayment(session?.data.client_secret as string, {
-        payment_method: {
-          card: card,
-          billing_details: {
-            name:
-              cart.billing_address?.first_name +
-              " " +
-              cart.billing_address?.last_name,
-            address: {
-              city: cart.billing_address?.city ?? undefined,
-              country: cart.billing_address?.country_code ?? undefined,
-              line1: cart.billing_address?.address_1 ?? undefined,
-              line2: cart.billing_address?.address_2 ?? undefined,
-              postal_code: cart.billing_address?.postal_code ?? undefined,
-              state: cart.billing_address?.province ?? undefined,
-            },
-            email: cart.email,
-            phone: cart.billing_address?.phone ?? undefined,
-          },
-        },
-      })
-      .then(({ error, paymentIntent }) => {
-        if (error) {
-          const pi = error.payment_intent
+    const { error, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/${countryCode}/checkout/payment-return`,
+      },
+      redirect: "if_required",
+    })
 
-          if (
-            (pi && pi.status === "requires_capture") ||
-            (pi && pi.status === "succeeded")
-          ) {
-            onPaymentCompleted()
-          }
+    if (error) {
+      setErrorMessage(error.message || null)
+      setSubmitting(false)
+      return
+    }
 
-          setErrorMessage(error.message || null)
-          return;
-        }
+    if (
+      paymentIntent &&
+      (paymentIntent.status === "succeeded" ||
+        paymentIntent.status === "requires_capture" ||
+        paymentIntent.status === "processing")
+    ) {
+      onPaymentCompleted()
+      return
+    }
 
-        if (
-          (paymentIntent && paymentIntent.status === "requires_capture") ||
-          paymentIntent.status === "succeeded"
-        ) {
-          return onPaymentCompleted()
-        }
-
-        return;
-      })
+    setSubmitting(false)
   }
+
 
   return (
     <>
