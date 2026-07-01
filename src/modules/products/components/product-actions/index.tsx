@@ -585,7 +585,7 @@ export default function ProductActions({
 
   //Suchvariablen die von Medusa zum Designer geschickt werden
 
-  const designerBaseUrl = "http://localhost:3000";
+  const designerBaseUrl = process.env.NEXT_PUBLIC_DESIGNER_NEXT_URL || "http://localhost:3000";
   const designerParams = new URLSearchParams({
     productId: product.id,
     width: String(width),

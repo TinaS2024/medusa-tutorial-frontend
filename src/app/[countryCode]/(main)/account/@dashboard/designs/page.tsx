@@ -22,7 +22,7 @@ type CustomerDesign = {
 }
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000";
-const DESIGNER_NEXT_URL = process.env.NEXT_PUBLIC_DESIGNER_NEXT_URL || "https://localhost:3000";
+const DESIGNER_NEXT_URL = process.env.NEXT_PUBLIC_DESIGNER_NEXT_URL || "http://localhost:3000";
 
 const safeDecodeURIComponent = (value: string) => {
   try {
