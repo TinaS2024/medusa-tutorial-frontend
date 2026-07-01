@@ -132,6 +132,13 @@
     "title":"Paiement",
     "bank_transfer_title":"Veuillez transférer le montant",
     "next_to_payment":"Suivant au paiement",
+    "back_to_payment":"Retour au paiement",
+    "missing_pay_info":"Informations de paiement manquantes.",
+    "no_load_stripe":"Stripe chargement échoué.",
+    "no_check_pay":"Vérification échouée.",
+    "no_order_completed":"Commande non terminée.",
+    "pay_unsuccessful":"Paiement non réussi",
+    "payment_check":"Vérification en cours de paiement, veuillez patienter ...",
     "payment_method":"Mode de paiement",
     "payment_details":"Informations de paiement",
     "choose_pay":"Choisissez un mode de paiement",
@@ -147,7 +154,10 @@
     "continue_checking":"Continuer la vérification",
     "next_step":"Prochain étape sera affichée",
     "thank_you":"Merci de votre commande!",
-    "order_success":"Votre commande a été placée avec succès."
+    "thank_order":"Merci de votre commande!",
+    "order_success":"Votre commande a été placée avec succès.",
+    "sepa_info":"Votre prélèvement SEPA est en cours de traitement. Une fois le paiement confirmé, vous recevrez une confirmation de commande par e-mail."
+    
   },
   "order":
   {

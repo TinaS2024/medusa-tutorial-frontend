@@ -131,6 +131,13 @@
     "title":"Betaling",
     "bank_transfer_title":"Gelieve het bedrag over te maken",
     "next_to_payment":"Volgende betaling zal worden weergegeven",
+    "back_to_payment":"Terug naar betaling",
+    "missing_pay_info":"Ontbrekende betalingsgegevens.",
+    "no_load_stripe":"Stripe laden mislukt.",
+    "no_check_pay":"Betaling controleren mislukt.",
+    "no_order_completed":"Order mislukt.",
+    "pay_unsuccessful":"Betaling niet succesvol",
+    "payment_check":"Betaling wordt gecontroleerd, even geduld a.u.b.…",
     "payment_method":"Betaalmethode",
     "payment_details":"Betaalingdetails",
     "stripe":"Stripe",
@@ -145,7 +152,9 @@
     "continue_checking":"Verder met controleren",
     "next_step":"Volgende stap zal worden weergegeven",
     "thank_you":"Bedankt voor uw bestelling!",
-    "order_success":"Uw bestelling is succesvol geplaatst."
+    "thank_order":"Bedankt voor uw bestelling!",
+    "order_success":"Uw bestelling is succesvol geplaatst.",
+    "sepa_info":"Uw SEPA-incasso wordt verwerkt. Zodra de betaling is bevestigd, ontvangt u een orderbevestiging per e-mail."
   },
   "order":
   {

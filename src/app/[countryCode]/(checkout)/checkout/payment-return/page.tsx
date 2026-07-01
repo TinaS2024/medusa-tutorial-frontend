@@ -5,10 +5,21 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useSearchParams } from "next/navigation";
 import { placeOrder } from "@lib/data/cart";
 
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages, type Lang } from "@lib/messages";
+
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 function PaymentReturnInner() 
 {
+  const [lang, setLang] = useState<Lang>("de");
+  const t = getMessages(lang);
+    
+  useEffect(() => {
+        setLang(getClientLanguage())
+        }, []);
+
+
   const searchParams = useSearchParams();
   const { countryCode } = useParams() as { countryCode: string };
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +29,7 @@ function PaymentReturnInner()
       const clientSecret = searchParams.get("payment_intent_client_secret");
       if (!clientSecret) 
         {
-        setError("Fehlende Zahlungsinformationen.");
+        setError(t.payment.missing_pay_info);
         return;
       }
 
@@ -26,7 +37,7 @@ function PaymentReturnInner()
 
       if (!stripe) 
         {
-        setError("Stripe konnte nicht geladen werden.");
+        setError(t.payment.no_load_stripe);
         return;
       }
 
@@ -34,7 +45,7 @@ function PaymentReturnInner()
 
       if (piError || !paymentIntent) 
         {
-        setError(piError?.message || "Zahlung konnte nicht geprüft werden.");
+        setError(piError?.message || t.payment.no_check_pay);
         return;
       }
 
@@ -51,10 +62,10 @@ function PaymentReturnInner()
             {
             return
           }
-          setError(e?.message || "Bestellung konnte nicht abgeschlossen werden.")
+          setError(e?.message || t.payment.no_order_completed);
         })
       } else {
-        setError(`Zahlung nicht erfolgreich (Status: ${paymentIntent.status}).`);
+        setError(`${t.payment.pay_unsuccessful} (Status: ${paymentIntent.status}).`);
       }
     }
 
@@ -66,10 +77,10 @@ function PaymentReturnInner()
       {error ? (
         <>
           <p className="text-rose-500">{error}</p>
-          <a href="/checkout?step=payment" className="underline">Zurück zur Zahlung</a>
+          <a href="/checkout?step=payment" className="underline">{t.payment.back_to_payment}</a>
         </>
       ) : (
-        <p>Zahlung wird geprüft, bitte einen Moment …</p>
+        <p>{t.payment.payment_check}</p>
       )}
     </div>
   )

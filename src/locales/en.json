@@ -132,6 +132,13 @@
     "bank_transfer_title":"Please transfer the amount",
     "payment_method":"Payment method",
     "next_to_payment":"Next to payment",
+    "back_to_payment": "Back to payment",
+    "missing_pay_info":"Missing payment information.",
+    "no_load_stripe":"Stripe loading failed.",
+    "no_check_pay":"Payment check failed.",
+    "no_order_completed":"Order completion failed.",
+    "pay_unsuccessful":"Payment unsuccessful",
+    "payment_check":"Payment is being checked, please wait a moment ...",
     "payment_details":"Payment details",
     "choose_pay":"Choose a payment method",
     "stripe":"Stripe",
@@ -146,7 +153,9 @@
     "continue_checking":"Continue checking",
     "next_step":"Next step will be displayed",
     "thank_you":"Thank you for your purchase!",
-    "order_success":"Your order has been successfully placed."
+    "thank_order":"Thank you for your order!",
+    "order_success":"Your order has been successfully placed.",
+    "sepa_info":"Your SEPA payment is being processed. As soon as the payment is confirmed, you will receive an email confirmation of your order."
   },
   "order":
   {

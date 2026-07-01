@@ -132,6 +132,13 @@
     "bank_transfer_title":"Bitte überweisen Sie den Betrag",
     "payment_method":"Zahlungsmethode",
     "next_to_payment":"Weiter zur Zahlung",
+    "back_to_payment":"Zurück zur Zahlung",
+    "missing_pay_info":"Fehlende Zahlungsinformationen.",
+    "no_load_stripe":"Stripe konnte nicht geladen werden.",
+    "no_check_pay":"Zahlung konnte nicht geprüft werden.",
+    "no_order_completed":"Bestellung konnte nicht abgeschlossen werden.",
+    "pay_unsuccessful":"Zahlung nicht erfolgreich",
+    "payment_check":"Zahlung wird geprüft, bitte einen Moment …",
     "payment_details":"Bezahldetails",
     "choose_pay":"Wählen Sie eine Zahlungsmethode aus",
     "stripe":"Stripe",
@@ -146,7 +153,9 @@
     "continue_checking":"Überprüfung fortsetzen",
     "next_step":"Weiterer Schritt wird angezeigt",
     "thank_you":"Vielen Dank für ihren Einkauf!",
-    "order_success":"Ihre Bestellung wurde erfolgreich aufgegeben."
+    "thank_order":"Vielen Dank für deine Bestellung!",
+    "order_success":"Ihre Bestellung wurde erfolgreich aufgegeben.",
+    "sepa_info":"Deine SEPA-Lastschrift wird verarbeitet. Sobald die Zahlung bestätigt ist, erhältst du eine Bestellbestätigung per E-Mail."
   },
   "order":
   {

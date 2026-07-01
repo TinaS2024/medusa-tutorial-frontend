@@ -1,14 +1,22 @@
 import { Heading, Text } from "@medusajs/ui";
 
-export default function PaymentProcessingPage() 
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
+export async function PaymentProcessingPage() 
 {
+  const lang = await getServerLanguage();
+  const t = getMessages(lang);
+
+
   return (
     <div className="content-container py-16 flex flex-col items-center gap-4 text-center">
-      <Heading level="h1">Vielen Dank für deine Bestellung!</Heading>
+      <Heading level="h1">{t.payment.thank_order}</Heading>
       <Text className="max-w-xl">
-        Deine SEPA-Lastschrift wird verarbeitet. Sobald die Zahlung bestätigt ist,
-        erhältst du eine Bestellbestätigung per E-Mail.
+        {t.payment.sepa_info}
       </Text>
     </div>
   )
 }
+
+export default PaymentProcessingPage;
