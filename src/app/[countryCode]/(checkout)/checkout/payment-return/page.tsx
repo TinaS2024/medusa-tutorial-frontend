@@ -3,10 +3,11 @@
 import { Suspense, useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useSearchParams } from "next/navigation";
-import { placeOrder } from "@lib/data/cart";
+import { placeOrder, forgetCart } from "@lib/data/cart";
 
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages, type Lang } from "@lib/messages";
+
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -51,8 +52,9 @@ function PaymentReturnInner()
 
     if (paymentIntent.status === "processing") 
         {
-        window.location.href = `/${countryCode}/order/processing`;
-        return
+          await forgetCart();
+          window.location.href = `/${countryCode}/order/processing`;
+          return
       }
 
     if (["succeeded", "requires_capture"].includes(paymentIntent.status)) 

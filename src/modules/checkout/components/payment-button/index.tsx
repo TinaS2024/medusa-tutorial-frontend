@@ -1,7 +1,7 @@
 "use client";
 
 import { isManual, isStripe } from "@lib/constants";
-import { placeOrder } from "@lib/data/cart";
+import { placeOrder, forgetCart } from "@lib/data/cart";
 import { HttpTypes } from "@medusajs/types";
 import { Button } from "@medusajs/ui";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
@@ -12,6 +12,7 @@ import { getClientLanguage } from "@lib/i18n";
 import { getMessages } from "@lib/messages";
 
 import { useParams } from "next/navigation";
+
 
 type PaymentButtonProps = {
   cart: HttpTypes.StoreCart
@@ -111,8 +112,9 @@ const StripePaymentButton = ({
     // Asynchron (z. B. SEPA): Bestellung wird per Webhook erstellt
     if (paymentIntent && paymentIntent.status === "processing") 
       {
-      window.location.href = `/${countryCode}/order/processing`;
-      return;
+        await forgetCart();
+        window.location.href = `/${countryCode}/order/processing`;
+        return;
     }
 
     if (

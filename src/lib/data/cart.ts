@@ -497,7 +497,8 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
  * @param cartId - optional - The ID of the cart to place an order for.
  * @returns The cart object if the order was successful, or null if not.
  */
-export async function placeOrder(cartId?: string) {
+export async function placeOrder(cartId?: string) 
+{
   const id = cartId || (await getCartId())
 
   if (!id) {
@@ -653,4 +654,11 @@ export async function removeBundleFromCart(bundleId: string)
 
   }).catch(medusaError)
 
+}
+
+export async function forgetCart() 
+{
+  await removeCartId();
+  const cartCacheTag = await getCacheTag("carts");
+  revalidateTag(cartCacheTag);
 }
