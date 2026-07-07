@@ -9,9 +9,9 @@ import { getAuthHeaders, getCacheOptions, getCacheTag, getCartId, removeAuthToke
 
 export const retrieveCustomer =
   async (): Promise<HttpTypes.StoreCustomer | null> => {
-    const authHeaders = await getAuthHeaders()
+    const authHeaders = await getAuthHeaders();
 
-    if (!authHeaders) return null
+    if (!authHeaders) return null;
 
     const headers = {
       ...authHeaders,
@@ -48,11 +48,12 @@ export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   const cacheTag = await getCacheTag("customers")
   revalidateTag(cacheTag)
 
-  return updateRes
+  return updateRes;
 }
 
-export async function signup(_currentState: unknown, formData: FormData) {
-  const password = formData.get("password") as string
+export async function signup(_currentState: unknown, formData: FormData) 
+{
+  const password = formData.get("password") as string;
   const customerForm = {
     email: formData.get("email") as string,
     first_name: formData.get("first_name") as string,
@@ -83,39 +84,47 @@ export async function signup(_currentState: unknown, formData: FormData) {
       password,
     })
 
-    await setAuthToken(loginToken as string)
+    await setAuthToken(loginToken as string);
 
-    const customerCacheTag = await getCacheTag("customers")
-    revalidateTag(customerCacheTag)
+    const customerCacheTag = await getCacheTag("customers");
+    revalidateTag(customerCacheTag);
 
-    await transferCart()
+    await transferCart();
 
     return createdCustomer
-  } catch (error: any) {
-    return error.toString()
+  } catch (error: any) 
+  {
+    return error.toString();
   }
 }
 
-export async function login(_currentState: unknown, formData: FormData) {
-  const email = formData.get("email") as string
-  const password = formData.get("password") as string
+export async function login(_currentState: unknown, formData: FormData) 
+{
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  console.log("Login Versuch mit E-Mail:", JSON.stringify(email));
 
   try {
     await sdk.auth
       .login("customer", "emailpass", { email, password })
       .then(async (token) => {
-        await setAuthToken(token as string)
-        const customerCacheTag = await getCacheTag("customers")
-        revalidateTag(customerCacheTag)
+        await setAuthToken(token as string);
+        const customerCacheTag = await getCacheTag("customers");
+        revalidateTag(customerCacheTag);
       })
-  } catch (error: any) {
-    return error.toString()
+      console.log("Login Auth erfolgreich");
+  } catch (error: any) 
+  {
+    return error.toString();
   }
 
   try {
-    await transferCart()
-  } catch (error: any) {
-    return error.toString()
+    await transferCart();
+  } catch (error: any) 
+  {
+    console.error("Login transferCart FEHLER:", error?.message ?? error);
+    return error.toString();
   }
 }
 
@@ -128,10 +137,11 @@ export async function requestPasswordReset(
   _currentState: PasswordResetState | null,
   formData: FormData
 ): Promise<PasswordResetState> {
-  const email = (formData.get("email") as string | null)?.trim()
+  const email = (formData.get("email") as string | null)?.trim();
 
-  if (!email) {
-    return { ok: false, error: "missing_fields" }
+  if (!email) 
+  {
+    return { ok: false, error: "missing_fields" };
   }
 
   try {
@@ -149,71 +159,74 @@ export async function resetPasswordWithToken(
   _currentState: PasswordResetState | null,
   formData: FormData
 ): Promise<PasswordResetState> {
-  const token = (formData.get("token") as string | null)?.trim()
-  const password = formData.get("password") as string | null
-  const confirmPassword = formData.get("confirm_password") as string | null
+  const token = (formData.get("token") as string | null)?.trim();
+  const password = formData.get("password") as string | null;
+  const confirmPassword = formData.get("confirm_password") as string | null;
 
-  if (!token || !password || !confirmPassword) {
-    return { ok: false, error: "missing_fields" }
+  console.log("[PasswordReset] Versuch – token-Länge:", token?.length, "| pw vorhanden:", !!password);
+
+  if (!token || !password || !confirmPassword) 
+  {
+    console.warn("[PasswordReset] Abbruch: fehlende Felder");
+    return { ok: false, error: "missing_fields" };
   }
 
-  if (password !== confirmPassword) {
-    return { ok: false, error: "password_mismatch" }
+  if (password !== confirmPassword) 
+  {
+    console.warn("[PasswordReset] Abbruch: Passwörter ungleich");
+    return { ok: false, error: "password_mismatch" };
   }
 
   try {
-    await sdk.auth.updateProvider(
-      "customer",
-      "emailpass",
-      {
-        password,
-      },
-      token
-    )
-
+    await sdk.auth.updateProvider("customer", "emailpass", { password }, token);
+    console.log("[PasswordReset] OK – Passwort erfolgreich gesetzt");
     return { ok: true, error: null }
   } catch (error: any) {
-    return { ok: false, error: error.toString() }
+    console.error("[PasswordReset] FEHLER von Medusa:", error?.message ?? error);
+    return { ok: false, error: "invalid_token" }
   }
 }
 
-export async function signout(countryCode: string) {
-  await sdk.auth.logout()
+export async function signout(countryCode: string) 
+{
+  await sdk.auth.logout();
 
-  await removeAuthToken()
+  await removeAuthToken();
 
-  const customerCacheTag = await getCacheTag("customers")
-  revalidateTag(customerCacheTag)
+  const customerCacheTag = await getCacheTag("customers");
+  revalidateTag(customerCacheTag);
 
-  await removeCartId()
+  await removeCartId();
 
-  const cartCacheTag = await getCacheTag("carts")
-  revalidateTag(cartCacheTag)
+  const cartCacheTag = await getCacheTag("carts");
+  revalidateTag(cartCacheTag);
 
-  redirect(`/${countryCode}/account`)
+  redirect(`/${countryCode}/account`);
 }
 
-export async function transferCart() {
-  const cartId = await getCartId()
+export async function transferCart() 
+{
+  const cartId = await getCartId();
 
-  if (!cartId) {
-    return
+  if (!cartId) 
+  {
+    return;
   }
 
-  const headers = await getAuthHeaders()
+  const headers = await getAuthHeaders();
 
-  await sdk.store.cart.transferCart(cartId, {}, headers)
+  await sdk.store.cart.transferCart(cartId, {}, headers);
 
-  const cartCacheTag = await getCacheTag("carts")
-  revalidateTag(cartCacheTag)
+  const cartCacheTag = await getCacheTag("carts");
+  revalidateTag(cartCacheTag);
 }
 
 export const addCustomerAddress = async (
   currentState: Record<string, unknown>,
   formData: FormData
 ): Promise<any> => {
-  const isDefaultBilling = (currentState.isDefaultBilling as boolean) || false
-  const isDefaultShipping = (currentState.isDefaultShipping as boolean) || false
+  const isDefaultBilling = (currentState.isDefaultBilling as boolean) || false;
+  const isDefaultShipping = (currentState.isDefaultShipping as boolean) || false;
 
   const address = {
     first_name: formData.get("first_name") as string,
@@ -269,11 +282,10 @@ export const updateCustomerAddress = async (
   currentState: Record<string, unknown>,
   formData: FormData
 ): Promise<any> => {
-  const addressId =
-    (currentState.addressId as string) || (formData.get("addressId") as string)
+  const addressId = (currentState.addressId as string) || (formData.get("addressId") as string);
 
   if (!addressId) {
-    return { success: false, error: "Address ID is required" }
+    return { success: false, error: "Address ID is required" };
   }
 
   const address = {
@@ -288,10 +300,11 @@ export const updateCustomerAddress = async (
     country_code: formData.get("country_code") as string,
   } as HttpTypes.StoreUpdateCustomerAddress
 
-  const phone = formData.get("phone") as string
+  const phone = formData.get("phone") as string;
 
-  if (phone) {
-    address.phone = phone
+  if (phone) 
+  {
+    address.phone = phone;
   }
 
   const headers = {
