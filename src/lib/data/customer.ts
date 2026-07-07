@@ -55,7 +55,7 @@ export async function signup(_currentState: unknown, formData: FormData)
 {
   const password = formData.get("password") as string;
   const customerForm = {
-    email: formData.get("email") as string,
+    email: (formData.get("email") as string)?.trim().toLocaleLowerCase(),
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
     phone: formData.get("phone") as string,
@@ -100,7 +100,7 @@ export async function signup(_currentState: unknown, formData: FormData)
 
 export async function login(_currentState: unknown, formData: FormData) 
 {
-  const email = formData.get("email") as string;
+  const email = (formData.get("email") as string)?.trim().toLocaleLowerCase();
   const password = formData.get("password") as string;
 
   console.log("Login Versuch mit E-Mail:", JSON.stringify(email));
