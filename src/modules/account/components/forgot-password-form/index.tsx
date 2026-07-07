@@ -32,7 +32,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
   useEffect(() => {
     if (requestState?.ok) 
     {
-      setStep("update");
+      setStep("done");
     }
   }, [requestState]);
 
@@ -60,7 +60,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
     return (
       <>
         <Modal.Title>{t.login_shop.forgot_password_title}</Modal.Title>
-        <Modal.Description>{t.login_shop.reset_password_done}</Modal.Description>
+        <Modal.Description>{t.login_shop.reset_password_link_sent}</Modal.Description>
         <Modal.Footer>
           <button
             type="button"
