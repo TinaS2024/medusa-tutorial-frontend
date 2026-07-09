@@ -24,12 +24,14 @@ Optionale Metadata für das Designer-backend im Admin-Bereich des Shops:
 
 Derzeitige Produktbeispiele im Medusa-Store:
 - Trodat Printy
-- Goldschild
+- Colop Printer
+- Alu Goldschild, Silberschild, Bronzeschild
+- Alu Schild Weiß, Schwarz, Gelb
 - Prägestempel
 - Holzstempel
 - Wiegestempel
 - Siegelstempel
-- Kulistempel
+- Kugelschreiberstempel
 - Fleischbeschaustempel
 - Brennstempel
 - Geschenkekarte
