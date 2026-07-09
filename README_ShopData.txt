@@ -4,7 +4,7 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - has_cushion: Boolean                ... schaltet Kissenoptionen für Stempel frei
 - is_personalized: Boolean            ... schaltet individuele Breiten-und Höhenangaben frei
 - is_designable: Boolean              ... zeigt Button zum Designer
-- is_giftcard                         ... markiert ein Produkt als Geschenkekarte
+- is_giftcard: Boolean                         ... markiert ein Produkt als Geschenkekarte
 - max_width: Number                   ... begrenzt die maximale Breite eines Produktes
 - max_height: Number                  ... begrenzt die maximale Höhe eins Produktes
 - dimension_price_factor: Number      ... übernimmt Preisfaktor
