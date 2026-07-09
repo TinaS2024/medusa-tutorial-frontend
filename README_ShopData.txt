@@ -15,8 +15,9 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - design_inset_mm: Number             ... unbedruckter Rand des Stempels in mm
 
 
-Optionale Metadata für das Designer-backend im Admin-Bereich des Shops:
+Optionale Metadata für das Designer-backend im Admin-Bereich des Shops (technischer Name):
 - cushion_color
+* material_color (für Kuli muss noch hinzugefügt werden in End-Json-Datei)
 - engraving_color
 - background_color
 - embossing_position
@@ -37,7 +38,9 @@ Derzeitige Produktbeispiele im Medusa-Store:
 - Geschenkekarte
 
 Hinweise für den Admin von Medusa:
+- Nach Änderungen im Backend sollte der .next-Ordner im Storefront gelöscht werden, damit alte Daten überschrieben werden
 - Breite und Höhe von Produktvarianten können erst nach Erstellung einer Produktvariante eingestellt werden mit Klick auf ... (sind etwas versteckt)
+- Produkte mit der Meta-Eigenschaft is_personalized sollten eine max_width und max_height zusätzlich in den Metadaten drinnen stehen haben
 - Vorschaubilder von Produkten im Admin-Bereichen müssen extra mit Taste "T" aktiviert werden
 - Damit Produkte im Store gesehen, gekauft und versendet werden können, muss folgendes getan werden:
     

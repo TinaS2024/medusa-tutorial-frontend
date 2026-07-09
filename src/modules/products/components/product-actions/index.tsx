@@ -593,7 +593,6 @@ export default function ProductActions({
     title: product.title ?? "",
     subtitle: product.subtitle ?? "",
     material: product.material ?? "",
-    variants: product.variants ? JSON.stringify(product.variants) : "false",
     cushion_color: cushionColor,
     engraving_color: engravedColor,
     background_color: backgroundColor,
