@@ -171,7 +171,18 @@
     "send_order_details_1":"Wir haben die Bestellbestätigungsdetails an ",
     "send_order_details_2":" gesendet",
     "order_status":"Bestellstatus",
-    "payment_status":"Bezahlstatus"
+    "payment_status":"Bezahlstatus",
+    "production_status":"Produktionsstatus",
+    "production_statuses": {
+      "received":"Bestellung eingegangen",
+      "paid":"Bezahlt",
+      "in_design":"In Gestaltung",
+      "in_production":"In Produktion",
+      "ready_to_ship":"Versandbereit",
+      "shipped":"Versendet",
+      "completed":"Abgeschlossen",
+      "cancelled":"Storniert"
+    }
   },
   "categories":"Kategeorien",
   "product": {

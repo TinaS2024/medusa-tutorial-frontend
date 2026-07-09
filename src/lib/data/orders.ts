@@ -34,6 +34,18 @@ export const retrieveOrder = async (id: string) => {
     .catch((err) => medusaError(err))
 }
 
+export const retrieveProductionStatus = async (orderId: string) => {
+  const headers = { ...(await getAuthHeaders()) }
+  return sdk.client
+    .fetch<{ status: string }>(`/store/order-production/${orderId}`, {
+      method: "GET",
+      headers,
+      cache: "no-store",
+    })
+    .then((r) => r.status)
+    .catch(() => "received")
+}
+
 export const listOrders = async (
   limit: number = 10,
   offset: number = 0,

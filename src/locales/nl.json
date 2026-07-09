@@ -170,7 +170,18 @@
     "send_order_details_1":"We hebben de orderbevestigingsgegevens naar ",
     "send_order_details_2":" verzonden",
     "order_status":"Bestellstatus",
-    "payment_status":"Bezahlstatus"
+    "payment_status":"Bezahlstatus",
+    "production_status":"Produktionsstatus",
+    "production_statuses": {
+      "received":"Bestelling ontvangen",
+      "paid":"Betaald",
+      "in_design":"Ontwerp",
+      "in_production":"In productie",
+      "ready_to_ship":"Klaar voor verzending",
+      "shipped":"Verzonden",
+      "completed":"Voltooid",
+      "cancelled":"Geannuleerd"
+    }
   },
   "categories":"Categorieën",
   "product": {

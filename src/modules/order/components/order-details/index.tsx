@@ -7,6 +7,7 @@ import { Text } from "@medusajs/ui";
 
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages, type Lang } from "@lib/messages";
+import { sdk } from "@lib/config";
 
 type OrderDetailsProps = {
   order: HttpTypes.StoreOrder
@@ -17,6 +18,15 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
 
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  const [prodStatus, setProdStatus] = useState<string | null>(null);
+
+  useEffect(() => {
+    sdk.client
+      .fetch<{ status: string }>(`/store/order-production/${order.id}`, { method: "GET" })
+      .then((r) => setProdStatus(r.status))
+      .catch(() => {});
+  }, [order.id]);
   
   useEffect(() => {
     setLang(getClientLanguage());
@@ -51,28 +61,14 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
         {t.order.order_number}: <span data-testid="order-id">{order.display_id}</span>
       </Text>
 
-      <div className="flex items-center text-compact-small gap-x-4 mt-4">
-        {showStatus && (
-          <>
-            <Text>
-              {t.order.order_status}: {" "}
-              <span className="text-ui-fg-subtle " data-testid="order-status">
-                {/* TODO: Check where the statuses should come from */}
-                {/* {formatStatus(order.fulfillment_status)} */}
-              </span>
-            </Text>
-            <Text>
-              {t.order.payment_status}: {" "}
-              <span
-                className="text-ui-fg-subtle "
-                data-testid="order-payment-status"
-              >
-                {/* {formatStatus(order.payment_status)} */}
-              </span>
-            </Text>
-          </>
-        )}
-      </div>
+      {prodStatus && (
+        <Text className="mt-4">
+          {t.order.production_status}: {" "}
+          <span className="text-ui-fg-interactive font-semibold" data-testid="order-production-status">
+            {(t.order as any).production_statuses?.[prodStatus] ?? prodStatus}
+          </span>
+        </Text>
+      )}
     </div>
   )
 }
