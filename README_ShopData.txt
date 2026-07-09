@@ -39,3 +39,13 @@ Derzeitige Produktbeispiele im Medusa-Store:
 Hinweise zu Admin von Medusa:
 - Breite und Höhe von Produktvarianten können erst nach Erstellung einer Produktvariante eingestellt werden mit Klick auf ... (sind etwas versteckt)
 - Vorschaubilder von Produkten im Admin-Bereichen müssen extra mit Taste "T" aktiviert werden
+- Damit Produkte im Store gesehen, gekauft und versendet werden können, muss folgendes getan werden:
+    
+    Sichtbar im Store:
+    1. Produkte müssen veröffentlicht werden
+    2. Produkte müssen dem richtigen Sales-Channel zugeordnet werden
+
+    Kauf- und versandfähig:
+    3. Alle Produktvarianten müssen Preise in der Region-Währung (EUR) haben
+    4. Der Lagerbestand muss höher als 0 sein (oder Bestandsverwaltung aus)
+    5. Eine Versand-Konfiguration (Shipping Profile) muss ausgewählt sein
