@@ -36,7 +36,7 @@ Derzeitige Produktbeispiele im Medusa-Store:
 - Brennstempel
 - Geschenkekarte
 
-Hinweise zu Admin von Medusa:
+Hinweise für den Admin von Medusa:
 - Breite und Höhe von Produktvarianten können erst nach Erstellung einer Produktvariante eingestellt werden mit Klick auf ... (sind etwas versteckt)
 - Vorschaubilder von Produkten im Admin-Bereichen müssen extra mit Taste "T" aktiviert werden
 - Damit Produkte im Store gesehen, gekauft und versendet werden können, muss folgendes getan werden:
