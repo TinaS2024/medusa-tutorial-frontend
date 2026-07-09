@@ -625,6 +625,9 @@ export default function ProductActions({
 
   const designerLink = `${designerBaseUrl}?${designerParams.toString()}`
 
+  const canOpenDesigner = !!selectedVariant && !!isValidVariant && !disabled;
+
+
   return (
     <>
       <div className="flex flex-col gap-y-2" ref={actionsRef}>
@@ -777,17 +780,29 @@ export default function ProductActions({
           </>
         )}
 
-    {product.metadata?.is_designable === true && (
+        {product.metadata?.is_designable === true && (
+              canOpenDesigner ? (
                 <a href={designerLink} className="w-full">
+                  <Button
+                    variant="secondary"
+                    className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
+                    data-testid="go-to-designer-button"
+                  >
+                    {t.designer.to_designer}
+                  </Button>
+                </a>
+              ) : (
                 <Button
                   variant="secondary"
                   className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
                   data-testid="go-to-designer-button"
+                  disabled
                 >
                   {t.designer.to_designer}
                 </Button>
-              </a>
+              )
             )}
+
         <Button
           onClick={handleAddToCart}
           disabled={
