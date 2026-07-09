@@ -1,12 +1,7 @@
 Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 
 - thumbail: Path                      ... Pfad zu einem Produktbild im Public-Ordner des Storefront
-- is_stampProduct: Boolean            ... markiert ein Produkt als Stempel
-- is_roundForm: Boolean               ... schaltet Rundmaske im Designer frei
-- is_ovalForm: Boolean                ... schaltet Ovalmaske im Designer frei
 - has_cushion: Boolean                ... schaltet Kissenoptionen für Stempel frei
-- is_woodenShieldProduct              ... markiert ein Produkt als Holzschild
-- is_shieldProduct: Boolean           ... markiert ein Produkt als Schild
 - is_personalized: Boolean            ... schaltet individuele Breiten-und Höhenangaben frei
 - is_designable: Boolean              ... zeigt Button zum Designer
 - is_giftcard                         ... markiert ein Produkt als Geschenkekarte
@@ -15,16 +10,13 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 - dimension_price_factor: Number      ... übernimmt Preisfaktor
 - default_variant_id: String          ... übernimmt ID der Default-Produkt-Variante
 - default_background_color: String    ... übergibt die Hintergrundfarbe eines Schildes
-
-Neue Designer-Metadaten (deklaratives System, lösen die alten is_*-Flags ab):
-
 - designer_shape: String              ... Form im Designer: "rect" | "round" | "oval"
 - designer_category: String           ... Kategorie im Designer: "stamp" | "self_inking" | "shield" | "wooden_shield" | "emboss"
 - design_inset_mm: Number             ... unbedruckter Rand des Stempels in mm
 
 
 Optionale Metadata für das Designer-backend im Admin-Bereich des Shops:
-- cusion_color
+- cushion_color
 - engraving_color
 - background_color
 - embossing_position
