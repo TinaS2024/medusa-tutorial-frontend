@@ -17,7 +17,7 @@ Wichtige Metadata die im Admin-Bereich des Shops eingesetzt werden können:
 
 Optionale Metadata für das Designer-backend im Admin-Bereich des Shops (technischer Name):
 - cushion_color
-* material_color (für Kuli muss noch hinzugefügt werden in End-Json-Datei)
+- pencolor
 - engraving_color
 - background_color
 - embossing_position
