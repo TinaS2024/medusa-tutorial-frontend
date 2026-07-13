@@ -86,7 +86,7 @@ return sdk.client
           collection_id: queryParams?.collection_id,
           order: queryParams?.order,
           fields:
-            "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material",
+            "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material,*images",
           ...(locale ? { locale } : {}),
         },
         headers,
