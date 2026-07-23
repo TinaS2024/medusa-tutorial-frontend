@@ -29,8 +29,6 @@ type ItemProps = {
 
 const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemProps) => {
 
-   console.log("🛒 Line-Item Metadata:", item.metadata);
-
   const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
   
@@ -125,16 +123,12 @@ const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemPro
                 {
                   length: Math.min(maxQuantity, 10),
                 },
-                (_, i) => (
+                                (_, i) => (
                   <option value={i + 1} key={i}>
                     {i + 1}
                   </option>
                 )
               )}
-
-              <option value={1} key={1}>
-                1
-              </option>
             </CartItemSelect>
             {updating && <Spinner />}
           </div>
