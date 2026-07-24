@@ -1,14 +1,14 @@
-import { notFound } from "next/navigation"
-import { Suspense } from "react"
-import Image from "next/image"
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import Image from "next/image";
 
-import InteractiveLink from "@modules/common/components/interactive-link"
-import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
-import RefinementList from "@modules/store/components/refinement-list"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import PaginatedProducts from "@modules/store/templates/paginated-products"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { HttpTypes } from "@medusajs/types"
+import InteractiveLink from "@modules/common/components/interactive-link";
+import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid";
+import RefinementList from "@modules/store/components/refinement-list";
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import PaginatedProducts from "@modules/store/templates/paginated-products";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import { HttpTypes } from "@medusajs/types";
 
 export default function CategoryTemplate({
   category,
@@ -21,21 +21,22 @@ export default function CategoryTemplate({
   page?: string
   countryCode: string
 }) {
-  const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const pageNumber = page ? parseInt(page) : 1;
+  const sort = sortBy || "created_at";
 
-  if (!category || !countryCode) notFound()
+  if (!category || !countryCode) notFound();
 
-  const parents = [] as HttpTypes.StoreProductCategory[]
+  const parents = [] as HttpTypes.StoreProductCategory[];
 
   const getParents = (category: HttpTypes.StoreProductCategory) => {
-    if (category.parent_category) {
-      parents.push(category.parent_category)
-      getParents(category.parent_category)
+    if (category.parent_category) 
+    {
+      parents.push(category.parent_category);
+      getParents(category.parent_category);
     }
   }
 
-  getParents(category)
+  getParents(category);
 
   return (
     <div
@@ -60,10 +61,10 @@ export default function CategoryTemplate({
             ))}
           <h1 data-testid="category-page-title">{category.name}</h1>
         </div>
-        {category.metadata?.thumbnail && typeof category.metadata.thumbnail === "string" && (
+        {typeof category.metadata?.thumbnail === "string" && (
           <div className="mb-8">
             <Image
-              src={category.metadata.thumbnail}
+              src={category.metadata?.thumbnail as string}
               alt={category.name}
               width={400}
               height={400}
@@ -71,6 +72,7 @@ export default function CategoryTemplate({
             />
           </div>
         )}
+
         {category.description && (
           <div className="mb-8 text-base-regular">
             <p>{category.description}</p>
@@ -83,9 +85,9 @@ export default function CategoryTemplate({
                 <li key={c.id} className="relative">
                   <div className="group">
                   <InteractiveLink href={`/categories/${c.handle}`}>
-                  {c.images?.[0]?.url && (
+                  {typeof c.metadata?.thumbnail === "string" && (
                     <div className="aspect-[1/1] w-full overflow-hidden rounded-md bg-ui-bg-subtle">
-                      <Image src={c.images[0].url} alt={c.name} className="h-full w-full object-cover transition-transform group-hover: scale-105" width={300} height={300}/>
+                      <Image src={c.metadata?.thumbnail as string} alt={c.name} className="h-full w-full object-cover transition-transform group-hover:scale-105" width={300} height={300}/>
                     </div>
                   )}
                   <span className="mt-2 block text-base-regular">

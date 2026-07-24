@@ -49,11 +49,11 @@ export const getCacheOptions = async (
 
   const cacheTag = await getCacheTag(tag)
 
-  if (!cacheTag) {
-    return {}
-  }
-
-  return { tags: [`${cacheTag}`] }
+  // Immer den Basis-Tag mitgeben (z. B. "products"), zusätzlich zum
+  // besucherspezifischen Tag ("products-<cacheId>"). Der Basis-Tag erlaubt die
+  // globale Invalidierung vom Backend (revalidateTag("products")); der
+  // besucherspezifische bleibt für die per-User-Revalidation (Warenkorb).
+  return { tags: cacheTag ? [cacheTag, tag] : [tag] }
 }
 
 export const setAuthToken = async (token: string) => {

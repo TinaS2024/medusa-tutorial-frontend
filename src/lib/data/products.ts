@@ -44,13 +44,15 @@ export const listProducts = async ({
 
   let region: HttpTypes.StoreRegion | undefined | null
 
-  if (countryCode) {
+  if (countryCode) 
+  {
     region = await getRegion(countryCode)
   } else {
     region = await retrieveRegion(regionId!)
   }
 
-  if (!region) {
+  if (!region) 
+  {
     return {
       response: { products: [], count: 0 },
       nextPage: null,
@@ -63,7 +65,6 @@ export const listProducts = async ({
   }
 
   const locale = await getLocaleFromCookies();
-  console.log("listProducts locale query param:", locale); 
 
   const next = {
     ...(await getCacheOptions("products")),
