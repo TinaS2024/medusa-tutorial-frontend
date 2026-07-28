@@ -86,6 +86,7 @@ const CartTemplate = ({
     const variantId = getParam("variantId") || getParam("medusaVariantId") || getParam("variant_id");
     const designImage = getParam("designImage") || getParam("design_image");
     const designSvg = getParam("designSvg") || getParam("svg_url");
+    const designText = getParam("designText");
     const width = getParam("width");
     const height = getParam("height");
     const cushionColor = searchParams.get("cushionColor");
@@ -140,6 +141,7 @@ const CartTemplate = ({
             metadata: {
               design_image: designImageToSave,
               svg_url: designSvg,
+              designText: designText || undefined,
               width: parseFloat(width!),
               height: parseFloat(height!),
               cushion_color: cushionColor || undefined,

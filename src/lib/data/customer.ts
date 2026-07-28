@@ -137,7 +137,8 @@ export async function requestPasswordReset(
   _currentState: PasswordResetState | null,
   formData: FormData
 ): Promise<PasswordResetState> {
-  const email = (formData.get("email") as string | null)?.trim();
+  
+  const email = (formData.get("email") as string | null)?.trim().toLocaleLowerCase();
 
   if (!email) 
   {
