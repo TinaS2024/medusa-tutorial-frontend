@@ -63,13 +63,15 @@ export const setAuthToken = async (token: string) => {
     httpOnly: true,
     sameSite: "strict",
     secure: COOKIE_SECURE,
+    domain: process.env.COOKIE_DOMAIN || undefined,
   })
 }
 
 export const removeAuthToken = async () => {
   const cookies = await nextCookies()
-  cookies.set("_medusa_jwt", "", {
+    cookies.set("_medusa_jwt", "", {
     maxAge: -1,
+    domain: process.env.COOKIE_DOMAIN || undefined,
   })
 }
 
