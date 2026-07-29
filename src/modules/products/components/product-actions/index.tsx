@@ -7,7 +7,7 @@ import { Button } from "@medusajs/ui";
 import Divider from "@modules/common/components/divider";
 import OptionSelect from "@modules/products/components/product-actions/option-select";
 import { isEqual } from "lodash";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import ProductPrice from "../product-price";
 import { getCustomVariantPrice } from "@lib/data/products";
@@ -77,7 +77,7 @@ export default function ProductActions({
 
   const countryCode = useParams().countryCode as string;
 
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
   const designImage = searchParams.get("designImage");
   const designSvg = searchParams.get("designSvg");
 
