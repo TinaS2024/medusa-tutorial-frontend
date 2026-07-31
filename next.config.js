@@ -26,6 +26,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "shop-api.bolasys.de",
+      },
+      {
+        protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
       {
