@@ -1,1 +1,6 @@
 Für alle neue Widget noch Locales hinzufügen
+
+- Produktliste exportieren und importieren
+- Wo kann man das Medusa-Design ändern? Welche Themes gibt es?
+
+Admin: medusa-admin@bolasys.de 123456789
