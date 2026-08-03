@@ -814,7 +814,7 @@ export default function ProductActions({
             (!!product.metadata?.is_personalized && (!width || !height))
           }
           variant="primary"
-          className="w-full h-10 bg-orange-950 hover:bg-orange-900"
+          className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

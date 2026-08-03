@@ -1,4 +1,5 @@
 import { listCategories } from "@lib/data/categories";
+import { retrieveTheme } from "@lib/data/theme";
 import { listCollections } from "@lib/data/collections";
 import { Text, clx } from "@medusajs/ui";
 
@@ -16,18 +17,27 @@ export default async function Footer()
   const { collections } = await listCollections({
     fields: "*products",
   })
-  const productCategories = await listCategories()
+  const productCategories = await listCategories();
+  const theme = await retrieveTheme();
 
   return (
-    <footer className="border-t border-ui-border-base w-full bg-orange-950">
+    <footer className="border-t border-ui-border-base w-full bg-[var(--brand-footer-bg)]">
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
           <div>
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-white/70 hover:text-white uppercase"
+              className="txt-compact-xlarge-plus text-white/70 hover:text-white uppercase flex items-center"
             >
-              Shop-Name
+              {theme.theme_logo_url ? (
+                <img
+                  src={theme.theme_logo_url}
+                  alt={t.nav.shopName}
+                  className="h-10 w-auto max-w-[220px] object-contain"
+                />
+              ) : (
+                t.nav.shopName
+              )}
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">

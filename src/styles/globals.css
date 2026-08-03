@@ -2,6 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --brand-primary: #431407;
+  --brand-primary-hover: #7c2d12;
+  --brand-button-text: #ffffff;
+  --brand-header-bg: #431407;
+  --brand-footer-bg: #431407;
+}
+
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

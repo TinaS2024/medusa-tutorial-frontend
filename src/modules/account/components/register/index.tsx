@@ -92,7 +92,7 @@ const Register = ({ setCurrentView }: Props) =>
           </LocalizedClientLink>
           .
         </span>
-        <SubmitButton className="w-full mt-6 bg-orange-950 hover:bg-orange-900" data-testid="register-button">
+        <SubmitButton className="w-full mt-6 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]" data-testid="register-button">
           {t.login_shop.now_register}
         </SubmitButton>
       </form>
