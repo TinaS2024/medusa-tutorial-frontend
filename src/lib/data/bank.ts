@@ -1,6 +1,7 @@
 "use server";
 
 import { sdk } from "@lib/config";
+import { getCacheOptions } from "./cookies";
 
 type BankDetails = {
   bank_account_holder: string | null
@@ -12,10 +13,15 @@ type BankDetails = {
 
 export const retrieveBankDetails = async (): Promise<BankDetails | null> => 
 {
+   const next = {
+    ...(await getCacheOptions("bank")),
+  }
+
   return sdk.client
     .fetch<{ bank_details: BankDetails }>("/store/bank-details", {
       method: "GET",
-      cache: "no-store",
+      next,
+      cache: "force-cache",
     })
     .then(({ bank_details }) => bank_details)
     .catch(() => null)
