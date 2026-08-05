@@ -1,5 +1,8 @@
 Für alle neue Widget noch Locales hinzufügen
 
 - Wo kann man das Medusa-Design ändern? Welche Themes gibt es?
+- Server: Wieso npm neu installieren ? Build von Designer geht nicht mehr wegen falscher npm-version
+
+- Schnittstellen zwischen Medusa-Shop und Designer dokumentieren
 
 Admin: medusa-admin@bolasys.de 123456789
