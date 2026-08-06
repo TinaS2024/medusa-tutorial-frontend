@@ -26,6 +26,7 @@ const DEFAULTS: Theme = {
 export const retrieveTheme = async (): Promise<Theme> => {
     const next = {
     ...(await getCacheOptions("theme")),
+    revalidate: 60,
   }
 
   const theme = await sdk.client

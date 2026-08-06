@@ -15,6 +15,7 @@ export const retrieveBankDetails = async (): Promise<BankDetails | null> =>
 {
    const next = {
     ...(await getCacheOptions("bank")),
+    revalidate: 60,
   }
 
   return sdk.client
