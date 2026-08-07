@@ -37,7 +37,7 @@ const resolveDesignImageUrl = (src: string | undefined) => {
   const decoded = safeDecodeURIComponent(src);
 
   if (decoded.startsWith("blob:") || decoded.startsWith("data:")) return null;
-  if (decoded.startsWith("/designs/")) return `${DESIGNER_NEXT_URL}${decoded}`;
+  if (decoded.startsWith("/designs/")) return `${DESIGNER_NEXT_URL}/api${decoded}`;
   if (decoded.startsWith("/")) return `${BACKEND_URL}${decoded}`;
 
   return decoded;
