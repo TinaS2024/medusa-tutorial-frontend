@@ -7,6 +7,9 @@
   --brand-primary-hover: #7c2d12;
   --brand-button-text: #ffffff;
   --brand-header-bg: #431407;
+  --brand-hero-bg: #F9FAFB;
+  --brand-page-bg: #F9FAFB;
+  --brand-page-text: #431407;
   --brand-footer-bg: #431407;
 }
 
@@ -119,4 +122,3 @@
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
-
