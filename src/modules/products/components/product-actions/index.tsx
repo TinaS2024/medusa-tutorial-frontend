@@ -772,7 +772,7 @@ export default function ProductActions({
 
         {product.metadata?.is_printOnDemand === true && (
           <>
-          <canvas ref={canvasRef} width="50" height="50" className="border border-gray-300 mt-4 mb-2"/>
+          <canvas ref={canvasRef} width="50" height="50" className="border border-[var(--brand-border)] mt-4 mb-2"/>
           <input type="file" id="upload-image" accept="image/*" className="hidden" onChange={handleChange} ref={fileInputRef}/>
           <label htmlFor="upload-image" className="w-full">
             <Button className="w-full" onClick={handleUploadClick}>{t.printOnDemand.upload}</Button>
@@ -784,20 +784,21 @@ export default function ProductActions({
               canOpenDesigner ? (
                 <a href={designerLink} className="w-full">
                   <Button
-                    variant="secondary"
-                    className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
+                    variant="primary"
+                    className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
                     data-testid="go-to-designer-button"
                   >
+
                     {t.designer.to_designer}
                   </Button>
                 </a>
               ) : (
-                <Button
-                  variant="secondary"
-                  className="w-full h-10 bg-gray-200 hover:bg-gray-300 text-black"
-                  data-testid="go-to-designer-button"
-                  disabled
-                >
+                  <Button
+                    variant="primary"
+                    className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
+                    data-testid="go-to-designer-button"
+                  >
+
                   {t.designer.to_designer}
                 </Button>
               )

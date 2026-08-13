@@ -73,7 +73,7 @@ export default function LocaleSwitcher()
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute right-0 z-10 mt-1 w-10 rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black/5">
+          <Listbox.Options className="absolute right-0 z-10 mt-1 w-10 rounded-md bg-[var(--brand-surface-bg)] py-1 text-xs shadow-lg ring-1 ring-black/5">
             {SUPPORTED_LOCALES.map((loc) => (
               <Listbox.Option
                 key={loc.code}

@@ -20,7 +20,7 @@ const Hero = ({ heroUrl}: { heroUrl?: string | null }) => {
   }, []);
 
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-[var(--brand-hero-bg)]">
+    <div className="h-[75vh] w-full relative bg-[var(--brand-hero-bg)]">
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
           <Heading

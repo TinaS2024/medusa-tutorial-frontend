@@ -98,7 +98,7 @@ export default function BundleActions({bundle,region}: BundleActionsProps) {
     <h2 className="text-2xl">Items in Bundle</h2>
     <div className="grid gap-6">
         {bundle.items.map((item, index) => (
-        <div key={item.product.id} className="rounded-lg p-6 shadow-elevation-card-rest hover:shadow-elevation-card-hover transition-shadow bg-white">
+        <div key={item.product.id} className="rounded-lg p-6 shadow-elevation-card-rest hover:shadow-elevation-card-hover transition-shadow bg-[var(--brand-surface-bg)]">
           <div className="flex items-start gap-4">
             <Thumbnail thumbnail={item.product.thumbnail} className="w-24 h-24 rounded-md" size="square" images={[]}/>
             <div>

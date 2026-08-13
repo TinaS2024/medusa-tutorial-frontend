@@ -111,14 +111,14 @@ export default async function DesignsPage()
             return (
               <li
                 key={d.id}
-                className="border border-gray-200 rounded-lg p-4 flex flex-col gap-y-4"
+                className="border border-[var(--brand-border)] rounded-lg p-4 flex flex-col gap-y-4"
               >
                 {(() => {
                   const src = resolveDesignImageUrl(d.design_image);
 
                   if (src) {
                     return (
-                      <div className="w-full overflow-hidden rounded-md bg-gray-50">
+                      <div className="w-full overflow-hidden rounded-md bg-[var(--brand-surface-bg)]">
                         <img
                           src={src}
                           alt=""
@@ -130,7 +130,7 @@ export default async function DesignsPage()
                   }
 
                   return (
-                    <div className="w-full aspect-square rounded-md bg-gray-50 flex items-center justify-center">
+                    <div className="w-full aspect-square rounded-md bg-[var(--brand-surface-bg)] flex items-center justify-center">
                       {d.design_image ? (
                         <span className="text-small-regular text-ui-fg-subtle break-all px-4">
                           {String(d.design_image)}

@@ -98,7 +98,7 @@ const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemPro
           {!!item.metadata?.design_image && (
             <div className="mt-2">
               <Text className="txt-small text-ui-fg-subtle">{t.product_properties.design}:</Text>
-              <img src={decodeURIComponent(item.metadata.design_image as string)} alt="Design" className="w-24 h-24 object-contain border border-gray-200 rounded-md mt-1" />
+              <img src={decodeURIComponent(item.metadata.design_image as string)} alt="Design" className="w-24 h-24 object-contain border border-[var(--brand-border)] rounded-md mt-1" />
             </div>
           )}
         </div>

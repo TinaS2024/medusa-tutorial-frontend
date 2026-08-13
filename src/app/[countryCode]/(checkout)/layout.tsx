@@ -15,8 +15,8 @@ export default async function CheckoutLayout({
   const t = getMessages(lang);
 
   return (
-    <div className="w-full bg-white relative small:min-h-screen">
-      <div className="h-16 bg-white border-b ">
+    <div className="w-full bg-[var(--brand-surface-bg)] relative small:min-h-screen">
+      <div className="h-16 bg-[var(--brand-surface-bg)] border-b ">
         <nav className="flex h-full items-center content-container justify-between">
           <LocalizedClientLink
             href="/cart"

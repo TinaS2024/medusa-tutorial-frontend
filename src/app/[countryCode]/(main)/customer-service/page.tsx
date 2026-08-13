@@ -24,7 +24,7 @@ export default async function CustomerService()
         {t.service.blocks.map((b) => (
           <div
             key={b.title}
-            className="border border-ui-border-base rounded-lg p-6 bg-white"
+            className="border border-ui-border-base rounded-lg p-6 bg-[var(--brand-surface-bg)]"
           >
             <h2 className="text-base-semi text-ui-fg-base">{b.title}</h2>
             <p className="text-small-regular text-ui-fg-base mt-2">{b.body}</p>
