@@ -60,6 +60,17 @@ export default async function RootLayout(props: { children: React.ReactNode })
         "--bg-interactive": theme.theme_primary,
         "--border-interactive": theme.theme_primary,
 
+        // Hover- und Klickzustände – aus dem Admin einstellbar, damit die
+        // Farbe zum jeweiligen Schema passt (Weiß wirkt auf Beige störend).
+        "--bg-base-hover": theme.theme_hover_bg,
+        "--bg-base-pressed": theme.theme_hover_bg,
+        "--bg-subtle-hover": theme.theme_hover_bg,
+        "--bg-subtle-pressed": theme.theme_hover_bg,
+        "--bg-component-hover": theme.theme_hover_bg,
+        "--bg-component-pressed": theme.theme_hover_bg,
+        "--bg-field-hover": theme.theme_hover_bg,
+        "--bg-field-component-hover": theme.theme_hover_bg,
+
         "--border-base": theme.theme_border,
         "--border-strong": theme.theme_border,
       } as React.CSSProperties}
