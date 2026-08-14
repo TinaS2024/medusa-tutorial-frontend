@@ -65,7 +65,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
           <button
             type="button"
             onClick={onClose}
-            className="bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)] text-[var(--brand-button-text)] px-4 py-2 rounded-rounded"
+            className="bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)] text-[var(--brand-button-text)] px-4 py-2 rounded-rounded"
             data-testid="forgot-password-close"
           >
             {t.login_shop.close}
@@ -100,7 +100,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
               </div>
               <ErrorMessage error={requestError} data-testid="reset-request-error" />
               <SubmitButton
-                className="w-full mt-4 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
+                className="w-full mt-4 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]"
                 data-testid="reset-request-submit"
               >
                 {t.login_shop.reset_password_send_link}
@@ -136,7 +136,7 @@ const ForgotPasswordForm = ({t, onClose, }: {t: ReturnType<typeof getMessages>; 
               </div>
               <ErrorMessage error={updateError} data-testid="reset-update-error" />
               <SubmitButton
-                className="w-full mt-4 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
+                className="w-full mt-4 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]"
                 data-testid="reset-update-submit"
               >
                 {t.login_shop.reset_password_set}

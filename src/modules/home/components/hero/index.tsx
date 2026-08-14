@@ -37,7 +37,7 @@ const Hero = ({ heroUrl}: { heroUrl?: string | null }) => {
                        <Image src={heroUrl || "/Hero.png"} alt="Hero Image" width={400} height={200} unoptimized/>
             </div>
             
-            <a href="/store" className="bg-[var(--brand-primary)] rounded-xl text-base-regular text-[var(--brand-button-text)] p-2">{t.cart.empty.cta}</a>
+            <a href="/store" className="bg-[var(--brand-primary)] after:hidden rounded-xl text-base-regular text-[var(--brand-button-text)] p-2">{t.cart.empty.cta}</a>
           </Heading>
         </span>
        

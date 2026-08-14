@@ -10,6 +10,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import ProductPrice from "../product-price";
 import Thumbnail from "../thumbnail";
+import { getClientLanguage } from "@lib/i18n";
+import { getMessages } from "@lib/messages";
 
 
 type BundleActionsProps = {
@@ -27,7 +29,16 @@ const optionsAsKeymap = (variantOptions: HttpTypes.StoreProductVariant["options"
     }
 
 
-export default function BundleActions({bundle,region}: BundleActionsProps) {
+export default function BundleActions({bundle,region}: BundleActionsProps) 
+{
+  
+  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
+
 
   const [productOptions, setProductOptions] = useState<Record<string, Record<string, string>>>({});
 
@@ -119,9 +130,15 @@ export default function BundleActions({bundle,region}: BundleActionsProps) {
         </div>
       ))}
     </div>
-    <Button onClick={handleAddToCart} disabled={!allVariantsSelected || isAdding} variant="primary" className="w-full h-10" isLoading={isAdding}>
-      {!allVariantsSelected ? "Select all variants" : "Add bundle to cart"}
-    </Button>
+      <button
+          onClick={handleAddToCart}
+          disabled={!allVariantsSelected || isAdding}
+          className={`w-full h-10 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] ${
+            isAdding ? "cursor-wait" : "disabled:opacity-50 disabled:cursor-not-allowed"
+          }`}
+        >
+        {!allVariantsSelected ? t.bundle.select_variants : t.bundle.add_to_cart}
+        </button>
   </div>
     )
 }

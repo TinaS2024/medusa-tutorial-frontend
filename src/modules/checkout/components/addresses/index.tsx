@@ -96,7 +96,7 @@ const Addresses = ({
                 <BillingAddress cart={cart} />
               </div>
             )}
-            <SubmitButton className="mt-6 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]" data-testid="submit-address-button">
+            <SubmitButton className="mt-6 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]" data-testid="submit-address-button">
               {t.shipping.continue_shipping}
             </SubmitButton>
             <ErrorMessage error={message} data-testid="address-error-message" />

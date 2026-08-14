@@ -74,9 +74,20 @@ const StripePaymentButton = ({
   const onPaymentCompleted = async () => {
 
     await placeOrder()
-      .catch((err) => {
+          .catch((err) => {
+        // Next.js meldet eine Weiterleitung über eine geworfene Ausnahme.
+        // Sie muss durchgereicht werden – sonst erscheint eine Fehlermeldung,
+        // obwohl die Bestellung erfolgreich war.
+        if (
+          err?.message === "NEXT_REDIRECT" ||
+          (typeof err?.digest === "string" && err.digest.startsWith("NEXT_REDIRECT"))
+        ) {
+          throw err
+        }
+
         setErrorMessage(err.message)
       })
+
       .finally(() => {
         setSubmitting(false)
       })
@@ -103,9 +114,9 @@ const StripePaymentButton = ({
       redirect: "if_required",
     })
 
-    if (error) {
+      if (error) {
+      console.error("[Bestellung] Stripe meldet:", error)
       setErrorMessage(error.message || null)
-      setSubmitting(false)
       return
     }
 
@@ -132,15 +143,17 @@ const StripePaymentButton = ({
 
   return (
     <>
-      <Button
+      <button
         disabled={disabled || notReady}
         onClick={handlePayment}
-        size="large"
-        isLoading={submitting}
         data-testid={dataTestId}
+        className={`h-10 px-4 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] ${
+          submitting ? "cursor-wait" : "disabled:opacity-50 disabled:cursor-not-allowed"
+        }`}
       >
         {t.order.place_order}
-      </Button>
+      </button>
+
       <ErrorMessage
         error={errorMessage}
         data-testid="stripe-payment-error-message"
@@ -159,9 +172,16 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
 
   const onPaymentCompleted = async () => {
     await placeOrder()
-      .catch((err) => {
+           .catch((err) => {
+        if (
+          err?.message === "NEXT_REDIRECT" ||
+          (typeof err?.digest === "string" && err.digest.startsWith("NEXT_REDIRECT"))
+        ) {
+          throw err
+        }
         setErrorMessage(err.message)
       })
+
       .finally(() => {
         setSubmitting(false)
       })
@@ -175,15 +195,17 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
 
   return (
     <>
-      <Button
+      <button
         disabled={notReady}
-        isLoading={submitting}
         onClick={handlePayment}
-        size="large"
         data-testid="submit-order-button"
+        className={`h-10 px-4 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] ${
+          submitting ? "cursor-wait" : "disabled:opacity-50 disabled:cursor-not-allowed"
+        }`}
       >
         {t.order.place_order}
-      </Button>
+      </button>
+
       <ErrorMessage
         error={errorMessage}
         data-testid="manual-payment-error-message"

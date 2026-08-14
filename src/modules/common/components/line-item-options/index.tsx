@@ -30,7 +30,7 @@ const LineItemOptions = ({
 
     const titleKeyMap: Record<string, string> = {
     Kissenfarbe: "cushion_color",
-    Prägeposition: "embossing_posiiton",
+    Prägeposition: "embossing_positiont",
     Hintergrundfarbe: "background_color",
     Gravurfarbe: "engraving_color",
     Stiftfarbe: "pen_color",
@@ -91,7 +91,7 @@ const LineItemOptions = ({
       const localizedValue =
         key && ["cushion_color", "background_color", "engraving_color", "pen_color"].includes(key)
           ? colorTranslations[valueStr] ?? valueStr
-          : key === "embossing_posiiton"
+          : key === "embossing_position"
             ? embossingTranslations[valueStr] ?? valueStr
             : isFormOption && (valueStrLower === "round" || valueStrLower === "square" || valueStrLower === "rund" || valueStrLower === "eckig")
               ? localizeFormToken(valueStr)

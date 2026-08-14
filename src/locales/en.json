@@ -219,7 +219,7 @@
     "product_properties":
     {
       "cushion_color":"cushion color",
-      "embossing_posiiton":"Embossing position",
+      "embossing_position":"Embossing position",
       "background_color":"Bestelinformatie color",
       "engraving_color":"Graving color",
       "pen_color":"Pen color",
@@ -246,6 +246,10 @@
       "turquoise":"Turquoise",
       "blue":"Blue",
       "violet":"Violet"
+    },
+    "bundle": {
+    "select_variants": "Select all variants",
+    "add_to_cart": "Add bundle to cart"
     },
     "embossing_position":{
       "top":"Top",

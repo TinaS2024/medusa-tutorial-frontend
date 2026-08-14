@@ -88,7 +88,7 @@ const ResetPasswordForm = ({ token, email }: { token: string; email: string }) =
           />
         </div>
         <ErrorMessage error={error} />
-        <SubmitButton className="w-full mt-6 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]">
+        <SubmitButton className="w-full mt-6 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]">
           {t.login_shop.reset_password_set}
         </SubmitButton>
       </form>

@@ -218,7 +218,7 @@
     "product_properties":
     {
       "cushion_color":"Kissenkleur",
-      "embossing_posiiton":"Embossing positie",
+      "embossing_position":"Embossing positie",
       "background_color":"Hintergrundkleur",
       "engraving_color":"Gravurkleur",
       "pen_color":"Stiftkleur",
@@ -245,6 +245,10 @@
       "turquoise":"Turko",
       "blue":"Blauw",
       "violet":"Violet"
+    },
+    "bundle": {
+    "select_variants": "Kies alle varianten",
+    "add_to_cart": "Bundel in winkelwagen"
     },
     "embossing_position":{
       "top":"Boven",

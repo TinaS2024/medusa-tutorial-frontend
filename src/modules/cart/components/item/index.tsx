@@ -93,7 +93,7 @@ const Item = ({ item, title, variantTitle,type = "full", currencyCode }: ItemPro
             <div>{t.product_properties.cushion_color}: {String(item.metadata.cushion_color)}</div>
           )}
           {!!item.metadata?.embossing_position && (
-            <div>{t.product_properties.embossing_posiiton}: {String(item.metadata.embossing_position)}</div>
+            <div>{t.product_properties.embossing_position}: {String(item.metadata.embossing_position)}</div>
           )}
           {!!item.metadata?.design_image && (
             <div className="mt-2">

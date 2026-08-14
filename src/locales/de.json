@@ -219,7 +219,7 @@
     "product_properties":
     {
       "cushion_color":"Kissenfarbe",
-      "embossing_posiiton":"Prägeposition",
+      "embossing_position":"Prägeposition",
       "background_color":"Hintergrundfarbe",
       "engraving_color":"Gravurfarbe",
       "pen_color":"Stiftfarbe",
@@ -247,6 +247,10 @@
       "blue":"Blau",
       "violet":"Violett"
     },
+    "bundle": {
+    "select_variants": "Bitte alle Varianten wählen",
+    "add_to_cart": "Bundle in den Warenkorb"
+  },
     "embossing_position":{
       "top":"Oben",
       "bottom":"Unten",

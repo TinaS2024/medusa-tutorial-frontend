@@ -94,11 +94,11 @@ export default function ProductActions({
 
         if (data && data.customer && data.customer.id)
         {
-          console.log("👤 Medusa Kunde erkannt. ID:", data.customer.id);
+          console.log("ðŸ‘¤ Medusa Kunde erkannt. ID:", data.customer.id);
           setCustomerId(data.customer.id);
         }
         else {
-          console.log("👤 Kein Kunde eingeloggt (Gast-Sitzung) oder Fehler beim Abruf.");
+          console.log("ðŸ‘¤ Kein Kunde eingeloggt (Gast-Sitzung) oder Fehler beim Abruf.");
           setCustomerId("guest"); 
         }
       }
@@ -263,7 +263,7 @@ export default function ProductActions({
   console.log("  isShieldProduct:", isShieldProduct);
   console.log("  Product Options:", product.options);
 
-  //Benutzerdefinierte Kissenfarbe für Selbstfärberstempel
+  //Benutzerdefinierte Kissenfarbe fÃ¼r SelbstfÃ¤rberstempel
   const cushionColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.CUSHION_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.cushion_color);
   let cushionColor = "";
   if (selectedVariant && cushionColorOption) 
@@ -277,7 +277,7 @@ export default function ProductActions({
     }
   }
 
-  //Benutzerdefinierte Stiftfarbe für Stiftstempel
+  //Benutzerdefinierte Stiftfarbe fÃ¼r Stiftstempel
   const penColorOption = findOptionByTechnicalKey(product,TECHNICAL_OPTION_KEYS.PEN_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.pen_color);
   let penColor = "";
   if (selectedVariant && penColorOption) 
@@ -291,8 +291,8 @@ export default function ProductActions({
     }
   }
 
-  //Prägeposition für Prägestempel
-  const embossingPositionOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION, optionKeysMeta) ?? product.options?.find((opt) => opt.title === "Prägeposition");
+  //PrÃ¤geposition fÃ¼r PrÃ¤gestempel
+  const embossingPositionOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION, optionKeysMeta) ?? product.options?.find((opt) => opt.title === "PrÃ¤geposition");
   let embossingPosition = "";
   if (selectedVariant && embossingPositionOption) 
   {
@@ -305,7 +305,7 @@ export default function ProductActions({
     }
   }
 
-  //Benutzerdefinierte Gravurfarbe für Schilder
+  //Benutzerdefinierte Gravurfarbe fÃ¼r Schilder
   const engravedColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR, optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.engraving_color);
   let engravedColor = "";
   if (selectedVariant && engravedColorOption) {
@@ -317,7 +317,7 @@ export default function ProductActions({
     }
   }
 
-  //Hintergrundfarbe für Schilder
+  //Hintergrundfarbe fÃ¼r Schilder
   const backgroundColorOption = findOptionByTechnicalKey(product, TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR,optionKeysMeta) ?? product.options?.find((opt) => opt.title === t.product_properties.background_color);
   let backgroundColor = "";
   if (product.metadata?.default_background_color) 
@@ -639,7 +639,7 @@ export default function ProductActions({
                   const isCushionColor = techKey === TECHNICAL_OPTION_KEYS.CUSHION_COLOR || option.title === t.product_properties.cushion_color;
                   const isEngravingColor = techKey === TECHNICAL_OPTION_KEYS.ENGRAVING_COLOR || option.title === t.product_properties.engraving_color;
                   const isBackgroundColor = techKey === TECHNICAL_OPTION_KEYS.BACKGROUND_COLOR || option.title === t.product_properties.background_color;
-                  const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === t.product_properties.embossing_posiiton;
+                  const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === t.product_properties.embossing_position;
                   const isPenColor = techKey === TECHNICAL_OPTION_KEYS.PEN_COLOR || option.title === t.product_properties.pen_color;
 
 
@@ -785,7 +785,7 @@ export default function ProductActions({
                 <a href={designerLink} className="w-full">
                   <Button
                     variant="primary"
-                    className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
+                    className="w-full h-10 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]"
                     data-testid="go-to-designer-button"
                   >
 
@@ -795,7 +795,7 @@ export default function ProductActions({
               ) : (
                   <Button
                     variant="primary"
-                    className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
+                    className="w-full h-10 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]"
                     data-testid="go-to-designer-button"
                   >
 
@@ -804,7 +804,7 @@ export default function ProductActions({
               )
             )}
 
-        <Button
+          <button
           onClick={handleAddToCart}
           disabled={
             !inStock ||
@@ -814,9 +814,7 @@ export default function ProductActions({
             !isValidVariant ||
             (!!product.metadata?.is_personalized && (!width || !height))
           }
-          variant="primary"
-          className="w-full h-10 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]"
-          isLoading={isAdding}
+          className={`w-full h-10 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] isAdding ? "cursor-wait":"disabled_opacity-50 disabled:cursor-not-allowed"}`}
           data-testid="add-product-button"
         >
           {!selectedVariant && !options
@@ -824,7 +822,8 @@ export default function ProductActions({
             : !inStock || !isValidVariant
             ? t.product.sold_out
             : t.cart.empty.add_to_cart}
-        </Button>
+        </button>
+
         <MobileActions
           quantity={quantity}
           setQuantity={setQuantity}

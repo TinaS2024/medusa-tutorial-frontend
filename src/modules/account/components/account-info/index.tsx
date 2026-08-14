@@ -69,16 +69,16 @@ const AccountInfo = ({
           </div>
         </div>
         <div>
-          <Button
-            variant="secondary"
-            className="w-[100px] min-h-[25px] py-1"
+          <button
             onClick={handleToggle}
             type={state ? "reset" : "button"}
             data-testid="edit-button"
             data-active={state}
+            className="w-[100px] min-h-[25px] py-1 rounded-md text-base-regular transition-colors bg-[var(--brand-surface-bg)] text-[var(--brand-page-text)] border border-[var(--brand-border)] hover:bg-[var(--brand-border)] active:bg-[var(--brand-border)]"
           >
             {state ? t.function.cancel : t.function.change}
-          </Button>
+          </button>
+
         </div>
       </div>
 
@@ -134,14 +134,16 @@ const AccountInfo = ({
           <div className="flex flex-col gap-y-2 py-4">
             <div>{children}</div>
             <div className="flex items-center justify-end mt-2">
-              <Button
-                isLoading={pending}
-                className="w-full small:max-w-[140px]"
+            <button
                 type="submit"
+                disabled={pending}
                 data-testid="save-button"
+                className={`w-full small:max-w-[140px] py-2.5 px-4 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] ${
+                  pending ? "cursor-wait" : ""
+                }`}
               >
                 {t.function.save}
-              </Button>
+              </button>
             </div>
           </div>
         </Disclosure.Panel>

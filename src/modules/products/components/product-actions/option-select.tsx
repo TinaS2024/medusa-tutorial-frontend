@@ -28,7 +28,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   const titleKeyMap: Record<string, string> = {
     Kissenfarbe: "cushion_color",
-    Prägeposition: "embossing_posiiton",
+    Prägeposition: "embossing_position",
     Hintergrundfarbe: "background_color",
     Gravurfarbe: "engraving_color",
     Stiftfarbe: "pen_color",
@@ -62,7 +62,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   const colorTranslations = ((t as any).colors ?? (t as any).product_color) || {};
 
-  //Prägeoptionen
+  //PrÃ¤geoptionen
   const embossingPropertyKeys = ["embossing_position"];
   const embossingTechnicalKeys = ["embossing_position"];
 
@@ -103,7 +103,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               className={clx(
                 "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
                 {
-                  "border-ui-border-interactive": v === current,
+                  "border-[var(--brand-primary)] bg-[var(--brand-primary)] after:hidden text-[var(--brand-button-text)]": v === current,
                   "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
                     v !== current,
                 }

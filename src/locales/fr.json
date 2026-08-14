@@ -221,7 +221,7 @@
     "product_properties":
     {
       "cushion_color":"Couleur du Kissen",
-      "embossing_posiiton":"Position embossage",
+      "embossing_position":"Position embossage",
       "background_color":"Couleur de fond",
       "engraving_color":"Gravur couleur",
       "pen_color":"Couleur de crayon",
@@ -248,6 +248,10 @@
       "turquoise":"Turquoise",
       "blue":"Bleu",
       "violet":"Violet"
+    },
+     "bundle": {
+    "select_variants": "Veuillez choisir toutes les variantes",
+    "add_to_cart": "Ajouter le lot au panier"
     },
     "embossing_position":{
       "top":"Haut",

@@ -3,5 +3,4 @@
 
 Admin: medusa-admin@bolasys.de 123456789
 
-Zum Warenkorb hinzufügen, Weiter zur Zahlung, Überprüfung fortsetzen, Bestellung aufgeben, Anmeldung, Änderung speichern: Button bei status aktiv ist weiß
 Die Options-Button z.b. für Kissenfarbe und Stiftfarbe werden nicht gut hervorgehoben, nur mit rahmenänderung

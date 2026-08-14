@@ -73,7 +73,7 @@ type Props = {
           </div>
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <SubmitButton data-testid="sign-in-button" className="w-full mt-6 bg-[var(--brand-primary)] hover:bg-[var(--brand-primary-hover)]">
+        <SubmitButton data-testid="sign-in-button" className="w-full mt-6 bg-[var(--brand-primary)] after:hidden hover:bg-[var(--brand-primary-hover)]">
           {t.login_shop.login}
         </SubmitButton>
       </form>

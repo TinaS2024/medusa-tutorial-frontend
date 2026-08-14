@@ -189,20 +189,19 @@ const Payment = ({
             data-testid="payment-method-error-message"
           />
 
-          <Button
-            size="large"
-            className="mt-6"
+          <button
             onClick={handleSubmit}
-            isLoading={isLoading}
-            disabled={
-              (!selectedPaymentMethod && !paidByGiftcard)
-            }
+            disabled={!selectedPaymentMethod && !paidByGiftcard}
             data-testid="submit-payment-button"
+            className={`mt-6 h-10 px-4 rounded-md text-base-regular transition-colors bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)] active:bg-[var(--brand-primary-hover)] ${
+              isLoading ? "cursor-wait" : "disabled:opacity-50 disabled:cursor-not-allowed"
+            }`}
           >
             {!activeSession && isStripeFunc(selectedPaymentMethod)
               ? t.payment.give_card_details
               : t.payment.continue_checking}
-          </Button>
+          </button>
+
         </div>
 
         <div className={isOpen ? "hidden" : "block"}>
