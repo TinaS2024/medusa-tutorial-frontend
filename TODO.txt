@@ -2,5 +2,3 @@
 -> https://claude.ai/code/artifact/440368c2-d3d1-482f-82b7-e5f7e48c974b?via=auto_preview
 
 Admin: medusa-admin@bolasys.de 123456789
-
-Die Options-Button z.b. für Kissenfarbe und Stiftfarbe werden nicht gut hervorgehoben, nur mit rahmenänderung
