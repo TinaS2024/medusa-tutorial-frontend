@@ -17,6 +17,7 @@ export type Theme = {
   theme_logo_url: string | null
   theme_hero_url: string | null
   theme_hover_bg: string | null
+  theme_font: string 
 }
 
 const DEFAULTS: Theme = {
@@ -32,7 +33,8 @@ const DEFAULTS: Theme = {
   theme_footer_bg: "#431407",
   theme_logo_url: null,
   theme_hero_url: "/Hero.png",
-  theme_hover_bg: "#F4F4F5"
+  theme_hover_bg: "#F4F4F5",
+  theme_font: "default"
 }
 
 export const retrieveTheme = async (): Promise<Theme> => {
@@ -63,6 +65,7 @@ export const retrieveTheme = async (): Promise<Theme> => {
     theme_footer_bg: theme?.theme_footer_bg || DEFAULTS.theme_footer_bg,
     theme_logo_url: theme?.theme_logo_url || DEFAULTS.theme_logo_url,
     theme_hero_url: theme?.theme_hero_url || DEFAULTS.theme_hero_url,
-    theme_hover_bg: theme?.theme_hover_bg || DEFAULTS.theme_hover_bg
+    theme_hover_bg: theme?.theme_hover_bg || DEFAULTS.theme_hover_bg,
+    theme_font: theme?.theme_font || DEFAULTS.theme_font,
   }
 }

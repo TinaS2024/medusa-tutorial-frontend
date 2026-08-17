@@ -11,6 +11,16 @@ export default async function RootLayout(props: { children: React.ReactNode })
 {
   const theme = await retrieveTheme();
 
+  // Schriftstapel je Auswahl. Bewusst nur Familien, die auf allen Geräten
+  // vorhanden sind – so entfallen Ladezeiten und Ersatzschriften.
+  const schriften: Record<string, string> = {
+    default: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    serif: 'Georgia, Cambria, "Times New Roman", serif',
+    sans: '"Helvetica Neue", Arial, sans-serif',
+    mono: 'ui-monospace, "Cascadia Mono", Consolas, monospace',
+    rounded: '"Segoe UI", Verdana, Tahoma, sans-serif',
+  }
+
   return (
     <html
       lang="en"
@@ -26,6 +36,8 @@ export default async function RootLayout(props: { children: React.ReactNode })
         "--brand-page-bg": theme.theme_page_bg,
         "--brand-page-text": theme.theme_page_text,
         "--brand-footer-bg": theme.theme_footer_bg,
+        "--brand-font": schriften[theme.theme_font] ?? schriften.default,
+
 
         // Medusas eigene Farben mitziehen: Alle ui-Klassen der Vorlage
         // (bg-ui-bg-subtle, text-ui-fg-subtle, border-ui-border-base …)

@@ -11,6 +11,7 @@
   --brand-page-bg: #F9FAFB;
   --brand-page-text: #431407;
   --brand-footer-bg: #431407;
+  --brand-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 
@@ -122,3 +123,14 @@
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
+
+/*
+ * Medusas Textklassen (txt-compact-*, txt-small, …) schreiben "Inter" fest
+ * in ihre Definition. Damit die im Admin gewählte Schrift wirklich überall
+ * gilt, wird hier gezielt nur die Schriftfamilie überschrieben – Größe,
+ * Gewicht und Zeilenhöhe dieser Klassen bleiben unangetastet.
+ */
+[class*="txt-"] {
+  font-family: var(--brand-font) !important;
+}
+
