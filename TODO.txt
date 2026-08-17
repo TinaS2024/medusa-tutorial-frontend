@@ -2,3 +2,20 @@
 -> https://claude.ai/code/artifact/440368c2-d3d1-482f-82b7-e5f7e48c974b?via=auto_preview
 
 Admin: medusa-admin@bolasys.de 123456789
+
+Datenbanksicherung:
+pg_dump -f sicherung-vor-aufraeumen.sql "postgresql://postgres:D04M08K19U97B@localhost:5433/medusa-store"
+
+Aufräumen (Testbestellungen löschen):
+psql "postgresql://postgres:D04M08K19U97B@localhost:5433/medusa-store" -c "UPDATE \"order\" SET deleted_at = NOW() WHERE deleted_at IS NULL;"
+
+
+Lagerbestandsprüfung einschalten:
+psql "postgresql://postgres:PASSWORT@localhost:5433/medusa-store" -c "UPDATE product_variant SET manage_inventory = true WHERE deleted_at IS NULL;"
+
+Lagerbestandsprüfung abschalten:
+psql "postgresql://postgres:PASSWORT@localhost:5433/medusa-store" -c "UPDATE product_variant SET manage_inventory = false WHERE deleted_at IS NULL;"
+
+
+Aktuellen Stand prüfen der Lagerbestandsprüfung:
+psql "postgresql://postgres:PASSWORT@localhost:5433/medusa-store" -c "SELECT manage_inventory, COUNT(*) FROM product_variant WHERE deleted_at IS NULL GROUP BY manage_inventory;"
