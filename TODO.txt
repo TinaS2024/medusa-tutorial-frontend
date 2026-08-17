@@ -1,5 +1,5 @@
 - Schnittstellen zwischen Medusa-Shop und Designer dokumentieren
 -> https://claude.ai/code/artifact/440368c2-d3d1-482f-82b7-e5f7e48c974b?via=auto_preview
 
-- Im Admin-Bereich die Möglichkeit nutzbar machen individuellen E-Mail-Text an Kunden fertigen zu können.
 - Bankdaten auch im Footer anzeigen lassen inklusive Impressum
+- Newsletter-Funktion einbauen ?
