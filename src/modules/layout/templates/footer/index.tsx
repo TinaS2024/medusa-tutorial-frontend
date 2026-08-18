@@ -127,36 +127,14 @@ export default async function Footer()
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus text-white/70 hover:text-white">Medusa</span>
+              <span className="txt-small-plus text-white/70 hover:text-white">
+                {t.imprint.legal_column}
+              </span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
-                  <a href="https://github.com/medusajs"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-white/70 hover:text-white"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://docs.medusajs.com"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-white/70 hover:text-white"
-                  >
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/medusajs/nextjs-starter-medusa"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-white/70 hover:text-white"
-                  >
-                    Source code
-                  </a>
+                  <LocalizedClientLink href="/impressum" className="text-white/70 hover:text-white">
+                    {t.imprint.title}
+                  </LocalizedClientLink>
                 </li>
               </ul>
             </div>
@@ -164,7 +142,7 @@ export default async function Footer()
         </div>
         <div className="flex w-full mb-16 justify-between text-white/70">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} {t.nav.shopName}
           </Text>
           <MedusaCTA />
         </div>

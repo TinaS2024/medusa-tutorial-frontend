@@ -13,6 +13,18 @@
     "FR": "France",
     "NL": "Netherlands"
   },
+  "imprint": {
+    "title": "Legal notice",
+    "company": "Provider",
+    "address": "Address",
+    "represented_by": "Represented by",
+    "phone": "Phone",
+    "email": "E-mail",
+    "register": "Register entry",
+    "vat_id": "VAT identification number",
+    "empty": "No details have been entered yet.",
+    "legal_column": "Legal"
+  },
   "login_shop":
   {
     "welcome":"Welcome back",

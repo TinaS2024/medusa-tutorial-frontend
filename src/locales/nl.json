@@ -13,6 +13,18 @@
     "FR": "Frankrijk",
     "NL": "Nederland"
   },
+  "imprint": {
+    "title": "Colofon",
+    "company": "Aanbieder",
+    "address": "Adres",
+    "represented_by": "Vertegenwoordigd door",
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "register": "Registerinschrijving",
+    "vat_id": "Btw-identificatienummer",
+    "empty": "Er zijn nog geen gegevens ingevoerd.",
+    "legal_column": "Juridisch"
+  },
   "login_shop":
   {
     "welcome":"Welkom terug",

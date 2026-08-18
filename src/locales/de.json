@@ -13,6 +13,18 @@
     "FR": "Frankreich",
     "NL": "Niederlande"
   },
+  "imprint": {
+    "title": "Impressum",
+    "company": "Anbieter",
+    "address": "Anschrift",
+    "represented_by": "Vertreten durch",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "register": "Registereintrag",
+    "vat_id": "Umsatzsteuer-Identifikationsnummer",
+    "empty": "Es sind noch keine Angaben hinterlegt.",
+    "legal_column": "Rechtliches"
+  },
   "login_shop":
   {
     "welcome":"Willkommen zurück",

@@ -3,3 +3,4 @@
 
 - Bankdaten auch im Footer anzeigen lassen inklusive Impressum
 - Newsletter-Funktion einbauen ?
+

@@ -13,6 +13,18 @@
     "FR": "France",
     "NL": "Pays-Bas"
   },
+  "imprint": {
+    "title": "Mentions légales",
+    "company": "Vendeur",
+    "address": "Adresse",
+    "represented_by": "Représenté par",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "register": "Immatriculation",
+    "vat_id": "Numéro de TVA intracommunautaire",
+    "empty": "Aucune information n'a encore été saisie.",
+    "legal_column": "Informations légales"
+  },
   "login_shop":
   {
     "welcome":"Content de te revoir",
