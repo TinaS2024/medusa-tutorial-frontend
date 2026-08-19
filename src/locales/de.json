@@ -25,7 +25,8 @@
     "empty": "Es sind noch keine Angaben hinterlegt.",
     "terms":"AGB",
     "privacy":"Datenschutzrichtlinien",
-    "withdrawal":"Widerrufsbelehrung"
+    "withdrawal":"Widerrufsbelehrung",
+    "shipping":"Versand und Lieferung"
   },
   "login_shop":
   {
@@ -179,7 +180,7 @@
   {
     "title":"Bestellung",
     "order_info":"Bestellinformation",
-    "place_order":"Bestellung aufgeben",
+    "place_order":"Zahlungspflichtig bestellen",
     "order_date":"Bestelldatum",
     "order_number":"Bestellnummer",
     "send_order_details_1":"Wir haben die Bestellbestätigungsdetails an ",
@@ -299,6 +300,7 @@
       "total_summary":"Gesamtsumme",
       "taxes_title":"Steuern",
       "tax":"MwSt",
+      "tax_note": "inkl. MwSt., zzgl. Versandkosten",
       "shipping_cost":"Versandkosten"
     },
     "service":

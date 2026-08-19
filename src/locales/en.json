@@ -25,7 +25,8 @@
     "empty": "No details have been entered yet.",
     "terms":"Terms and conditions",
     "privacy":"Privacy policy",
-    "withdrawal":"Withdrawal notice"
+    "withdrawal":"Withdrawal notice",
+    "shipping":"Shipping and delivery"
   },
   "login_shop":
   {
@@ -179,7 +180,7 @@
   {
     "title":"Order",
     "order_info":"Order information",
-    "place_order":"Place an order",
+    "place_order":"Buy now",
     "order_date":"Order date",
     "order_number":"Order number",
     "send_order_details_1":"We have sent the order confirmation details to ",
@@ -298,6 +299,7 @@
       "total_summary":"Total summary",
       "taxes_title":"Taxes",
       "tax":"Vat",
+      "tax_note": "incl. VAT, plus shipping",
       "shipping_cost":"Shipping costs"
     },
     "service":

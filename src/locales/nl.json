@@ -25,7 +25,8 @@
     "empty": "Er zijn nog geen gegevens ingevoerd.",
     "terms":"Bezoek voorwaarden",
     "privacy":"Privacybeleid",
-    "withdrawal":"Annuleringsbeleid"
+    "withdrawal":"Annuleringsbeleid",
+    "shipping":"Versand en levering"
   },
   "login_shop":
   {
@@ -178,7 +179,7 @@
   {
     "title":"Volgorde",
     "order_info":"Bestelinformatie",
-    "place_order":"Plaats een bestelling",
+    "place_order":"Kopen",
     "order_date":"Date de commande",
     "order_number":"Num de commande",
     "send_order_details_1":"We hebben de orderbevestigingsgegevens naar ",
@@ -298,6 +299,7 @@
       "total_summary":"Totaal overzicht",
       "taxes_title":"Belasting",
       "tax":"VAT",
+      "tax_note": "incl. btw, plus verzendkosten",
       "shipping_cost":"Verzendkosten"
     },
     "service":

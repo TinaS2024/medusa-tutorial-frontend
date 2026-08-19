@@ -25,7 +25,8 @@
     "empty": "Aucune information n'a encore été saisie.",
     "terms":"Termes et conditions",
     "privacy":"Politique de confidentialité",
-    "withdrawal":"Politique de retrait"
+    "withdrawal":"Politique de retrait",
+    "shipping":"Expédition et livraison"
   },
   "login_shop":
   {
@@ -181,7 +182,7 @@
   {
     "title":"Commande",
     "order_info":"Informations sur la commande",
-    "place_order":"Passer une commanden",
+    "place_order":"Commande avec obligation de paiement",
     "order_date":"Date de commande",
     "order_number":"Num de commande",
     "send_order_details_1":"Nous avons envoyé les détails de la confirmation de commande à ",
@@ -301,6 +302,7 @@
       "total_summary":"Total de la commande",
       "taxes_title":"Impôts",
       "tax":"T.V.A.",
+      "tax_note": "TVA incluse, hors frais de port",
       "shipping_cost":"Frais d'expédition"
     },
     "service":

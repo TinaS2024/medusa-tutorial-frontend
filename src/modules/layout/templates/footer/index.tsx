@@ -148,6 +148,11 @@ export default async function Footer()
                     {t.imprint.withdrawal}
                   </LocalizedClientLink>
                 </li>
+                <li> 
+                  <LocalizedClientLink href="/shipping" className="text-white/70 hover:text-white">
+                    {t.imprint.shipping}
+                  </LocalizedClientLink>
+                </li>
               </ul>
             </div>
           </div>
