@@ -2,6 +2,7 @@
 
 import { sdk } from "@lib/config";
 import { getCacheOptions } from "./cookies";
+import type { LegalTexts } from "@lib/util/legal-text";
 
 export type Legal = {
   imprint_company: string | null
@@ -28,4 +29,20 @@ export const retrieveLegal = async (): Promise<Legal | null> => {
     })
     .then(({ legal }) => legal)
     .catch(() => null)
+}
+
+export const retrieveLegalTexts = async (): Promise<LegalTexts> => {
+  const next = {
+    ...(await getCacheOptions("legal")),
+    revalidate: 60,
+  }
+
+  return sdk.client
+    .fetch<{ texts: LegalTexts }>("/store/legal", {
+      method: "GET",
+      next,
+      cache: "force-cache",
+    })
+    .then(({ texts }) => texts ?? {})
+    .catch(() => ({}))
 }

@@ -23,7 +23,9 @@
     "register": "Register entry",
     "vat_id": "VAT identification number",
     "empty": "No details have been entered yet.",
-    "legal_column": "Legal"
+    "terms":"Terms and conditions",
+    "privacy":"Privacy policy",
+    "withdrawal":"Withdrawal notice"
   },
   "login_shop":
   {

@@ -4,3 +4,8 @@
 - Bankdaten auch im Footer anzeigen lassen inklusive Impressum
 - Newsletter-Funktion einbauen ?
 
+Beim Server noch in medusa-storefront installieren: 
+
+npm install sanitize-html
+npm install -D @types/sanitize-html
+Nutzungsbedingungen mit in den AGB´s mit drinnen

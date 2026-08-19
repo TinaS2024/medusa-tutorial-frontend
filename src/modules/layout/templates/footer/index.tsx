@@ -127,13 +127,25 @@ export default async function Footer()
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus text-white/70 hover:text-white">
-                {t.imprint.legal_column}
-              </span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
                   <LocalizedClientLink href="/impressum" className="text-white/70 hover:text-white">
                     {t.imprint.title}
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/agb" className="text-white/70 hover:text-white">
+                    {t.imprint.terms}
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/privacy" className="text-white/70 hover:text-white">
+                    {t.imprint.privacy}
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/withdrawal" className="text-white/70 hover:text-white">
+                    {t.imprint.withdrawal}
                   </LocalizedClientLink>
                 </li>
               </ul>

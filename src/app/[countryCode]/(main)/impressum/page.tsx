@@ -3,9 +3,11 @@ import { retrieveLegal } from "@lib/data/legal";
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
 
-export const metadata: Metadata = {
-  title: "Impressum",
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getServerLanguage();
+  return { title: getMessages(lang).imprint.title};
 }
+
 
 export default async function Impressum() 
 {

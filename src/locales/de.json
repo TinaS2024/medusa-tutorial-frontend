@@ -23,7 +23,9 @@
     "register": "Registereintrag",
     "vat_id": "Umsatzsteuer-Identifikationsnummer",
     "empty": "Es sind noch keine Angaben hinterlegt.",
-    "legal_column": "Rechtliches"
+    "terms":"AGB",
+    "privacy":"Datenschutzrichtlinien",
+    "withdrawal":"Widerrufsbelehrung"
   },
   "login_shop":
   {
@@ -62,7 +64,7 @@
     "account_register":"Konto-Registrierung",
     "account_info":"Registrieren Sie hier ein neues Konto um immer auf dem neusten Stand über neue Produkte sein zu können.",
     "account_agreements":"Beim Erstellen eines neuen Kontos, müssen Sie unseren Geschäftsbedingungen und Nutzungsbedingungen zustimmen.",
-    "terms":"Geschäftsbedingungen",
+    "terms":"AGB",
     "conditions":"Nutzungsbedingungen",
     "term_button":"Indem Sie auf die Schaltfläche Bestellung aufgeben klicken, bestätigen Sie, dass Sie unsere Nutzungsbedingungen, Verkaufsbedingungen und Rückgaberichtlinien gelesen, verstanden und akzeptiert haben und bestätigen, dass Sie die Datenschutzrichtlinien unseres Online-Shops gelesen haben.",
     "now_register":"Jetzt registrieren",

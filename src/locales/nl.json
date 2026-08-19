@@ -23,7 +23,9 @@
     "register": "Registerinschrijving",
     "vat_id": "Btw-identificatienummer",
     "empty": "Er zijn nog geen gegevens ingevoerd.",
-    "legal_column": "Juridisch"
+    "terms":"Bezoek voorwaarden",
+    "privacy":"Privacybeleid",
+    "withdrawal":"Annuleringsbeleid"
   },
   "login_shop":
   {

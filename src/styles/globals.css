@@ -134,3 +134,54 @@
   font-family: var(--brand-font) !important;
 }
 
+/*
+ * Darstellung der Rechtstexte (AGB, Datenschutz, Widerruf).
+ * Nötig, weil Tailwind die Standarddarstellung von Überschriften,
+ * Listen und Hervorhebungen zurücksetzt.
+ */
+.rechtstext h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+}
+
+.rechtstext h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.rechtstext p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.rechtstext ul,
+.rechtstext ol {
+  margin: 0 0 1rem 1.5rem;
+  line-height: 1.7;
+}
+
+.rechtstext ul { list-style: disc; }
+.rechtstext ol { list-style: decimal; }
+.rechtstext li { margin-bottom: 0.35rem; }
+
+.rechtstext strong,
+.rechtstext b { font-weight: 600; }
+
+.rechtstext em,
+.rechtstext i { font-style: italic; }
+
+.rechtstext u { text-decoration: underline; }
+
+.rechtstext a {
+  color: var(--brand-primary);
+  text-decoration: underline;
+}
+
+.rechtstext hr {
+  margin: 2rem 0;
+  border-color: var(--brand-border);
+}
+
+
