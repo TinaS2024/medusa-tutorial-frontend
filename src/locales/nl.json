@@ -386,5 +386,12 @@
         "back_to_home":"Terug naar de startpagina",
         "no_cart":"Het winkelmandje dat u probeerde te openen bestaat niet. Wis uw cookies en probeer het opnieuw.",
         "error_info":"Foutmelding"
+      },
+      "cookie": {
+        "title": "Cookie beeld",
+        "text": "We gebruiken cookies om de functie van het shop te kunnen houden. We stellen cookies alleen in als u akkoord is.",
+        "privacy_link": "Leer meer in onze privacybeleid",
+        "only_required": "Alleen vereist",
+        "accept_all": "Alle accepteren"
       }
 }

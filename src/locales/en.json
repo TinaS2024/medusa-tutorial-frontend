@@ -386,5 +386,12 @@
         "back_to_home":"Back to home",
         "no_cart":"The cart does not exist. Please delete your cookies and try again.",
         "error_info":"Error message"
+      },
+      "cookie": {
+        "title": "Cookie notice",
+        "text": "We use cookies for the operation of the shop. We only set cookies if you agree.",
+        "privacy_link": "Learn more in our privacy policy",
+        "only_required": "Only required",
+        "accept_all": "Accept all"
       }
 }

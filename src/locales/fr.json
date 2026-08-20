@@ -389,5 +389,12 @@
         "back_to_home":"Retourner à la page d'accueil",
         "no_cart":"Le panier auquel vous avez tenté d'accéder est introuvable. Veuillez effacer vos cookies et réessayer.",
         "error_info":"Message d'erreur"
+      },
+        "cookie": {
+          "title": "Avis relatif aux cookies",
+          "text": "Nous utilisons des cookies nécessaires au fonctionnement de la boutique. Nous n'utilisons d'autres cookies qu'avec votre consentement.",
+          "privacy_link": "En savoir plus dans notre politique de confidentialité",
+          "only_required": "Cookies nécessaires uniquement",
+          "accept_all": "Tout accepter"
       }
 }

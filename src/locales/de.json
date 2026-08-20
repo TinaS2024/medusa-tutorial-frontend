@@ -387,5 +387,12 @@
         "back_to_home":"Zurück zur Startseite",
         "no_cart":"Der Warenkorb, auf den Sie zugreifen wollten, existiert nicht. Löschen Sie Ihre Cookies und versuchen Sie es erneut.",
         "error_info":"Fehlermeldung"
+      },
+      "cookie": {
+        "title": "Hinweis zu Cookies",
+        "text": "Wir verwenden Cookies, die für den Betrieb des Shops nötig sind. Weitere setzen wir nur mit Ihrer Zustimmung ein.",
+        "privacy_link": "Mehr in der Datenschutzerklärung",
+        "only_required": "Nur notwendige",
+        "accept_all": "Alle akzeptieren"
       }
 }

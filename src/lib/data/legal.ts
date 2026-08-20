@@ -13,6 +13,8 @@ export type Legal = {
   imprint_register: string | null
   imprint_vat_id: string | null
   imprint_extra: string | null
+  cookie_banner_enabled: string | null
+  cookie_banner_text: string | null
 }
 
 export const retrieveLegal = async (): Promise<Legal | null> => {
