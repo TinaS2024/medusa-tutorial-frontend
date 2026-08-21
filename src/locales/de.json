@@ -394,5 +394,17 @@
         "privacy_link": "Mehr in der Datenschutzerklärung",
         "only_required": "Nur notwendige",
         "accept_all": "Alle akzeptieren"
-      }
+      },
+      "newsletter": {
+        "title": "Newsletter",
+        "text": "Neuigkeiten zu Produkten und Angeboten – jederzeit abbestellbar.",
+        "placeholder": "E-Mail-Adresse",
+        "submit": "Abonnieren",
+        "success": "Fast geschafft: Bitte bestätigen Sie die Anmeldung über den Link, den wir Ihnen geschickt haben.",
+        "error": "Das hat nicht geklappt. Bitte prüfen Sie die Adresse.",
+        "confirm_ok": "Vielen Dank, Ihre Anmeldung für den Newsletter wurde bestätigt.",
+        "confirm_fail": "Dieser Bestätigungslink ist ungültig.",
+        "unsub_ok": "Sie wurden abgemeldet und erhalten keine weiteren Nachrichten.",
+        "unsub_fail": "Dieser Abmeldelink ist ungültig."
+  }
 }

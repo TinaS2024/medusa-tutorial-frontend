@@ -5,6 +5,7 @@ import { Text, clx } from "@medusajs/ui";
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import MedusaCTA from "@modules/layout/components/medusa-cta";
+import NewsletterAbo from "@modules/layout/components/newsletter-abo";
 
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
@@ -154,6 +155,9 @@ export default async function Footer()
                   </LocalizedClientLink>
                 </li>
               </ul>
+            <div className="flex flex-col gap-y-2">
+              <NewsletterAbo />
+            </div>
             </div>
           </div>
         </div>

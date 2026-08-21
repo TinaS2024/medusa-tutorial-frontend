@@ -393,5 +393,17 @@
         "privacy_link": "Leer meer in onze privacybeleid",
         "only_required": "Alleen vereist",
         "accept_all": "Alle accepteren"
-      }
+      },
+      "newsletter": {
+        "title": "Nieuwsbrief",
+        "text": "Nieuws over producten en aanbiedingen – u kunt zich op elk moment afmelden.",
+        "placeholder": "E-mailadres",
+        "submit": "Abonneren",
+        "success": "Bijna klaar: Bevestig uw aanmelding via de link die we u hebben gestuurd.",
+        "error": "Dat is niet gelukt. Controleer uw e-mailadres.",
+        "confirm_ok": "Bedankt, uw aanmelding voor de Nieuwsbrief is bevestigd.",
+        "confirm_fail": "Bedankt, uw aanmelding is bevestigd.",
+        "unsub_ok": "U bent afgemeld en ontvangt geen berichten meer.",
+        "unsub_fail": "Deze afmeldlink is ongeldig."
+  }
 }

@@ -393,5 +393,17 @@
         "privacy_link": "Learn more in our privacy policy",
         "only_required": "Only required",
         "accept_all": "Accept all"
-      }
+      },
+      "newsletter": {
+        "title": "Newsletter",
+        "text": "News about products and offers – unsubscribe at any time.",
+        "placeholder": "Email address",
+        "submit": "Subscribe",
+        "success": "Almost there: Please confirm your subscription via the link we sent you.",
+        "error": "That didn't work. Please check the address.",
+        "confirm_ok": "Thank you, your subscription to the newsletter has been confirmed.",
+        "confirm_fail": "This confirmation link is invalid.",
+        "unsub_ok": "You have been unsubscribed and will receive no further messages.",
+        "unsub_fail": "This unsubscribe link is invalid." 
+        }
 }
