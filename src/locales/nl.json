@@ -287,6 +287,16 @@
       "price_highest":"Prijs: Laag -> hoog",
       "price_lowest":"Prijs: Hoch -> laag"
     },
+      "filter":
+    {
+      "title":"Filters",
+      "categories":"Categorieën",
+      "collections":"Collecties",
+      "tags":"Labels",
+      "types":"Productsoort",
+      "reset":"Filters wissen",
+      "no_results":"Er zijn geen producten gevonden voor deze selectie."
+    },
     "designer": {
       "to_designer":"Aan de ontwerper"
     },

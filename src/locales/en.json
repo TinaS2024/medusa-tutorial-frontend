@@ -287,6 +287,16 @@
       "price_highest":"Price: Low -> High",
       "price_lowest":"Price: High -> Low"
     },
+    "filter":
+    {
+      "title":"Filter",
+      "categories":"Categories",
+      "collections":"Collections",
+      "tags":"Tags",
+      "types":"Product type",
+      "reset":"Reset filters",
+      "no_results":"No products match this selection."
+    },
     "designer": {
       "to_designer":"To the designer"
     },

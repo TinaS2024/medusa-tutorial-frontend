@@ -18,12 +18,14 @@ export const listProducts = async ({
   q,
 }: {
   pageParam?: number
-  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & {
+    queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & {
     expand?: string
     handle?: string | string[]
     id?: string[]
     category_id?: string[]
     collection_id?: string[]
+    tag_id?: string[]
+    type_id?: string[]
     order?: string
     q?: string
   }
@@ -80,7 +82,7 @@ return sdk.client
       `/store/products`,
       {
         method: "GET",
-        query: {
+                query: {
           limit,
           offset,
           region_id: region?.id,
@@ -89,6 +91,8 @@ return sdk.client
           id: queryParams?.id,
           category_id: queryParams?.category_id,
           collection_id: queryParams?.collection_id,
+          tag_id: queryParams?.tag_id,
+          type_id: queryParams?.type_id,
           order: queryParams?.order,
           fields:
             "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material,*images",

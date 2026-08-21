@@ -290,6 +290,16 @@
       "price_highest":"Prix: Bas -> élevé",
       "price_lowest":"Prix: élevé -> bas"
     },
+    "filter":
+    {
+      "title":"Filtres",
+      "categories":"Catégories",
+      "collections":"Collections",
+      "tags":"Étiquettes",
+      "types":"Type de produit",
+      "reset":"Réinitialiser les filtres",
+      "no_results":"Aucun produit ne correspond à cette sélection."
+    },
     "designer": {
       "to_designer":"Au concepteur"
     },

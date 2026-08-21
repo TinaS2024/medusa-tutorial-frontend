@@ -288,6 +288,16 @@
       "price_highest":"Preis: Niederig -> Hoch",
       "price_lowest":"Preis: Hoch -> Niederig"
     },
+    "filter":
+    {
+      "title":"Filter",
+      "categories":"Kategorien",
+      "collections":"Kollektionen",
+      "tags":"Schlagwörter",
+      "types":"Produktart",
+      "reset":"Filter zurücksetzen",
+      "no_results":"Zu dieser Auswahl wurden keine Produkte gefunden."
+    },
     "designer": {
       "to_designer":"Zum Designer"
     },

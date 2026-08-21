@@ -14,6 +14,8 @@ type PaginatedProductsParams = {
   limit: number
   collection_id?: string[]
   category_id?: string[]
+  tag_id?: string[]
+  type_id?: string[]
   id?: string[]
   order?: string
 }
@@ -23,6 +25,10 @@ export default async function PaginatedProducts({
   page,
   collectionId,
   categoryId,
+  categoryIds,
+  collectionIds,
+  tagIds,
+  typeIds,
   productsIds,
   countryCode,
   q,
@@ -31,6 +37,12 @@ export default async function PaginatedProducts({
   page: number
   collectionId?: string
   categoryId?: string
+  // Mehrfachauswahl aus der Filterleiste; die Einzelwerte oben bleiben für
+  // Kategorie- und Kollektionsseite bestehen.
+  categoryIds?: string[]
+  collectionIds?: string[]
+  tagIds?: string[]
+  typeIds?: string[]
   productsIds?: string[]
   countryCode: string
   q?: string
@@ -48,9 +60,31 @@ export default async function PaginatedProducts({
     queryParams["collection_id"] = [collectionId];
   }
 
-  if (categoryId) 
+    if (categoryId) 
   {
     queryParams["category_id"] = [categoryId];
+  }
+
+  // Die Filterleiste gewinnt: Auf der Kategorieseite ist categoryId gesetzt,
+  // dort gibt es keine Mehrfachauswahl – beides tritt nie zusammen auf.
+  if (categoryIds?.length) 
+  {
+    queryParams["category_id"] = categoryIds;
+  }
+
+  if (collectionIds?.length) 
+  {
+    queryParams["collection_id"] = collectionIds;
+  }
+
+  if (tagIds?.length) 
+  {
+    queryParams["tag_id"] = tagIds;
+  }
+
+  if (typeIds?.length) 
+  {
+    queryParams["type_id"] = typeIds;
   }
 
   if (productsIds) 
@@ -106,7 +140,7 @@ export default async function PaginatedProducts({
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
 
   return (
-   <>
+    <>
       {q && (
             <p className="text-base-regular mb-6">
               {products.length > 0
@@ -114,6 +148,12 @@ export default async function PaginatedProducts({
                 : t.product.search_empty.replace("{begriff}", q)}
             </p>
           )}
+
+      {/* Ohne Suchbegriff gibt es sonst keinen Hinweis, warum das Raster
+          leer bleibt – etwa nach einer zu engen Filterauswahl. */}
+      {!q && products.length === 0 && (
+        <p className="text-base-regular mb-6">{t.filter.no_results}</p>
+      )}
       {products.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-bold mb-4">{t.product.product}</h2>
