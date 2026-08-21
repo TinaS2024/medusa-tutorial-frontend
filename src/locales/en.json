@@ -229,7 +229,11 @@
       "product_exchange_info":"Doesn't it quite fit? No problem – we'll exchange your product for a new one.",
       "return":"Easy Returns",
       "return_info":"Simply return your product and we'll refund your money. No questions asked – we'll do our best to ensure your return goes smoothly.",
-      "delivery":"Delivery"
+      "delivery":"Delivery",
+      "search": "Search",
+      "search_placeholder": "Search products",
+      "search_results": "Search results for \"{begriff}\"\"",
+      "search_empty": "No products found for \"{begriff}\"."
     },
     "product_properties":
     {

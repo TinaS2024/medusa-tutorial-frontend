@@ -25,6 +25,7 @@ export default async function PaginatedProducts({
   categoryId,
   productsIds,
   countryCode,
+  q,
 }: {
   sortBy?: SortOptions
   page: number
@@ -32,6 +33,7 @@ export default async function PaginatedProducts({
   categoryId?: string
   productsIds?: string[]
   countryCode: string
+  q?: string
 }) {
 
   const lang = await getServerLanguage();
@@ -41,27 +43,38 @@ export default async function PaginatedProducts({
     limit: 12,
   }
 
-  if (collectionId) {
-    queryParams["collection_id"] = [collectionId]
+  if (collectionId) 
+  {
+    queryParams["collection_id"] = [collectionId];
   }
 
-  if (categoryId) {
-    queryParams["category_id"] = [categoryId]
+  if (categoryId) 
+  {
+    queryParams["category_id"] = [categoryId];
   }
 
-  if (productsIds) {
-    queryParams["id"] = productsIds
+  if (productsIds) 
+  {
+    queryParams["id"] = productsIds;
   }
 
-  if (sortBy === "created_at") {
-    queryParams["order"] = "created_at"
+  if (sortBy === "created_at") 
+  {
+    queryParams["order"] = "created_at";
   }
 
-  const region = await getRegion(countryCode)
+  const region = await getRegion(countryCode);
 
-  if (!region) {
-    return null
+  if (!region) 
+  {
+    return null;
   }
+
+  if (q) 
+  {
+    (queryParams as any)["q"] = q;
+  }
+
 
   /*
   let {
@@ -94,6 +107,13 @@ export default async function PaginatedProducts({
 
   return (
    <>
+      {q && (
+            <p className="text-base-regular mb-6">
+              {products.length > 0
+                ? t.product.search_results.replace("{begriff}", q)
+                : t.product.search_empty.replace("{begriff}", q)}
+            </p>
+          )}
       {products.length > 0 && (
         <div className="mb-8">
           <h2 className="text-xl font-bold mb-4">{t.product.product}</h2>

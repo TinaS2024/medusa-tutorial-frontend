@@ -229,7 +229,11 @@
       "product_exchange_info":"Passt es nicht ganz? Kein Problem – wir tauschen Ihr Produkt gegen ein neues um.",
       "return":"Einfache Rücksendungen",
       "return_info":"Senden Sie Ihr Produkt einfach zurück und wir erstatten Ihnen Ihr Geld. Wir stellen keine Fragen – wir tun unser Bestes, um sicherzustellen, dass Ihre Rücksendung reibungslos verläuft.",
-      "delivery":"Lieferung"
+      "delivery":"Lieferung",
+      "search": "Suchen",
+      "search_placeholder": "Produkte durchsuchen",
+      "search_results": "Treffer für „{begriff}“",
+      "search_empty": "Zu „{begriff}“ wurde nichts gefunden."
     },
     "product_properties":
     {

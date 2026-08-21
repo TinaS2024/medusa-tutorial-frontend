@@ -228,7 +228,11 @@
       "product_exchange_info":"Past het niet helemaal? Geen probleem – we ruilen uw product om voor een nieuw exemplaar.",
       "return":"Gemakkelijk retourneren",
       "return_info":"Stuur uw product gewoon terug en wij betalen uw geld terug. Zonder vragen te stellen – we doen ons best om ervoor te zorgen dat uw retourzending soepel verloopt.",
-      "delivery":"Levering"
+      "delivery":"Levering",
+      "search": "Zoeken",
+      "search_placeholder": "Zoeken producten",
+      "search_results": "Zoekresultaten voor \"{begriff}\"",
+      "search_empty": "Geen product gevonden voor \"{begriff}\"."
     },
     "product_properties":
     {

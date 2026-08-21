@@ -15,6 +15,7 @@ export const listProducts = async ({
   queryParams,
   countryCode,
   regionId,
+  q,
 }: {
   pageParam?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams & {
@@ -24,9 +25,11 @@ export const listProducts = async ({
     category_id?: string[]
     collection_id?: string[]
     order?: string
+    q?: string
   }
   countryCode?: string
   regionId?: string
+  q?: string
 }): Promise<{
   response: { products: (HttpTypes.StoreProduct & {
   bundle?: Omit<BundleProduct, "items">
@@ -38,17 +41,17 @@ export const listProducts = async ({
     throw new Error("Country code or region ID is required")
   }
 
-  const limit = queryParams?.limit || 12
-  const _pageParam = Math.max(pageParam, 1)
+  const limit = queryParams?.limit || 12;
+  const _pageParam = Math.max(pageParam, 1);
   const offset = (_pageParam === 1) ? 0 : (_pageParam - 1) * limit;
 
-  let region: HttpTypes.StoreRegion | undefined | null
+  let region: HttpTypes.StoreRegion | undefined | null;
 
   if (countryCode) 
   {
-    region = await getRegion(countryCode)
+    region = await getRegion(countryCode);
   } else {
-    region = await retrieveRegion(regionId!)
+    region = await retrieveRegion(regionId!);
   }
 
   if (!region) 
@@ -81,6 +84,7 @@ return sdk.client
           limit,
           offset,
           region_id: region?.id,
+          q: queryParams?.q,
           handle: queryParams?.handle,
           id: queryParams?.id,
           category_id: queryParams?.category_id,
