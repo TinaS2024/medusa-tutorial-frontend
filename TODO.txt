@@ -8,3 +8,5 @@ npm install -D @types/sanitize-html
 Nutzungsbedingungen mit in den AGB´s mit drinnen
 
 Datenbank-migration für Newsletter beim server auch machen
+
+Such-Api und Filter für den Shop bauen ?
