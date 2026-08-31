@@ -8,15 +8,20 @@ import Accordion from "./accordion";
 import { HttpTypes } from "@medusajs/types";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang } from "@lib/messages";
+import { useState, useEffect } from "react";
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   const tabs = [
     {

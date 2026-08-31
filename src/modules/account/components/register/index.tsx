@@ -1,5 +1,6 @@
 "use client";
 
+import {useState, useEffect} from "react";
 import { useActionState } from "react";
 import Input from "@modules/common/components/input";
 import { LOGIN_VIEW } from "@modules/account/templates/login-template";
@@ -9,7 +10,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { signup } from "@lib/data/customer";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang} from "@lib/messages";
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
@@ -18,8 +19,12 @@ type Props = {
 const Register = ({ setCurrentView }: Props) => 
   {
 
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   const [message, formAction] = useActionState(signup, null);
 

@@ -23,13 +23,38 @@ export default function LocaleSwitcher()
 {
     const [current, setCurrent] = useState<string>("de-DE");
 
-    useEffect(() => {
+        useEffect(() => {
     if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored) 
-    {
-      setCurrent(stored)
-    }
+
+    // Cookie zuerst – er ist die gemeinsame Quelle mit dem Designer und mit
+    // dem serverseitigen Rendern. localStorage ist pro Ursprung getrennt und
+    // enthält deshalb nur die zuletzt IM SHOP gewählte Sprache.
+    const rawCookie = document.cookie
+      .split("; ")
+      .find((part) => part.startsWith("_medusa_locale="))
+      ?.slice("_medusa_locale=".length);
+
+    const storedLocale = rawCookie
+      ? decodeURIComponent(rawCookie)
+      : window.localStorage.getItem(STORAGE_KEY);
+
+    if (!storedLocale) return;
+
+    // Der Cookie kann auch eine Kurzform enthalten ("nl"). Die Liste kennt nur
+    // volle Kennungen, deshalb notfalls über die ersten beiden Zeichen suchen.
+    const result =
+      SUPPORTED_LOCALES.find((l) => l.code === storedLocale) ??
+      SUPPORTED_LOCALES.find((l) =>
+        l.code.toLowerCase().startsWith(storedLocale.slice(0, 2).toLowerCase())
+      );
+
+    if (!result) return;
+
+    setCurrent(result.code);
+
+    // Beide Speicher gleichziehen, damit der nächste Aufruf ohne Cookie
+    // denselben Wert findet.
+    window.localStorage.setItem(STORAGE_KEY, result.code);
   }, [])
 
     const handleChange = (code: string) => {
@@ -37,7 +62,13 @@ export default function LocaleSwitcher()
     if (typeof window !== "undefined") 
     {
       window.localStorage.setItem(STORAGE_KEY, code);
-      document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}`;
+
+      //Server-Variante:
+      //const domaene = process.env.NEXT_PUBLIC_COOKIE_DOMAIN;
+      //document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax` + (domaene ? `; domain=${domaene}` : "");
+
+      document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
+
 
       const countryCode = LOCALE_TO_COUNTRY[code];
     if (countryCode) {

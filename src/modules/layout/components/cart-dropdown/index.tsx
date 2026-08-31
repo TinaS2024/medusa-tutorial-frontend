@@ -87,7 +87,12 @@ const CartDropdown = ({
       className="h-full z-50"
       onMouseEnter={openAndCancel}
       onMouseLeave={close}
+      // Browser-Erweiterungen setzen an diesem Element gelegentlich
+      // aria-hidden und inert, bevor React hydriert. Das erzeugt eine
+      // Hydrationsmeldung für etwas, das nicht aus dem Code stammt.
+      suppressHydrationWarning
     >
+
       <Popover className="relative h-full">
         <PopoverButton className="h-full">
           <LocalizedClientLink

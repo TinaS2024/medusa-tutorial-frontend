@@ -15,7 +15,7 @@ import MobileActions from "./mobile-actions";
 import Input from "../../../common/components/input";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang } from "@lib/messages";
 
 
 type ProductActionsProps = {
@@ -64,8 +64,12 @@ export default function ProductActions({
   region,
 }: ProductActionsProps) {
 
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   const [options, setOptions] = useState<Record<string, string | undefined>>({});
   const [isAdding, setIsAdding] = useState(false);

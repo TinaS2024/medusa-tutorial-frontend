@@ -1,32 +1,32 @@
-export type Einwilligung = {
-  optional: boolean
-  zeitpunkt: string
+export type Consent = {
+  optionalAccepted: boolean
+  decidedAt: string
 }
 
-const SCHLUESSEL = "cookie_consent"
+const KEY = "cookie_consent"
 
 /** Gespeicherte Entscheidung, oder null wenn noch keine getroffen wurde. */
-export const leseEinwilligung = (): Einwilligung | null => {
+export const readConsent = (): Consent | null => {
   if (typeof window === "undefined") return null;
 
   try {
-    const roh = window.localStorage.getItem(SCHLUESSEL);
-    return roh ? (JSON.parse(roh) as Einwilligung) : null;
+    const raw = window.localStorage.getItem(KEY);
+    return raw ? (JSON.parse(raw) as Consent) : null;
   } catch {
     return null;
   }
 }
 
-export const speichereEinwilligung = (optional: boolean) => {
-  const eintrag: Einwilligung = { optional, zeitpunkt: new Date().toISOString() }
-  window.localStorage.setItem(SCHLUESSEL, JSON.stringify(eintrag));
-  window.dispatchEvent(new CustomEvent("cookie-consent", { detail: eintrag }));
+export const saveConsent = (optionalAccepted: boolean) => {
+  const entry: Consent = { optionalAccepted, decidedAt: new Date().toISOString() }
+  window.localStorage.setItem(KEY, JSON.stringify(entry));
+  window.dispatchEvent(new CustomEvent("cookie-consent", { detail: entry }));
 }
 
 /**
  * Vor dem Laden nicht-notwendiger Dienste abfragen.
  *
  * Beispiel für eine spätere Statistik-Einbindung:
- *   if (hatEinwilligung()) { ...Skript laden... }
+ *   if (hasConsent()) { ...Skript laden... }
  */
-export const hatEinwilligung = (): boolean => leseEinwilligung()?.optional === true;
+export const hasConsent = (): boolean => readConsent()?.optionalAccepted === true;

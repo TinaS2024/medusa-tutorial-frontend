@@ -2,7 +2,7 @@
 
 import { sdk } from "@lib/config";
 
-export async function newsletterAnmelden(email: string, locale: string) 
+export async function subscribeToNewsletter(email: string, locale: string) 
 {
   return sdk.client
     .fetch<{ ok: boolean }>("/store/newsletter/subscribe", {

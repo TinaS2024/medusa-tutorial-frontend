@@ -3,6 +3,7 @@ import { clx } from "@medusajs/ui";
 import React from "react";
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages, type Lang } from "@lib/messages";
+import {useState, useEffect} from "react";
 
 type OptionSelectProps = {
   option: HttpTypes.StoreProductOption
@@ -23,8 +24,12 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   "data-testid": dataTestId,
   disabled,
 }) => {
-  const lang = getClientLanguage() as Lang;
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+  
+    useEffect(() => {
+      setLang(getClientLanguage());
+    }, []);
 
   const titleKeyMap: Record<string, string> = {
     Kissenfarbe: "cushion_color",

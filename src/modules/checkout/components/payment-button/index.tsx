@@ -5,11 +5,11 @@ import { placeOrder, forgetCart } from "@lib/data/cart";
 import { HttpTypes } from "@medusajs/types";
 import { Button } from "@medusajs/ui";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ErrorMessage from "../error-message";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang } from "@lib/messages";
 
 import { useParams } from "next/navigation";
 
@@ -23,8 +23,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
   "data-testid": dataTestId,
 }) => {
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
   const notReady =
     !cart ||

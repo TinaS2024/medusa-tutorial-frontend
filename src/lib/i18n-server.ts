@@ -22,9 +22,3 @@ export const getServerLanguage = async (): Promise<"de" | "en" | "fr" | "nl"> =>
     return FALLBACK_LANG;
   }
 }
-
-export const getClientLanguage = (): "de" | "en" | "fr" | "nl" => {
-  if (typeof window === "undefined") return FALLBACK_LANG;
-  const stored = window.localStorage.getItem("ui_locale");
-  return localeToLang(stored ?? undefined);
-}

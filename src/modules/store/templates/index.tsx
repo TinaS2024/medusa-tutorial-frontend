@@ -16,17 +16,17 @@ import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
 
 // Kommagetrennte Auswahl aus der Adresszeile lesen: "a,b" -> ["a","b"]
-const werteAusParameter = (wert?: string): string[] =>
-  wert ? wert.split(",").map((w) => w.trim()).filter(Boolean) : []
+const valuesFromParam = (value?: string): string[] =>
+  value ? value.split(",").map((w) => w.trim()).filter(Boolean) : []
 
 // Steht eine Auswahl in der Adresszeile, für die es keinen Datensatz gibt
 // (getippte oder gelöschte Handles), darf NICHT das ganze Sortiment erscheinen.
 // Eine nicht existierende ID liefert stattdessen null Treffer.
-const KEIN_TREFFER = "__keine_uebereinstimmung__"
+const __no_match__ = "__keine_uebereinstimmung__"
 
-const idsOderLeerlauf = (gewaehlt: string[], ids: string[]): string[] | undefined => {
-  if (!gewaehlt.length) return undefined;
-  return ids.length ? ids : [KEIN_TREFFER];
+const idsOrEmpty = (chosen: string[], ids: string[]): string[] | undefined => {
+  if (!chosen.length) return undefined;
+  return ids.length ? ids : [__no_match__];
 }
 
 const StoreTemplate = async ({
@@ -57,7 +57,7 @@ const StoreTemplate = async ({
 
   // Filterwerte aus den vorhandenen Produktdaten. Fällt eine Quelle aus,
   // entfällt nur die jeweilige Gruppe.
-  const [kategorien, kollektionen, schlagworte, produktarten] = await Promise.all([
+  const [categories, collections, tags, productTypes] = await Promise.all([
     listCategories().catch(() => []),
     listCollections({ limit: "100" }).then((r) => r.collections).catch(() => []),
     listProductTags(),
@@ -66,73 +66,73 @@ const StoreTemplate = async ({
 
   // --- Kategorien: Baum aus der flachen Liste bauen (nicht auf mitgelieferte
   // category_children verlassen, die reichen nur eine Ebene tief) ---
-  const kinderVon = (elternId: string | null) =>
-    kategorien.filter((k) => (k.parent_category?.id ?? null) === elternId)
+  const childrenOf = (parentId: string | null) =>
+    categories.filter((k) => (k.parent_category?.id ?? null) === parentId)
 
-  const kategorieOptionen: FilterOption[] = [];
+  const categoryOptions: FilterOption[] = [];
 
-  const einsammeln = (liste: typeof kategorien, ebene: number) => {
-    if (ebene > 3) return;
-    liste.forEach((k) => {
-      kategorieOptionen.push({ value: k.handle, label: k.name, level: ebene });
-      einsammeln(kinderVon(k.id), ebene + 1);
+  const collectOptions = (list: typeof categories, level: number) => {
+    if (level > 3) return;
+    list.forEach((k) => {
+      categoryOptions.push({ value: k.handle, label: k.name, level: level });
+      collectOptions(childrenOf(k.id), level + 1);
     })
   }
 
-  einsammeln(kinderVon(null), 0);
+  collectOptions(childrenOf(null), 0);
 
-  const gewaehlteKategorien = werteAusParameter(cat);
+  const selectedCategories = valuesFromParam(cat);
 
   // Wer eine Oberkategorie anhakt, erwartet auch deren Unterkategorien.
-  const kategorieIds: string[] = [];
-  const mitUnterkategorien = (k: (typeof kategorien)[number], tiefe = 0) => {
-    if (tiefe > 3 || kategorieIds.indexOf(k.id) !== -1) return;
-    kategorieIds.push(k.id);
-    kinderVon(k.id).forEach((kind) => mitUnterkategorien(kind, tiefe + 1));
+  const categoryIds: string[] = [];
+  const addWithDescendants = (k: (typeof categories)[number], depth = 0) => {
+    if (depth > 3 || categoryIds.indexOf(k.id) !== -1) return;
+    categoryIds.push(k.id);
+    childrenOf(k.id).forEach((child) => addWithDescendants(child, depth + 1));
   }
-  kategorien
-    .filter((k) => gewaehlteKategorien.includes(k.handle))
-    .forEach((k) => mitUnterkategorien(k))
+  categories
+    .filter((k) => selectedCategories.includes(k.handle))
+    .forEach((k) => addWithDescendants(k))
 
 
   // --- Kollektionen, Schlagwörter, Produktarten ---
-  const gewaehlteKollektionen = werteAusParameter(col);
-  const kollektionIds = kollektionen
-    .filter((c) => gewaehlteKollektionen.includes(c.handle))
+  const selectedCollections = valuesFromParam(col);
+  const collectionIds = collections
+    .filter((c) => selectedCollections.includes(c.handle))
     .map((c) => c.id);
 
-  const gewaehlteSchlagworte = werteAusParameter(tag);
-  const schlagwortIds = schlagworte
-    .filter((s) => s.value && gewaehlteSchlagworte.includes(s.value))
+  const selectedTags = valuesFromParam(tag);
+  const tagIds = tags
+    .filter((s) => s.value && selectedTags.includes(s.value))
     .map((s) => s.id);
 
-  const gewaehlteArten = werteAusParameter(type);
-  const artIds = produktarten
-    .filter((a) => a.value && gewaehlteArten.includes(a.value))
+  const selectedTypes = valuesFromParam(type);
+  const typeIds = productTypes
+    .filter((a) => a.value && selectedTypes.includes(a.value))
     .map((a) => a.id);
 
   const filterGroups: FilterGroup[] = [
     {
       param: "cat",
       titleKey: "categories",
-      options: kategorieOptionen,
+      options: categoryOptions,
     },
     {
       param: "col",
       titleKey: "collections",
-      options: kollektionen.map((c) => ({ value: c.handle, label: c.title })),
+      options: collections.map((c) => ({ value: c.handle, label: c.title })),
     },
     {
       param: "type",
       titleKey: "types",
-      options: produktarten
+      options: productTypes
         .filter((a) => !!a.value)
         .map((a) => ({ value: a.value!, label: a.value! })),
     },
     {
       param: "tag",
       titleKey: "tags",
-      options: schlagworte
+      options: tags
         .filter((s) => !!s.value)
         .map((s) => ({ value: s.value!, label: s.value! })),
     },
@@ -158,10 +158,10 @@ const StoreTemplate = async ({
             page={pageNumber}
             countryCode={countryCode}
             q={q}
-            categoryIds={idsOderLeerlauf(gewaehlteKategorien, kategorieIds)}
-            collectionIds={idsOderLeerlauf(gewaehlteKollektionen, kollektionIds)}
-            tagIds={idsOderLeerlauf(gewaehlteSchlagworte, schlagwortIds)}
-            typeIds={idsOderLeerlauf(gewaehlteArten, artIds)}
+            categoryIds={idsOrEmpty(selectedCategories, categoryIds)}
+            collectionIds={idsOrEmpty(selectedCollections, collectionIds)}
+            tagIds={idsOrEmpty(selectedTags, tagIds)}
+            typeIds={idsOrEmpty(selectedTypes, typeIds)}
           />
         </Suspense>
       </div>

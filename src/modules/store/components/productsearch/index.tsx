@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages } from "@lib/messages";
+import { TextDecoderStream } from "node:stream/web";
 
 export default function ProductSearch() 
 {
@@ -14,20 +15,20 @@ export default function ProductSearch()
   const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
   const t = getMessages(lang).product;
 
-  const [begriff, setBegriff] = useState(searchParams.get("q") ?? "");
+  const [term, setTerm] = useState(searchParams.get("q") ?? "");
 
   useEffect(() => {
     setLang(getClientLanguage());
   }, []);
 
-  const suchen = (e: React.FormEvent) => {
+  const search = (e: React.FormEvent) => {
     e.preventDefault();
 
     const params = new URLSearchParams(searchParams);
-    const wert = begriff.trim();
+    const value = term.trim();
 
-    if (wert) {
-      params.set("q", wert);
+    if (value) {
+      params.set("q", value);
     } else {
       params.delete("q");
     }
@@ -40,11 +41,11 @@ export default function ProductSearch()
   };
 
   return (
-    <form onSubmit={suchen} className="flex gap-2 w-full small:w-auto">
+    <form onSubmit={search} className="flex gap-2 w-full small:w-auto">
       <input
         type="search"
-        value={begriff}
-        onChange={(e) => setBegriff(e.target.value)}
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
         placeholder={t.search_placeholder}
         aria-label={t.search_placeholder}
         className="h-10 px-3 rounded-md text-base-regular w-full small:w-64 bg-[var(--brand-surface-bg)] text-[var(--brand-page-text)] border border-[var(--brand-border)]"

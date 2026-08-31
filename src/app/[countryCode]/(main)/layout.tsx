@@ -9,7 +9,7 @@ import Footer from "@modules/layout/templates/footer";
 import Nav from "@modules/layout/templates/nav";
 import FreeShippingPriceNudge from "@modules/shipping/components/free-shipping-price-nudge";
 
-import CookieHinweis from "@modules/layout/components/cookie-info";
+import CookieInfo from "@modules/layout/components/cookie-info";
 import { retrieveLegal } from "@lib/data/legal";
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
       {props.children}
       <Footer />
       {legal?.cookie_banner_enabled === "1" && (
-        <CookieHinweis text={legal.cookie_banner_text} />
+        <CookieInfo text={legal.cookie_banner_text} />
       )}
     </>
   )

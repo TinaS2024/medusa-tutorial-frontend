@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { leseEinwilligung, speichereEinwilligung } from "@lib/util/consent";
+import { readConsent, saveConsent } from "@lib/util/consent";
 import { getClientLanguage } from "@lib/i18n";
 import { getMessages } from "@lib/messages";
 
-export default function CookieHinweis({ text }: { text?: string | null }) {
-  const [sichtbar, setSichtbar] = useState(false);
+export default function CookieInfo({ text }: { text?: string | null }) {
+  const [visible, setVisible] = useState(false);
   const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
   const t = getMessages(lang).cookie;
 
@@ -15,14 +15,14 @@ export default function CookieHinweis({ text }: { text?: string | null }) {
     setLang(getClientLanguage());
     // Erst nach dem Laden entscheiden, sonst blitzt der Hinweis bei jedem
     // Seitenaufruf kurz auf, obwohl längst zugestimmt wurde.
-    setSichtbar(leseEinwilligung() === null);
+    setVisible(readConsent() === null);
   }, []);
 
-  if (!sichtbar) return null;
+  if (!visible) return null;
 
-  const entscheiden = (optional: boolean) => {
-    speichereEinwilligung(optional);
-    setSichtbar(false);
+  const handleDecision = (optional: boolean) => {
+    saveConsent(optional);
+    setVisible(false);
   }
 
   return (
@@ -41,13 +41,13 @@ export default function CookieHinweis({ text }: { text?: string | null }) {
 
         <div className="flex gap-2 shrink-0">
           <button
-            onClick={() => entscheiden(false)}
-            className="px-4 py-2 rounded-md text-base-regular border border-[var(--brand-border)] hover:bg-[var(--brand-hover-bg)]"
+            onClick={() => handleDecision(false)}
+            className="px-4 py-2 rounded-md text-base-regular border border-[var(--brand-border)]"
           >
             {t.only_required}
           </button>
           <button
-            onClick={() => entscheiden(true)}
+            onClick={() => handleDecision(true)}
             className="px-4 py-2 rounded-md text-base-regular bg-[var(--brand-primary)] text-[var(--brand-button-text)] hover:bg-[var(--brand-primary-hover)]"
           >
             {t.accept_all}

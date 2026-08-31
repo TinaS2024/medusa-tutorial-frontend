@@ -9,12 +9,12 @@ export default async function NewsletterCancel(props: {
   const lang = await getServerLanguage();
   const t = getMessages(lang).newsletter;
 
-  const erfolg = token ? await newsletterAbmelden(token) : false;
+  const success = token ? await newsletterAbmelden(token) : false;
 
   return (
     <div className="content-container py-16">
       <h1 className="text-2xl-semi mb-4">{t.title}</h1>
-      <p className="text-base-regular">{erfolg ? t.unsub_ok : t.unsub_fail}</p>
+      <p className="text-base-regular">{success ? t.unsub_ok : t.unsub_fail}</p>
     </div>
   )
 }

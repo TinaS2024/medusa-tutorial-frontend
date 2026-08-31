@@ -5,11 +5,11 @@ import { CheckCircleSolid, XMark } from "@medusajs/icons";
 import { HttpTypes,StoreCart,StoreCartShippingOption,StorePrice } from "@medusajs/types";
 import { Button, clx } from "@medusajs/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StoreFreeShippingPrice } from "types/global";
 
 import { getClientLanguage } from "@lib/i18n";
-import { getMessages } from "@lib/messages";
+import { getMessages, type Lang } from "@lib/messages";
 
 const computeTarget = (
   cart: HttpTypes.StoreCart,
@@ -142,8 +142,12 @@ function FreeShippingInline({
 })
   
   {
-  const lang = getClientLanguage();
+  const [lang, setLang] = useState<Lang>("de");
   const t = getMessages(lang);
+
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
   
   return (
     <div className="bg-neutral-100 p-2 rounded-lg border">
