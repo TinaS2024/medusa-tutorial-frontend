@@ -65,6 +65,7 @@ export default function LocaleSwitcher()
 
       //Server-Variante:
       //const domaene = process.env.NEXT_PUBLIC_COOKIE_DOMAIN;
+      //document.cookie = `_medusa_locale=; path=/; max-age=0`;
       //document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax` + (domaene ? `; domain=${domaene}` : "");
 
       document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
