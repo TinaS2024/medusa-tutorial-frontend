@@ -1,15 +1,2 @@
-- Schnittstellen zwischen Medusa-Shop und Designer dokumentieren
--> https://claude.ai/code/artifact/440368c2-d3d1-482f-82b7-e5f7e48c974b?via=auto_preview
 
-Beim Server noch in medusa-storefront installieren-generell: 
-
-npm install sanitize-html
-npm install -D @types/sanitize-html
-Nutzungsbedingungen mit in den AGB´s mit drinnen
-
-Datenbank-migration für Newsletter beim server auch machen
-
-Nach Server-Variante suchen beim Server und dann die Server-Variante für das Sprachcookie aktivieren.
-
-den alten guest-ordner löschen
 
