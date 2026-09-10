@@ -1,2 +1,5 @@
 
 
+Python-Umgebung für Windows .venv-win
+
+statt .\.venv\Scripts\python.exe  für Windows diesesn Befehl nehmen .\.venv-win\Scripts\python.exe send_order_from_medusa.py --help
