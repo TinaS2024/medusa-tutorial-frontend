@@ -67,7 +67,7 @@ export async function getOrSetCart(countryCode: string)
   if (!cart) 
   {
     const cartResp = await sdk.store.cart.create(
-      { region_id: region.id },
+      { region_id: region.id, shipping_address: {country_code: countryCode} },
       {},
       headers
     )

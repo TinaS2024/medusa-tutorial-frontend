@@ -114,7 +114,7 @@ export default function BundleActions({bundle,region}: BundleActionsProps)
             <Thumbnail thumbnail={item.product.thumbnail} className="w-24 h-24 rounded-md" size="square" images={[]}/>
             <div>
               <h3 className="text-lg">{item.product.title}</h3>
-              <ProductPrice product={item.product} variant={selectedVariants[index]} region={region} className="!text-sm mt-2 text-ui-fg-muted"/>
+              <ProductPrice product={item.product} variant={selectedVariants[index]} region={region} className="!text-sm mt-2 text-ui-fg-muted" countryCode={countryCode}/>
             </div>
           </div>
           {(item.product.variants?.length ?? 0) > 1 && (

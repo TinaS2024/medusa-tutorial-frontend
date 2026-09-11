@@ -283,29 +283,34 @@ export const getBundleProduct = async (id: string, {
   })
 }
 
-export const getCustomVariantPrice = async ({ 
+export const getCustomVariantPrice = async ({
   variant_id,
-   region_id, 
-   metadata,
-  }: {
-    variant_id: string,
-    region_id: string,
-    metadata?: Record<string, any>
-  }) =>
-  {
-    const headers = {...(await getAuthHeaders()),}
+  region_id,
+  metadata,
+  country_code,
+  product_id,
+}: {
+  variant_id: string,
+  region_id: string,
+  metadata?: Record<string, any>
+  country_code?: string
+  product_id?: string
+}) =>
+{
+  const headers = {...(await getAuthHeaders()),}
 
-    return sdk.client.fetch<{price: number}>(`/store/variants/${variant_id}/price`,
-      {
-        method: "POST",
-        body: {
-          region_id,
-          metadata,
-        },
-        headers,
-        cache: "no-cache",
-      }
-    ).then(({price}) => price)
-  }
-
-  
+  return sdk.client.fetch<{ price: number; price_with_tax: number; tax_rate: number }>(
+    `/store/variants/${variant_id}/price`,
+    {
+      method: "POST",
+      body: {
+        region_id,
+        metadata,
+        country_code,
+        product_id,
+      },
+      headers,
+      cache: "no-cache",
+    }
+  )
+}

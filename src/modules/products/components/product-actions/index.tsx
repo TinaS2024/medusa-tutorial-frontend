@@ -406,8 +406,8 @@ export default function ProductActions({
       region_id: region.id,
       metadata: product.metadata?.is_personalized ? { width, height } : undefined,
     })
-      .then((price) => {
-        setDesignerPrice(price);
+      .then((result) => {
+        setDesignerPrice(result.price);
       })
       .catch((error) => {
         console.error("Error fetching designer custom price:", error);
@@ -749,7 +749,7 @@ export default function ProductActions({
         )}
       </div>
 
-        <ProductPrice product={product} variant={selectedVariant} region={region} metadata={{width,height}}/>
+        <ProductPrice product={product} variant={selectedVariant} region={region} metadata={{width,height}} countryCode={countryCode}/>
 
         <div className="mt-2">
           <Input

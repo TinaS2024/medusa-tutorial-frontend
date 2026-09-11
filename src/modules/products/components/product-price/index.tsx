@@ -13,12 +13,14 @@ export default function ProductPrice({
   variant,
   metadata,
   region,
+  countryCode,
   className
 }: {
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
   metadata?: Record<string, any>
   region: HttpTypes.StoreRegion
+  countryCode?: string
   className?: string
 }) 
 {
@@ -39,9 +41,9 @@ export default function ProductPrice({
     }
 
 
-    getCustomVariantPrice({ variant_id: variant.id, region_id: region.id, metadata,})
+    getCustomVariantPrice({ variant_id: variant.id, region_id: region.id, metadata, country_code: countryCode, product_id: product.id})
 
-      .then((price) => { setPrice(price) })
+      .then((result) => { setPrice(result.price_with_tax) })
 
       .catch((error) => {
 
@@ -49,7 +51,7 @@ export default function ProductPrice({
 
       })
 
-  }, [metadata, variant]);
+  }, [metadata, variant, countryCode]);
 
 
   const displayPrice = useMemo(() => {
