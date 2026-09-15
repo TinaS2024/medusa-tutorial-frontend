@@ -7,6 +7,7 @@ Stand: 2026-09-15
 - Im Code stecken **zwei** Bündel-Mechanismen. Aktiv ist derzeit nur einer: das **Design-Set**, bei dem das Bündel-Produkt wie ein normales Produkt über den Designer bestellt wird.
 - Der zweite, **klassische Bündel-Weg** (Varianten pro Bestandteil wählen, `BundleActions`) ist durch eine unscheinbare Stelle in `listProducts` nicht erreichbar – siehe [Die Falle](#die-falle).
 - **Diese Stelle nicht einfach „reparieren".** Das Design-Set hängt davon ab. Wer beide Wege braucht, muss vorher einen Umschalter pro Bündel einbauen – siehe [Wenn beide Bündel-Arten gebraucht werden](#wenn-beide-bündel-arten-gebraucht-werden).
+- **Der Produktimport überträgt keine Bündel.** Nach einem Import in eine andere Umgebung, zum Beispiel von lokal auf den Server, müssen Bündel dort über das Admin-Formular neu angelegt werden – siehe [Bündel in eine andere Umgebung übertragen](#bündel-in-eine-andere-umgebung-übertragen).
 
 ## So funktionieren Bündel derzeit: das Design-Set
 
@@ -81,9 +82,23 @@ Shopbetreiber sollen auch „normale" Bündel anlegen können. Dafür braucht es
 3. `product-actions-wrapper` zeigt `BundleActions` nur bei `bundle_mode === "classic"`, sonst `ProductActions`.
 4. Der Subscriber löst nur Design-Sets auf. Klassische Bündel-Positionen ohne Design würden weiterhin übersprungen – soll der klassische Weg mit GPE funktionieren, müssen Route und Vorbereitungsschritt Design-Daten mitnehmen.
 
+## Bündel in eine andere Umgebung übertragen
+
+**Der Produktimport überträgt keine Bündel.** Er legt nur die Produkte an. Das Bündel selbst, seine Bestandteile und die Verknüpfungen liegen in eigenen Tabellen des Bündel-Moduls (`bundle`, `bundle_item` und die zugehörigen Link-Tabellen) und werden nicht mitgenommen. Dazu kommt, dass die IDs in jeder Umgebung andere sind – Bündel lassen sich also auch nicht einfach per ID nachtragen.
+
+**So äußert es sich:** Das Bündel-Produkt, zum Beispiel „Alu-Schilder", existiert nach dem Import mit Preis und Metadaten und lässt sich ganz normal bestellen. Es ist aber mit keinem Bündel verknüpft, und der Subscriber findet nichts zum Auflösen. In `gpe-outbox` steht dann nur **eine** Position statt einer je Bestandteil – ohne Fehlermeldung. In der Backend-Ausgabe erkennt man es daran, dass die ID des Bündel-Produkts in der Zeile `[GPE] Bündel geladen: [ … ]` fehlt.
+
+**Vorgehen nach einem Import:**
+
+1. Jedes Bündel in der Zielumgebung über das Admin-Formular „Bundled Products" neu anlegen und die Bestandteile auswählen.
+2. Das Formular erzeugt dabei ein **neues** Bündel-Produkt; ein vorhandenes lässt sich nicht verknüpfen. Am neuen Produkt Preis und Metadaten eintragen (`designer_shape`, `designer_category` usw.).
+3. Das importierte, unverknüpfte Bündel-Produkt löschen oder unveröffentlichen, damit es niemand bestellt.
+4. Mit einer Testbestellung prüfen: In `gpe-outbox` müssen so viele Positionen stehen, wie das Bündel Bestandteile hat.
+
 ## Offene Punkte
 
 - **`gpe_id` für Bestandteile:** Eine ID pro Produkt kann nicht zugleich die rechteckige und die runde Ausführung abbilden, und `order2gpe` übergibt `designer_shape` nicht an GPE (die Form kommt nur über das Motiv an). Zu entscheiden: getrennte GPE-Produkte für die runde Ausführung (ID zum Beispiel in den Metadaten des Bündel-Produkts) oder die Form als Option am selben GPE-Produkt.
+- **Bündel beim Import:** Der Produktimport überträgt Bündel bisher nicht. Eine Möglichkeit, Bündel samt Bestandteilen und Verknüpfungen zu exportieren und in einer anderen Umgebung wieder anzulegen, gibt es noch nicht. Bis dahin gilt das Vorgehen aus [Bündel in eine andere Umgebung übertragen](#bündel-in-eine-andere-umgebung-übertragen).
 - **Dreifacher Upload:** `order2gpe` lädt das gemeinsame Motiv für jede Bestandteil-Position einzeln herunter und hoch.
 
 ## Beteiligte Dateien
