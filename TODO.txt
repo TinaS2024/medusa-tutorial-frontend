@@ -2,10 +2,6 @@
 
 Python-Umgebung für Windows .venv-win
 
-statt .\.venv\Scripts\python.exe  für Windows diesesn Befehl nehmen .\.venv-win\Scripts\python.exe send_order_from_medusa.py --help
-
-
-Der Produktpreis für Schilder stellt den Grundpreis dar. Dazu wird ein Flächenpreis aufaddiert.
-Für Stempel kann der Grundpreis aus dem GPE bezogen werden.
+statt .\.venv\Scripts\python.exe  für Windows diesen Befehl nehmen .\.venv-win\Scripts\python.exe send_order_from_medusa.py --help
 
 - Noch ein Rechnungs-Plugin in Medusa einbauen
