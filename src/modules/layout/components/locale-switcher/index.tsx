@@ -2,6 +2,7 @@
 
 import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { updateCartLocale } from "@lib/data/cart";
 
 const SUPPORTED_LOCALES = [
   { code: "de-DE", label: "DE" },
@@ -57,7 +58,7 @@ export default function LocaleSwitcher()
     window.localStorage.setItem(STORAGE_KEY, result.code);
   }, [])
 
-    const handleChange = (code: string) => {
+    const handleChange = async (code: string) => {
     setCurrent(code);
     if (typeof window !== "undefined") 
     {
@@ -70,9 +71,13 @@ export default function LocaleSwitcher()
 
       document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
 
+            // Warenkorb auf die neue Sprache umstellen, bevor die Seite neu lädt
+      await updateCartLocale(code);
+
 
       const countryCode = LOCALE_TO_COUNTRY[code];
-    if (countryCode) {
+      if (countryCode) 
+      {
       const path = window.location.pathname;
       const parts = path.split("/");
 

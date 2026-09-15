@@ -313,6 +313,8 @@
       "total_price":"Gesamtpreis",
       "total_summary":"Gesamtsumme",
       "taxes_title":"Steuern",
+      "taxes_included":"darin enthaltene MwSt.",
+      "from":"ab",
       "tax":"MwSt",
       "tax_note": "inkl. MwSt., zzgl. Versandkosten",
       "shipping_cost":"Versandkosten"

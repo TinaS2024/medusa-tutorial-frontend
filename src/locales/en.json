@@ -312,6 +312,8 @@
       "total_price":"Total price",
       "total_summary":"Total summary",
       "taxes_title":"Taxes",
+      "taxes_included": "incl. VAT",
+      "from":"from",
       "tax":"Vat",
       "tax_note": "incl. VAT, plus shipping",
       "shipping_cost":"Shipping costs"

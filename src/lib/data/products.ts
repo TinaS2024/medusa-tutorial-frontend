@@ -86,6 +86,8 @@ return sdk.client
           limit,
           offset,
           region_id: region?.id,
+          // Mit dem Land berechnet Medusa zusätzlich den Preis mit Steuer
+          ...(countryCode ? { country_code: countryCode } : {}),
           q: queryParams?.q,
           handle: queryParams?.handle,
           id: queryParams?.id,

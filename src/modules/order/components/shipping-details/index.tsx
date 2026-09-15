@@ -67,13 +67,11 @@ const ShippingDetails = async({ order }: ShippingDetailsProps) => {
             {t.shipping.shipping_method}
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">
-            {(order as any).shipping_methods[0]?.name} (
+          {(order as any).shipping_methods[0]?.name} (
             {convertToLocale({
               amount: order.shipping_methods?.[0].total ?? 0,
               currency_code: order.currency_code,
-            })
-              .replace(/,/g, "")
-              .replace(/\./g, ",")}
+            })}
             )
           </Text>
         </div>

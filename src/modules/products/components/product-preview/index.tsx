@@ -1,10 +1,13 @@
-import { Text } from "@medusajs/ui"
-import { listProducts } from "@lib/data/products"
-import { getProductPrice } from "@lib/util/get-product-price"
-import { HttpTypes } from "@medusajs/types"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Thumbnail from "../thumbnail"
-import PreviewPrice from "./price"
+import { Text } from "@medusajs/ui";
+import { listProducts } from "@lib/data/products";
+import { getProductPrice } from "@lib/util/get-product-price";
+import { HttpTypes } from "@medusajs/types";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+import Thumbnail from "../thumbnail";
+import PreviewPrice from "./price";
+import { getServerLanguage } from "@lib/i18n-server";
+import { getMessages } from "@lib/messages";
+
 
 export default async function ProductPreview({
   product,
@@ -28,6 +31,12 @@ export default async function ProductPreview({
     product,
   })
 
+  // Personalisierte Produkte: der Preis hängt von Größe bzw. Konfiguration ab,
+  // angezeigt wird deshalb ein Mindestpreis ("ab 5,95 €")
+  const isPersonalized = !!product.metadata?.is_personalized
+  const t = getMessages(await getServerLanguage())
+
+
   return (
     <LocalizedClientLink href={`/products/${product.handle}`} className="group">
       <div data-testid="product-wrapper">
@@ -42,6 +51,9 @@ export default async function ProductPreview({
             {product.title}
           </Text>
           <div className="flex items-center gap-x-2">
+            {cheapestPrice && isPersonalized && (
+              <Text className="text-ui-fg-muted">{t.price.from}</Text>
+            )}
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>

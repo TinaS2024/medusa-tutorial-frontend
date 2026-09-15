@@ -315,6 +315,8 @@
       "total_price":"Prix total totalis",
       "total_summary":"Total de la commande",
       "taxes_title":"Impôts",
+      "taxes_included": "dont TVA",
+      "from":"à partir de",
       "tax":"T.V.A.",
       "tax_note": "TVA incluse, hors frais de port",
       "shipping_cost":"Frais d'expédition"

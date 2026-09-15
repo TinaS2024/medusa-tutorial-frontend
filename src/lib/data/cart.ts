@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { getAuthHeaders, getCacheOptions, getCacheTag, getCartId, removeCartId, setCartId } from "./cookies";
 import { retrieveCustomer, updateCustomer } from "./customer";
 import { getRegion } from "./regions";
+import {  getLocaleFromCookies } from "@lib/locale";
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.
@@ -64,10 +65,18 @@ export async function getOrSetCart(countryCode: string)
     ...(await getAuthHeaders()),
   }
 
-  if (!cart) 
+    if (!cart) 
   {
+    const locale = await getLocaleFromCookies();
+
     const cartResp = await sdk.store.cart.create(
-      { region_id: region.id, shipping_address: {country_code: countryCode} },
+      {
+        region_id: region.id,
+        shipping_address: { country_code: countryCode },
+        // locale kennen die Storefront-Typen noch nicht, das Backend (2.13)
+        // nimmt das Feld aber an – deshalb der Cast.
+        ...(locale ? { locale } : {}),
+      } as HttpTypes.StoreCreateCart,
       {},
       headers
     )
@@ -114,6 +123,44 @@ export async function updateCart(data: HttpTypes.StoreUpdateCart)
       return cart;
     })
     .catch(medusaError)
+}
+
+/**
+ * Setzt die Sprache des Warenkorbs, damit Medusa die Versandarten und deren
+ * gespeicherten Namen in der Bestellung übersetzt. Fehler werden nur
+ * geloggt – ein Sprachwechsel darf daran nie scheitern.
+ */
+export async function updateCartLocale(locale: string) 
+{
+  const cartId = await getCartId();
+
+  if (!cartId) 
+  {
+    // Noch kein Warenkorb – der neue bekommt die Sprache beim Anlegen
+    return;
+  }
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  try 
+  {
+    await sdk.store.cart.update(cartId, { locale } as HttpTypes.StoreUpdateCart, {}, headers);
+  } 
+  catch (error) 
+  {
+    console.error("Sprache des Warenkorbs konnte nicht gesetzt werden:", error);
+    return;
+  }
+
+  const cartCacheTag = await getCacheTag("carts");
+  revalidateTag(cartCacheTag);
+
+  // listCartOptions legt die Versandarten unter "shippingOptions" ab –
+  // ohne das bleiben die alten, unübersetzten Namen im Zwischenspeicher
+  const shippingOptionsCacheTag = await getCacheTag("shippingOptions");
+  revalidateTag(shippingOptionsCacheTag);
 }
 
 export async function addToCart({

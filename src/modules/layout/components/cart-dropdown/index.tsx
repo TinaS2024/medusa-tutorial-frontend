@@ -40,7 +40,7 @@ const CartDropdown = ({
       return acc + item.quantity
     }, 0) || 0;
 
-  const subtotal = cartState?.subtotal ?? 0;
+  const subtotal = cartState?.item_total ?? 0;
   const itemRef = useRef<number>(totalItems || 0);
 
   const timedOpen = () => {
@@ -202,7 +202,7 @@ const CartDropdown = ({
                   <div className="flex items-center justify-between">
                     <span className="text-ui-fg-base font-semibold">
                       {t.price.subtotal}: {" "}
-                      <span className="font-normal">(excl. Steuern)</span>
+                      <span className="font-normal">({t.price.tax_note})</span>
                     </span>
                     <span
                       className="text-large-semi"
