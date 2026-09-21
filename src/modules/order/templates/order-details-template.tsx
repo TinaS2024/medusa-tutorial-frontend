@@ -6,6 +6,7 @@ import Items from "@modules/order/components/items";
 import OrderDetails from "@modules/order/components/order-details";
 import OrderSummary from "@modules/order/components/order-summary";
 import ShippingDetails from "@modules/order/components/shipping-details";
+import Invoices from "@modules/order/components/invoices";
 
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
@@ -39,6 +40,7 @@ const OrderDetailsTemplate = async ({ order }: OrderDetailsTemplateProps) => {
         <Items order={order} />
         <ShippingDetails order={order} />
         <OrderSummary order={order} />
+        <Invoices orderId={order.id} />
         <Help />
       </div>
     </div>

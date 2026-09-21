@@ -34,6 +34,38 @@ export const retrieveOrder = async (id: string) => {
     .catch((err) => medusaError(err))
 }
 
+export type OrderInvoice = {
+  id: string
+  number: string
+  type: string
+  issued_at: string
+  total_gross: number | string
+  currency_code: string
+  has_pdf: boolean
+}
+
+/**
+ * Die Rechnungen zu einer Bestellung.
+ *
+ * Bei einem Fehler wird eine leere Liste geliefert statt zu werfen: Die
+ * Bestellseite soll auch dann funktionieren, wenn der Rechnungsteil hakt.
+ * Der Kunde sieht dann einfach keinen Rechnungsblock.
+ */
+export const retrieveOrderInvoices = async (
+  orderId: string
+): Promise<OrderInvoice[]> => {
+  const headers = { ...(await getAuthHeaders()) }
+
+  return sdk.client
+    .fetch<{ invoices: OrderInvoice[] }>(`/store/orders/${orderId}/invoices`, {
+      method: "GET",
+      headers,
+      cache: "no-store",
+    })
+    .then((r) => r.invoices ?? [])
+    .catch(() => [])
+}
+
 export const retrieveProductionStatus = async (orderId: string) => {
   const headers = { ...(await getAuthHeaders()) }
   return sdk.client

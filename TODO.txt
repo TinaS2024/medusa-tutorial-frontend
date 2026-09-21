@@ -4,4 +4,9 @@ Python-Umgebung für Windows .venv-win
 
 statt .\.venv\Scripts\python.exe  für Windows diesen Befehl nehmen .\.venv-win\Scripts\python.exe send_order_from_medusa.py --help
 
-- Noch ein Rechnungs-Plugin in Medusa einbauen
+Beim Server:
+npx medusa db:generate invoice
+npx medusa db:migrate
+npm install pdfmake@0.3.11 installieren
+npm install adm-zip@0.6.1
+
