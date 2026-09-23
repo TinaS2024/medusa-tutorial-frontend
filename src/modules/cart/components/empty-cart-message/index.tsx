@@ -7,10 +7,11 @@ import { Heading, Text } from "@medusajs/ui";
 import InteractiveLink from "@modules/common/components/interactive-link";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 const EmptyCartMessage = () => {
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
 
    useEffect(() => {
     setLang(getClientLanguage());

@@ -5,6 +5,7 @@ import { getCustomVariantPrice } from "../../../../lib/data/products";
 import { convertToLocale } from "../../../../lib/util/money";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 
@@ -26,7 +27,7 @@ export default function ProductPrice({
 {
   const [price, setPrice] = useState(0);
 
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

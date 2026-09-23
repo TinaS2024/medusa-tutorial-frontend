@@ -12,6 +12,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 const Payment = ({
@@ -25,7 +26,7 @@ const Payment = ({
     (paymentSession: any) => paymentSession.status === "pending"
   )
 
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
   const paymentInfoMap = getPaymentInfoMap(lang);
   

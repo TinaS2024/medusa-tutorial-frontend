@@ -5,10 +5,11 @@ import { Button, Heading, Text } from "@medusajs/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 const SignInPrompt = () => {
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

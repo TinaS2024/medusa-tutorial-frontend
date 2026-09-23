@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { readConsent, saveConsent } from "@lib/util/consent";
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 export default function CookieInfo({ text }: { text?: string | null }) {
   const [visible, setVisible] = useState(false);
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang).cookie;
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import AccountNav from "../components/account-nav";
 import { HttpTypes } from "@medusajs/types";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 interface AccountLayoutProps {
@@ -22,7 +23,7 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
   children,
 }) => {
 
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
 
    useEffect(() => {
     setLang(getClientLanguage());

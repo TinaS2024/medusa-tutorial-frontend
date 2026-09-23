@@ -16,6 +16,7 @@ import { HttpTypes } from "@medusajs/types";
 import { signout } from "@lib/data/customer";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 const AccountNav = ({
@@ -23,7 +24,7 @@ const AccountNav = ({
 }: {
   customer: HttpTypes.StoreCustomer | null
 }) => {
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

@@ -3,6 +3,8 @@ import { Heading } from "@medusajs/ui";
 import { retrieveOrderInvoices } from "@lib/data/orders";
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
+import { langToLocale } from "@lib/languages";
+
 
 type Props = {
   orderId: string
@@ -25,7 +27,8 @@ const Invoices = async ({ orderId }: Props) => {
   // Kasten mit "keine Rechnung vorhanden" verunsichert Kunden nur.
   if (!invoices.length) return null;
 
-  const locale = LOCALES[lang] ?? "de-DE";
+  const locale = langToLocale(lang);
+
 
   const money = (value: number | string, currency: string) =>
     new Intl.NumberFormat(locale, { style: "currency", currency }).format(

@@ -7,12 +7,13 @@ import { SubmitButton } from "@modules/checkout/components/submit-button";
 import Input from "@modules/common/components/input";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 type ActionState = { ok: boolean; error: string | null } | null;
 
 const ResetPasswordForm = ({ token, email }: { token: string; email: string }) => {
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   useEffect(() => setLang(getClientLanguage()), []);
   const t = getMessages(lang);
 

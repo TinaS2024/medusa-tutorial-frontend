@@ -1,30 +1,16 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { updateCartLocale } from "@lib/data/cart";
 
-const SUPPORTED_LOCALES = [
-  { code: "de-DE", label: "DE" },
-  { code: "en-GB", label: "EN" },
-  { code: "fr-FR", label: "FR" },
-  { code: "nl-NL", label: "NL" },
-]
-
-const LOCALE_TO_COUNTRY: Record<string, string> = {
-  "de-DE": "de",
-  "en-GB": "gb",  
-  "fr-FR": "fr",
-  "nl-NL": "nl",
-};
+import { DEFAULT_LANG, LANGUAGES, langToLocale, localeToLang } from "@lib/languages";
 
 const STORAGE_KEY = "ui_locale";
 
-export default function LocaleSwitcher()
-{
-    const [current, setCurrent] = useState<string>("de-DE");
+export default function LocaleSwitcher() {
+  const [current, setCurrent] = useState<string>(langToLocale(DEFAULT_LANG));
 
-        useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return;
 
     // Cookie zuerst – er ist die gemeinsame Quelle mit dem Designer und mit
@@ -41,64 +27,44 @@ export default function LocaleSwitcher()
 
     if (!storedLocale) return;
 
-    // Der Cookie kann auch eine Kurzform enthalten ("nl"). Die Liste kennt nur
-    // volle Kennungen, deshalb notfalls über die ersten beiden Zeichen suchen.
-    const result =
-      SUPPORTED_LOCALES.find((l) => l.code === storedLocale) ??
-      SUPPORTED_LOCALES.find((l) =>
-        l.code.toLowerCase().startsWith(storedLocale.slice(0, 2).toLowerCase())
-      );
+    // Kurzformen ("nl") und nicht angebotene Sprachen landen so bei einem
+    // Eintrag der Liste – nicht angebotene bei Englisch.
+    const locale = langToLocale(localeToLang(storedLocale));
 
-    if (!result) return;
+    setCurrent(locale);
+    window.localStorage.setItem(STORAGE_KEY, locale);
+  }, []);
 
-    setCurrent(result.code);
+  const handleChange = async (locale: string) => {
+    setCurrent(locale);
+    window.localStorage.setItem(STORAGE_KEY, locale);
 
-    // Beide Speicher gleichziehen, damit der nächste Aufruf ohne Cookie
-    // denselben Wert findet.
-    window.localStorage.setItem(STORAGE_KEY, result.code);
-  }, [])
+    //Server-Variante:
+    //const domaene = process.env.NEXT_PUBLIC_COOKIE_DOMAIN;
+    //document.cookie = `_medusa_locale=; path=/; max-age=0`;
+    //document.cookie = `_medusa_locale=${locale}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax` + (domaene ? `; domain=${domaene}` : "");
 
-    const handleChange = async (code: string) => {
-    setCurrent(code);
-    if (typeof window !== "undefined") 
-    {
-      window.localStorage.setItem(STORAGE_KEY, code);
+    document.cookie = `_medusa_locale=${locale}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
 
-      //Server-Variante:
-      //const domaene = process.env.NEXT_PUBLIC_COOKIE_DOMAIN;
-      //document.cookie = `_medusa_locale=; path=/; max-age=0`;
-      //document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax` + (domaene ? `; domain=${domaene}` : "");
-
-      document.cookie = `_medusa_locale=${code}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
-
-            // Warenkorb auf die neue Sprache umstellen, bevor die Seite neu lädt
-      await updateCartLocale(code);
+    // Warenkorb auf die neue Sprache umstellen, bevor die Seite neu lädt.
+    // Über die Route, nicht als Serveraktion – siehe api/cart-locale.
+    await fetch("/api/cart-locale", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ locale }),
+    }).catch(() => {});
 
 
-      const countryCode = LOCALE_TO_COUNTRY[code];
-      if (countryCode) 
-      {
-      const path = window.location.pathname;
-      const parts = path.split("/");
+    // Nur neu laden – das Land in der Adresse bleibt, wie es ist. Die
+    // Sprache bestimmt die Texte, das Land die Steuer und das Lieferland.
+    // Das Land wählt der Kunde getrennt über die Länderauswahl im Menü.
+    window.location.reload();
+  };
 
-      if (parts.length > 1) 
-      {
-        parts[1] = countryCode;
-        const newPath = parts.join("/");
-        window.location.href = newPath; 
-      } else {
-        window.location.reload();
-      }
-    } else {
-      window.location.reload();
-    }
-  }
-    }
+  const selected =
+    LANGUAGES.find((language) => language.locale === current) ?? LANGUAGES[0];
 
-   const selected = SUPPORTED_LOCALES.find((loc) => loc.code === current) ?? SUPPORTED_LOCALES[0];
-
-    return (
-    <>
+  return (
     <Listbox value={current} onChange={handleChange}>
       <div className="relative">
         <Listbox.Button className="flex items-center justify-between gap-x-1 rounded px-2 py-1 text-xs bg-transparent text-white shadow-sm">
@@ -111,21 +77,22 @@ export default function LocaleSwitcher()
           leaveTo="opacity-0"
         >
           <Listbox.Options className="absolute right-0 z-10 mt-1 w-10 rounded-md bg-[var(--brand-surface-bg)] py-1 text-xs shadow-lg ring-1 ring-black/5">
-            {SUPPORTED_LOCALES.map((loc) => (
+            {LANGUAGES.map((language) => (
               <Listbox.Option
-                key={loc.code}
-                value={loc.code}
-                className={({ active }) =>`cursor-pointer select-none px-3 py-1 ${active ? "bg-transparent text-orange-900" : "bg-transaprent text-gray-900"}`
+                key={language.locale}
+                value={language.locale}
+                className={({ active }) =>
+                  `cursor-pointer select-none px-3 py-1 ${
+                    active ? "bg-transparent text-orange-900" : "bg-transparent text-gray-900"
+                  }`
                 }
               >
-                {loc.label}
+                {language.label}
               </Listbox.Option>
             ))}
           </Listbox.Options>
         </Transition>
       </div>
     </Listbox>
-  </>
-    );
+  );
 }
-

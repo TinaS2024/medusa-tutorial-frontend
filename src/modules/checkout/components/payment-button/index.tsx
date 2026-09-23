@@ -9,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import ErrorMessage from "../error-message";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 import { useParams } from "next/navigation";
@@ -23,7 +24,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
   "data-testid": dataTestId,
 }) => {
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

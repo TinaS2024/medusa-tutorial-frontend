@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import ProductPrice from "../product-price";
 import Thumbnail from "../thumbnail";
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 
@@ -32,7 +33,7 @@ const optionsAsKeymap = (variantOptions: HttpTypes.StoreProductVariant["options"
 export default function BundleActions({bundle,region}: BundleActionsProps) 
 {
   
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

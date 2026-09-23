@@ -14,6 +14,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 const PICKUP_OPTION_ON = "__PICKUP_ON";
@@ -71,7 +72,7 @@ const Shipping: React.FC<ShippingProps> = ({
   availableShippingMethods,
 }) => {
 
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
   
     useEffect(() => {

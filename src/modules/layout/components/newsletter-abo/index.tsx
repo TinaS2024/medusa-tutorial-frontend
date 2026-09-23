@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { subscribeToNewsletter } from "@lib/data/newsletter";
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 export default function NewsletterAbo() 
 {
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang).newsletter;
 
   const [email, setEmail] = useState("");

@@ -9,6 +9,7 @@ import { HttpTypes } from "@medusajs/types";
 import { updateCustomer } from "@lib/data/customer";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 type MyInformationProps = {
@@ -17,7 +18,7 @@ type MyInformationProps = {
 
 const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

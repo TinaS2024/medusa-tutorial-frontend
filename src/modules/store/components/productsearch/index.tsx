@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 import { TextDecoderStream } from "node:stream/web";
 
@@ -12,7 +13,7 @@ export default function ProductSearch()
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang).product;
 
   const [term, setTerm] = useState(searchParams.get("q") ?? "");

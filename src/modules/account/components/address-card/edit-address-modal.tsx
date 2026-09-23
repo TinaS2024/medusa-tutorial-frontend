@@ -14,6 +14,7 @@ import { HttpTypes } from "@medusajs/types";
 import {deleteCustomerAddress, updateCustomerAddress} from "@lib/data/customer";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 type EditAddressProps = {
@@ -28,7 +29,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
   isActive = false,
 }) => {
 
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const t = getMessages(lang);
 
   useEffect(() => {

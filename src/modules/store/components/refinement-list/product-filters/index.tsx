@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG } from "@lib/languages";
 import { getMessages, type Lang } from "@lib/messages";
 
 export type FilterOption = {
@@ -34,7 +35,7 @@ const ProductFilters = ({ groups }: ProductFiltersProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [lang, setLang] = useState<Lang>("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const [open, setOpen] = useState(false);
   const t = getMessages(lang);
 

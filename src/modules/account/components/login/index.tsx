@@ -11,6 +11,7 @@ import Modal from "@modules/common/components/modal";
 import ForgotPasswordForm from "@modules/account/components/forgot-password-form";
 
 import { getClientLanguage } from "@lib/i18n";
+import { DEFAULT_LANG, type Lang } from "@lib/languages";
 import { getMessages } from "@lib/messages";
 
 type Props = {
@@ -18,7 +19,7 @@ type Props = {
 }
 
   const Login = ({ setCurrentView }: Props) => {
-  const [lang, setLang] = useState<"de" | "en" | "fr" | "nl">("de");
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   
      useEffect(() => {
       setLang(getClientLanguage());
