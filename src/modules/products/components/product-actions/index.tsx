@@ -99,7 +99,6 @@ export default function ProductActions({
 
         if (data && data.customer && data.customer.id)
         {
-          console.log("ðŸ‘¤ Medusa Kunde erkannt. ID:", data.customer.id);
           setCustomerId(data.customer.id);
         }
         else {
@@ -610,8 +609,6 @@ export default function ProductActions({
     designer_shape: String(selectedVariant?.metadata?.designer_shape ?? product.metadata?.designer_shape ?? ""),
     designer_category: String(selectedVariant?.metadata?.designer_category ?? product.metadata?.designer_category ?? ""),
   });
-
-  console.log("CustomerId", customerId || "");
 
   if(selectedVariant)
   {
