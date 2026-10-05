@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import { Container, Heading, Text } from "@medusajs/ui";
+import { CreditCard } from "@medusajs/icons";
 
 import { getPaymentInfoMap, isStripe } from "@lib/constants";
 import Divider from "@modules/common/components/divider";
@@ -22,11 +23,26 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
   const t = getMessages(lang);
   const paymentInfoMap = getPaymentInfoMap(lang);
   
-     useEffect(() => {
-      setLang(getClientLanguage());
-    }, []);
+  useEffect(() => {
+    setLang(getClientLanguage());
+  }, []);
 
-  const payment = order.payment_collections?.[0].payments?.[0]
+  const payment = order.payment_collections?.[0]?.payments?.[0]
+
+  // Bei unbekannter Zahlungsart die Kennung zeigen, statt abzustürzen.
+  const info = payment ? paymentInfoMap[payment.provider_id] : undefined
+
+  const amount = payment
+    ? convertToLocale({ amount: payment.amount, currency_code: order.currency_code })
+    : ""
+
+  // captured_at = Geld ist da. Bei Karte sofort, bei Vorauszahlung und
+  // Rechnung erst, wenn im Admin "Zahlung erfassen" geklickt wurde.
+  const capturedAt = (payment as any)?.captured_at as string | null | undefined
+
+  const status = capturedAt
+    ? `${t.payment.paid_on} ${new Date(capturedAt).toLocaleDateString(lang)}`
+    : t.payment.not_paid
 
   return (
     <div>
@@ -44,7 +60,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method"
               >
-                {paymentInfoMap[payment.provider_id].title}
+                {info?.title ?? payment.provider_id}
               </Text>
             </div>
             <div className="flex flex-col w-2/3">
@@ -53,17 +69,12 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
               </Text>
               <div className="flex gap-2 txt-medium text-ui-fg-subtle items-center">
                 <Container className="flex items-center h-7 w-fit p-2 bg-ui-button-neutral-hover">
-                  {paymentInfoMap[payment.provider_id].icon}
+                  {info?.icon ?? <CreditCard />}
                 </Container>
                 <Text data-testid="payment-amount">
                   {isStripe(payment.provider_id) && payment.data?.card_last4
                     ? `**** **** **** ${payment.data.card_last4}`
-                    : `${convertToLocale({
-                        amount: payment.amount,
-                        currency_code: order.currency_code,
-                      })} paid at ${new Date(
-                        payment.created_at ?? ""
-                      ).toLocaleString()}`}
+                    : `${amount} – ${status}`}
                 </Text>
               </div>
             </div>

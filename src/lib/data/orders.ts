@@ -14,10 +14,6 @@ export const retrieveOrder = async (id: string) => {
 
   const locale = await getLocaleFromCookies();
 
-  const next = {
-    ...(await getCacheOptions("orders")),
-  }
-
   return sdk.client
     .fetch<HttpTypes.StoreOrderResponse>(`/store/orders/${id}`, {
       method: "GET",
@@ -27,8 +23,9 @@ export const retrieveOrder = async (id: string) => {
         ...(locale ? { locale } : {}),
       },
       headers,
-      next,
-      cache: "force-cache",
+      // Nicht zwischenspeichern: Zahlungsstand und Status einer Bestellung
+      // ändern sich, z. B. wenn im Admin "Zahlung erfassen" geklickt wird.
+      cache: "no-store",
     })
     .then(({ order }) => order)
     .catch((err) => medusaError(err))

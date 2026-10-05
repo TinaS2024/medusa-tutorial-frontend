@@ -1,6 +1,7 @@
 "use client";
 
 import { isManual, isStripe } from "@lib/constants";
+import { isInvoice } from "@lib/util/invoice-payment";
 import { placeOrder, forgetCart } from "@lib/data/cart";
 import { HttpTypes } from "@medusajs/types";
 import { Button } from "@medusajs/ui";
@@ -49,7 +50,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           data-testid={dataTestId}
         />
       )
-    case isManual(paymentSession?.provider_id):
+    // Vorauszahlung und Rechnung: kein Zahlungsdienst, direkt bestellen.
+    case isManual(paymentSession?.provider_id) || isInvoice(paymentSession?.provider_id):
       return (
         <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
       )

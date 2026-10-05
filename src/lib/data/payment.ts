@@ -1,7 +1,7 @@
 "use server"
 
 import { sdk } from "@lib/config"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
+import { getAuthHeaders } from "./cookies"
 import { HttpTypes } from "@medusajs/types"
 
 export const listCartPaymentMethods = async (regionId: string) => {
@@ -9,9 +9,6 @@ export const listCartPaymentMethods = async (regionId: string) => {
     ...(await getAuthHeaders()),
   }
 
-  const next = {
-    ...(await getCacheOptions("payment_providers")),
-  }
 
   return sdk.client
     .fetch<HttpTypes.StorePaymentProviderListResponse>(
@@ -20,8 +17,9 @@ export const listCartPaymentMethods = async (regionId: string) => {
         method: "GET",
         query: { region_id: regionId },
         headers,
-        next,
-        cache: "force-cache",
+        // Nicht zwischenspeichern: Schaltet jemand im Admin eine Zahlungsart
+        // in der Region frei oder ab, soll das sofort im Shop gelten.
+        cache: "no-store",
       }
     )
     .then(({ payment_providers }) =>

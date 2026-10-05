@@ -10,3 +10,12 @@ npx medusa db:migrate
 npm install pdfmake@0.3.11 installieren
 npm install adm-zip@0.6.1
 
+TODO für Später:
+- Irgendwann sollen Kunden nur die Produkte zugeteilt bekommen die  auch in ihren Shop zu finden sind. Diese Einstellung gibt es im GPE  aber noch gar nicht.
+- Im Admin soll ein Widget erstellt werden mit dem man die Produktgruppen bzw. Shopprodukte auswählen kann die man gerne im   Medusa-Shop ausgewählt haben möchte.
+
+Schritt A6 noch offen und danach Aufgabe B!
+
+TODO: 
+- Geschenkkarte ohne Mehrwertsteuer und sie muss einlösbar sein.
+- Bei mehrfarbigen Schildern sollte das Schild mit der richtigen Hintergrundfarbe im Warenkorb zu sehen sein

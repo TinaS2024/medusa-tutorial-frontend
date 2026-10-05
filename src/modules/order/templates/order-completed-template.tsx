@@ -11,6 +11,7 @@ import PaymentDetails from "@modules/order/components/payment-details";
 import { HttpTypes } from "@medusajs/types";
 
 import { retrieveBankDetails } from "@lib/data/bank";
+import { isInvoice } from "@lib/util/invoice-payment";
 
 import { getServerLanguage } from "@lib/i18n-server";
 import { getMessages } from "@lib/messages";
@@ -30,6 +31,11 @@ export default async function OrderCompletedTemplate({order}: OrderCompletedTemp
     typeof p.provider_id === "string" && p.provider_id.startsWith("pp_system_default")
   )
 )
+
+  const usesInvoice = order.payment_collections?.some((pc: any) =>
+    pc.payments?.some((p: any) => isInvoice(p.provider_id))
+  )
+
 
   const bankDetails = usesPrepayment ? await retrieveBankDetails() : null
 
@@ -60,6 +66,14 @@ export default async function OrderCompletedTemplate({order}: OrderCompletedTemp
           <CartTotals totals={order} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />
+          {usesInvoice && (
+            <div className="flex flex-col gap-2 border border-ui-border-base rounded-lg p-4 bg-ui-bg-subtle">
+              <Heading level="h2" className="text-xl-regular">
+                {t.payment.invoice}
+              </Heading>
+              <Text>{t.payment.invoice_note}</Text>
+            </div>
+          )}
           {bankDetails && bankDetails.bank_iban && (
             <div className="flex flex-col gap-2 border border-ui-border-base rounded-lg p-4 bg-ui-bg-subtle">
               <Heading level="h2" className="text-xl-regular">

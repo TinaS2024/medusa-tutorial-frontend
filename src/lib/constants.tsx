@@ -2,7 +2,8 @@
 "use client";
 
 import React from "react";
-import { CreditCard } from "@medusajs/icons";
+import { CreditCard, DocumentText } from "@medusajs/icons";
+
 
 import Ideal from "@modules/common/icons/ideal";
 import Bancontact from "@modules/common/icons/bancontact";
@@ -35,6 +36,10 @@ export const getPaymentInfoMap = (
     pp_system_default: {
       title: t.payment.manual,
       icon: <CreditCard />,
+    },
+    pp_invoice_invoice: {
+      title: t.payment.invoice,
+      icon: <DocumentText />,
     },
   }
 }
