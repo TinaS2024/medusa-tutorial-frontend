@@ -38,7 +38,10 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
 
   // captured_at = Geld ist da. Bei Karte sofort, bei Vorauszahlung und
   // Rechnung erst, wenn im Admin "Zahlung erfassen" geklickt wurde.
-  const capturedAt = (payment as any)?.captured_at as string | null | undefined
+  const capturedAt = (payment as any)?.captured_at as string | null | undefined;
+  
+  // 0-€-Zahlung = alles wurde per Geschenkkarte bezahlt.
+  const paidByGiftCard = payment ? Number(payment.amount) <= 0.005 : false;
 
   const status = capturedAt
     ? `${t.payment.paid_on} ${new Date(capturedAt).toLocaleDateString(lang)}`
@@ -60,7 +63,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method"
               >
-                {info?.title ?? payment.provider_id}
+              {paidByGiftCard ? t.payment.gift_card : info?.title ?? payment.provider_id}
               </Text>
             </div>
             <div className="flex flex-col w-2/3">

@@ -37,7 +37,9 @@ export default async function OrderCompletedTemplate({order}: OrderCompletedTemp
   )
 
 
-  const bankDetails = usesPrepayment ? await retrieveBankDetails() : null
+  // Bei 0 € (alles per Geschenkkarte bezahlt) gibt es nichts zu überweisen.
+  const bankDetails = usesPrepayment && Number(order.total ?? 0) > 0.005 ? await retrieveBankDetails() : null;
+
 
   const cookies = await nextCookies();
 

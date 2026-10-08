@@ -2,7 +2,7 @@
 
 import { HttpTypes } from "@medusajs/types";
 import Input from "@modules/common/components/input";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CountrySelect from "../country-select";
 
 import { getClientLanguage } from "@lib/i18n";
@@ -30,8 +30,17 @@ const BillingAddress = ({ cart }: { cart: HttpTypes.StoreCart | null }) => {
     "billing_address.phone": cart?.billing_address?.phone || "",
   });
 
+    // Wie bei der Versandadresse: nur übernehmen, wenn sich die gespeicherte
+  // Rechnungsadresse geändert hat – nicht bei jeder Änderung am Warenkorb.
+  const savedAddressKey = JSON.stringify(cart?.billing_address ?? null);
+  const lastSavedAddressKey = useRef<string | null>(null);
+
   useEffect(() => {
+    if (lastSavedAddressKey.current === savedAddressKey) return;
+    lastSavedAddressKey.current = savedAddressKey;
+
     if (!cart?.billing_address) return;
+
 
     setFormData((prev) => ({
       ...prev,
@@ -45,7 +54,7 @@ const BillingAddress = ({ cart }: { cart: HttpTypes.StoreCart | null }) => {
       "billing_address.province": cart.billing_address?.province || "",
       "billing_address.phone": cart.billing_address?.phone || "",
     }));
-  }, [cart]);
+    }, [savedAddressKey]);
 
   const handleChange = (
     e: React.ChangeEvent<

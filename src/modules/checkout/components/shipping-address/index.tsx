@@ -5,7 +5,7 @@ import { Container } from "@medusajs/ui";
 import Checkbox from "@modules/common/components/checkbox";
 import Input from "@modules/common/components/input";
 import { mapKeys } from "lodash";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import AddressSelect from "../address-select";
 import CountrySelect from "../country-select";
 
@@ -85,8 +85,17 @@ const ShippingAddress = ({
       }))
   }
 
+  // Die gespeicherte Adresse nur übernehmen, wenn sie sich WIRKLICH geändert
+  // hat (gespeichert oder aus dem Adressbuch gewählt). Vorher lief das bei
+  // jeder Änderung am Warenkorb – z. B. beim Einlösen einer Geschenkkarte –
+  // und hat gerade eingetippte, noch nicht gespeicherte Felder geleert.
+  const savedAddressKey = JSON.stringify([cart?.shipping_address ?? null, cart?.email ?? null])
+  const lastSavedAddressKey = useRef<string | null>(null)
+
   useEffect(() => {
-    // Ensure cart is not null and has a shipping_address before setting form data
+    if (lastSavedAddressKey.current === savedAddressKey) return
+    lastSavedAddressKey.current = savedAddressKey
+
     if (cart && cart.shipping_address) {
       setFormAddress(cart?.shipping_address, cart?.email)
     }
@@ -94,7 +103,8 @@ const ShippingAddress = ({
     if (cart && !cart.email && customer?.email) {
       setFormAddress(undefined, customer.email)
     }
-  }, [cart]) // Add cart as a dependency
+  }, [savedAddressKey])
+
 
   const handleChange = (
     e: React.ChangeEvent<

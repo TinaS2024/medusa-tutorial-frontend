@@ -5,7 +5,7 @@ Python-Umgebung für Windows .venv-win
 statt .\.venv\Scripts\python.exe  für Windows diesen Befehl nehmen .\.venv-win\Scripts\python.exe send_order_from_medusa.py --help
 
 Beim Server:
-npx medusa db:generate invoice
+npx medusa db:generate giftCard
 npx medusa db:migrate
 npm install pdfmake@0.3.11 installieren
 npm install adm-zip@0.6.1
@@ -17,3 +17,17 @@ TODO für Später:
 TODO: 
 - Geschenkkarte ohne Mehrwertsteuer und sie muss einlösbar sein.
 - Bei mehrfarbigen Schildern sollte das Schild mit der richtigen Hintergrundfarbe im Warenkorb zu sehen sein
+
+
+validate-invoice-payment.ts in src/workflows/hooks später löschen, weil es eine Ersatzdatei dafür jetzt gibt.
+
+npx medusa exec ./src/scripts/list-gift-cards.ts
+
+GK-RWC4-67NM-87QZ  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
+GK-SMV3-PZPG-JPE3  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
+GK-GG7F-R8H8-9HU3  57.71 EUR  Bestellung: order_01M48CR06ZSAH0YNSGBRTDMS7R  gültig bis 31.12.2029
+GK-AK3D-GAJ9-5XF3  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
+GK-8D7F-TKSA-P8S2  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
+GK-Z4TE-JNTM-PRFA  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
+
+GK-KAHS-D9UM-692U

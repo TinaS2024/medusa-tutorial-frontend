@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { Badge, Heading, Input, Label, Text, Tooltip } from "@medusajs/ui";
 import React, { useActionState } from "react";
 
-import { applyPromotions, submitPromotionForm } from "@lib/data/cart";
+import { applyGiftCard, applyPromotions, removeGiftCard, submitPromotionForm } from "@lib/data/cart";
+import { GIFT_CARD_CREDIT_REFERENCE, looksLikeGiftCardCode, maskGiftCardCode} from "@lib/util/gift-card";
 import { convertToLocale } from "@lib/util/money";
 import { InformationCircleSolid } from "@medusajs/icons";
 import { HttpTypes } from "@medusajs/types";
@@ -45,18 +46,38 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
     )
   }
 
+   const [giftCardError, setGiftCardError] = useState<string | null>(null);
+
+  // Eingelöste Geschenkkarten = Gutschriften mit unserem Kennzeichen.
+  const giftCardLines = ((cart as any).credit_lines ?? []).filter(
+    (line: any) => line?.reference === GIFT_CARD_CREDIT_REFERENCE
+  );
+
   const addPromotionCode = async (formData: FormData) => {
+    setGiftCardError(null)
+
     const code = formData.get("code")
     if (!code) {
       return;
     }
     const input = document.getElementById("promotion-input") as HTMLInputElement;
-    const codes = promotions
-      .filter((p) => p.code === undefined)
-      .map((p) => p.code!)
-    codes.push(code.toString())
 
-    await applyPromotions(codes);
+    // Ein Feld für beides: "GK…" ist eine Geschenkkarte, alles andere ein
+    // Rabattcode wie bisher.
+    if (looksLikeGiftCardCode(code.toString())) {
+      const error = await applyGiftCard(code.toString())
+      if (error) {
+        setGiftCardError(error)
+        return
+      }
+    } else {
+      const codes = promotions
+        .filter((p) => p.code === undefined)
+        .map((p) => p.code!)
+      codes.push(code.toString())
+
+      await applyPromotions(codes);
+    }
 
     if (input) {
       input.value = "";
@@ -92,6 +113,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                   id="promotion-input"
                   name="code"
                   type="text"
+                  placeholder={t.payment.code_placeholder}
                   autoFocus={false}
                   data-testid="discount-input"
                 />
@@ -107,9 +129,51 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) =>
                 error={message}
                 data-testid="discount-error-message"
               />
+              <ErrorMessage
+                error={giftCardError}
+                data-testid="gift-card-error-message"
+              />
+
             </>
           )}
         </form>
+
+        {giftCardLines.length > 0 && (
+          <div className="w-full flex flex-col mb-2">
+            <Heading className="txt-medium mb-2">
+              {t.payment.gift_card}
+            </Heading>
+
+            {giftCardLines.map((line: any) => (
+              <div
+                key={line.id}
+                className="flex items-center justify-between w-full mb-2"
+                data-testid="gift-card-row"
+              >
+                <Text className="txt-small-plus">
+                  <Badge color="grey" size="small">
+                    {maskGiftCardCode(line.metadata?.code)}
+                  </Badge>{" "}
+                  (−{" "}
+                  {convertToLocale({
+                    amount: Number(line.amount),
+                    currency_code: cart.currency_code,
+                  })}
+                  )
+                </Text>
+                <button
+                  type="button"
+                  className="flex items-center"
+                  onClick={() => removeGiftCard(line.reference_id)}
+                  data-testid="remove-gift-card-button"
+                >
+                  <Trash size={14} />
+                  <span className="sr-only">{t.payment.remove_code}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
 
         {promotions.length > 0 && (
           <div className="w-full flex items-center">

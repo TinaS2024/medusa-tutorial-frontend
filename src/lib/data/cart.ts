@@ -431,16 +431,34 @@ export async function applyPromotions(codes: string[]) {
     .catch(medusaError)
 }
 
-export async function applyGiftCard(code: string) {
-  //   const cartId = getCartId()
-  //   if (!cartId) return "No cartId cookie found"
-  //   try {
-  //     await updateCart(cartId, { gift_cards: [{ code }] }).then(() => {
-  //       revalidateTag("cart")
-  //     })
-  //   } catch (error: any) {
-  //     throw error
-  //   }
+/**
+ * Löst eine Geschenkkarte im Warenkorb ein.
+ *
+ * Gibt bei Erfolg null zurück, sonst die Fehlermeldung des Servers.
+ * Bewusst kein "throw": Next.js ersetzt Fehlermeldungen aus Server-Aktionen
+ * im fertigen Shop durch einen allgemeinen Text – der Kunde soll aber lesen,
+ * WARUM es nicht geklappt hat (abgelaufen, aufgebraucht …).
+ */
+export async function applyGiftCard(code: string): Promise<string | null> {
+  const cartId = await getCartId()
+  if (!cartId) return "No existing cart found"
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch(`/store/carts/${cartId}/gift-cards`, {
+      method: "POST",
+      body: { code },
+      headers,
+    })
+    .then(async () => {
+      const cartCacheTag = await getCacheTag("carts")
+      revalidateTag(cartCacheTag)
+      return null
+    })
+    .catch((err: any) => err?.message ?? "Fehler")
 }
 
 export async function removeDiscount(code: string) {
@@ -454,25 +472,55 @@ export async function removeDiscount(code: string) {
   // }
 }
 
-export async function removeGiftCard(
-  codeToRemove: string,
-  giftCards: any[]
-  // giftCards: GiftCard[]
-) {
-  //   const cartId = getCartId()
-  //   if (!cartId) return "No cartId cookie found"
-  //   try {
-  //     await updateCart(cartId, {
-  //       gift_cards: [...giftCards]
-  //         .filter((gc) => gc.code !== codeToRemove)
-  //         .map((gc) => ({ code: gc.code })),
-  //     }).then(() => {
-  //       revalidateTag("cart")
-  //     })
-  //   } catch (error: any) {
-  //     throw error
-  //   }
+/** Nimmt eine eingelöste Geschenkkarte wieder aus dem Warenkorb. */
+export async function removeGiftCard(giftCardId: string): Promise<string | null> {
+  const cartId = await getCartId()
+  if (!cartId) return "No existing cart found"
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch(`/store/carts/${cartId}/gift-cards/${giftCardId}`, {
+      method: "DELETE",
+      headers,
+    })
+    .then(async () => {
+      const cartCacheTag = await getCacheTag("carts")
+      revalidateTag(cartCacheTag)
+      return null
+    })
+    .catch((err: any) => err?.message ?? "Fehler")
 }
+
+/**
+ * Lässt die Gutschriften der Geschenkkarten neu berechnen, z. B. nachdem
+ * der Versand dazugekommen ist. Gibt zurück, ob sich etwas geändert hat.
+ */
+export async function syncGiftCards(): Promise<boolean> {
+  const cartId = await getCartId()
+  if (!cartId) return false
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  return sdk.client
+    .fetch<{ changed: boolean }>(`/store/carts/${cartId}/gift-cards/sync`, {
+      method: "POST",
+      headers,
+    })
+    .then(async ({ changed }) => {
+      if (changed) {
+        const cartCacheTag = await getCacheTag("carts")
+        revalidateTag(cartCacheTag)
+      }
+      return changed
+    })
+    .catch(() => false)
+}
+
 
 export async function submitPromotionForm(
   currentState: unknown,

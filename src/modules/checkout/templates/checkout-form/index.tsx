@@ -1,6 +1,7 @@
 import { listCartShippingMethods } from "@lib/data/fulfillment";
 import { listCartPaymentMethods } from "@lib/data/payment";
 import { canPayByInvoice, isInvoice } from "@lib/util/invoice-payment";
+import { cartContainsGiftCard, isInstantPayment } from "@lib/util/gift-card"
 import { HttpTypes } from "@medusajs/types";
 import Addresses from "@modules/checkout/components/addresses";
 import Payment from "@modules/checkout/components/payment";
@@ -31,11 +32,17 @@ export default async function CheckoutForm({
   }
 
   
-  // "Auf Rechnung" nur Kunden mit Kundennummer anzeigen. Das ist nur fürs
-  // Auge – die eigentliche Sperre prüft der Server beim Bestellabschluss.
-  const visiblePaymentMethods = canPayByInvoice(customer)
-    ? paymentMethods
-    : paymentMethods.filter((method) => !isInvoice(method.id))
+  // Welche Zahlungsarten der Kunde sieht. Das ist nur fürs Auge – die
+  // eigentlichen Sperren prüft der Server beim Bestellabschluss.
+  //  - "Auf Rechnung" nur für Kunden mit Kundennummer.
+  //  - Mit Geschenkkarte im Warenkorb nur Kartenzahlung, weil der Code
+  //    direkt beim Bestellen entsteht.
+  const containsGiftCard = cartContainsGiftCard(cart)
+
+  const visiblePaymentMethods = paymentMethods
+    .filter((method) => canPayByInvoice(customer) || !isInvoice(method.id))
+    .filter((method) => !containsGiftCard || isInstantPayment(method.id))
+
 
 
   return (
@@ -44,7 +51,7 @@ export default async function CheckoutForm({
 
       <Shipping cart={cart} availableShippingMethods={shippingMethods} />
 
-      <Payment cart={cart} availablePaymentMethods={visiblePaymentMethods} />
+      <Payment cart={cart} availablePaymentMethods={visiblePaymentMethods} onlyCardPayment={containsGiftCard}/>
 
       <Review cart={cart} />
     </div>

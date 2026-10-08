@@ -2,7 +2,7 @@
 
 import { RadioGroup } from "@headlessui/react";
 import { getPaymentInfoMap, isStripe as isStripeFunc } from "@lib/constants";
-import { initiatePaymentSession } from "@lib/data/cart";
+import { initiatePaymentSession, syncGiftCards } from "@lib/data/cart";
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons";
 import { Button, Container, Heading, Text, clx } from "@medusajs/ui";
 import ErrorMessage from "@modules/checkout/components/error-message";
@@ -18,9 +18,12 @@ import { getMessages, type Lang } from "@lib/messages";
 const Payment = ({
   cart,
   availablePaymentMethods,
+  onlyCardPayment = false,
 }: {
   cart: any
   availablePaymentMethods: any[]
+  // true, wenn eine Geschenkkarte im Warenkorb liegt
+  onlyCardPayment?: boolean
 }) => {
   const activeSession = cart.payment_collection?.payment_sessions?.find(
     (paymentSession: any) => paymentSession.status === "pending"
@@ -48,18 +51,32 @@ const Payment = ({
 
   const isStripe = isStripeFunc(selectedPaymentMethod);
 
+  // Bei Geschenkkarten nur Kartenzahlung und Paypal zulassen. Stripe zeigt sonst auch
+  // SEPA-Lastschrift an – die ist erst nach Tagen sicher und kann noch
+  // zurückgebucht werden, wenn die Karte längst verschickt ist.
+  const sessionInput = (method: string) => ({
+    provider_id: method,
+    ...(onlyCardPayment && isStripeFunc(method)
+      ? { data: { payment_method_types: ["card", "paypal"] } }
+      : {}),
+  })
+
   const setPaymentMethod = async (method: string) => {
     setError(null)
     setSelectedPaymentMethod(method)
-    if (isStripeFunc(method)) {
-      await initiatePaymentSession(cart, {
-        provider_id: method,
-      })
+    if (isStripeFunc(method)) 
+    {
+      await initiatePaymentSession(cart, sessionInput(method))
     }
   }
 
-  const paidByGiftcard =
-    cart?.gift_cards && cart?.gift_cards?.length > 0 && cart?.total === 0;
+    const hasGiftCards = (cart?.credit_lines ?? []).some((line: any) => line?.reference === "gift_card")
+
+  // Bezahlt die Geschenkkarte alles, gibt es nichts mehr auszuwählen.
+  // Medusa verlangt trotzdem eine "Zahlung" – dafür wird im Hintergrund die
+  // eingebaute Zahlungsart über 0 € angelegt (pp_system_default).
+  const paidByGiftcard = hasGiftCards && Number(cart?.total ?? 0) <= 0.005;
+
 
   const paymentReady = (activeSession && cart?.shipping_methods.length !== 0) || paidByGiftcard;
 
@@ -82,16 +99,13 @@ const Payment = ({
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      const shouldInputCard =
-        isStripeFunc(selectedPaymentMethod) && !activeSession
+      const shouldInputCard = isStripeFunc(selectedPaymentMethod) && !activeSession;
 
-      const checkActiveSession =
-        activeSession?.provider_id === selectedPaymentMethod
+      const checkActiveSession = activeSession?.provider_id === selectedPaymentMethod;
 
-      if (!checkActiveSession) {
-        await initiatePaymentSession(cart, {
-          provider_id: selectedPaymentMethod,
-        })
+      if (!checkActiveSession) 
+      {
+        await initiatePaymentSession(cart, sessionInput(selectedPaymentMethod));
       }
 
       if (!shouldInputCard) {
@@ -106,12 +120,31 @@ const Payment = ({
       setError(err.message)
     } finally {
       setIsLoading(false)
+      if (paidByGiftcard) {
+        // 0-€-Zahlung anlegen, falls es noch keine gibt.
+        if (activeSession?.provider_id !== "pp_system_default") {
+          await initiatePaymentSession(cart, { provider_id: "pp_system_default" })
+        }
+        return router.push(pathname + "?" + createQueryString("step", "review"), {
+          scroll: false,
+        })
+      }
     }
   }
 
+  // Sobald der Zahlungsschritt aufgeht, steht der Endbetrag samt Versand
+  // fest. Dann die Geschenkkarten neu verrechnen lassen, damit sie z. B.
+  // auch den Versand abdecken.
+
   useEffect(() => {
     setError(null)
+    if (isOpen && hasGiftCards) {
+      syncGiftCards().then((changed) => {
+        if (changed) router.refresh()
+      })
+    }
   }, [isOpen])
+
 
   return (
     <div className="bg-[var(--brand-surface-bg)]">
@@ -144,7 +177,14 @@ const Payment = ({
       </div>
       <div>
         <div className={isOpen ? "block" : "hidden"}>
-          {!paidByGiftcard && availablePaymentMethods?.length && (
+          {onlyCardPayment && (
+            <Text className="txt-medium text-ui-fg-subtle mb-4">
+              {t.payment.gift_card_card_only}
+            </Text>
+          )}
+          {/* "> 0" ist wichtig: Ohne würde React bei leerer Liste eine "0" anzeigen. */}
+          {!paidByGiftcard && (availablePaymentMethods?.length ?? 0) > 0 && (
+
             <>
               <RadioGroup
                 value={selectedPaymentMethod}
