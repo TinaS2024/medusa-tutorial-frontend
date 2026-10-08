@@ -18,9 +18,6 @@ TODO:
 - Geschenkkarte ohne Mehrwertsteuer und sie muss einlösbar sein.
 - Bei mehrfarbigen Schildern sollte das Schild mit der richtigen Hintergrundfarbe im Warenkorb zu sehen sein
 
-
-validate-invoice-payment.ts in src/workflows/hooks später löschen, weil es eine Ersatzdatei dafür jetzt gibt.
-
 npx medusa exec ./src/scripts/list-gift-cards.ts
 
 GK-RWC4-67NM-87QZ  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
