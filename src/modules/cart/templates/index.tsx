@@ -91,6 +91,8 @@ const CartTemplate = ({
     const height = getParam("height");
     const cushionColor = searchParams.get("cushionColor");
     const embossingPosition = getParam("embossingPosition") || getParam("embossing_position");
+    const backgroundColor = getParam("backgroundColor") || getParam("background_color");
+
 
     const shouldAutoAdd = Boolean(productId && variantId && designImage && width && height);
 
@@ -146,6 +148,9 @@ const CartTemplate = ({
               height: parseFloat(height!),
               cushion_color: cushionColor || undefined,
               embossing_position: embossingPosition || undefined,
+              // Hintergrundfarbe für die Vorschau – das Design-PNG ist durchsichtig.
+              background_color: backgroundColor || undefined,
+
             },
           });
           console.log("Product added to cart successfully!");

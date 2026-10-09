@@ -510,6 +510,8 @@ export default function ProductActions({
         design_image: designImageToSave,
         svg_url: designSvg,
         regionId: region.id,
+        // Hintergrundfarbe für die Vorschau – das Design-PNG ist durchsichtig.
+        background_color: backgroundColor || undefined,
       },
     })
 
