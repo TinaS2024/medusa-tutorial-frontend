@@ -28,6 +28,7 @@ TODO für Später:
 - Im Admin soll ein Widget erstellt werden mit dem man die Produktgruppen bzw. Shopprodukte auswählen kann die man gerne im   Medusa-Shop ausgewählt haben möchte.
 
 TODO: 
+- Wieso stellt Medusa-Admin die Sprache häufig um ?
 - Preise für Colop und Trodat aus GPE
 - Sperrbereich im Designer für Datumsstempel mit Text
 
