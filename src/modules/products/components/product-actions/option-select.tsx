@@ -107,7 +107,10 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               onClick={() => updateOption(option.id, v)}
               key={v}
               className={clx(
-                "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
+                // min-w-fit: Ein Knopf ist mindestens so breit wie sein Text.
+                // Passt eine Zeile nicht mehr, rutschen die übrigen Knöpfe in
+                // die nächste Zeile (flex-wrap) – statt dass Text übersteht.
+                "border-ui-border-base bg-ui-bg-subtle border text-small-regular min-h-[2.5rem] rounded-rounded px-3 py-2 flex-1 min-w-fit whitespace-nowrap ",
                 {
                   "border-[var(--brand-primary)] bg-[var(--brand-primary)] after:hidden text-[var(--brand-button-text)]": v === current,
                   "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":

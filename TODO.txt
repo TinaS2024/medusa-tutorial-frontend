@@ -28,3 +28,7 @@ GK-8D7F-TKSA-P8S2  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
 GK-Z4TE-JNTM-PRFA  0.00 EUR  Bestellung: —  gültig bis 31.12.2029
 
 GK-KAHS-D9UM-692U
+
+npx medusa exec ./src/scripts/import-colop-pads.ts ../katalog-import/colop-kissen.json
+
+Wo ist der Link für Stempelkissen geschrieben ?

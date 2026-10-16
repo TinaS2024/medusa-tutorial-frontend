@@ -13,6 +13,8 @@ import ProductPrice from "../product-price";
 import { getCustomVariantPrice } from "@lib/data/products";
 import MobileActions from "./mobile-actions";
 import Input from "../../../common/components/input";
+import LocalizedClientLink from "@modules/common/components/localized-client-link";
+
 
 import { getClientLanguage } from "@lib/i18n";
 import { DEFAULT_LANG } from "@lib/languages";
@@ -226,6 +228,40 @@ export default function ProductActions({
       return isEqual(variantOptions, options);
     })
   }, [product.variants, options]);
+
+  
+  // Gewählte Variante in die Adresse schreiben (?v_id=…). Die Bildergalerie
+  // daneben liest sie dort und zeigt das passende Bild. Andere Angaben in der
+  // Adresse (z. B. designImage nach dem Designer) bleiben erhalten.
+  //
+  // Bewusst window.history statt router.replace: router.replace lädt die
+  // ganze Produktseite neu vom Server (dauert Sekunden). Next.js gleicht
+  // window.history trotzdem mit useSearchParams ab – die Galerie bekommt
+  // die neue v_id also mit, ohne Neuladen.
+  useEffect(() => {
+    if (!selectedVariant?.id) return;
+    if (searchParams.get("v_id") === selectedVariant.id) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("v_id", selectedVariant.id);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+  }, [selectedVariant?.id]);
+
+  
+  // Passende Ersatzkissen des gewählten Modells – gesetzt von
+  // assign-colop-pads.ts (metadata.compatible_pads an der Variante).
+  const compatiblePads = (
+    Array.isArray(selectedVariant?.metadata?.compatible_pads)
+      ? selectedVariant?.metadata?.compatible_pads
+      : []
+  ) as { handle: string; title: string }[];
+
+  // Gestaltbar im Designer? Die Admin-Metadaten können true oder "true" sein.
+  const isDesignable =
+    product.metadata?.is_designable === true ||
+    String(product.metadata?.is_designable).toLowerCase() === "true";
+
+
 
   //Anzeige Dicke eines Produktes
   const thickness = useMemo(() => {
@@ -646,6 +682,10 @@ export default function ProductActions({
                   const isEmbossingPosition = techKey === TECHNICAL_OPTION_KEYS.EMBOSSING_POSITION || option.title === t.product_properties.embossing_position;
                   const isPenColor = techKey === TECHNICAL_OPTION_KEYS.PEN_COLOR || option.title === t.product_properties.pen_color;
 
+                  // Nicht gestaltbare Artikel (z. B. Ersatzkissen): alle Optionen
+                  // zeigen. Die Regeln darunter gelten nur für Designer-Produkte –
+                  // sonst wäre z. B. die Kissenfarbe eines Ersatzkissens unsichtbar.
+                  if (!isDesignable) return true;
 
                   if (isStampProduct || hasCushion) 
                   {
@@ -679,6 +719,20 @@ export default function ProductActions({
                   </div>
                 )
               })}
+              {compatiblePads.length > 0 && (
+                <div className="flex flex-col gap-y-1 text-sm">
+                  <span className="text-ui-fg-muted">{t.product.compatible_pad}</span>
+                  {compatiblePads.map((pad) => (
+                    <LocalizedClientLink
+                      key={pad.handle}
+                      href={`/products/${pad.handle}`}
+                      className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover underline"
+                    >
+                      {pad.title} →
+                    </LocalizedClientLink>
+                  ))}
+                </div>
+              )}
               <Divider />
             </div>
           )}

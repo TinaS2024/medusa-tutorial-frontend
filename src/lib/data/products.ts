@@ -97,7 +97,8 @@ return sdk.client
           type_id: queryParams?.type_id,
           order: queryParams?.order,
           fields:
-            "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags,+material,*images",
+          // +variants.thumbnail, *variants.images: Bilder je Variante für die Galerie
+            "*variants.calculated_price,+variants.inventory_quantity,+variants.thumbnail,*variants.images,+metadata,+tags,+material,*images",
           ...(locale ? { locale } : {}),
         },
         headers,

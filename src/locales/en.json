@@ -225,6 +225,7 @@
       "quantity":"Quantity",
       "selected_variant":"Selected Variant",
       "sold_out":"Sold out",
+      "compatible_pad":"Matching replacement pad:",
       "shipping_and_returns": "Shipping and Return",
       "material": "Material",
       "origin_country":"Origin Country",

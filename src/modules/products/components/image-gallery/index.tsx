@@ -1,16 +1,49 @@
+"use client";
+
 import { HttpTypes } from "@medusajs/types";
 import { Container } from "@medusajs/ui";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[]
+  // Varianten samt ihren Bildern (variants.images / variants.thumbnail)
+  variants?: HttpTypes.StoreProductVariant[] | null
 }
 
-const ImageGallery = ({ images }: ImageGalleryProps) => {
+/**
+ * Welche Bilder zeigen?
+ *
+ * Ist eine Variante gewählt (?v_id=… in der Adresse, gesetzt von
+ * ProductActions) und hat sie eigene Bilder, nur diese. Hat sie nur ein
+ * Vorschaubild, dieses. Sonst alle Bilder des Produkts – so wie bisher.
+ */
+const pickImages = (
+  images: HttpTypes.StoreProductImage[],
+  variants: HttpTypes.StoreProductVariant[] | null | undefined,
+  variantId: string | null
+): HttpTypes.StoreProductImage[] => {
+  const variant: any = variantId ? variants?.find((v) => v.id === variantId) : undefined
+
+  if (variant?.images?.length) {
+    return variant.images
+  }
+
+  if (variant?.thumbnail) {
+    return [{ id: `${variant.id}-thumbnail`, url: variant.thumbnail } as HttpTypes.StoreProductImage]
+  }
+
+  return images
+}
+
+const ImageGallery = ({ images, variants }: ImageGalleryProps) => {
+  const searchParams = useSearchParams()
+  const shownImages = pickImages(images, variants, searchParams.get("v_id"))
+
   return (
     <div className="flex items-start relative">
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
-        {images.map((image, index) => {
+        {shownImages.map((image, index) => {
           return (
             <Container
               key={image.id}
