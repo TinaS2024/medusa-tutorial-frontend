@@ -31,6 +31,3 @@ TODO für Später:
 TODO: 
 - Wieso stellt Medusa-Admin die Sprache häufig um ?
 - Preise für Colop und Trodat aus GPE
-
-
-
